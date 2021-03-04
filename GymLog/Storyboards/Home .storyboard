@@ -5,6 +5,7 @@
         <deployment identifier="iOS"/>
         <plugIn identifier="com.apple.InterfaceBuilder.IBCocoaTouchPlugin" version="17703"/>
         <capability name="Safe area layout guides" minToolsVersion="9.0"/>
+        <capability name="System colors in document resources" minToolsVersion="11.0"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -17,33 +18,377 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" largeTitles="YES" id="mHL-Lb-Ohk">
                         <rect key="frame" x="0.0" y="44" width="414" height="96"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <color key="barTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <textAttributes key="largeTitleTextAttributes">
+                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        </textAttributes>
                     </navigationBar>
                     <connections>
-                        <segue destination="fZr-S9-KWN" kind="relationship" relationship="rootViewController" id="vEP-1l-0cE"/>
+                        <segue destination="Grh-dY-U6y" kind="relationship" relationship="rootViewController" id="EiO-Oc-gOu"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="wSQ-IC-zdk" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="3870" y="-875"/>
         </scene>
-        <!--View Controller-->
-        <scene sceneID="LfX-Pc-HJs">
+        <!--Home Table View Controller-->
+        <scene sceneID="bX1-Yf-xvY">
             <objects>
-                <viewController id="fZr-S9-KWN" sceneMemberID="viewController">
-                    <view key="view" contentMode="scaleToFill" id="a57-bC-Sc2">
+                <tableViewController id="Grh-dY-U6y" customClass="HomeTableViewController" customModule="GymLog" customModuleProvider="target" sceneMemberID="viewController">
+                    <tableView key="view" clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="default" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" id="jCs-nM-BK1">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
-                        <viewLayoutGuide key="safeArea" id="jyJ-ih-QSu"/>
-                        <color key="backgroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                    </view>
-                    <navigationItem key="navigationItem" id="8e9-Ps-6Fz"/>
-                </viewController>
-                <placeholder placeholderIdentifier="IBFirstResponder" id="2JN-OT-R9k" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <prototypes>
+                            <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="WorkoutCell" id="9Fk-UH-eq4">
+                                <rect key="frame" x="0.0" y="28" width="414" height="43.5"/>
+                                <autoresizingMask key="autoresizingMask"/>
+                                <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9Fk-UH-eq4" id="IRh-Oz-2zA">
+                                    <rect key="frame" x="0.0" y="0.0" width="414" height="43.5"/>
+                                    <autoresizingMask key="autoresizingMask"/>
+                                </tableViewCellContentView>
+                            </tableViewCell>
+                        </prototypes>
+                        <connections>
+                            <outlet property="dataSource" destination="Grh-dY-U6y" id="Q88-uj-IV4"/>
+                            <outlet property="delegate" destination="Grh-dY-U6y" id="2b0-UN-zS0"/>
+                        </connections>
+                    </tableView>
+                    <navigationItem key="navigationItem" id="KpV-tt-nt0">
+                        <barButtonItem key="rightBarButtonItem" title="Item" image="plus" catalog="system" id="Ga2-ZQ-JLa">
+                            <color key="tintColor" red="0.18823529411764706" green="0.67450980392156867" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <segue destination="0Tl-LB-CnY" kind="show" id="G0l-um-VFK"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                </tableViewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="OfS-xC-6zz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="4721" y="-872"/>
+            <point key="canvasLocation" x="4661" y="-875"/>
+        </scene>
+        <!--Add Workout View Controller-->
+        <scene sceneID="LgY-UI-SNB">
+            <objects>
+                <viewController id="0Tl-LB-CnY" customClass="AddWorkoutViewController" customModule="GymLog" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="URh-Tg-XO8">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="XHI-zn-aAj">
+                                <rect key="frame" x="7" y="140" width="400" height="673"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <color key="sectionIndexBackgroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <view key="tableHeaderView" contentMode="scaleToFill" id="igi-FY-HIQ">
+                                    <rect key="frame" x="0.0" y="0.0" width="400" height="121"/>
+                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                    <subviews>
+                                        <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" alignment="top" spacing="6" translatesAutoresizingMaskIntoConstraints="NO" id="UD7-Z6-YX9">
+                                            <rect key="frame" x="0.0" y="5" width="400" height="91"/>
+                                            <subviews>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="uex-ct-cqe">
+                                                    <rect key="frame" x="0.0" y="0.0" width="320" height="42.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Workout name" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6dC-4g-AR7">
+                                                            <rect key="frame" x="0.0" y="0.0" width="150" height="42.5"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="150" id="M6f-ZB-fPk"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="jdf-fj-vGl" customClass="UnderlinedTextField" customModule="GymLog" customModuleProvider="target">
+                                                            <rect key="frame" x="170" y="0.0" width="150" height="42.5"/>
+                                                            <color key="backgroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="20" id="Cuh-bj-6c9"/>
+                                                            </constraints>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <textInputTraits key="textInputTraits"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
+                                                                    <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </textField>
+                                                    </subviews>
+                                                </stackView>
+                                                <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="W3M-Oj-2lb">
+                                                    <rect key="frame" x="0.0" y="48.5" width="320" height="42.5"/>
+                                                    <subviews>
+                                                        <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Day of workout" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="2li-vY-FFz">
+                                                            <rect key="frame" x="0.0" y="0.0" width="150" height="42.5"/>
+                                                            <constraints>
+                                                                <constraint firstAttribute="width" constant="150" id="zYG-KT-lIw"/>
+                                                            </constraints>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <nil key="highlightedColor"/>
+                                                        </label>
+                                                        <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="rpI-Ai-scW" customClass="UnderlinedTextField" customModule="GymLog" customModuleProvider="target">
+                                                            <rect key="frame" x="170" y="0.0" width="150" height="42.5"/>
+                                                            <color key="backgroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                            <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                                                            <textInputTraits key="textInputTraits"/>
+                                                            <userDefinedRuntimeAttributes>
+                                                                <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
+                                                                    <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                </userDefinedRuntimeAttribute>
+                                                            </userDefinedRuntimeAttributes>
+                                                        </textField>
+                                                    </subviews>
+                                                </stackView>
+                                            </subviews>
+                                        </stackView>
+                                    </subviews>
+                                    <color key="backgroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    <constraints>
+                                        <constraint firstAttribute="bottom" secondItem="UD7-Z6-YX9" secondAttribute="bottom" constant="25" id="MBK-bT-hzh"/>
+                                        <constraint firstItem="UD7-Z6-YX9" firstAttribute="top" secondItem="igi-FY-HIQ" secondAttribute="top" constant="5" id="P3p-XS-0Kg"/>
+                                        <constraint firstAttribute="trailing" secondItem="UD7-Z6-YX9" secondAttribute="trailing" id="hBp-jx-J43"/>
+                                        <constraint firstItem="UD7-Z6-YX9" firstAttribute="leading" secondItem="igi-FY-HIQ" secondAttribute="leading" id="nr1-Sv-grP"/>
+                                    </constraints>
+                                </view>
+                                <prototypes>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="addWorkoutCell" rowHeight="60" id="Dxf-3z-dNd" customClass="AddWorkoutCell" customModule="GymLog" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="149" width="400" height="60"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="Dxf-3z-dNd" id="Qx4-us-BZW">
+                                            <rect key="frame" x="0.0" y="0.0" width="400" height="60"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <view contentMode="scaleToFill" id="ING-mb-FMe">
+                                                    <rect key="frame" x="0.0" y="0.0" width="404" height="60"/>
+                                                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                                                    <subviews>
+                                                        <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="D24-lk-BjB">
+                                                            <rect key="frame" x="42" y="10" width="320" height="40"/>
+                                                            <subviews>
+                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Number" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="m3Y-uq-Nwz" customClass="UnderlinedTextField" customModule="GymLog" customModuleProvider="target">
+                                                                    <rect key="frame" x="0.0" y="0.0" width="40" height="40"/>
+                                                                    <color key="backgroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="40" id="ZEb-uG-PXD"/>
+                                                                        <constraint firstAttribute="height" constant="40" id="yE7-wD-nwm"/>
+                                                                    </constraints>
+                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                    <textInputTraits key="textInputTraits"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
+                                                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </textField>
+                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Exercise" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="uZl-d1-w1i" customClass="UnderlinedTextField" customModule="GymLog" customModuleProvider="target">
+                                                                    <rect key="frame" x="55" y="0.0" width="100" height="40"/>
+                                                                    <color key="backgroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="40" id="0Cq-7p-hYo"/>
+                                                                        <constraint firstAttribute="width" constant="100" id="ohl-aZ-rDj"/>
+                                                                    </constraints>
+                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                    <textInputTraits key="textInputTraits"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
+                                                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </textField>
+                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Kg" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="5k5-IM-ZcZ" customClass="UnderlinedTextField" customModule="GymLog" customModuleProvider="target">
+                                                                    <rect key="frame" x="170" y="0.0" width="40" height="40"/>
+                                                                    <color key="backgroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="height" constant="40" id="6WJ-Vg-gBI"/>
+                                                                        <constraint firstAttribute="width" constant="40" id="OhP-Ww-TPT"/>
+                                                                    </constraints>
+                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                                                    <textInputTraits key="textInputTraits"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
+                                                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </textField>
+                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Sets" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="PKK-re-HmP" customClass="UnderlinedTextField" customModule="GymLog" customModuleProvider="target">
+                                                                    <rect key="frame" x="225" y="0.0" width="40" height="40"/>
+                                                                    <color key="backgroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="40" id="aze-1W-bBt"/>
+                                                                        <constraint firstAttribute="height" constant="40" id="hxC-HT-M0j"/>
+                                                                    </constraints>
+                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                    <textInputTraits key="textInputTraits"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
+                                                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </textField>
+                                                                <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Reps" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="HGL-a9-UUg" customClass="UnderlinedTextField" customModule="GymLog" customModuleProvider="target">
+                                                                    <rect key="frame" x="280" y="0.0" width="40" height="40"/>
+                                                                    <color key="backgroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                    <constraints>
+                                                                        <constraint firstAttribute="width" constant="40" id="dAl-zX-fpr"/>
+                                                                        <constraint firstAttribute="height" constant="40" id="lej-l5-0dW"/>
+                                                                    </constraints>
+                                                                    <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                    <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                                                    <textInputTraits key="textInputTraits"/>
+                                                                    <userDefinedRuntimeAttributes>
+                                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="keyPath" value="YES"/>
+                                                                        <userDefinedRuntimeAttribute type="color" keyPath="placeholderLabel.textColor">
+                                                                            <color key="value" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        </userDefinedRuntimeAttribute>
+                                                                    </userDefinedRuntimeAttributes>
+                                                                </textField>
+                                                            </subviews>
+                                                        </stackView>
+                                                    </subviews>
+                                                    <color key="backgroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                    <constraints>
+                                                        <constraint firstItem="D24-lk-BjB" firstAttribute="centerX" secondItem="ING-mb-FMe" secondAttribute="centerX" id="r84-pg-zAi"/>
+                                                        <constraint firstItem="D24-lk-BjB" firstAttribute="centerY" secondItem="ING-mb-FMe" secondAttribute="centerY" id="zd8-fo-zgm"/>
+                                                    </constraints>
+                                                </view>
+                                            </subviews>
+                                            <color key="backgroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        </tableViewCellContentView>
+                                        <color key="backgroundColor" red="0.18823529410000001" green="0.67450980390000004" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <connections>
+                                            <outlet property="Exercise" destination="uZl-d1-w1i" id="9gs-NM-yFZ"/>
+                                            <outlet property="Number" destination="m3Y-uq-Nwz" id="Iu7-ZL-AHQ"/>
+                                            <outlet property="Reps" destination="HGL-a9-UUg" id="xug-Jn-X5x"/>
+                                            <outlet property="Sets" destination="PKK-re-HmP" id="1sn-c3-cgG"/>
+                                            <outlet property="kg" destination="5k5-IM-ZcZ" id="Lr9-Zw-suH"/>
+                                        </connections>
+                                    </tableViewCell>
+                                </prototypes>
+                            </tableView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="X2k-L4-Ntl"/>
+                        <color key="backgroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="X2k-L4-Ntl" firstAttribute="trailing" secondItem="XHI-zn-aAj" secondAttribute="trailing" constant="7" id="SQR-HS-8kU"/>
+                            <constraint firstItem="XHI-zn-aAj" firstAttribute="top" secondItem="X2k-L4-Ntl" secondAttribute="top" id="arN-iM-lV1"/>
+                            <constraint firstItem="XHI-zn-aAj" firstAttribute="bottom" secondItem="X2k-L4-Ntl" secondAttribute="bottom" id="bpk-D6-IKI"/>
+                            <constraint firstItem="XHI-zn-aAj" firstAttribute="leading" secondItem="X2k-L4-Ntl" secondAttribute="leading" constant="7" id="zEW-p3-LFB"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="wye-eu-fdu">
+                        <barButtonItem key="rightBarButtonItem" title="Add exercise" id="Zbc-HS-MPL">
+                            <color key="tintColor" red="0.18823529410000001" green="0.67450980390000004" blue="0.40000000000000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                            <connections>
+                                <action selector="didTapNewExercise:" destination="0Tl-LB-CnY" id="ezn-HA-PUW"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
+                    <connections>
+                        <outlet property="daysOfWorkout" destination="rpI-Ai-scW" id="IEI-zj-cwe"/>
+                        <outlet property="tableView" destination="XHI-zn-aAj" id="DNc-8n-prI"/>
+                        <outlet property="workoutName" destination="jdf-fj-vGl" id="W47-Og-z6i"/>
+                        <segue destination="Uer-KZ-5IA" kind="show" identifier="AddExercise" id="QG5-fh-Gr4"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="cwf-bh-wVP" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5481.1594202898559" y="-1074.1071428571429"/>
+        </scene>
+        <!--Entry View Controller-->
+        <scene sceneID="oca-iN-zVi">
+            <objects>
+                <viewController storyboardIdentifier="new" id="Uer-KZ-5IA" customClass="EntryViewController" customModule="GymLog" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="90a-sH-F7t">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="58" translatesAutoresizingMaskIntoConstraints="NO" id="W51-8M-3OU">
+                                <rect key="frame" x="82" y="207" width="250" height="482"/>
+                                <subviews>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Number" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="4Ks-cK-HpX" customClass="UnderlinedTextField" customModule="GymLog" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="0.0" width="250" height="50"/>
+                                        <color key="backgroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <constraints>
+                                            <constraint firstAttribute="height" constant="50" id="1AJ-TI-EaS"/>
+                                            <constraint firstAttribute="width" constant="250" id="S2U-5D-RBH"/>
+                                        </constraints>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="14"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Exercise" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="Hnl-0B-4C8" customClass="UnderlinedTextField" customModule="GymLog" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="108" width="250" height="50"/>
+                                        <color key="backgroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Kg" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="x5C-7c-9kg" customClass="UnderlinedTextField" customModule="GymLog" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="216" width="250" height="50"/>
+                                        <color key="backgroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Sets" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="xlt-5N-VxW" customClass="UnderlinedTextField" customModule="GymLog" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="324" width="250" height="50"/>
+                                        <color key="backgroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Reps" textAlignment="center" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="pcx-Lj-GEk" customClass="UnderlinedTextField" customModule="GymLog" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="432" width="250" height="50"/>
+                                        <color key="backgroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                        <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                        <textInputTraits key="textInputTraits"/>
+                                    </textField>
+                                </subviews>
+                                <constraints>
+                                    <constraint firstItem="xlt-5N-VxW" firstAttribute="width" secondItem="4Ks-cK-HpX" secondAttribute="width" id="CFd-ac-vOg"/>
+                                    <constraint firstItem="pcx-Lj-GEk" firstAttribute="width" secondItem="4Ks-cK-HpX" secondAttribute="width" id="S67-XI-Exo"/>
+                                    <constraint firstItem="pcx-Lj-GEk" firstAttribute="height" secondItem="4Ks-cK-HpX" secondAttribute="height" id="UVP-2a-pIt"/>
+                                    <constraint firstItem="xlt-5N-VxW" firstAttribute="height" secondItem="4Ks-cK-HpX" secondAttribute="height" id="dFm-rR-PHt"/>
+                                    <constraint firstItem="x5C-7c-9kg" firstAttribute="width" secondItem="4Ks-cK-HpX" secondAttribute="width" id="moq-lb-YNc"/>
+                                    <constraint firstItem="x5C-7c-9kg" firstAttribute="height" secondItem="4Ks-cK-HpX" secondAttribute="height" id="olX-pF-mC9"/>
+                                    <constraint firstItem="Hnl-0B-4C8" firstAttribute="height" secondItem="4Ks-cK-HpX" secondAttribute="height" id="uMs-cw-b3u"/>
+                                    <constraint firstItem="Hnl-0B-4C8" firstAttribute="width" secondItem="4Ks-cK-HpX" secondAttribute="width" id="xsP-Dy-8EQ"/>
+                                </constraints>
+                            </stackView>
+                        </subviews>
+                        <viewLayoutGuide key="safeArea" id="IGr-0w-SXx"/>
+                        <color key="backgroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <constraints>
+                            <constraint firstItem="W51-8M-3OU" firstAttribute="centerX" secondItem="90a-sH-F7t" secondAttribute="centerX" id="4wp-uy-H0T"/>
+                            <constraint firstItem="W51-8M-3OU" firstAttribute="centerY" secondItem="90a-sH-F7t" secondAttribute="centerY" id="GOG-iM-pSU"/>
+                        </constraints>
+                    </view>
+                    <navigationItem key="navigationItem" id="uoU-eM-OLz"/>
+                    <connections>
+                        <outlet property="Exercise" destination="Hnl-0B-4C8" id="tI5-mo-eYp"/>
+                        <outlet property="Number" destination="4Ks-cK-HpX" id="Z6B-6g-gNI"/>
+                        <outlet property="Reps" destination="pcx-Lj-GEk" id="tP6-fk-1Xx"/>
+                        <outlet property="Sets" destination="xlt-5N-VxW" id="YI7-X3-Nx1"/>
+                        <outlet property="kg" destination="x5C-7c-9kg" id="g1X-YE-35J"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="n3u-dj-cRE" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="6217" y="-1074"/>
         </scene>
     </scenes>
     <resources>
         <image name="house" catalog="system" width="128" height="106"/>
+        <image name="plus" catalog="system" width="128" height="113"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
     </resources>
 </document>

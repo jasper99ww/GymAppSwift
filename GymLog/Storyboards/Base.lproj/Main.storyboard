@@ -87,7 +87,7 @@
                         <outlet property="loginButton" destination="dxA-3n-rQZ" id="saK-g1-Xjg"/>
                         <outlet property="signUpButton" destination="ir4-1G-Tjo" id="sC3-bj-aOz"/>
                         <outlet property="titleLabel" destination="XAy-26-1x2" id="g7V-Tj-LGT"/>
-                        <segue destination="o08-jv-w1p" kind="show" identifier="autoLogin" id="dEC-Wf-g5z"/>
+                        <segue destination="o08-jv-w1p" kind="show" identifier="autoLogin" id="KgS-fI-xuA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -166,24 +166,18 @@
                         <outlet property="errorLabel" destination="e0l-QK-Tp8" id="0yK-1I-pLQ"/>
                         <outlet property="loginButton" destination="nGI-Bv-3KO" id="b0z-kS-emZ"/>
                         <outlet property="passwordTextField" destination="mku-Aa-4dk" id="q5O-7C-N60"/>
-                        <segue destination="o08-jv-w1p" kind="show" identifier="loginToHome" id="CAp-hi-bwa"/>
+                        <segue destination="o08-jv-w1p" kind="show" identifier="loginToHome" id="deE-Cu-Dai"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QFt-WJ-mSU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1390" y="445"/>
         </scene>
-        <!--Tab Main Controller-->
+        <!--Main Tab Bar Controller-->
         <scene sceneID="DBh-FC-b54">
             <objects>
-                <tabBarController id="o08-jv-w1p" customClass="TabMainController" customModule="GymLog" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="SPP-tH-8B7">
-                        <barButtonItem key="rightBarButtonItem" title="Log out" id="atc-Jw-l6g">
-                            <connections>
-                                <action selector="logOutPressed:" destination="o08-jv-w1p" id="LGh-Jd-aBT"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                <tabBarController id="o08-jv-w1p" customClass="MainTabBarController" customModule="GymLog" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="dPI-cv-znM"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8WG-lq-uRd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
@@ -198,7 +192,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OjX-1e-d3d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2475" y="19"/>
+            <point key="canvasLocation" x="2517" y="-44"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="QlV-pi-fOo">
@@ -312,7 +306,7 @@
                         <outlet property="lastNameTextField" destination="JK4-q2-67Z" id="c9Z-9M-ak3"/>
                         <outlet property="passwordTextField" destination="9Ml-uT-Bul" id="TEM-6a-69N"/>
                         <outlet property="signUpButton" destination="5nW-nu-brM" id="rqB-bc-bRz"/>
-                        <segue destination="o08-jv-w1p" kind="show" identifier="registerToHome" id="LiY-u9-Al3"/>
+                        <segue destination="o08-jv-w1p" kind="show" identifier="registerToHome" id="dNW-UP-pWc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XMN-N7-2Fx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -383,7 +377,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="dEC-Wf-g5z"/>
+        <segue reference="deE-Cu-Dai"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.up.right" catalog="system" width="128" height="112"/>

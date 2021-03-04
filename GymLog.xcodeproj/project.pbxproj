@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		5961427525E9B54000A83DD6 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5961427425E9B54000A83DD6 /* HomeTableViewController.swift */; };
 		59638F5725E1C0D400B2AF84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59638F5625E1C0D400B2AF84 /* AppDelegate.swift */; };
 		59638F5925E1C0D400B2AF84 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59638F5825E1C0D400B2AF84 /* SceneDelegate.swift */; };
 		59638F5B25E1C0D400B2AF84 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59638F5A25E1C0D400B2AF84 /* MainViewController.swift */; };
@@ -14,11 +15,17 @@
 		59638F6025E1C0D600B2AF84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59638F5F25E1C0D600B2AF84 /* Assets.xcassets */; };
 		59638F6325E1C0D600B2AF84 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59638F6125E1C0D600B2AF84 /* LaunchScreen.storyboard */; };
 		59638F6C25E1C16A00B2AF84 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 59638F6B25E1C16A00B2AF84 /* GoogleService-Info.plist */; };
+		5966209D25EA93B8002B04D5 /* AddWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5966209C25EA93B8002B04D5 /* AddWorkoutViewController.swift */; };
+		596620A425EA9A5F002B04D5 /* AddWorkoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596620A225EA9A5F002B04D5 /* AddWorkoutCell.swift */; };
+		596620A525EA9A5F002B04D5 /* AddWorkoutCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 596620A325EA9A5F002B04D5 /* AddWorkoutCell.xib */; };
+		596620A925EBD690002B04D5 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596620A825EBD690002B04D5 /* MainTabBarController.swift */; };
+		596620BE25EBF541002B04D5 /* File.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596620BD25EBF541002B04D5 /* File.swift */; };
 		596BC83825E29D5700166D9C /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596BC83725E29D5700166D9C /* Utilities.swift */; };
 		596BC83B25E29D6400166D9C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596BC83A25E29D6400166D9C /* Constants.swift */; };
 		596BC83E25E29DAD00166D9C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596BC83D25E29DAD00166D9C /* SignUpViewController.swift */; };
 		596BC84125E29DE700166D9C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596BC84025E29DE700166D9C /* LoginViewController.swift */; };
-		596BC84425E29E3C00166D9C /* HomeViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596BC84325E29E3C00166D9C /* HomeViewController.swift */; };
+		5976918825ED9D36006C9E38 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5976918725ED9D36006C9E38 /* EntryViewController.swift */; };
+		59A533A425F0310A0064DFB5 /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A533A325F0310A0064DFB5 /* UnderlinedTextField.swift */; };
 		59B1E85025E85B0B00A8E172 /* Home .storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59B1E84F25E85B0B00A8E172 /* Home .storyboard */; };
 		59B1E85325E85B2600A8E172 /* Workout.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59B1E85225E85B2600A8E172 /* Workout.storyboard */; };
 		59B1E85625E85B2F00A8E172 /* Progress.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59B1E85525E85B2F00A8E172 /* Progress.storyboard */; };
@@ -28,6 +35,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		5961427425E9B54000A83DD6 /* HomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
 		59638F5325E1C0D400B2AF84 /* GymLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GymLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		59638F5625E1C0D400B2AF84 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		59638F5825E1C0D400B2AF84 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
@@ -37,11 +45,17 @@
 		59638F6225E1C0D600B2AF84 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		59638F6425E1C0D600B2AF84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		59638F6B25E1C16A00B2AF84 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5966209C25EA93B8002B04D5 /* AddWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWorkoutViewController.swift; sourceTree = "<group>"; };
+		596620A225EA9A5F002B04D5 /* AddWorkoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWorkoutCell.swift; sourceTree = "<group>"; };
+		596620A325EA9A5F002B04D5 /* AddWorkoutCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddWorkoutCell.xib; sourceTree = "<group>"; };
+		596620A825EBD690002B04D5 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		596620BD25EBF541002B04D5 /* File.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = File.swift; sourceTree = "<group>"; };
 		596BC83725E29D5700166D9C /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
 		596BC83A25E29D6400166D9C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
 		596BC83D25E29DAD00166D9C /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		596BC84025E29DE700166D9C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
-		596BC84325E29E3C00166D9C /* HomeViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeViewController.swift; sourceTree = "<group>"; };
+		5976918725ED9D36006C9E38 /* EntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
+		59A533A325F0310A0064DFB5 /* UnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
 		59B1E84F25E85B0B00A8E172 /* Home .storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Home .storyboard"; sourceTree = "<group>"; };
 		59B1E85225E85B2600A8E172 /* Workout.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Workout.storyboard; sourceTree = "<group>"; };
 		59B1E85525E85B2F00A8E172 /* Progress.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Progress.storyboard; sourceTree = "<group>"; };
@@ -72,14 +86,26 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		5961427325E9B50000A83DD6 /* HomeViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				5961427425E9B54000A83DD6 /* HomeTableViewController.swift */,
+				5966209C25EA93B8002B04D5 /* AddWorkoutViewController.swift */,
+				596620BD25EBF541002B04D5 /* File.swift */,
+				5976918725ED9D36006C9E38 /* EntryViewController.swift */,
+			);
+			path = HomeViewControllers;
+			sourceTree = "<group>";
+		};
 		59629ED425E2DA86004A90C2 /* View Controllers */ = {
 			isa = PBXGroup;
 			children = (
 				59638F5A25E1C0D400B2AF84 /* MainViewController.swift */,
-				596BC84325E29E3C00166D9C /* HomeViewController.swift */,
+				5961427325E9B50000A83DD6 /* HomeViewControllers */,
 				596BC84025E29DE700166D9C /* LoginViewController.swift */,
 				596BC83D25E29DAD00166D9C /* SignUpViewController.swift */,
 				59B1E87525E8674000A8E172 /* TabMainController.swift */,
+				596620A825EBD690002B04D5 /* MainTabBarController.swift */,
 			);
 			path = "View Controllers";
 			sourceTree = "<group>";
@@ -123,6 +149,7 @@
 			children = (
 				596BC83725E29D5700166D9C /* Utilities.swift */,
 				596BC83A25E29D6400166D9C /* Constants.swift */,
+				59A533A325F0310A0064DFB5 /* UnderlinedTextField.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -135,6 +162,8 @@
 				59B1E85225E85B2600A8E172 /* Workout.storyboard */,
 				59B1E85525E85B2F00A8E172 /* Progress.storyboard */,
 				59B1E85825E85B3700A8E172 /* Profile.storyboard */,
+				596620A225EA9A5F002B04D5 /* AddWorkoutCell.swift */,
+				596620A325EA9A5F002B04D5 /* AddWorkoutCell.xib */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -215,6 +244,7 @@
 				59B1E85625E85B2F00A8E172 /* Progress.storyboard in Resources */,
 				59B1E85325E85B2600A8E172 /* Workout.storyboard in Resources */,
 				59B1E85025E85B0B00A8E172 /* Home .storyboard in Resources */,
+				596620A525EA9A5F002B04D5 /* AddWorkoutCell.xib in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -269,12 +299,18 @@
 			files = (
 				596BC84125E29DE700166D9C /* LoginViewController.swift in Sources */,
 				596BC83E25E29DAD00166D9C /* SignUpViewController.swift in Sources */,
+				596620A925EBD690002B04D5 /* MainTabBarController.swift in Sources */,
+				5976918825ED9D36006C9E38 /* EntryViewController.swift in Sources */,
 				59B1E87625E8674000A8E172 /* TabMainController.swift in Sources */,
+				596620A425EA9A5F002B04D5 /* AddWorkoutCell.swift in Sources */,
 				596BC83B25E29D6400166D9C /* Constants.swift in Sources */,
-				596BC84425E29E3C00166D9C /* HomeViewController.swift in Sources */,
+				5961427525E9B54000A83DD6 /* HomeTableViewController.swift in Sources */,
 				59638F5B25E1C0D400B2AF84 /* MainViewController.swift in Sources */,
 				59638F5725E1C0D400B2AF84 /* AppDelegate.swift in Sources */,
+				59A533A425F0310A0064DFB5 /* UnderlinedTextField.swift in Sources */,
 				596BC83825E29D5700166D9C /* Utilities.swift in Sources */,
+				596620BE25EBF541002B04D5 /* File.swift in Sources */,
+				5966209D25EA93B8002B04D5 /* AddWorkoutViewController.swift in Sources */,
 				59638F5925E1C0D400B2AF84 /* SceneDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
