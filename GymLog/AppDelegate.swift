@@ -17,10 +17,39 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         // Override point for customization after application launch.
         
         FirebaseApp.configure()
-        
+        checking()
         return true
     }
+    
+    func checking() {
+        
+        let userDefaults = UserDefaults.standard
 
+        if (!userDefaults.bool(forKey: "hasRunBefore")) {
+            print("The app is launching for the first time. Setting UserDefaults...")
+
+            do {
+                try Auth.auth().signOut()
+            } catch {
+
+            }
+
+            // Update the flag indicator
+            userDefaults.set(true, forKey: "hasRunBefore")
+            userDefaults.synchronize() // This forces the app to update userDefaults
+
+            // Run code here for the first launch
+
+        } else {
+            print("The app has been launched before. Loading UserDefaults...")
+        
+            // Run code here for every other launch but the first
+        }
+    }
+
+    
+    
+        
     // MARK: UISceneSession Lifecycle
 
     func application(_ application: UIApplication, configurationForConnecting connectingSceneSession: UISceneSession, options: UIScene.ConnectionOptions) -> UISceneConfiguration {
@@ -36,5 +65,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
 
 
-}
 
+
+}

@@ -7,12 +7,13 @@
 
 import Foundation
 
-struct DataCell {
+struct DataCell: Hashable {
     
-    let number: String
+    let Number: String
     let Exercise: String
     let kg: String
     let sets: String
     let reps: String
+    let workoutName: String
     
 }

@@ -38,10 +38,10 @@ class SignUpViewController: UIViewController {
         errorLabel.alpha = 0
     
         // Style the elements
-        Utilities.styleTextField(firstNameTextField)
-        Utilities.styleTextField(lastNameTextField)
-        Utilities.styleTextField(emailTextField)
-        Utilities.styleTextField(passwordTextField)
+//        Utilities.styleTextField(firstNameTextField)
+//        Utilities.styleTextField(lastNameTextField)
+//        Utilities.styleTextField(emailTextField)
+//        Utilities.styleTextField(passwordTextField)
         Utilities.styleFilledButton(signUpButton)
     }
     
@@ -103,14 +103,14 @@ class SignUpViewController: UIViewController {
                     // User was created successfully, now store the first name and last name
                     let db = Firestore.firestore()
                     
-                    db.collection("users").addDocument(data: ["firstname":firstName, "lastname":lastName, "uid": result!.user.uid ]) { (error) in
+                    db.collection("users").document(result!.user.uid).setData(["firstname":firstName, "lastname":lastName, "uid": result!.user.uid ]) { error in
                         
                         if error != nil {
                             // Show error message
                             self.showError("Error saving user data")
                         }
                     }
-                    
+                                        
 //                    // Transition to the home screen
 //                    self.transitionToHome()
                 }

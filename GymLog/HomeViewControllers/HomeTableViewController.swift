@@ -1,0 +1,122 @@
+//
+//  HomeTableViewController.swift
+//  GymLog
+//
+//  Created by Barbara Podgórska on 27/02/2021.
+//
+
+import UIKit
+import Firebase
+
+class HomeTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, WorkoutTableCellDelegate {
+   
+    
+    @IBOutlet weak var addWorkoutButton: UIBarButtonItem!
+    
+    @IBOutlet weak var tableView: UITableView!
+    
+
+    var workouts: [WorkoutsTitle] = []
+    
+    let db = Firestore.firestore()
+    
+    let user = Auth.auth().currentUser
+    
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.navigationBar.backgroundColor = UIColor.init(red: 18/255, green: 18/255, blue: 18/255, alpha: 1)
+    }
+    
+    override func viewDidLoad() {
+        super.viewDidLoad()
+        tableView.delegate = self
+        tableView.dataSource = self
+        retrieveWorkouts()
+        self.tableView.backgroundColor = UIColor.init(red: 18/255, green: 18/255, blue: 18/255, alpha: 1)
+       
+        
+    }
+    
+    
+    func retrieveWorkouts() {
+        
+        db.collection("users").document("\(user!.uid)").collection("WorkoutsName").getDocuments(completion: { (querySnapshot, error) in
+            self.workouts = []
+            if let error = error
+                       {
+                           print("\(error.localizedDescription)")
+                       }
+                       else {
+                           if let snapshotDocuments = querySnapshot?.documents {
+                               for doc in snapshotDocuments {
+           
+                                   let data = doc.data()
+                                   if let workoutTitle = data["workoutTitle"] as? String {
+           
+                                       let newTitle = WorkoutsTitle(workoutTitle: workoutTitle)
+           
+                                       self.workouts.append(newTitle)
+           
+                                       }
+                                DispatchQueue.main.async {
+                                    self.tableView.reloadData()
+                                 print("Success")
+            
+                                }
+                               
+                                   }
+                               }
+                       }
+        })
+        }
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        
+        return workouts.count
+    }
+    
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
+        let cell = tableView.dequeueReusableCell(withIdentifier: "workoutFirstCell", for: indexPath) as! WorkoutTableCell
+        
+        cell.workoutField?.setTitle(workouts[indexPath.row].workoutTitle, for: .normal)
+        cell.index = indexPath
+        cell.cellDelegate = self
+        
+        
+        
+        
+        return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 120
+    }
+
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//        super.prepare(for: segue, sender: nil)
+//        
+//        
+//        if segue.identifier == "addWorkouts" {
+//            if let indexPath = self.tableView.indexPathForSelectedRow {
+//                let destination = segue.destination as! AllWorkoutsViewController
+//                destination.titleValue = workouts[indexPath.row].workoutTitle
+//                destination.tableView.reloadData()
+//            }
+//            
+//        }
+//        
+//    }
+    
+}
+
+extension HomeTableViewController  {
+    func onClickCell(index: Int) {
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "allWorkouts") as? AllWorkoutsViewController else { return }
+            vc.titleValue = workouts[index].workoutTitle
+        navigationController?.pushViewController(vc, animated: true)
+        }
+        
+        
+    }
+
+

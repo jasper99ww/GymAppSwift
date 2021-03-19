@@ -21,9 +21,9 @@ class UnderlinedTextField: UITextField {
         
         addSubview(bottomBorder)
         
-        bottomBorder.bottomAnchor.constraint(equalTo: bottomAnchor, constant: -10).isActive = true
-        bottomBorder.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
-        bottomBorder.rightAnchor.constraint(equalTo: rightAnchor).isActive = true
+        bottomBorder.bottomAnchor.constraint(equalTo: self.bottomAnchor, constant: -7).isActive = true
+        bottomBorder.leftAnchor.constraint(equalTo: self.leftAnchor).isActive = true
+        bottomBorder.rightAnchor.constraint(equalTo: self.rightAnchor).isActive = true
         bottomBorder.heightAnchor.constraint(equalToConstant: 1).isActive = true
         
     }

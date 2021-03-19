@@ -27,15 +27,23 @@ class ViewController: UIViewController {
     }
     
     override func viewDidAppear(_ animated: Bool) {
+        
         if Auth.auth().currentUser != nil {
             DispatchQueue.main.async {
-                self.performSegue(withIdentifier: "autoLogin", sender: self)
+                           self.performSegue(withIdentifier: "autoLogin", sender: self)
             }
-            
-        }
-        }
+    }
+    }
+        
+//        if Auth.auth().currentUser != nil  {
+//            DispatchQueue.main.async {
+//                self.performSegue(withIdentifier: "autoLogin", sender: self)
+//            }
+//        }
+        
     
-    
+   
+   
 
 
     func setUpElements() {
