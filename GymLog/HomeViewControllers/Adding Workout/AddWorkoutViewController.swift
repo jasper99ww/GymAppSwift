@@ -104,8 +104,8 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     }
 
     func saveWorkoutName() {
-        if let workoutTitle = workoutName.text {
-            db.collection("users").document("\(user!.uid)").collection("WorkoutsName").document("\(workoutTitle)").setData(["workoutTitle": workoutTitle]) { (error) in
+        if let workoutTitle = workoutName.text, let workoutDay = daysOfWorkout.text {
+            db.collection("users").document("\(user!.uid)").collection("WorkoutsName").document("\(workoutTitle)").setData(["workoutTitle": workoutTitle, "workoutDay": workoutDay]) { (error) in
                 
                 if let e = error {
                     print("There was an issue saving data to firestore, \(e)")

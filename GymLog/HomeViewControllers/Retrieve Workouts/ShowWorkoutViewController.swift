@@ -1,5 +1,5 @@
 //
-//  AllWorkoutsViewController.swift
+//  ShowWorkoutViewController.swift
 //  GymLog
 //
 //  Created by Barbara Podgórska on 12/03/2021.
@@ -8,9 +8,12 @@
 import UIKit
 import Firebase
 
-class AllWorkoutsViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+class ShowWorkoutViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
   
     var titleValue: String = ""
+    var dayOfWorkoutString: String = ""
+    @IBOutlet weak var daysOfWorkout: UILabel!
+    
     let user = Auth.auth().currentUser
     
     var db = Firestore.firestore()
@@ -22,8 +25,7 @@ class AllWorkoutsViewController: UIViewController, UITableViewDelegate, UITableV
     
     override func viewWillAppear(_ animated: Bool) {
         
-        self.navigationItem.title = self.titleValue
-        self.navigationItem.largeTitleDisplayMode = .always
+        self.navigationItem.title = titleValue
         self.navigationController?.navigationBar.backgroundColor = UIColor.init(red: 24/255, green: 24/255, blue: 24/255, alpha: 1)
         self.tableView.contentInsetAdjustmentBehavior = .never
     }
@@ -33,7 +35,7 @@ class AllWorkoutsViewController: UIViewController, UITableViewDelegate, UITableV
         tableView.delegate = self
         tableView.dataSource = self
         self.tableView.backgroundColor = UIColor.init(red: 24/255, green: 24/255, blue: 24/255, alpha: 1)
-   
+        daysOfWorkout.text = dayOfWorkoutString
         retrieveWorkouts()
         
 
@@ -89,6 +91,11 @@ class AllWorkoutsViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 108
     }
+    
+    
+        
+        
+    }
 
-}
+
 

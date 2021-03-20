@@ -19,6 +19,7 @@
 		59638F6025E1C0D600B2AF84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59638F5F25E1C0D600B2AF84 /* Assets.xcassets */; };
 		59638F6325E1C0D600B2AF84 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59638F6125E1C0D600B2AF84 /* LaunchScreen.storyboard */; };
 		59638F6C25E1C16A00B2AF84 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 59638F6B25E1C16A00B2AF84 /* GoogleService-Info.plist */; };
+		5964DE772605479600A941D8 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5964DE762605479600A941D8 /* OptionsViewController.swift */; };
 		5966209D25EA93B8002B04D5 /* AddWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5966209C25EA93B8002B04D5 /* AddWorkoutViewController.swift */; };
 		596620A425EA9A5F002B04D5 /* AddWorkoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596620A225EA9A5F002B04D5 /* AddWorkoutCell.swift */; };
 		596620A525EA9A5F002B04D5 /* AddWorkoutCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 596620A325EA9A5F002B04D5 /* AddWorkoutCell.xib */; };
@@ -29,7 +30,7 @@
 		596BC83E25E29DAD00166D9C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596BC83D25E29DAD00166D9C /* SignUpViewController.swift */; };
 		596BC84125E29DE700166D9C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596BC84025E29DE700166D9C /* LoginViewController.swift */; };
 		5976918825ED9D36006C9E38 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5976918725ED9D36006C9E38 /* EntryViewController.swift */; };
-		597F781725FC2124005F97A2 /* AllWorkoutsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597F781625FC2124005F97A2 /* AllWorkoutsViewController.swift */; };
+		597F781725FC2124005F97A2 /* ShowWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597F781625FC2124005F97A2 /* ShowWorkoutViewController.swift */; };
 		59A533A425F0310A0064DFB5 /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A533A325F0310A0064DFB5 /* UnderlinedTextField.swift */; };
 		59B1E85025E85B0B00A8E172 /* Home .storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59B1E84F25E85B0B00A8E172 /* Home .storyboard */; };
 		59B1E85325E85B2600A8E172 /* Workout.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59B1E85225E85B2600A8E172 /* Workout.storyboard */; };
@@ -54,6 +55,7 @@
 		59638F6225E1C0D600B2AF84 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		59638F6425E1C0D600B2AF84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		59638F6B25E1C16A00B2AF84 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5964DE762605479600A941D8 /* OptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
 		5966209C25EA93B8002B04D5 /* AddWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWorkoutViewController.swift; sourceTree = "<group>"; };
 		596620A225EA9A5F002B04D5 /* AddWorkoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWorkoutCell.swift; sourceTree = "<group>"; };
 		596620A325EA9A5F002B04D5 /* AddWorkoutCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddWorkoutCell.xib; sourceTree = "<group>"; };
@@ -64,7 +66,7 @@
 		596BC83D25E29DAD00166D9C /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		596BC84025E29DE700166D9C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		5976918725ED9D36006C9E38 /* EntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
-		597F781625FC2124005F97A2 /* AllWorkoutsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AllWorkoutsViewController.swift; sourceTree = "<group>"; };
+		597F781625FC2124005F97A2 /* ShowWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowWorkoutViewController.swift; sourceTree = "<group>"; };
 		59A533A325F0310A0064DFB5 /* UnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
 		59B1E84F25E85B0B00A8E172 /* Home .storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Home .storyboard"; sourceTree = "<group>"; };
 		59B1E85225E85B2600A8E172 /* Workout.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Workout.storyboard; sourceTree = "<group>"; };
@@ -108,8 +110,9 @@
 		59610F9B25FD64D00006C32F /* Retrieve Workouts */ = {
 			isa = PBXGroup;
 			children = (
-				597F781625FC2124005F97A2 /* AllWorkoutsViewController.swift */,
+				597F781625FC2124005F97A2 /* ShowWorkoutViewController.swift */,
 				59610F9D25FD65160006C32F /* RetrieveWorkoutCell.swift */,
+				5964DE762605479600A941D8 /* OptionsViewController.swift */,
 			);
 			path = "Retrieve Workouts";
 			sourceTree = "<group>";
@@ -331,7 +334,8 @@
 				596BC84125E29DE700166D9C /* LoginViewController.swift in Sources */,
 				596BC83E25E29DAD00166D9C /* SignUpViewController.swift in Sources */,
 				59611D9825FEB6EB00EB772E /* WorkoutsTitle.swift in Sources */,
-				597F781725FC2124005F97A2 /* AllWorkoutsViewController.swift in Sources */,
+				5964DE772605479600A941D8 /* OptionsViewController.swift in Sources */,
+				597F781725FC2124005F97A2 /* ShowWorkoutViewController.swift in Sources */,
 				596620A925EBD690002B04D5 /* MainTabBarController.swift in Sources */,
 				5976918825ED9D36006C9E38 /* EntryViewController.swift in Sources */,
 				59B1E87625E8674000A8E172 /* TabMainController.swift in Sources */,

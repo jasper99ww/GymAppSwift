@@ -33,7 +33,6 @@ class HomeTableViewController: UIViewController, UITableViewDelegate, UITableVie
         retrieveWorkouts()
         self.tableView.backgroundColor = UIColor.init(red: 18/255, green: 18/255, blue: 18/255, alpha: 1)
        
-        
     }
     
     
@@ -50,9 +49,9 @@ class HomeTableViewController: UIViewController, UITableViewDelegate, UITableVie
                                for doc in snapshotDocuments {
            
                                    let data = doc.data()
-                                   if let workoutTitle = data["workoutTitle"] as? String {
+                                   if let workoutTitle = data["workoutTitle"] as? String, let workoutDay = data["workoutDay"] as? String {
            
-                                       let newTitle = WorkoutsTitle(workoutTitle: workoutTitle)
+                                    let newTitle = WorkoutsTitle(workoutTitle: workoutTitle, workoutDay: workoutDay)
            
                                        self.workouts.append(newTitle)
            
@@ -98,7 +97,7 @@ class HomeTableViewController: UIViewController, UITableViewDelegate, UITableVie
 //        
 //        if segue.identifier == "addWorkouts" {
 //            if let indexPath = self.tableView.indexPathForSelectedRow {
-//                let destination = segue.destination as! AllWorkoutsViewController
+//                let destination = segue.destination as! ShowWorkoutViewController
 //                destination.titleValue = workouts[indexPath.row].workoutTitle
 //                destination.tableView.reloadData()
 //            }
@@ -107,12 +106,15 @@ class HomeTableViewController: UIViewController, UITableViewDelegate, UITableVie
 //        
 //    }
     
+    
+    
 }
 
 extension HomeTableViewController  {
     func onClickCell(index: Int) {
-        guard let vc = storyboard?.instantiateViewController(withIdentifier: "allWorkouts") as? AllWorkoutsViewController else { return }
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "optionsVC") as? OptionsViewController else { return }
             vc.titleValue = workouts[index].workoutTitle
+            vc.dayOfWorkout = workouts[index].workoutDay
         navigationController?.pushViewController(vc, animated: true)
         }
         

@@ -10,5 +10,6 @@ import Foundation
 struct WorkoutsTitle {
     
     let workoutTitle: String
+    let workoutDay: String
     
 }

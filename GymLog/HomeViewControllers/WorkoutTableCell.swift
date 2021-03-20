@@ -14,10 +14,9 @@ protocol WorkoutTableCellDelegate {
 
 class WorkoutTableCell: UITableViewCell {
     
-    
     var cellDelegate:WorkoutTableCellDelegate?
     var index: IndexPath?
-    var item = AllWorkoutsViewController().navigationItem.title
+    var item = ShowWorkoutViewController().navigationItem.title
     
     
     @IBOutlet weak var workoutField: UIButton!
