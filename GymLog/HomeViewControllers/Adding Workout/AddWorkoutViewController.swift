@@ -70,7 +70,7 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
         cell.Exercise?.text = models[indexPath.row].Exercise
         cell.kg?.text = models[indexPath.row].kg
         cell.Sets?.text = models[indexPath.row].sets
-        cell.Reps?.text = models[indexPath.row].kg
+        cell.Reps?.text = models[indexPath.row].reps
         return cell
         
     }

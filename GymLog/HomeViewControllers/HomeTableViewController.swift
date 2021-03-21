@@ -91,23 +91,7 @@ class HomeTableViewController: UIViewController, UITableViewDelegate, UITableVie
         return 120
     }
 
-//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        super.prepare(for: segue, sender: nil)
-//        
-//        
-//        if segue.identifier == "addWorkouts" {
-//            if let indexPath = self.tableView.indexPathForSelectedRow {
-//                let destination = segue.destination as! ShowWorkoutViewController
-//                destination.titleValue = workouts[indexPath.row].workoutTitle
-//                destination.tableView.reloadData()
-//            }
-//            
-//        }
-//        
-//    }
-    
-    
-    
+
 }
 
 extension HomeTableViewController  {

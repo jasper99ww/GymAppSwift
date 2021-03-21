@@ -7,6 +7,7 @@
 
 import UIKit
 import Firebase
+import SwipeCellKit
 
 class ShowWorkoutViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
   
@@ -79,7 +80,7 @@ class ShowWorkoutViewController: UIViewController, UITableViewDelegate, UITableV
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "retrieveWorkoutCell", for: indexPath) as! RetrieveWorkoutCell
         
-        cell.retrievedNumber?.text = models[indexPath.row].Number
+        cell.retrievedNumber?.text = String(indexPath.row + 1)
         cell.retrievedExercise?.text = models[indexPath.row].Exercise
         cell.retrievedKG?.text = models[indexPath.row].kg
         cell.retrievedSets?.text = models[indexPath.row].sets
@@ -92,10 +93,49 @@ class ShowWorkoutViewController: UIViewController, UITableViewDelegate, UITableV
         return 108
     }
     
-    
-        
+    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
+        if editingStyle == .delete {
+            tableView.beginUpdates()
+            deleteExercise(at: indexPath)
+            updateAfterDelete(at: indexPath)
+            self.tableView.reloadData()
+
+            
+            tableView.endUpdates()
+        }
         
     }
+    
+    func deleteExercise(at indexPath: IndexPath) {
+        
+        db.collection("users").document("\(user!.uid)").collection("Workouts").whereField("workoutName", isEqualTo: "\(titleValue)").whereField("Number", isEqualTo: "\((indexPath.row) + 1)").getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print("Error getting documents: \(error)")
+            } else {
+                for document in querySnapshot!.documents {
+                    document.reference.delete()
 
-
-
+            }
+        }
+            self.models.remove(at: indexPath.row)
+            self.tableView.deleteRows(at: [indexPath], with: .left)
+    }
+    }
+    
+    func updateAfterDelete(at indexPath: IndexPath) {
+        db.collection("users").document("\(user!.uid)").collection("Workouts").whereField("workoutName", isEqualTo: "\(titleValue)").whereField("Number", isGreaterThan: indexPath.row).getDocuments { (querySnapshot, error) in
+            if let error = error {
+                print("Error getting documents: \(error)")
+            } else {
+                for document in querySnapshot!.documents {
+                    document.reference.updateData(["Number": FieldValue.increment(Int64(-1))])
+                
+    }
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+        
+}
+        }
+    }
+}
