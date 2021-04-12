@@ -7,9 +7,9 @@
 
 import UIKit
 import Firebase
-import SwipeCellKit
 
 class ShowWorkoutViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
+    
   
     var titleValue: String = ""
     var dayOfWorkoutString: String = ""
@@ -21,6 +21,11 @@ class ShowWorkoutViewController: UIViewController, UITableViewDelegate, UITableV
  
     var models: [DataCell] = []
     
+    var SelectedIndex = -1
+    var isCoollapse = false
+    
+    var indexPaths : Array<IndexPath> = []
+    var selectedIndexPath : IndexPath = []
     
     @IBOutlet weak var tableView: UITableView!
     
@@ -39,12 +44,26 @@ class ShowWorkoutViewController: UIViewController, UITableViewDelegate, UITableV
         daysOfWorkout.text = dayOfWorkoutString
         retrieveWorkouts()
         
+       
+    }
+ 
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+
+        if indexPaths.count > 0 {
+            if indexPaths.contains(indexPath) {
+                return 150
+            }
+            else {
+                return 60
+            }
+        }
+        return 60
 
     }
     
     func retrieveWorkouts() {
-        
-        db.collection("users").document("\(user!.uid)").collection("Workouts").whereField("workoutName", isEqualTo: "\(titleValue)").order(by: "Number").getDocuments { (querySnapshot, error) in
+
+        db.collection("users").document("\(user!.uid)").collection("WorkoutsName").document("\(titleValue)").collection("Exercises").whereField("workoutName", isEqualTo: "\(titleValue)").order(by: "Number").getDocuments { (querySnapshot, error) in
             if let error = error
                        {
                            print("\(error.localizedDescription)")
@@ -74,68 +93,57 @@ class ShowWorkoutViewController: UIViewController, UITableViewDelegate, UITableV
 
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+ 
         return models.count
+       
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "retrieveWorkoutCell", for: indexPath) as! RetrieveWorkoutCell
-        
-        cell.retrievedNumber?.text = String(indexPath.row + 1)
+        cell.retrievedNumber?.text = models[indexPath.row].Number
         cell.retrievedExercise?.text = models[indexPath.row].Exercise
         cell.retrievedKG?.text = models[indexPath.row].kg
         cell.retrievedSets?.text = models[indexPath.row].sets
         cell.retrievedReps?.text = models[indexPath.row].reps
         
+//        cell.animate()
         return cell
+        
     }
     
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 108
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        
+        tableView.deselectRow(at: indexPath, animated: true)
+        
+        selectedIndexPath = indexPath
+        
+        if !indexPaths.contains(selectedIndexPath) {
+            indexPaths += [selectedIndexPath]
+        }
+        else {
+            let index = indexPaths.firstIndex(of: selectedIndexPath)
+            indexPaths.remove(at: index!)
+        }
+        tableView.beginUpdates()
+        tableView.endUpdates()
+        
+        
+//
+//        if SelectedIndex == indexPath.row
+//        {
+//            if self.isCoollapse == false  {
+//                self.isCoollapse = true
+//            } else {
+//                self.isCoollapse = false
+//            }
+//        } else {
+//            self.isCoollapse = true
+//        }
+//        self.SelectedIndex = indexPath.row
+//        tableView.beginUpdates()
+//        tableView.endUpdates()
+      
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
-            tableView.beginUpdates()
-            deleteExercise(at: indexPath)
-            updateAfterDelete(at: indexPath)
-            self.tableView.reloadData()
 
-            
-            tableView.endUpdates()
-        }
-        
-    }
-    
-    func deleteExercise(at indexPath: IndexPath) {
-        
-        db.collection("users").document("\(user!.uid)").collection("Workouts").whereField("workoutName", isEqualTo: "\(titleValue)").whereField("Number", isEqualTo: "\((indexPath.row) + 1)").getDocuments { (querySnapshot, error) in
-            if let error = error {
-                print("Error getting documents: \(error)")
-            } else {
-                for document in querySnapshot!.documents {
-                    document.reference.delete()
-
-            }
-        }
-            self.models.remove(at: indexPath.row)
-            self.tableView.deleteRows(at: [indexPath], with: .left)
-    }
-    }
-    
-    func updateAfterDelete(at indexPath: IndexPath) {
-        db.collection("users").document("\(user!.uid)").collection("Workouts").whereField("workoutName", isEqualTo: "\(titleValue)").whereField("Number", isGreaterThan: indexPath.row).getDocuments { (querySnapshot, error) in
-            if let error = error {
-                print("Error getting documents: \(error)")
-            } else {
-                for document in querySnapshot!.documents {
-                    document.reference.updateData(["Number": FieldValue.increment(Int64(-1))])
-                
-    }
-                DispatchQueue.main.async {
-                    self.tableView.reloadData()
-                }
-        
-}
-        }
-    }
 }

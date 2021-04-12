@@ -32,14 +32,19 @@ class RetrieveWorkoutCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-      
-        if(selected) {
-            view.backgroundColor = UIColor.red
-        } else {
-            return
-        }
+//      
+//        if(selected) {
+//            view.backgroundColor = UIColor.red
+//        }
         
     }
+    
+//    func animate() {
+//        UIView.animate(withDuration: 0.5, delay: 0.3, usingSpringWithDamping: 0.8, initialSpringVelocity: 1, options: .curveEaseIn, animations: () -> Void)
+//           
+//        
+//      
+//    }
     
    
     }

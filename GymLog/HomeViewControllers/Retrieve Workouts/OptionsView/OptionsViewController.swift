@@ -12,7 +12,8 @@ class OptionsViewController: UIViewController {
     @IBOutlet weak var startView: UIView!
     @IBOutlet weak var editView: UIView!
     @IBOutlet weak var addExerciseView: UIView!
-    @IBOutlet weak var showExercisesView: UIView!
+    
+    @IBOutlet weak var showView: UIView!
     var titleValue: String = ""
     var dayOfWorkout: String = ""
     
@@ -28,41 +29,69 @@ class OptionsViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         shadowsForViews()
-        gotToShowExercisesView()
+       goToShowExercisesView()
+        goToEditView()
+        goToAddExcerciseView()
     }
     
-    func gotToShowExercisesView() {
+   
+    // MARK: - Go To SHOW View
+    func goToShowExercisesView() {
         
         let gesture = UITapGestureRecognizer(target: self, action: #selector(self.actionGoToShowExercisesView))
-        self.showExercisesView.addGestureRecognizer(gesture)
+        self.showView.addGestureRecognizer(gesture)
         
     }
-    
+
     @objc func actionGoToShowExercisesView(sender : UITapGestureRecognizer) {
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "showWorkout") as? ShowWorkoutViewController else { return }
         vc.titleValue = titleValue
         vc.dayOfWorkoutString = dayOfWorkout
         navigationController?.pushViewController(vc, animated: true)
     }
-    
+    // MARK: - Go To EDIT View
     func goToEditView() {
         let gesture = UITapGestureRecognizer(target: self, action: #selector(self.actionGoToEditView))
         self.editView.addGestureRecognizer(gesture)
     }
     
     @objc func actionGoToEditView(sender : UITapGestureRecognizer) {
-        guard let vc = storyboard?.instantiateViewController(withIdentifier: "showWorkout") as? ShowWorkoutViewController else { return }
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "editWorkout") as? EditWorkoutViewController else { return }
         vc.titleValue = titleValue
+        vc.dayOfWorkoutString = dayOfWorkout
         navigationController?.pushViewController(vc, animated: true)
     }
     
+    // MARK: - Go To Add Exercise View
+    
+    func goToAddExcerciseView() {
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(self.actionGoToAddExerciseView))
+        self.addExerciseView.addGestureRecognizer(gesture)
+    }
+    
+    @objc func actionGoToAddExerciseView(sender : UITapGestureRecognizer) {
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "addNextExercise") as? AddNextExerciseController else { return }
+        vc.titleValue = titleValue
+        vc.dayOfWorkoutString = dayOfWorkout
+        navigationController?.pushViewController(vc, animated: true)
+    }
+    
+    
+    
+    
+    // MARK: - Go To Start Training View
+    
+    
+    
+    
+    // MARK: - UI/UX Design
     
     func shadowsForViews() {
         
         setUpShadowsForViews(view: startView)
         setUpShadowsForViews(view: editView)
         setUpShadowsForViews(view: addExerciseView)
-        setUpShadowsForViews(view: showExercisesView)
+        setUpShadowsForViews(view: showView)
         
     }
     
