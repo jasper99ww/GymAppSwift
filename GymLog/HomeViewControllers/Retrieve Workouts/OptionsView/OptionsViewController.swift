@@ -32,6 +32,7 @@ class OptionsViewController: UIViewController {
        goToShowExercisesView()
         goToEditView()
         goToAddExcerciseView()
+        goToStartView()
     }
     
    
@@ -80,6 +81,17 @@ class OptionsViewController: UIViewController {
     
     
     // MARK: - Go To Start Training View
+    func goToStartView() {
+        let gesture = UITapGestureRecognizer(target: self, action: #selector(self.actionGoToStartView))
+        self.startView.addGestureRecognizer(gesture)
+    }
+    
+    @objc func actionGoToStartView(sender : UITapGestureRecognizer) {
+        guard let vc = storyboard?.instantiateViewController(withIdentifier: "startView") as? StartViewController else { return }
+        vc.titleValue = titleValue
+        vc.dayOfWorkout = dayOfWorkout
+        navigationController?.pushViewController(vc, animated: true)
+    }
     
     
     

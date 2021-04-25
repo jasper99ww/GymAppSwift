@@ -47,16 +47,37 @@ class EntryViewController: UIViewController {
                         print("There was an issue saving data to firestore, \(e)")
                     } else {
                         print("Succesfully saved data.")
-                    
+
                     }
-                    
-                    
                 }
-                
             }
+            
+            if let numberDb = Number.text, let exerciseDb = Exercise.text, let kgDb = kg.text, let setsDb = Sets.text, let repsDb = Reps.text, let workoutName = addWorkoutViewController.workoutName.text {
+                
+//                let docData: [String: Any] = [
+//                    "Number" : numberDb,
+//                    "Exercise": exerciseDb,
+//                    "kg": kgDb,
+//                    "Sets": setsDb,
+//                    "Reps": repsDb,
+//                    "uid": user!.uid,
+//                    "workoutName": workoutName
+//                ]
+                
+                addWorkoutViewController.db.collection("users").document("\(user!.uid)").collection("WorkoutsName").document("\(workoutName)").collection("Exercises").document("\(exerciseDb)").setData(["Number": numberDb, "Exercise": exerciseDb, "kg": kgDb, "Sets": setsDb, "Reps": repsDb, "uid": user!.uid, "workoutName": workoutName ]) { (error) in
+                    if let e = error {
+                        print("There was an issue saving data to firestore, \(e)")
+                    } else {
+                        print("Succesfully saved data.")
+                    }
+                }
+            }
+            
         
         }
     }
+    
+  
 
     
     func endEditing() {

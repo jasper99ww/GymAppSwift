@@ -27,17 +27,35 @@
             </objects>
             <point key="canvasLocation" x="3870" y="-64"/>
         </scene>
-        <!--View Controller-->
+        <!--Calendar View Controller-->
         <scene sceneID="iww-bg-h1l">
             <objects>
-                <viewController id="Qri-wj-v5L" sceneMemberID="viewController">
+                <viewController id="Qri-wj-v5L" customClass="CalendarViewController" customModule="GymLog" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="wY7-9b-bxi">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="Igh-Mt-8YF" customClass="FSCalendar">
+                                <rect key="frame" x="0.0" y="140" width="414" height="300"/>
+                                <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="300" id="TKg-Hc-B8T"/>
+                                </constraints>
+                            </view>
+                        </subviews>
                         <viewLayoutGuide key="safeArea" id="8Xb-Kd-x0L"/>
                         <color key="backgroundColor" systemColor="systemOrangeColor"/>
+                        <constraints>
+                            <constraint firstItem="8Xb-Kd-x0L" firstAttribute="trailing" secondItem="Igh-Mt-8YF" secondAttribute="trailing" id="ecQ-mm-rcY"/>
+                            <constraint firstItem="Igh-Mt-8YF" firstAttribute="leading" secondItem="8Xb-Kd-x0L" secondAttribute="leading" id="flu-YW-NIz"/>
+                            <constraint firstItem="Igh-Mt-8YF" firstAttribute="top" secondItem="8Xb-Kd-x0L" secondAttribute="top" id="pHd-fk-p3g"/>
+                            <constraint firstItem="8Xb-Kd-x0L" firstAttribute="bottom" secondItem="Igh-Mt-8YF" secondAttribute="bottom" constant="373" id="rFd-Om-75T"/>
+                        </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="oU0-d1-r7B"/>
+                    <connections>
+                        <outlet property="calendar" destination="Igh-Mt-8YF" id="GS9-PV-XsI"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="S63-iT-DjQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
@@ -46,6 +64,9 @@
     </scenes>
     <resources>
         <image name="calendar" catalog="system" width="128" height="106"/>
+        <systemColor name="systemBackgroundColor">
+            <color white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+        </systemColor>
         <systemColor name="systemOrangeColor">
             <color red="1" green="0.58431372549019611" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
         </systemColor>

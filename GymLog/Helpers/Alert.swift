@@ -21,4 +21,15 @@ struct Alert {
     static func showIncompleteFormAlert(on vc: UIViewController) {
         showBasicAlert(on: vc, with: "Incomplete workout name", message: "Please entry a workout name")
     }
+    
+    static func showIncompleteSetAlert(on vc: UIViewController) {
+        showBasicAlert(on: vc, with: "Incomplete data", message: "Please fill out all data in current exercise")
+    }
+    
+   
+    
+    static func showBeforeNextExerciseAlert(on vc: UIViewController) {
+        showBasicAlert(on: vc, with: "Incomplete data", message: " Please fill out all fields and checkmarks")
+    }
+    
 }

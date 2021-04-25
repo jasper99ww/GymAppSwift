@@ -80,7 +80,7 @@ class HomeTableViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.workoutField?.setTitle(workouts[indexPath.row].workoutTitle, for: .normal)
         cell.index = indexPath
         cell.cellDelegate = self
-        
+     
         
         
         
