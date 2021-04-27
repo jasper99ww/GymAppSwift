@@ -1816,7 +1816,7 @@
                                         <rect key="frame" x="0.0" y="0.0" width="86" height="200"/>
                                         <fontDescription key="fontDescription" type="system" weight="semibold" pointSize="39"/>
                                         <state key="normal" title="Start">
-                                            <color key="titleColor" red="0.23921568630000001" green="0.5450980392" blue="0.3294117647" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                            <color key="titleColor" red="0.23921568627450979" green="0.54509803921568623" blue="0.32941176470588235" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
                                         <connections>
                                             <action selector="startButton:" destination="38Y-FV-2j6" eventType="touchUpInside" id="SBK-by-j0E"/>

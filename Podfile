@@ -11,7 +11,7 @@ target 'GymLog' do
 	pod 'Firebase/Auth'
 	pod 'Firebase/Firestore'
 	pod 'IQKeyboardManagerSwift'
-	pod 'FSCalendar'
+	pod 'JTAppleCalendar' 
 
 end
 

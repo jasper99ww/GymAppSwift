@@ -37,6 +37,7 @@
 		596BC83E25E29DAD00166D9C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596BC83D25E29DAD00166D9C /* SignUpViewController.swift */; };
 		596BC84125E29DE700166D9C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596BC84025E29DE700166D9C /* LoginViewController.swift */; };
 		596D12272635A800003B7292 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596D12262635A800003B7292 /* CalendarViewController.swift */; };
+		596D125C26360407003B7292 /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596D125B26360407003B7292 /* DateCell.swift */; };
 		5976918825ED9D36006C9E38 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5976918725ED9D36006C9E38 /* EntryViewController.swift */; };
 		597F781725FC2124005F97A2 /* ShowWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597F781625FC2124005F97A2 /* ShowWorkoutViewController.swift */; };
 		5980D477260CEDC60070F23B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5980D476260CEDC60070F23B /* ProfileViewController.swift */; };
@@ -89,6 +90,7 @@
 		596BC83D25E29DAD00166D9C /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
 		596BC84025E29DE700166D9C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
 		596D12262635A800003B7292 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		596D125B26360407003B7292 /* DateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCell.swift; sourceTree = "<group>"; };
 		5976918725ED9D36006C9E38 /* EntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
 		597F781625FC2124005F97A2 /* ShowWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowWorkoutViewController.swift; sourceTree = "<group>"; };
 		5980D476260CEDC60070F23B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
@@ -297,6 +299,7 @@
 			isa = PBXGroup;
 			children = (
 				596D12262635A800003B7292 /* CalendarViewController.swift */,
+				596D125B26360407003B7292 /* DateCell.swift */,
 			);
 			path = WorkoutCalendar;
 			sourceTree = "<group>";
@@ -444,6 +447,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				596BC84125E29DE700166D9C /* LoginViewController.swift in Sources */,
+				596D125C26360407003B7292 /* DateCell.swift in Sources */,
 				5964EA02261B50FF00998B2F /* StartViewController.swift in Sources */,
 				596BC83E25E29DAD00166D9C /* SignUpViewController.swift in Sources */,
 				5964EA05261B5A9C00998B2F /* startViewBrain.swift in Sources */,
