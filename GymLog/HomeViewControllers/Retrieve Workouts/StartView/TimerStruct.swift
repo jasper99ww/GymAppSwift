@@ -9,7 +9,7 @@ import Foundation
 
 class TimerStruct {
     
-    var startViewController = StartViewController()
+
     var timer:Timer = Timer()
     var count:Int = 0
     var label: ((String) -> Void)?
@@ -38,6 +38,12 @@ class TimerStruct {
         timeString += ":"
         timeString += String(format: "%02d", seconds)
         return timeString
+    }
+    
+    func stopTimer() {
+        
+        timer.invalidate()
+        
     }
     
     

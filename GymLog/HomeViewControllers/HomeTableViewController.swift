@@ -10,12 +10,12 @@ import Firebase
 
 class HomeTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, WorkoutTableCellDelegate {
    
-    
     @IBOutlet weak var addWorkoutButton: UIBarButtonItem!
     
     @IBOutlet weak var tableView: UITableView!
     
-
+    var workoutsName: [String] = []
+    
     var workouts: [WorkoutsTitle] = []
     
     let db = Firestore.firestore()
@@ -24,15 +24,20 @@ class HomeTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.backgroundColor = UIColor.init(red: 18/255, green: 18/255, blue: 18/255, alpha: 1)
+        retrieveWorkouts()
+        
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
         tableView.delegate = self
         tableView.dataSource = self
-        retrieveWorkouts()
         self.tableView.backgroundColor = UIColor.init(red: 18/255, green: 18/255, blue: 18/255, alpha: 1)
+        
        
+    }
+    override func viewWillDisappear(_ animated: Bool) {
+        sendDataToCalendar()
     }
     
     
@@ -53,8 +58,9 @@ class HomeTableViewController: UIViewController, UITableViewDelegate, UITableVie
            
                                     let newTitle = WorkoutsTitle(workoutTitle: workoutTitle, workoutDay: workoutDay)
            
-                                       self.workouts.append(newTitle)
-           
+                                        self.workouts.append(newTitle)
+                                    self.workoutsName.append(workoutTitle)
+                           
                                        }
                                 DispatchQueue.main.async {
                                     self.tableView.reloadData()
@@ -80,9 +86,6 @@ class HomeTableViewController: UIViewController, UITableViewDelegate, UITableVie
         cell.workoutField?.setTitle(workouts[indexPath.row].workoutTitle, for: .normal)
         cell.index = indexPath
         cell.cellDelegate = self
-     
-        
-        
         
         return cell
     }
@@ -90,10 +93,13 @@ class HomeTableViewController: UIViewController, UITableViewDelegate, UITableVie
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 120
     }
-
-
+    
+    func sendDataToCalendar() {
+        
+        UserDefaults.standard.set(workoutsName.distinct(), forKey: "workoutsName")
+      
+    }
 }
-
 extension HomeTableViewController  {
     func onClickCell(index: Int) {
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "optionsVC") as? OptionsViewController else { return }
@@ -101,8 +107,17 @@ extension HomeTableViewController  {
             vc.dayOfWorkout = workouts[index].workoutDay
         navigationController?.pushViewController(vc, animated: true)
         }
-        
-        
     }
+
+extension Array where Element: Hashable {
+    func distinct() -> Array<Element> {
+        var set = Set<Element>()
+        return filter {
+            guard !set.contains($0) else { return false }
+            set.insert($0)
+            return true
+        }
+    }
+}
 
 

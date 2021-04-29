@@ -24,7 +24,7 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var timer:Timer = Timer()
     var count:Int = 0
     let currentDateTime = Date()
-    
+    let timeStruct = TimerStruct()
     @IBOutlet weak var nextButton: UIButton!
     var titleValue: String = ""
     
@@ -37,10 +37,10 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     let user = Auth.auth().currentUser
     
     var db = Firestore.firestore()
-    
+  
     
     @IBOutlet weak var tableView: UITableView!
-    
+  
     @IBOutlet weak var exerciseLabel: UILabel!
     @IBOutlet weak var progressView: UIProgressView!
     
@@ -57,29 +57,23 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tableView?.delegate = self
         tableView?.dataSource = self
         retrieveWorkouts()
-        startTimers()
+        startTimers(isEnded: false)
         workoutName.text = titleValue
-//        hideKeyboardWhenTappedAround()
-        
-        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         initialSelect()
     }
     
-    func startTimers() {
-        
-        
-        let timeStruct = TimerStruct()
+    func startTimers(isEnded: Bool) {
+
         timeStruct.startTimer()
         timeStruct.label = { timeLabel in
             
             self.timerLabel.text = timeLabel
         }
-            
-        }
-    
+    }
+
     @IBAction func nextButtonPressed(_ sender: UIButton) {
       
         let check = checkIfButtonIsChecked()
@@ -203,8 +197,9 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func afterNextButtonTapped() {
         
         let df = DateFormatter()
-        df.dateFormat = "dd/MM/yyyy HH:mm:ssZZZ"
+        df.dateFormat = "yyyy-MM-dd HH:mm"
         let dateString = df.string(from: currentDateTime)
+        
         
        let date = Date()
         let formate = date.getFormattedDate(format: "yyyy-MM-dd HH:mm")
@@ -270,27 +265,20 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func showEndWorkout() {
-
+        
         let view = storyboard?.instantiateViewController(identifier: "end") as! EndWorkoutViewController
         self.navigationController?.pushViewController(view, animated: true)
         
         view.weightArray = weightArraySend
         view.repsArray = repsArraySend
+        
+        timeStruct.timer.invalidate()
+        view.endedTime = timerLabel.text!
+        view.totalTime?.text = timerLabel.text
+        view.titleValue = titleValue
     }
+}
     
-    
-    
- 
-//        let home = UIStoryboard(name: "Home", bundle: nil).instantiateViewController(identifier: "Home") as HomeTableViewController
-//
-//        child.continueButton.setTitle("kutas", for: .normal)
-//
-//
-//        self.present(home, animated: false, completion: nil)
-    }
-    
-
-
 
 extension Date {
     func getFormattedDate(format: String) -> String {
