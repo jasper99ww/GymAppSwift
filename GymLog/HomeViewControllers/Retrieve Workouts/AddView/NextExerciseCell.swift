@@ -83,7 +83,7 @@ class NextExerciseCell: UITableViewCell {
             newReps.placeholder = ""
         
         default:
-            "#"
+            newExercise.placeholder = "CO TO"
         }
         
     }
