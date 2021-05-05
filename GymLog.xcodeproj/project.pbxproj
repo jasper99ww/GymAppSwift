@@ -52,6 +52,7 @@
 		59B8BBEA2627A42A0029D00E /* MinutesTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B8BBE92627A42A0029D00E /* MinutesTimerView.swift */; };
 		59CD49672624EAC20004A722 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59CD49662624EAC20004A722 /* TimerViewController.swift */; };
 		59E3856926161FC700B31EA4 /* ModalAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E3856826161FC700B31EA4 /* ModalAddViewController.swift */; };
+		59E6B8A826431AF90001DBC9 /* CalendarCell.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59E6B8A726431AF90001DBC9 /* CalendarCell.storyboard */; };
 		59F33BB326111FE700A6DBB0 /* AddNextExerciseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F33BB226111FE700A6DBB0 /* AddNextExerciseController.swift */; };
 		59F33BB62611218300A6DBB0 /* NextExerciseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F33BB52611218300A6DBB0 /* NextExerciseCell.swift */; };
 		59F70386260A1FC200E1CB80 /* EditWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F70385260A1FC200E1CB80 /* EditWorkoutViewController.swift */; };
@@ -106,6 +107,7 @@
 		59B8BBE92627A42A0029D00E /* MinutesTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinutesTimerView.swift; sourceTree = "<group>"; };
 		59CD49662624EAC20004A722 /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
 		59E3856826161FC700B31EA4 /* ModalAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalAddViewController.swift; sourceTree = "<group>"; };
+		59E6B8A726431AF90001DBC9 /* CalendarCell.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CalendarCell.storyboard; sourceTree = "<group>"; };
 		59F33BB226111FE700A6DBB0 /* AddNextExerciseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNextExerciseController.swift; sourceTree = "<group>"; };
 		59F33BB52611218300A6DBB0 /* NextExerciseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextExerciseCell.swift; sourceTree = "<group>"; };
 		59F70385260A1FC200E1CB80 /* EditWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWorkoutViewController.swift; sourceTree = "<group>"; };
@@ -316,6 +318,7 @@
 				59B1E85525E85B2F00A8E172 /* Progress.storyboard */,
 				59B1E85825E85B3700A8E172 /* Profile.storyboard */,
 				596620A325EA9A5F002B04D5 /* AddWorkoutCell.xib */,
+				59E6B8A726431AF90001DBC9 /* CalendarCell.storyboard */,
 			);
 			path = Storyboards;
 			sourceTree = "<group>";
@@ -390,6 +393,7 @@
 			files = (
 				59638F6325E1C0D600B2AF84 /* LaunchScreen.storyboard in Resources */,
 				59638F6C25E1C16A00B2AF84 /* GoogleService-Info.plist in Resources */,
+				59E6B8A826431AF90001DBC9 /* CalendarCell.storyboard in Resources */,
 				59B1E85925E85B3700A8E172 /* Profile.storyboard in Resources */,
 				59638F6025E1C0D600B2AF84 /* Assets.xcassets in Resources */,
 				59638F5E25E1C0D400B2AF84 /* Main.storyboard in Resources */,

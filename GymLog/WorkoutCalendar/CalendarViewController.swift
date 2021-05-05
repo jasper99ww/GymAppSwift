@@ -61,7 +61,7 @@ class CalendarViewController: UIViewController {
         
         tableView.delegate = self
         tableView.dataSource = self
-        
+        tableView.rowHeight = 115
     }
     
 
