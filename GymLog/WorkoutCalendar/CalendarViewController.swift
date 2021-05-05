@@ -56,12 +56,12 @@ class CalendarViewController: UIViewController {
              
         calendarView.calendarDataSource = self
         calendarView.calendarDelegate = self
-        calendarView.layer.cornerRadius = 30
+        calendarView.layer.cornerRadius = 20
         calendarView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
         
         tableView.delegate = self
         tableView.dataSource = self
-        tableView.rowHeight = 115
+        tableView.rowHeight = 110
     }
     
 
