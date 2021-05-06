@@ -6,8 +6,11 @@ import Firebase
 
 class CalendarViewController: UIViewController {
    
+    var exampleArray: [String: [String]] = [:]
+    @IBOutlet weak var topStackView: UIStackView!
     var hourOfDoneTraining: [String] = []
-    var exercisesInDoneTraining: [String] = []
+    var exercisesInDoneTraining: [String: [String]] = [:]
+//    var exercisesInDoneTraining = [[String]]()
     var doneTrainingDate: [String] = []
     
     @IBOutlet weak var numberDayOfDoneTraining: UILabel!
@@ -49,6 +52,7 @@ class CalendarViewController: UIViewController {
         }
 //        preSelectData()
         setUpCalendar()
+        
     }
     
     override func viewDidLoad() {
@@ -56,14 +60,20 @@ class CalendarViewController: UIViewController {
              
         calendarView.calendarDataSource = self
         calendarView.calendarDelegate = self
-        calendarView.layer.cornerRadius = 20
-        calendarView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+        calendarViewCorners()
+     
         
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 110
     }
     
+    func calendarViewCorners() {
+        calendarView.layer.cornerRadius = 35
+        calendarView.layer.maskedCorners = [.layerMinXMaxYCorner, .layerMaxXMaxYCorner]
+    }
+    
+
 
     func retrieveTitleWorkouts() {
         if let workoutName = UserDefaults.standard.object(forKey: "workoutsName") as? [String] {
@@ -89,6 +99,7 @@ class CalendarViewController: UIViewController {
                         let documentID2 = documents[i].documentID
                         
                             self.arrayOfDocumentsTitle.append(documentID2)
+                        self.exampleArray[title, default: []].append(documentID2)
                     }
                     grp.leave()
                     print("FIRST FUNCTION DONE")
@@ -102,6 +113,7 @@ class CalendarViewController: UIViewController {
         grp.notify(queue: DispatchQueue.main) {
             completion()
             print("YY2 \(self.arrayOfDocumentsTitle)")
+            print("NOWA ARRAY \(self.exampleArray)")
             print("TU FINITO")
         }
     }
@@ -256,7 +268,10 @@ extension CalendarViewController: JTACMonthViewDelegate {
         
         handleCellSelected(view: cell, cellState: cellState)
         handleCellTextColor(view: cell, cellState: cellState)
-        print("PRZED FORMATEM \(date)")
+        doneTrainingDate = []
+        exercisesInDoneTraining = [:]
+        hourOfDoneTraining = []
+        print("DONE TRAINING TO \(doneTrainingDate)")
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -264,6 +279,7 @@ extension CalendarViewController: JTACMonthViewDelegate {
         let dateSelected = dateFormatter.string(from: date)
       
         for (key, value) in emptyDict {
+            
             for (dateOfWorkout, name) in value {
             dateFormatter.dateFormat = "yyyy-MM-dd"
                 let value1 = dateFormatter.string(from: dateOfWorkout ?? date)
@@ -273,18 +289,31 @@ extension CalendarViewController: JTACMonthViewDelegate {
             let hour = dateFormatter.string(from: dateOfWorkout ?? date)
             if dateSelected == value1 {
                 numberDayOfDoneTraining.text = day
-                
                 doneTrainingDate.append(key)
                 hourOfDoneTraining.append(hour)
-                exercisesInDoneTraining.append(name)
+//
+//                exercisesInDoneTraining.append([name])
+//                exercisesInDoneTraining[key] = [name]
             }
             else {
                 print("Nie zrobiles tego dnia treningu")
-//                doneTrainingDate = "No training this day"
+//                doneTrainingDate.removeAll()
+//                exercisesInDoneTraining.removeAll()
+//                hourOfDoneTraining.removeAll()
+//                doneTrainingDate.append("No training this day")
+////                exercisesInDoneTraining.append("")
+//                hourOfDoneTraining.append("")
             }
         }
     }
-        tableView.reloadData()
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+            print("ALLELUJA \(self.exercisesInDoneTraining)")
+            print("\(self.emptyDict) DICTIONARY SLOWNIK")
+            print("TO TA KURKA \(self.doneTrainingDate)")
+        
+        }
+
         
     }
 
@@ -303,7 +332,8 @@ extension CalendarViewController: JTACMonthViewDelegate {
 extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
 
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return doneTrainingDate.count
+        guard doneTrainingDate.contains("No training this day") else {return doneTrainingDate.count}
+        return 1
     }
     
     func numberOfSections(in tableView: UITableView) -> Int {
@@ -312,9 +342,21 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "calendarCell", for: indexPath) as! CalendarTableViewCell
+        
         cell.workoutCellLabel?.text = doneTrainingDate[indexPath.row]
         cell.cellHourOfDoneTraining?.text = hourOfDoneTraining[indexPath.row]
-        cell.exercisesInWorkout?.text = exercisesInDoneTraining[indexPath.row]
-        return cell
+        cell.exercisesInWorkout?.text = exampleArray["\(doneTrainingDate[indexPath.row])"]?[indexPath.row]
+    
+        
+        if doneTrainingDate.contains("No training this day") {
+            cell.showDetailsButton?.alpha = 0
+            cell.viewColor?.backgroundColor = .clear
+            
+        } else {
+            cell.showDetailsButton?.alpha = 1
+            cell.viewColor?.backgroundColor = UIColor.init(red: 1/255, green: 50/255, blue: 32/255, alpha: 1)
     }
+        return cell
 }
+}
+
