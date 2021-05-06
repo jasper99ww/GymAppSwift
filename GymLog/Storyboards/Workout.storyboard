@@ -323,26 +323,22 @@
                                         </prototypes>
                                     </tableView>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" distribution="fillEqually" translatesAutoresizingMaskIntoConstraints="NO" id="uOw-N8-GcI">
-                                        <rect key="frame" x="22" y="11" width="34" height="57"/>
+                                        <rect key="frame" x="22" y="11" width="25.5" height="57"/>
                                         <subviews>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="9" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="MN3-R9-CLd">
-                                                <rect key="frame" x="0.0" y="0.0" width="34" height="28.5"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="34" id="XQT-It-qNC"/>
-                                                </constraints>
+                                                <rect key="frame" x="0.0" y="0.0" width="25.5" height="28.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="24"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WED" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="FsV-e5-pHd">
-                                                <rect key="frame" x="0.0" y="28.5" width="34" height="28.5"/>
+                                                <rect key="frame" x="0.0" y="28.5" width="25.5" height="28.5"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="11"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                         </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="width" constant="34" id="K0S-Dk-xVA"/>
                                             <constraint firstAttribute="height" constant="57" id="ddr-Kn-HYS"/>
                                         </constraints>
                                     </stackView>
@@ -351,12 +347,11 @@
                                 <constraints>
                                     <constraint firstAttribute="trailing" secondItem="gaX-Rf-KQc" secondAttribute="trailing" id="1XR-cQ-hxK"/>
                                     <constraint firstAttribute="bottom" secondItem="gaX-Rf-KQc" secondAttribute="bottom" constant="-23.5" id="2e3-Aq-yUU"/>
+                                    <constraint firstItem="uOw-N8-GcI" firstAttribute="leading" secondItem="CjQ-99-YUP" secondAttribute="leading" constant="22" id="Cfd-AS-iVH"/>
                                     <constraint firstItem="uOw-N8-GcI" firstAttribute="top" secondItem="CjQ-99-YUP" secondAttribute="top" constant="11" id="Eip-yR-Klf"/>
                                     <constraint firstAttribute="trailing" secondItem="gaX-Rf-KQc" secondAttribute="trailing" id="N3P-QK-MFM"/>
                                     <constraint firstItem="gaX-Rf-KQc" firstAttribute="top" secondItem="uOw-N8-GcI" secondAttribute="bottom" constant="6" id="dHf-in-U6s"/>
                                     <constraint firstItem="gaX-Rf-KQc" firstAttribute="leading" secondItem="CjQ-99-YUP" secondAttribute="leading" id="oQG-st-b2v"/>
-                                    <constraint firstAttribute="trailing" secondItem="uOw-N8-GcI" secondAttribute="trailing" constant="358" id="oQx-Dx-z4C"/>
-                                    <constraint firstItem="uOw-N8-GcI" firstAttribute="leading" secondItem="CjQ-99-YUP" secondAttribute="leading" constant="22" id="t6y-Kb-qzo"/>
                                     <constraint firstItem="gaX-Rf-KQc" firstAttribute="leading" secondItem="CjQ-99-YUP" secondAttribute="leading" id="tNK-5L-THR"/>
                                 </constraints>
                             </view>
@@ -381,7 +376,6 @@
                         <outlet property="nameDayOfDoneTraining" destination="FsV-e5-pHd" id="b1i-kw-RA3"/>
                         <outlet property="numberDayOfDoneTraining" destination="MN3-R9-CLd" id="lmj-Sl-tZ2"/>
                         <outlet property="tableView" destination="gaX-Rf-KQc" id="gFN-y2-mh3"/>
-                        <outlet property="topStackView" destination="66e-dz-Zpd" id="qe6-Cr-W4e"/>
                         <outlet property="year" destination="dWe-yU-TLr" id="E5y-8Y-mRf"/>
                     </connections>
                 </viewController>

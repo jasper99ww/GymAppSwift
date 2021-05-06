@@ -57,6 +57,7 @@
 		59F33BB62611218300A6DBB0 /* NextExerciseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F33BB52611218300A6DBB0 /* NextExerciseCell.swift */; };
 		59F70386260A1FC200E1CB80 /* EditWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F70385260A1FC200E1CB80 /* EditWorkoutViewController.swift */; };
 		6AC6D09060118A680AB13A03 /* Pods_GymLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 7F0ED4D41218003661EA36AC /* Pods_GymLog.framework */; };
+		E7F0068626448B9C008D138B /* DropdownCalendarList.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7F0068526448B9B008D138B /* DropdownCalendarList.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -114,6 +115,7 @@
 		7F0ED4D41218003661EA36AC /* Pods_GymLog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GymLog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		C0C11C28727D759A81FA516F /* Pods-GymLog.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GymLog.debug.xcconfig"; path = "Target Support Files/Pods-GymLog/Pods-GymLog.debug.xcconfig"; sourceTree = "<group>"; };
 		CECBBEF1825023671CF42CA3 /* Pods-GymLog.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GymLog.release.xcconfig"; path = "Target Support Files/Pods-GymLog/Pods-GymLog.release.xcconfig"; sourceTree = "<group>"; };
+		E7F0068526448B9B008D138B /* DropdownCalendarList.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = DropdownCalendarList.swift; path = ../../../../DropdownCalendarList.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -305,6 +307,7 @@
 				596D125B26360407003B7292 /* DateCell.swift */,
 				592EC290263CB45200761632 /* CalendarTableViewController.swift */,
 				592EC293263CB73200761632 /* CalendarTableViewCell.swift */,
+				E7F0068526448B9B008D138B /* DropdownCalendarList.swift */,
 			);
 			path = WorkoutCalendar;
 			sourceTree = "<group>";
@@ -485,6 +488,7 @@
 				59638F5725E1C0D400B2AF84 /* AppDelegate.swift in Sources */,
 				59A533A425F0310A0064DFB5 /* UnderlinedTextField.swift in Sources */,
 				596168B4260B9BE00033B29D /* EditWorkoutCell.swift in Sources */,
+				E7F0068626448B9C008D138B /* DropdownCalendarList.swift in Sources */,
 				592EC291263CB45200761632 /* CalendarTableViewController.swift in Sources */,
 				596BC83825E29D5700166D9C /* Utilities.swift in Sources */,
 				596620BE25EBF541002B04D5 /* DataCell.swift in Sources */,
