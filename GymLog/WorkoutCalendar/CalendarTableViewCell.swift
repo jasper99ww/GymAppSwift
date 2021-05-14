@@ -13,6 +13,7 @@ class CalendarTableViewCell: UITableViewCell {
     @IBOutlet weak var cellHourOfDoneTraining: UILabel!
     @IBOutlet weak var exercisesInWorkout: UILabel!
     @IBOutlet weak var viewColor: UIView!
+   
     
     @IBOutlet weak var showDetailsButton: UIButton!
     override func awakeFromNib() {

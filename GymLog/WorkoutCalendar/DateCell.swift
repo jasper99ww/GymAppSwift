@@ -12,4 +12,5 @@ class DateCell: JTACDayCell {
     
     @IBOutlet weak var datelabel: UILabel!
     @IBOutlet weak var selectedView: UIView!
+    @IBOutlet weak var todayLabel: UILabel!
 }

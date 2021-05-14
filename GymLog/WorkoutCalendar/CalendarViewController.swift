@@ -8,14 +8,12 @@ class CalendarViewController: UIViewController {
 
     @IBOutlet weak var numberDayOfDoneTraining: UILabel!
     @IBOutlet weak var nameDayOfDoneTraining: UILabel!
-
     
     var exampleArray: [String: [String]] = [:]
     var hourOfDoneTraining: [String] = []
     var exercisesInDoneTraining: [String: [String]] = [:]
 
     var doneTrainingDate: [String] = []
-    
 
     var selectedDate = Date()
     
@@ -24,13 +22,18 @@ class CalendarViewController: UIViewController {
     var arrayOfTitles = [String]()
     var doneDates: [String] = []
     var selectDoneDates: [Date] = []
+    var selectDoneDates2: [String] = []
+    var selectDoneDates3: [String] = []
     var arrayOfDocumentsTitle: [String] = []
+    
+    var selectedString = String()
     
     let db = Firestore.firestore()
     let user = Auth.auth().currentUser
     
     @IBOutlet weak var calendarView: JTACMonthView!
-  
+    
+    let popup = CalendarPopupViewController()
     @IBOutlet weak var year: UILabel!
     @IBOutlet weak var month: UILabel!
     
@@ -40,17 +43,23 @@ class CalendarViewController: UIViewController {
     
     @IBOutlet weak var tableView: UITableView!
    
+    // MARK: PopUp
+
     override func viewWillAppear(_ animated: Bool) {
+
         calendarView.allowsMultipleSelection = true
-        arrayOfTitles = []
-        arrayOfDocumentsTitle = []
-        doneDates = []
+        
+        // SPRAWDZ CZY TO MOGLO POWODOWAC BLAD
+//        arrayOfTitles = []
+//        arrayOfDocumentsTitle = []
+//        doneDates = []
         selectDoneDates = []
         retrieveTitleWorkouts()
         retrieveDocumentsId
         {
             self.getDateOfWorkout()
         }
+        
         setUpCalendar()
     }
     
@@ -61,10 +70,63 @@ class CalendarViewController: UIViewController {
         calendarView.calendarDelegate = self
         calendarViewCorners()
         setDefaultDate()
-        
+        selectTodayDate()
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 110
+       
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toCalendarPopUp" {
+            let popup = segue.destination as! CalendarPopupViewController
+            popup.selectedWorkout = { text in
+//                self.selectDoneDates2 = []
+                self.selectedString = text
+                self.calendarView.allowsMultipleSelection = true
+//                self.calendarView.deselectAllDates()
+                self.preSelectDataAfterPopUp()
+                self.calendarView.allowsMultipleSelection = false
+            }
+        }
+        print("\(selectedString) SELECTED STRING")
+      
+        
+    }
+    
+    func preSelectDataAfterPopUp() {
+        
+//        selectDoneDates2 = []
+        selectDoneDates3 = []
+        
+        if selectedString == "ALL" {
+            print("DO NOTHING, BECAUSE ALL WAS PRESENTED BEFORE")
+            preSelectData()
+        }
+        else {
+            
+            let dateFormatter = DateFormatter()
+            dateFormatter.dateFormat = "yyyy-MM-dd"
+            
+            if let examples = emptyDict[selectedString] {
+                let examplesInString = examples.compactMap { dateFormatter.string(from: $0!) } as [String]
+            print("\(examples) tO EXAMPLES ")
+            selectDoneDates3 = examplesInString
+            }
+        }
+    
+        self.calendarView.reloadData()
+       
+    }
+    
+    @IBAction func menuButtonTapped(_ sender: UIButton) {
+        
+    }
+    
+    func selectTodayDate() {
+       
+        calendarView.selectDates([currentDate])
+        
     }
     
     func setDefaultDate() {
@@ -114,19 +176,12 @@ class CalendarViewController: UIViewController {
                         self.exampleArray[title, default: []].append(documentID2)
                     }
                     grp.leave()
-                    print("FIRST FUNCTION DONE")
-                 print("YYY \(self.arrayOfDocumentsTitle)")
                 }
             }
         }
-            
     }
-        
         grp.notify(queue: DispatchQueue.main) {
             completion()
-            print("YY2 \(self.arrayOfDocumentsTitle)")
-            print("NOWA ARRAY \(self.exampleArray)")
-            print("TU FINITO")
         }
     }
     
@@ -147,9 +202,13 @@ class CalendarViewController: UIViewController {
                         let calendarDocumentID = calendarDocuments[i].documentID
                         
                         self.formatter.dateFormat = "yyyy-MM-dd HH:mm"
-                        let value = self.formatter.date(from: calendarDocumentID)
+                        guard let value = self.formatter.date(from: calendarDocumentID) else {return }
                         self.emptyDict[title, default: []].append(value)
-
+                        
+                        let dateFormatter2 = DateFormatter()
+                        dateFormatter2.dateFormat = "yyyy-MM-dd"
+                        let value2 = dateFormatter2.string(from: value)
+                        self.selectDoneDates2.append(value2)
                     }
                     grp.leave()
                     print("NOWA TABLICA \(self.emptyDict)")
@@ -160,75 +219,27 @@ class CalendarViewController: UIViewController {
     }
         
         grp.notify(queue: DispatchQueue.main) {
-//            completion()
             self.preSelectData()
         }
     }
     
-        
-//    func retrieveWorkoutsDate() {
-//        let grp2 = DispatchGroup()
-//
-//       doneDates = []
-//            for title in arrayOfTitles {
-//
-//            print("Second function started")
-//                print("TYTUL TO \(title)")
-//            for document in arrayOfDocumentsTitle {
-//                grp2.enter()
-//            db.collection("users").document("\(user!.uid)").collection("WorkoutsName").document("\(title)").collection("Exercises").document("\(document)").collection("History").getDocuments { (querySnapshot, error) in
-//
-//                if let error = error
-//                           {
-//                                    print("\(error.localizedDescription)")
-//                           }
-//                           else {
-//                               if let snapshotDocuments = querySnapshot?.documents {
-//
-//                                   for doc in snapshotDocuments {
-//                                    let data = doc.data()
-//                                    if let dateOfWorkout = data["date"] as? String {
-//
-//                                            self.doneDates.append(dateOfWorkout)
-//                                        print("DOBRA \(title) i \(dateOfWorkout)")
-//                                        self.formatter.dateFormat = "yyyy-MM-dd HH:mm"
-//                                        let value = self.formatter.date(from: dateOfWorkout)
-//                                        self.emptyDict[title, default: []].append(value)
-////                                        self.emptyDict[title, default: [value : [].append(document)]]
-//                                    }
-//                                    print("DONE DATES TO \(self.doneDates)")
-//
-//                                   }
-//                                grp2.leave()
-//                                }
-//                            }
-//                        }
-//            }
-//        }
-//        grp2.notify(queue: DispatchQueue.main) {
-////            completion()
-//            self.preSelectData()
-//            print("TU DRUGIE FINITO")
-//        print("SECOND FUNCTION DONE")
-//        }
-////        self.preSelectData()
-//    }
+   
     
     func preSelectData() {
-        print("ODPALONA OSTATNIA PETARDA")
-        formatter.dateFormat = "yyyy-MM-dd HH:mm"
-        formatter.timeZone = Calendar.current.timeZone
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+
+        print("empty Dict \(emptyDict)")
         for (key, date) in emptyDict {
             print("DATE TO \(date)")
-//            if let dateObject = formatter.date(from: date) {
-//            print("TO JEST TO \(dateObject)")
-//            selectDoneDates.append(dateObject)
-//            }
+
             for date2 in date {
             selectDoneDates.append(date2!)
             }
         }
         calendarView.selectDates(selectDoneDates, triggerSelectionDelegate: false, keepSelectionIfMultiSelectionAllowed: true)
+        self.calendarView.allowsMultipleSelection = false
     }
     
     func setUpCalendar() {
@@ -254,11 +265,32 @@ class CalendarViewController: UIViewController {
 
 
     func handleCellTextColor(view: JTACDayCell?, cellState: CellState) {
+        
         guard let validCell = view as? DateCell else { return }
+        
+        formatter.dateFormat = "yyyy-MM-dd"
+        
+        let todayDateString = formatter.string(from: Date())
+        let monthDateString = formatter.string(from: cellState.date)
+        
+        
 
+        if todayDateString == monthDateString {
+            validCell.selectedView.isHidden = false
+            validCell.selectedView.backgroundColor = .darkGray
+            validCell.todayLabel.isHidden = false
+        } else {
+            print("\(todayDateString) OHOOO HO")
+            validCell.todayLabel.isHidden = true
+            validCell.selectedView.backgroundColor = UIColor.init(red: 81/255, green: 134/255, blue: 87/255, alpha: 1)
+        }
+
+        print("TODAY DATE \(todayDateString)")
         if cellState.isSelected {
             validCell.datelabel.textColor = .white
-        } else {
+        }
+     
+        else {
             if cellState.dateBelongsTo == .thisMonth {
                 validCell.datelabel.textColor = .white
                 
@@ -270,10 +302,21 @@ class CalendarViewController: UIViewController {
 
     func handleCellSelected(view: JTACDayCell?, cellState: CellState) {
         guard let validCell = view as? DateCell else { return }
-
-        if validCell.isSelected {
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let cellDate = dateFormatter.string(from: cellState.date)
+       
+        
+        if (validCell.isSelected || selectDoneDates2.contains(cellDate)) && selectDoneDates3
+            .isEmpty {
             validCell.selectedView.isHidden = false
-        } else {
+        } else if cellState.date == Date() || selectDoneDates3.contains(cellDate) {
+            validCell.selectedView.isHidden = false
+            validCell.selectedView.backgroundColor = UIColor.init(red: 81/255, green: 134/255, blue: 87/255, alpha: 1)
+            
+        }
+        else {
             validCell.selectedView.isHidden = true
         }
 }
@@ -285,7 +328,7 @@ extension CalendarViewController: JTACMonthViewDataSource {
         formatter.dateFormat = "yyyy MM dd"
         formatter.timeZone = Calendar.current.timeZone
         formatter.locale = Calendar.current.locale
-
+        
         let startDate = Date()
         let endDate = formatter.date(from: "2021 12 12")!
 
@@ -305,20 +348,27 @@ extension CalendarViewController: JTACMonthViewDelegate {
         handleCellSelected(view: cell, cellState: cellState)
         handleCellTextColor(view: cell, cellState: cellState)
         
+        
         return cell
     }
+    
     func calendar(_ calendar: JTACMonthView, willDisplay cell: JTACDayCell, forItemAt date: Date, cellState: CellState, indexPath: IndexPath) {
         let cell = cell as! DateCell
         cell.datelabel.text = cellState.text
 
         handleCellSelected(view: cell, cellState: cellState)
         handleCellTextColor(view: cell, cellState: cellState)
+//        calendarView.selectDates([currentDate])
+        
     }
     
+    
     func calendar(_ calendar: JTACMonthView, didSelectDate date: Date, cell: JTACDayCell?, cellState: CellState, indexPath: IndexPath) {
-        
+
         handleCellSelected(view: cell, cellState: cellState)
         handleCellTextColor(view: cell, cellState: cellState)
+        
+        
         doneTrainingDate = []
         exercisesInDoneTraining = [:]
         hourOfDoneTraining = []
@@ -331,17 +381,16 @@ extension CalendarViewController: JTACMonthViewDelegate {
         
         dateFormatter.dateFormat = "dd"
         let daySelected = dateFormatter.string(from: date)
-        print("DAY SELECTED \(daySelected)")
+   
         numberDayOfDoneTraining.text = daySelected
         getShortNameOfDay(date: date)
+        
         for (key, value) in emptyDict {
             
             for dateOfWorkout in value {
                 
             dateFormatter.dateFormat = "yyyy-MM-dd"
                 let value1 = dateFormatter.string(from: dateOfWorkout ?? date)
-            dateFormatter.dateFormat = "dd"
-            let day = dateFormatter.string(from: dateOfWorkout ?? date)
             dateFormatter.dateFormat = "HH:mm"
             let hour = dateFormatter.string(from: dateOfWorkout ?? date)
                 
@@ -353,19 +402,15 @@ extension CalendarViewController: JTACMonthViewDelegate {
             }
             else {
                 print("Nie zrobiles tego dnia treningu")
-//                numberDayOfDoneTraining.text = daySelected
+                
             }
         }
+
     }
         DispatchQueue.main.async {
             self.tableView.reloadData()
-       
-            print("\(self.emptyDict) DICTIONARY SLOWNIK")
            
-        
         }
-
-        
     }
 
     func calendar(_ calendar: JTACMonthView, didDeselectDate date: Date, cell: JTACDayCell?, cellState: CellState, indexPath: IndexPath) {
@@ -393,9 +438,7 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "calendarCell", for: indexPath) as! CalendarTableViewCell
-        print("GODZINY \(hourOfDoneTraining)")
-        print("DONE DATES \(doneTrainingDate)")
-        
+
         if doneTrainingDate.count == 0 {
             cell.showDetailsButton?.alpha = 0
             cell.viewColor?.backgroundColor = .clear
@@ -413,8 +456,7 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
             cell.exercisesInWorkout?.text = exampleArray["\(doneTrainingDate[indexPath.row])"]?.joined(separator: ", ")
         }
         
-      
         return cell
-}
+    }
 }
 
