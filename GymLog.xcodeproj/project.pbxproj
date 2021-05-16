@@ -57,6 +57,7 @@
 		59F33BB326111FE700A6DBB0 /* AddNextExerciseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F33BB226111FE700A6DBB0 /* AddNextExerciseController.swift */; };
 		59F33BB62611218300A6DBB0 /* NextExerciseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F33BB52611218300A6DBB0 /* NextExerciseCell.swift */; };
 		59F70386260A1FC200E1CB80 /* EditWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F70385260A1FC200E1CB80 /* EditWorkoutViewController.swift */; };
+		E71947CE265D6C0000DD17F3 /* ExercisesPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71947CD265D6C0000DD17F3 /* ExercisesPopUp.swift */; };
 		E734A745265F01BD00621667 /* ProgressChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E734A744265F01BD00621667 /* ProgressChartViewController.swift */; };
 		E734A749265F01D400621667 /* ChartXAxisFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E734A748265F01D400621667 /* ChartXAxisFormatter.swift */; };
 		E74427082648901E00B1E3BC /* PopUpCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74427072648901E00B1E3BC /* PopUpCalendarViewController.swift */; };
@@ -119,6 +120,7 @@
 		59F70385260A1FC200E1CB80 /* EditWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWorkoutViewController.swift; sourceTree = "<group>"; };
 		680DA3AC7746E79E90D20D16 /* Pods-GymLog.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GymLog.debug.xcconfig"; path = "Target Support Files/Pods-GymLog/Pods-GymLog.debug.xcconfig"; sourceTree = "<group>"; };
 		952918140AC50067C51B905C /* Pods-GymLog.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GymLog.release.xcconfig"; path = "Target Support Files/Pods-GymLog/Pods-GymLog.release.xcconfig"; sourceTree = "<group>"; };
+		E71947CD265D6C0000DD17F3 /* ExercisesPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesPopUp.swift; sourceTree = "<group>"; };
 		E734A744265F01BD00621667 /* ProgressChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressChartViewController.swift; sourceTree = "<group>"; };
 		E734A748265F01D400621667 /* ChartXAxisFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartXAxisFormatter.swift; sourceTree = "<group>"; };
 		E74427072648901E00B1E3BC /* PopUpCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpCalendarViewController.swift; sourceTree = "<group>"; };
@@ -351,6 +353,7 @@
 				E734A748265F01D400621667 /* ChartXAxisFormatter.swift */,
 				E734A744265F01BD00621667 /* ProgressChartViewController.swift */,
 				E7CD99772661A88000EDBE51 /* ProgressPopUpView.swift */,
+				E71947CD265D6C0000DD17F3 /* ExercisesPopUp.swift */,
 			);
 			path = "Progress Controllers";
 			sourceTree = "<group>";
@@ -515,6 +518,7 @@
 				596168B4260B9BE00033B29D /* EditWorkoutCell.swift in Sources */,
 				592EC291263CB45200761632 /* CalendarTableViewController.swift in Sources */,
 				596BC83825E29D5700166D9C /* Utilities.swift in Sources */,
+				E71947CE265D6C0000DD17F3 /* ExercisesPopUp.swift in Sources */,
 				596620BE25EBF541002B04D5 /* DataCell.swift in Sources */,
 				5961157125F81A80008BD51B /* WorkoutTableCell.swift in Sources */,
 				5966209D25EA93B8002B04D5 /* AddWorkoutViewController.swift in Sources */,

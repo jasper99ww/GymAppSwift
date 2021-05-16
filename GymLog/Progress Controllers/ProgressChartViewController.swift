@@ -38,6 +38,8 @@ import Firebase
 
 class ProgressChartViewController: UIViewController, ChartViewDelegate {
 
+    var workoutTitle = UILabel()
+    var lineChartEntry1 = [ChartDataEntry]()
     @IBOutlet weak var selectAlert: UIBarButtonItem!
     let formatter = DateFormatter()
     var dateCount: Int = 0
@@ -75,6 +77,7 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        lineChart.delegate = self
         retrieveArrays()
         retrieveDocumentsArray()
         
@@ -83,52 +86,63 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
         setUpViews()
         getData(title: "Workout4")
         
-        lineChart.delegate = self
-   
+        
+//        setChartProperties()
+    }
+    
+    override func viewWillAppear(_ animated: Bool) {
+       
+          
+       
     }
     
     override func viewDidLayoutSubviews() {
-        setChartProperties()
+    
+
+  
     }
     
     override func viewWillDisappear(_ animated: Bool) {
         print("RETRIEVED WORKOUT MAX \(retrievedExerciseMax)")
         print("RETRIEVED WORKOUT N \(retrievedExercise)")
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toWorkoutSelection" {
+            let popup = segue.destination as! ProgressPopUpView
+            popup.selectedWorkoutChart = { text in
+
+                self.workoutTitle.text = text
+               
+                self.getData(title: text)
+                self.lineChart.notifyDataSetChanged()
+//                self.setChartProperties()
+            }
+        
+        }
+    }
 
     func setUpNavigationBarItems() {
         
         let titleView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
       
-        let workoutTitle = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 40))
+        workoutTitle = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 40))
         workoutTitle.textAlignment = .left
         workoutTitle.text = "Progress Charts"
         workoutTitle.textColor = .white
         workoutTitle.font = UIFont.systemFont(ofSize: 28)
       
-    
-        
         titleView.addSubview(workoutTitle)
    
-        
         navigationItem.titleView = titleView
     
         if let navigationBar = navigationController?.navigationBar {
             titleView.leadingAnchor.constraint(equalTo: navigationBar.leadingAnchor, constant: 10).isActive = true
         }
-        
-//        view.translatesAutoresizingMaskIntoConstraints = false
-//        selectedExercise.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
-//        selectedExercise.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
-//        selectedExercise.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
-//        selectedExercise.heightAnchor.constraint(equalToConstant: 80).isActive = true
+
 
     }
     
-    @IBAction func selectAlertTapped(_ sender: UIBarButtonItem) {
-    
-        
-    }
     
     func setUpViews() {
         
@@ -181,6 +195,11 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
         lineChart.legend.font = .systemFont(ofSize: 10)
         
         lineChart.legend.textColor = .white
+        
+        
+//        self.lineChart.animate(xAxisDuration: 0.04 * Double(self.lineChartEntry1.count))
+        self.lineChart.animate(xAxisDuration: 0.04 * Double(self.lineChartEntry1.count), easingOption: .easeInElastic)
+//        self.lineChart.animate(xAxisDuration: 0.04 * Double(self.lineChartEntry1.count), yAxisDuration: 0.04 * Double(self.lineChartEntry1.count))
        
     }
     
@@ -188,8 +207,9 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
         
         let dataSetIndex = highlight.dataSetIndex
 
+        let stringValue = String(format: "%.0f", highlight.y) 
         
-        if let entryData = entry.data as? HighlightedExercise, let stringValue = String(format: "%.0f", highlight.y) as? String {
+        if let entryData = entry.data as? HighlightedExercise {
             
             // ZROBIC STRZALKE ZIELONA I CZERWONA W ZALEZNOSCI OD SPADKU
             
@@ -221,7 +241,7 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
         
         
             
-            let percentageProgress = (highlight.y)
+//            let percentageProgress = (highlight.y)
             
         }
         
@@ -259,6 +279,11 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
         lineChart.data = data
         data.setDrawValues(false)
 
+        
+            self.setChartProperties()
+       
+       
+        
     }
 
    
@@ -272,7 +297,9 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
 
         }
 
-        var lineChartEntry1 = [ChartDataEntry]()
+       
+        lineChartEntry1 = []
+        dataSets = []
         let group2 = DispatchGroup()
 
         
@@ -290,7 +317,7 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
             for values in value {
                
                 let date = values.date
-                let setsInt = Int(values.sets)
+//                let setsInt = Int(values.sets)
                 dateCount += 1
                 let timeInterval = date.timeIntervalSince1970
                 let xValue = (timeInterval - referenceTimeInterval) / (3600 * 24)
@@ -416,7 +443,7 @@ extension UISegmentedControl {
 }
 
 public extension UIImage {
-    public func imageWithColor(color: UIColor) -> UIImage {
+        func imageWithColor(color: UIColor) -> UIImage {
         let rect = CGRect(x: 0, y: 0, width: 1, height: 1)
         UIGraphicsBeginImageContext(rect.size)
         guard let context = UIGraphicsGetCurrentContext() else { return UIImage()}
