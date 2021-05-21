@@ -12,12 +12,13 @@ import FirebaseAuth
 
 class Utilities {
     
+    
     static func styleTextField(_ textfield:UITextField) {
         
         // Create the bottom line
         let bottomLine = CALayer()
         
-        bottomLine.frame = CGRect(x: 0.0, y: textfield.frame.height - 1, width: textfield.frame.width - 40, height: 1.0)
+        bottomLine.frame = CGRect(x: 0.0, y: textfield.frame.height - 1, width: textfield.frame.width, height: 1.0)
         
         bottomLine.backgroundColor = UIColor.init(red: 48/255, green: 173/255, blue: 99/255, alpha: 1).cgColor
         
@@ -67,8 +68,39 @@ class Utilities {
             charIndex += 1
         }
 }
-    
-    
- 
-
+//    static func styleTextFieldForWorkout(_ textfield:UITextField) {
+//
+//        // Create the bottom line
+//        let bottomLine = CALayer()
+//
+//        bottomLine.frame = CGRect(x: 0.0, y: textfield.frame.height - 10, width: textfield.frame.width, height: 1.0)
+//
+//        bottomLine.backgroundColor = UIColor.init(red: 48/255, green: 173/255, blue: 99/255, alpha: 1).cgColor
+//
+//        // Remove border on text field
+//
+//        textfield.borderStyle = .none
+//
+//        // Add the line to the text field
+//        textfield.layer.addSublayer(bottomLine)
+//
+//    }
+   
+        
+        
 }
+
+extension UIViewController {
+    
+    func hideKeyboardWhenTappedAround() {
+        let tap = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
+    }
+}
+
+

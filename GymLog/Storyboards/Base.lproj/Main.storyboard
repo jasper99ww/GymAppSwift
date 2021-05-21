@@ -9,10 +9,10 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--View Controller-->
+        <!--Main View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="overFullScreen" id="BYZ-38-t0r" customClass="ViewController" customModule="GymLog" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="main" automaticallyAdjustsScrollViewInsets="NO" modalPresentationStyle="overFullScreen" id="BYZ-38-t0r" customClass="MainViewController" customModule="GymLog" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -74,7 +74,7 @@
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
-                        <color key="backgroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="bottom" secondItem="0wN-U6-Qfw" secondAttribute="bottom" constant="215" id="7al-uN-G0L"/>
                             <constraint firstItem="0wN-U6-Qfw" firstAttribute="leading" secondItem="6Tk-OE-BBY" secondAttribute="leading" constant="40" id="99k-ls-FnP"/>
@@ -87,7 +87,7 @@
                         <outlet property="loginButton" destination="dxA-3n-rQZ" id="saK-g1-Xjg"/>
                         <outlet property="signUpButton" destination="ir4-1G-Tjo" id="sC3-bj-aOz"/>
                         <outlet property="titleLabel" destination="XAy-26-1x2" id="g7V-Tj-LGT"/>
-                        <segue destination="o08-jv-w1p" kind="show" identifier="autoLogin" id="dEC-Wf-g5z"/>
+                        <segue destination="o08-jv-w1p" kind="show" identifier="autoLogin" id="KgS-fI-xuA"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
@@ -105,8 +105,9 @@
                             <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="GM6-Ky-dzj">
                                 <rect key="frame" x="40" y="140" width="334" height="210"/>
                                 <subviews>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="92Z-fV-POm">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="92Z-fV-POm" customClass="UnderlinedTextField" customModule="GymLog" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="0.0" width="334" height="40"/>
+                                        <color key="backgroundColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -116,8 +117,9 @@
                                             </userDefinedRuntimeAttribute>
                                         </userDefinedRuntimeAttributes>
                                     </textField>
-                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mku-Aa-4dk">
+                                    <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="mku-Aa-4dk" customClass="UnderlinedTextField" customModule="GymLog" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="60" width="334" height="40"/>
+                                        <color key="backgroundColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                         <textInputTraits key="textInputTraits"/>
@@ -166,28 +168,23 @@
                         <outlet property="errorLabel" destination="e0l-QK-Tp8" id="0yK-1I-pLQ"/>
                         <outlet property="loginButton" destination="nGI-Bv-3KO" id="b0z-kS-emZ"/>
                         <outlet property="passwordTextField" destination="mku-Aa-4dk" id="q5O-7C-N60"/>
-                        <segue destination="o08-jv-w1p" kind="show" identifier="loginToHome" id="CAp-hi-bwa"/>
+                        <segue destination="o08-jv-w1p" kind="show" identifier="loginToHome" id="deE-Cu-Dai"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="QFt-WJ-mSU" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="1390" y="445"/>
         </scene>
-        <!--Tab Main Controller-->
+        <!--Main Tab Bar Controller-->
         <scene sceneID="DBh-FC-b54">
             <objects>
-                <tabBarController id="o08-jv-w1p" customClass="TabMainController" customModule="GymLog" customModuleProvider="target" sceneMemberID="viewController">
-                    <navigationItem key="navigationItem" id="SPP-tH-8B7">
-                        <barButtonItem key="rightBarButtonItem" title="Log out" id="atc-Jw-l6g">
-                            <connections>
-                                <action selector="logOutPressed:" destination="o08-jv-w1p" id="LGh-Jd-aBT"/>
-                            </connections>
-                        </barButtonItem>
-                    </navigationItem>
+                <tabBarController id="o08-jv-w1p" customClass="MainTabBarController" customModule="GymLog" customModuleProvider="target" sceneMemberID="viewController">
+                    <navigationItem key="navigationItem" id="dPI-cv-znM"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8WG-lq-uRd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="barTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </tabBar>
                     <connections>
                         <segue destination="men-yL-zfz" kind="relationship" relationship="viewControllers" id="I6o-sf-Owm"/>
@@ -198,7 +195,7 @@
                 </tabBarController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="OjX-1e-d3d" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2475" y="19"/>
+            <point key="canvasLocation" x="2517" y="-44"/>
         </scene>
         <!--Sign Up View Controller-->
         <scene sceneID="QlV-pi-fOo">
@@ -214,8 +211,9 @@
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacing="20" translatesAutoresizingMaskIntoConstraints="NO" id="m7F-tV-pTg">
                                         <rect key="frame" x="0.0" y="0.0" width="334" height="220"/>
                                         <subviews>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hHe-0g-fv0">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="First Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="hHe-0g-fv0" customClass="UnderlinedTextField" customModule="GymLog" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="0.0" width="334" height="40"/>
+                                                <color key="backgroundColor" red="0.12984204290000001" green="0.12984612579999999" blue="0.12984395030000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <constraints>
                                                     <constraint firstAttribute="height" constant="40" id="83a-T6-n2i"/>
                                                 </constraints>
@@ -228,8 +226,9 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JK4-q2-67Z">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Last Name" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="JK4-q2-67Z" customClass="UnderlinedTextField" customModule="GymLog" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="60" width="334" height="40"/>
+                                                <color key="backgroundColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -239,8 +238,9 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="E3N-G4-adN">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Email" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="E3N-G4-adN" customClass="UnderlinedTextField" customModule="GymLog" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="120" width="334" height="40"/>
+                                                <color key="backgroundColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -250,8 +250,9 @@
                                                     </userDefinedRuntimeAttribute>
                                                 </userDefinedRuntimeAttributes>
                                             </textField>
-                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" borderStyle="roundedRect" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Ml-uT-Bul">
+                                            <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" placeholder="Password" textAlignment="natural" minimumFontSize="17" translatesAutoresizingMaskIntoConstraints="NO" id="9Ml-uT-Bul" customClass="UnderlinedTextField" customModule="GymLog" customModuleProvider="target">
                                                 <rect key="frame" x="0.0" y="180" width="334" height="40"/>
+                                                <color key="backgroundColor" red="0.12941176470588234" green="0.12941176470588234" blue="0.12941176470588234" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="14"/>
                                                 <textInputTraits key="textInputTraits"/>
@@ -294,6 +295,9 @@
                                         </subviews>
                                     </stackView>
                                 </subviews>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="334" id="UcM-TD-0oE"/>
+                                </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="a0F-xA-TJR"/>
@@ -312,7 +316,7 @@
                         <outlet property="lastNameTextField" destination="JK4-q2-67Z" id="c9Z-9M-ak3"/>
                         <outlet property="passwordTextField" destination="9Ml-uT-Bul" id="TEM-6a-69N"/>
                         <outlet property="signUpButton" destination="5nW-nu-brM" id="rqB-bc-bRz"/>
-                        <segue destination="o08-jv-w1p" kind="show" identifier="registerToHome" id="LiY-u9-Al3"/>
+                        <segue destination="o08-jv-w1p" kind="show" identifier="registerToHome" id="dNW-UP-pWc"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="XMN-N7-2Fx" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -383,7 +387,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="dEC-Wf-g5z"/>
+        <segue reference="KgS-fI-xuA"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.up.right" catalog="system" width="128" height="112"/>
