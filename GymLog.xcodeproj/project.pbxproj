@@ -1,0 +1,724 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 54;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		26C8475217C9D4D84B0F2A71 /* Pods_GymLog.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 50AB024B91BAD87E03C86F5B /* Pods_GymLog.framework */; };
+		591ABE35262E2F7100B6ECC1 /* EndWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 591ABE34262E2F7100B6ECC1 /* EndWorkoutViewController.swift */; };
+		592EC291263CB45200761632 /* CalendarTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592EC290263CB45200761632 /* CalendarTableViewController.swift */; };
+		592EC294263CB73200761632 /* CalendarTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 592EC293263CB73200761632 /* CalendarTableViewCell.swift */; };
+		595E15B5261B90DB00CB4627 /* DataCell2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 595E15B4261B90DB00CB4627 /* DataCell2.swift */; };
+		59610F9E25FD65160006C32F /* RetrieveWorkoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59610F9D25FD65160006C32F /* RetrieveWorkoutCell.swift */; };
+		5961156E25F7BBC9008BD51B /* Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5961156D25F7BBC9008BD51B /* Alert.swift */; };
+		5961157125F81A80008BD51B /* WorkoutTableCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5961157025F81A80008BD51B /* WorkoutTableCell.swift */; };
+		59611D9825FEB6EB00EB772E /* WorkoutsTitle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59611D9725FEB6EB00EB772E /* WorkoutsTitle.swift */; };
+		5961427525E9B54000A83DD6 /* HomeTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5961427425E9B54000A83DD6 /* HomeTableViewController.swift */; };
+		596168B4260B9BE00033B29D /* EditWorkoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596168B3260B9BE00033B29D /* EditWorkoutCell.swift */; };
+		5962997E26234D9900EF414D /* TimerStruct.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5962997D26234D9800EF414D /* TimerStruct.swift */; };
+		59638F5725E1C0D400B2AF84 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59638F5625E1C0D400B2AF84 /* AppDelegate.swift */; };
+		59638F5925E1C0D400B2AF84 /* SceneDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59638F5825E1C0D400B2AF84 /* SceneDelegate.swift */; };
+		59638F5B25E1C0D400B2AF84 /* MainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59638F5A25E1C0D400B2AF84 /* MainViewController.swift */; };
+		59638F5E25E1C0D400B2AF84 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59638F5C25E1C0D400B2AF84 /* Main.storyboard */; };
+		59638F6025E1C0D600B2AF84 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 59638F5F25E1C0D600B2AF84 /* Assets.xcassets */; };
+		59638F6325E1C0D600B2AF84 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59638F6125E1C0D600B2AF84 /* LaunchScreen.storyboard */; };
+		59638F6C25E1C16A00B2AF84 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 59638F6B25E1C16A00B2AF84 /* GoogleService-Info.plist */; };
+		5964DE772605479600A941D8 /* OptionsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5964DE762605479600A941D8 /* OptionsViewController.swift */; };
+		5964EA02261B50FF00998B2F /* StartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5964EA01261B50FF00998B2F /* StartViewController.swift */; };
+		5964EA05261B5A9C00998B2F /* startViewBrain.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5964EA04261B5A9C00998B2F /* startViewBrain.swift */; };
+		5964EA08261B856400998B2F /* StartViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5964EA07261B856400998B2F /* StartViewCell.swift */; };
+		5966209D25EA93B8002B04D5 /* AddWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5966209C25EA93B8002B04D5 /* AddWorkoutViewController.swift */; };
+		596620A425EA9A5F002B04D5 /* AddWorkoutCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596620A225EA9A5F002B04D5 /* AddWorkoutCell.swift */; };
+		596620A525EA9A5F002B04D5 /* AddWorkoutCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = 596620A325EA9A5F002B04D5 /* AddWorkoutCell.xib */; };
+		596620A925EBD690002B04D5 /* MainTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596620A825EBD690002B04D5 /* MainTabBarController.swift */; };
+		596620BE25EBF541002B04D5 /* DataCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596620BD25EBF541002B04D5 /* DataCell.swift */; };
+		596BC83825E29D5700166D9C /* Utilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596BC83725E29D5700166D9C /* Utilities.swift */; };
+		596BC83B25E29D6400166D9C /* Constants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596BC83A25E29D6400166D9C /* Constants.swift */; };
+		596BC83E25E29DAD00166D9C /* SignUpViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596BC83D25E29DAD00166D9C /* SignUpViewController.swift */; };
+		596BC84125E29DE700166D9C /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596BC84025E29DE700166D9C /* LoginViewController.swift */; };
+		596D12272635A800003B7292 /* CalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596D12262635A800003B7292 /* CalendarViewController.swift */; };
+		596D125C26360407003B7292 /* DateCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 596D125B26360407003B7292 /* DateCell.swift */; };
+		5976918825ED9D36006C9E38 /* EntryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5976918725ED9D36006C9E38 /* EntryViewController.swift */; };
+		597F781725FC2124005F97A2 /* ShowWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 597F781625FC2124005F97A2 /* ShowWorkoutViewController.swift */; };
+		5980D477260CEDC60070F23B /* ProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5980D476260CEDC60070F23B /* ProfileViewController.swift */; };
+		59A533A425F0310A0064DFB5 /* UnderlinedTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59A533A325F0310A0064DFB5 /* UnderlinedTextField.swift */; };
+		59B1E85025E85B0B00A8E172 /* Home .storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59B1E84F25E85B0B00A8E172 /* Home .storyboard */; };
+		59B1E85325E85B2600A8E172 /* Workout.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59B1E85225E85B2600A8E172 /* Workout.storyboard */; };
+		59B1E85625E85B2F00A8E172 /* Progress.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59B1E85525E85B2F00A8E172 /* Progress.storyboard */; };
+		59B1E85925E85B3700A8E172 /* Profile.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59B1E85825E85B3700A8E172 /* Profile.storyboard */; };
+		59B1E87625E8674000A8E172 /* TabMainController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B1E87525E8674000A8E172 /* TabMainController.swift */; };
+		59B8BBEA2627A42A0029D00E /* MinutesTimerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59B8BBE92627A42A0029D00E /* MinutesTimerView.swift */; };
+		59CD49672624EAC20004A722 /* TimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59CD49662624EAC20004A722 /* TimerViewController.swift */; };
+		59E3856926161FC700B31EA4 /* ModalAddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59E3856826161FC700B31EA4 /* ModalAddViewController.swift */; };
+		59E6B8A826431AF90001DBC9 /* CalendarCell.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 59E6B8A726431AF90001DBC9 /* CalendarCell.storyboard */; };
+		59F33BB326111FE700A6DBB0 /* AddNextExerciseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F33BB226111FE700A6DBB0 /* AddNextExerciseController.swift */; };
+		59F33BB62611218300A6DBB0 /* NextExerciseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F33BB52611218300A6DBB0 /* NextExerciseCell.swift */; };
+		59F70386260A1FC200E1CB80 /* EditWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F70385260A1FC200E1CB80 /* EditWorkoutViewController.swift */; };
+		E734A745265F01BD00621667 /* ProgressChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E734A744265F01BD00621667 /* ProgressChartViewController.swift */; };
+		E734A749265F01D400621667 /* ChartXAxisFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E734A748265F01D400621667 /* ChartXAxisFormatter.swift */; };
+		E74427082648901E00B1E3BC /* PopUpCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74427072648901E00B1E3BC /* PopUpCalendarViewController.swift */; };
+		E7985F1826473D86007EC06D /* CalendarPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7985F1726473D86007EC06D /* CalendarPopupViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		50AB024B91BAD87E03C86F5B /* Pods_GymLog.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GymLog.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		591ABE34262E2F7100B6ECC1 /* EndWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EndWorkoutViewController.swift; sourceTree = "<group>"; };
+		592EC290263CB45200761632 /* CalendarTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTableViewController.swift; sourceTree = "<group>"; };
+		592EC293263CB73200761632 /* CalendarTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarTableViewCell.swift; sourceTree = "<group>"; };
+		595E15B4261B90DB00CB4627 /* DataCell2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCell2.swift; sourceTree = "<group>"; };
+		59610F9D25FD65160006C32F /* RetrieveWorkoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RetrieveWorkoutCell.swift; sourceTree = "<group>"; };
+		5961156D25F7BBC9008BD51B /* Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Alert.swift; sourceTree = "<group>"; };
+		5961157025F81A80008BD51B /* WorkoutTableCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutTableCell.swift; sourceTree = "<group>"; };
+		59611D9725FEB6EB00EB772E /* WorkoutsTitle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutsTitle.swift; sourceTree = "<group>"; };
+		5961427425E9B54000A83DD6 /* HomeTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewController.swift; sourceTree = "<group>"; };
+		596168B3260B9BE00033B29D /* EditWorkoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWorkoutCell.swift; sourceTree = "<group>"; };
+		5962997D26234D9800EF414D /* TimerStruct.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerStruct.swift; sourceTree = "<group>"; };
+		59638F5325E1C0D400B2AF84 /* GymLog.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GymLog.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		59638F5625E1C0D400B2AF84 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
+		59638F5825E1C0D400B2AF84 /* SceneDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SceneDelegate.swift; sourceTree = "<group>"; };
+		59638F5A25E1C0D400B2AF84 /* MainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainViewController.swift; sourceTree = "<group>"; };
+		59638F5D25E1C0D400B2AF84 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		59638F5F25E1C0D600B2AF84 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		59638F6225E1C0D600B2AF84 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
+		59638F6425E1C0D600B2AF84 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		59638F6B25E1C16A00B2AF84 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		5964DE762605479600A941D8 /* OptionsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OptionsViewController.swift; sourceTree = "<group>"; };
+		5964EA01261B50FF00998B2F /* StartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewController.swift; sourceTree = "<group>"; };
+		5964EA04261B5A9C00998B2F /* startViewBrain.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = startViewBrain.swift; sourceTree = "<group>"; };
+		5964EA07261B856400998B2F /* StartViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartViewCell.swift; sourceTree = "<group>"; };
+		5966209C25EA93B8002B04D5 /* AddWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWorkoutViewController.swift; sourceTree = "<group>"; };
+		596620A225EA9A5F002B04D5 /* AddWorkoutCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddWorkoutCell.swift; sourceTree = "<group>"; };
+		596620A325EA9A5F002B04D5 /* AddWorkoutCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = AddWorkoutCell.xib; sourceTree = "<group>"; };
+		596620A825EBD690002B04D5 /* MainTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabBarController.swift; sourceTree = "<group>"; };
+		596620BD25EBF541002B04D5 /* DataCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DataCell.swift; sourceTree = "<group>"; };
+		596BC83725E29D5700166D9C /* Utilities.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Utilities.swift; sourceTree = "<group>"; };
+		596BC83A25E29D6400166D9C /* Constants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Constants.swift; sourceTree = "<group>"; };
+		596BC83D25E29DAD00166D9C /* SignUpViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpViewController.swift; sourceTree = "<group>"; };
+		596BC84025E29DE700166D9C /* LoginViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		596D12262635A800003B7292 /* CalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CalendarViewController.swift; sourceTree = "<group>"; };
+		596D125B26360407003B7292 /* DateCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateCell.swift; sourceTree = "<group>"; };
+		5976918725ED9D36006C9E38 /* EntryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EntryViewController.swift; sourceTree = "<group>"; };
+		597F781625FC2124005F97A2 /* ShowWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShowWorkoutViewController.swift; sourceTree = "<group>"; };
+		5980D476260CEDC60070F23B /* ProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileViewController.swift; sourceTree = "<group>"; };
+		59A533A325F0310A0064DFB5 /* UnderlinedTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnderlinedTextField.swift; sourceTree = "<group>"; };
+		59B1E84F25E85B0B00A8E172 /* Home .storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = "Home .storyboard"; sourceTree = "<group>"; };
+		59B1E85225E85B2600A8E172 /* Workout.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Workout.storyboard; sourceTree = "<group>"; };
+		59B1E85525E85B2F00A8E172 /* Progress.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Progress.storyboard; sourceTree = "<group>"; };
+		59B1E85825E85B3700A8E172 /* Profile.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profile.storyboard; sourceTree = "<group>"; };
+		59B1E87525E8674000A8E172 /* TabMainController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TabMainController.swift; sourceTree = "<group>"; };
+		59B8BBE92627A42A0029D00E /* MinutesTimerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MinutesTimerView.swift; sourceTree = "<group>"; };
+		59CD49662624EAC20004A722 /* TimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TimerViewController.swift; sourceTree = "<group>"; };
+		59E3856826161FC700B31EA4 /* ModalAddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalAddViewController.swift; sourceTree = "<group>"; };
+		59E6B8A726431AF90001DBC9 /* CalendarCell.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = CalendarCell.storyboard; sourceTree = "<group>"; };
+		59F33BB226111FE700A6DBB0 /* AddNextExerciseController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddNextExerciseController.swift; sourceTree = "<group>"; };
+		59F33BB52611218300A6DBB0 /* NextExerciseCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NextExerciseCell.swift; sourceTree = "<group>"; };
+		59F70385260A1FC200E1CB80 /* EditWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWorkoutViewController.swift; sourceTree = "<group>"; };
+		680DA3AC7746E79E90D20D16 /* Pods-GymLog.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GymLog.debug.xcconfig"; path = "Target Support Files/Pods-GymLog/Pods-GymLog.debug.xcconfig"; sourceTree = "<group>"; };
+		952918140AC50067C51B905C /* Pods-GymLog.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GymLog.release.xcconfig"; path = "Target Support Files/Pods-GymLog/Pods-GymLog.release.xcconfig"; sourceTree = "<group>"; };
+		E734A744265F01BD00621667 /* ProgressChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressChartViewController.swift; sourceTree = "<group>"; };
+		E734A748265F01D400621667 /* ChartXAxisFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartXAxisFormatter.swift; sourceTree = "<group>"; };
+		E74427072648901E00B1E3BC /* PopUpCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpCalendarViewController.swift; sourceTree = "<group>"; };
+		E7985F1726473D86007EC06D /* CalendarPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CalendarPopupViewController.swift; path = ../../../../CalendarPopupViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXFrameworksBuildPhase section */
+		59638F5025E1C0D400B2AF84 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				26C8475217C9D4D84B0F2A71 /* Pods_GymLog.framework in Frameworks */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXFrameworksBuildPhase section */
+
+/* Begin PBXGroup section */
+		2F02A1CAE3C108190AC3688E /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				50AB024B91BAD87E03C86F5B /* Pods_GymLog.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		591ABE33262E2F5900B6ECC1 /* EndView */ = {
+			isa = PBXGroup;
+			children = (
+				591ABE34262E2F7100B6ECC1 /* EndWorkoutViewController.swift */,
+			);
+			path = EndView;
+			sourceTree = "<group>";
+		};
+		59610F9A25FD64A60006C32F /* Adding Workout */ = {
+			isa = PBXGroup;
+			children = (
+				5966209C25EA93B8002B04D5 /* AddWorkoutViewController.swift */,
+				5976918725ED9D36006C9E38 /* EntryViewController.swift */,
+				596620A225EA9A5F002B04D5 /* AddWorkoutCell.swift */,
+			);
+			path = "Adding Workout";
+			sourceTree = "<group>";
+		};
+		59610F9B25FD64D00006C32F /* Retrieve Workouts */ = {
+			isa = PBXGroup;
+			children = (
+				591ABE33262E2F5900B6ECC1 /* EndView */,
+				5964E9FD261B4F8400998B2F /* StartView */,
+				5964E9FC261B4F5600998B2F /* AddView */,
+				5964E9FB261B4F4B00998B2F /* EditView */,
+				5964E9FA261B4F3900998B2F /* OptionsView */,
+				5964E9F9261B4F1F00998B2F /* ShowWorkout */,
+			);
+			path = "Retrieve Workouts";
+			sourceTree = "<group>";
+		};
+		5961427325E9B50000A83DD6 /* HomeViewControllers */ = {
+			isa = PBXGroup;
+			children = (
+				5961427425E9B54000A83DD6 /* HomeTableViewController.swift */,
+				596620BD25EBF541002B04D5 /* DataCell.swift */,
+				5961157025F81A80008BD51B /* WorkoutTableCell.swift */,
+				59610F9A25FD64A60006C32F /* Adding Workout */,
+				59610F9B25FD64D00006C32F /* Retrieve Workouts */,
+			);
+			path = HomeViewControllers;
+			sourceTree = "<group>";
+		};
+		59629ED425E2DA86004A90C2 /* View Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				59638F5A25E1C0D400B2AF84 /* MainViewController.swift */,
+				596BC83D25E29DAD00166D9C /* SignUpViewController.swift */,
+				596BC84025E29DE700166D9C /* LoginViewController.swift */,
+				59B1E87525E8674000A8E172 /* TabMainController.swift */,
+				596620A825EBD690002B04D5 /* MainTabBarController.swift */,
+			);
+			path = "View Controllers";
+			sourceTree = "<group>";
+		};
+		59638F4A25E1C0D400B2AF84 = {
+			isa = PBXGroup;
+			children = (
+				59638F5525E1C0D400B2AF84 /* GymLog */,
+				59638F5425E1C0D400B2AF84 /* Products */,
+				A06AF8D6784780CA361781A5 /* Pods */,
+				2F02A1CAE3C108190AC3688E /* Frameworks */,
+			);
+			sourceTree = "<group>";
+		};
+		59638F5425E1C0D400B2AF84 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				59638F5325E1C0D400B2AF84 /* GymLog.app */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		59638F5525E1C0D400B2AF84 /* GymLog */ = {
+			isa = PBXGroup;
+			children = (
+				E721AED3265025DD0043207F /* Progress Controllers */,
+				598102EF2634B9D9005A8367 /* WorkoutCalendar */,
+				5980D475260CEDAB0070F23B /* Profile */,
+				59629ED425E2DA86004A90C2 /* View Controllers */,
+				5961427325E9B50000A83DD6 /* HomeViewControllers */,
+				596BC83625E29D0600166D9C /* Helpers */,
+				59638F5625E1C0D400B2AF84 /* AppDelegate.swift */,
+				59638F5825E1C0D400B2AF84 /* SceneDelegate.swift */,
+				59B1E84E25E85AE400A8E172 /* Storyboards */,
+				59638F5F25E1C0D600B2AF84 /* Assets.xcassets */,
+				59638F6125E1C0D600B2AF84 /* LaunchScreen.storyboard */,
+				59638F6425E1C0D600B2AF84 /* Info.plist */,
+				59638F6B25E1C16A00B2AF84 /* GoogleService-Info.plist */,
+			);
+			path = GymLog;
+			sourceTree = "<group>";
+		};
+		5964E9F9261B4F1F00998B2F /* ShowWorkout */ = {
+			isa = PBXGroup;
+			children = (
+				597F781625FC2124005F97A2 /* ShowWorkoutViewController.swift */,
+				59610F9D25FD65160006C32F /* RetrieveWorkoutCell.swift */,
+			);
+			path = ShowWorkout;
+			sourceTree = "<group>";
+		};
+		5964E9FA261B4F3900998B2F /* OptionsView */ = {
+			isa = PBXGroup;
+			children = (
+				5964DE762605479600A941D8 /* OptionsViewController.swift */,
+			);
+			path = OptionsView;
+			sourceTree = "<group>";
+		};
+		5964E9FB261B4F4B00998B2F /* EditView */ = {
+			isa = PBXGroup;
+			children = (
+				59F70385260A1FC200E1CB80 /* EditWorkoutViewController.swift */,
+				596168B3260B9BE00033B29D /* EditWorkoutCell.swift */,
+			);
+			path = EditView;
+			sourceTree = "<group>";
+		};
+		5964E9FC261B4F5600998B2F /* AddView */ = {
+			isa = PBXGroup;
+			children = (
+				59F33BB226111FE700A6DBB0 /* AddNextExerciseController.swift */,
+				59F33BB52611218300A6DBB0 /* NextExerciseCell.swift */,
+				59E3856826161FC700B31EA4 /* ModalAddViewController.swift */,
+			);
+			path = AddView;
+			sourceTree = "<group>";
+		};
+		5964E9FD261B4F8400998B2F /* StartView */ = {
+			isa = PBXGroup;
+			children = (
+				5964EA01261B50FF00998B2F /* StartViewController.swift */,
+				5964EA04261B5A9C00998B2F /* startViewBrain.swift */,
+				5964EA07261B856400998B2F /* StartViewCell.swift */,
+				595E15B4261B90DB00CB4627 /* DataCell2.swift */,
+				5962997D26234D9800EF414D /* TimerStruct.swift */,
+				59CD49662624EAC20004A722 /* TimerViewController.swift */,
+				59B8BBE92627A42A0029D00E /* MinutesTimerView.swift */,
+			);
+			path = StartView;
+			sourceTree = "<group>";
+		};
+		596BC83625E29D0600166D9C /* Helpers */ = {
+			isa = PBXGroup;
+			children = (
+				59611D9725FEB6EB00EB772E /* WorkoutsTitle.swift */,
+				596BC83725E29D5700166D9C /* Utilities.swift */,
+				596BC83A25E29D6400166D9C /* Constants.swift */,
+				59A533A325F0310A0064DFB5 /* UnderlinedTextField.swift */,
+				5961156D25F7BBC9008BD51B /* Alert.swift */,
+			);
+			path = Helpers;
+			sourceTree = "<group>";
+		};
+		5980D475260CEDAB0070F23B /* Profile */ = {
+			isa = PBXGroup;
+			children = (
+				5980D476260CEDC60070F23B /* ProfileViewController.swift */,
+			);
+			path = Profile;
+			sourceTree = "<group>";
+		};
+		598102EF2634B9D9005A8367 /* WorkoutCalendar */ = {
+			isa = PBXGroup;
+			children = (
+				596D12262635A800003B7292 /* CalendarViewController.swift */,
+				596D125B26360407003B7292 /* DateCell.swift */,
+				592EC290263CB45200761632 /* CalendarTableViewController.swift */,
+				592EC293263CB73200761632 /* CalendarTableViewCell.swift */,
+				E7985F1726473D86007EC06D /* CalendarPopupViewController.swift */,
+				E74427072648901E00B1E3BC /* PopUpCalendarViewController.swift */,
+			);
+			path = WorkoutCalendar;
+			sourceTree = "<group>";
+		};
+		59B1E84E25E85AE400A8E172 /* Storyboards */ = {
+			isa = PBXGroup;
+			children = (
+				59638F5C25E1C0D400B2AF84 /* Main.storyboard */,
+				59B1E84F25E85B0B00A8E172 /* Home .storyboard */,
+				59B1E85225E85B2600A8E172 /* Workout.storyboard */,
+				59B1E85525E85B2F00A8E172 /* Progress.storyboard */,
+				59B1E85825E85B3700A8E172 /* Profile.storyboard */,
+				596620A325EA9A5F002B04D5 /* AddWorkoutCell.xib */,
+				59E6B8A726431AF90001DBC9 /* CalendarCell.storyboard */,
+			);
+			path = Storyboards;
+			sourceTree = "<group>";
+		};
+		A06AF8D6784780CA361781A5 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				680DA3AC7746E79E90D20D16 /* Pods-GymLog.debug.xcconfig */,
+				952918140AC50067C51B905C /* Pods-GymLog.release.xcconfig */,
+			);
+			path = Pods;
+			sourceTree = "<group>";
+		};
+		E721AED3265025DD0043207F /* Progress Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E734A748265F01D400621667 /* ChartXAxisFormatter.swift */,
+				E734A744265F01BD00621667 /* ProgressChartViewController.swift */,
+			);
+			path = "Progress Controllers";
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		59638F5225E1C0D400B2AF84 /* GymLog */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 59638F6725E1C0D600B2AF84 /* Build configuration list for PBXNativeTarget "GymLog" */;
+			buildPhases = (
+				B93E7064C9092E76DBF8C622 /* [CP] Check Pods Manifest.lock */,
+				59638F4F25E1C0D400B2AF84 /* Sources */,
+				59638F5025E1C0D400B2AF84 /* Frameworks */,
+				59638F5125E1C0D400B2AF84 /* Resources */,
+				F6679680011D74D39B45AD2A /* [CP] Embed Pods Frameworks */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = GymLog;
+			productName = GymLog;
+			productReference = 59638F5325E1C0D400B2AF84 /* GymLog.app */;
+			productType = "com.apple.product-type.application";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		59638F4B25E1C0D400B2AF84 /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				LastSwiftUpdateCheck = 1230;
+				LastUpgradeCheck = 1230;
+				TargetAttributes = {
+					59638F5225E1C0D400B2AF84 = {
+						CreatedOnToolsVersion = 12.3;
+					};
+				};
+			};
+			buildConfigurationList = 59638F4E25E1C0D400B2AF84 /* Build configuration list for PBXProject "GymLog" */;
+			compatibilityVersion = "Xcode 12.0";
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				en,
+				Base,
+			);
+			mainGroup = 59638F4A25E1C0D400B2AF84;
+			productRefGroup = 59638F5425E1C0D400B2AF84 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				59638F5225E1C0D400B2AF84 /* GymLog */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		59638F5125E1C0D400B2AF84 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				59638F6325E1C0D600B2AF84 /* LaunchScreen.storyboard in Resources */,
+				59638F6C25E1C16A00B2AF84 /* GoogleService-Info.plist in Resources */,
+				59E6B8A826431AF90001DBC9 /* CalendarCell.storyboard in Resources */,
+				59B1E85925E85B3700A8E172 /* Profile.storyboard in Resources */,
+				59638F6025E1C0D600B2AF84 /* Assets.xcassets in Resources */,
+				59638F5E25E1C0D400B2AF84 /* Main.storyboard in Resources */,
+				59B1E85625E85B2F00A8E172 /* Progress.storyboard in Resources */,
+				59B1E85325E85B2600A8E172 /* Workout.storyboard in Resources */,
+				59B1E85025E85B0B00A8E172 /* Home .storyboard in Resources */,
+				596620A525EA9A5F002B04D5 /* AddWorkoutCell.xib in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		B93E7064C9092E76DBF8C622 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GymLog-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+		F6679680011D74D39B45AD2A /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GymLog/Pods-GymLog-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-GymLog/Pods-GymLog-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-GymLog/Pods-GymLog-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		59638F4F25E1C0D400B2AF84 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				596BC84125E29DE700166D9C /* LoginViewController.swift in Sources */,
+				596D125C26360407003B7292 /* DateCell.swift in Sources */,
+				5964EA02261B50FF00998B2F /* StartViewController.swift in Sources */,
+				592EC294263CB73200761632 /* CalendarTableViewCell.swift in Sources */,
+				596BC83E25E29DAD00166D9C /* SignUpViewController.swift in Sources */,
+				5964EA05261B5A9C00998B2F /* startViewBrain.swift in Sources */,
+				595E15B5261B90DB00CB4627 /* DataCell2.swift in Sources */,
+				59611D9825FEB6EB00EB772E /* WorkoutsTitle.swift in Sources */,
+				5964DE772605479600A941D8 /* OptionsViewController.swift in Sources */,
+				5962997E26234D9900EF414D /* TimerStruct.swift in Sources */,
+				597F781725FC2124005F97A2 /* ShowWorkoutViewController.swift in Sources */,
+				E7985F1826473D86007EC06D /* CalendarPopupViewController.swift in Sources */,
+				596620A925EBD690002B04D5 /* MainTabBarController.swift in Sources */,
+				5980D477260CEDC60070F23B /* ProfileViewController.swift in Sources */,
+				59CD49672624EAC20004A722 /* TimerViewController.swift in Sources */,
+				59F70386260A1FC200E1CB80 /* EditWorkoutViewController.swift in Sources */,
+				591ABE35262E2F7100B6ECC1 /* EndWorkoutViewController.swift in Sources */,
+				59F33BB326111FE700A6DBB0 /* AddNextExerciseController.swift in Sources */,
+				5976918825ED9D36006C9E38 /* EntryViewController.swift in Sources */,
+				E734A749265F01D400621667 /* ChartXAxisFormatter.swift in Sources */,
+				59F33BB62611218300A6DBB0 /* NextExerciseCell.swift in Sources */,
+				5964EA08261B856400998B2F /* StartViewCell.swift in Sources */,
+				59B8BBEA2627A42A0029D00E /* MinutesTimerView.swift in Sources */,
+				59B1E87625E8674000A8E172 /* TabMainController.swift in Sources */,
+				596620A425EA9A5F002B04D5 /* AddWorkoutCell.swift in Sources */,
+				59E3856926161FC700B31EA4 /* ModalAddViewController.swift in Sources */,
+				596D12272635A800003B7292 /* CalendarViewController.swift in Sources */,
+				596BC83B25E29D6400166D9C /* Constants.swift in Sources */,
+				5961427525E9B54000A83DD6 /* HomeTableViewController.swift in Sources */,
+				59610F9E25FD65160006C32F /* RetrieveWorkoutCell.swift in Sources */,
+				59638F5B25E1C0D400B2AF84 /* MainViewController.swift in Sources */,
+				E734A745265F01BD00621667 /* ProgressChartViewController.swift in Sources */,
+				E74427082648901E00B1E3BC /* PopUpCalendarViewController.swift in Sources */,
+				59638F5725E1C0D400B2AF84 /* AppDelegate.swift in Sources */,
+				59A533A425F0310A0064DFB5 /* UnderlinedTextField.swift in Sources */,
+				596168B4260B9BE00033B29D /* EditWorkoutCell.swift in Sources */,
+				592EC291263CB45200761632 /* CalendarTableViewController.swift in Sources */,
+				596BC83825E29D5700166D9C /* Utilities.swift in Sources */,
+				596620BE25EBF541002B04D5 /* DataCell.swift in Sources */,
+				5961157125F81A80008BD51B /* WorkoutTableCell.swift in Sources */,
+				5966209D25EA93B8002B04D5 /* AddWorkoutViewController.swift in Sources */,
+				5961156E25F7BBC9008BD51B /* Alert.swift in Sources */,
+				59638F5925E1C0D400B2AF84 /* SceneDelegate.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin PBXVariantGroup section */
+		59638F5C25E1C0D400B2AF84 /* Main.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				59638F5D25E1C0D400B2AF84 /* Base */,
+			);
+			name = Main.storyboard;
+			sourceTree = "<group>";
+		};
+		59638F6125E1C0D600B2AF84 /* LaunchScreen.storyboard */ = {
+			isa = PBXVariantGroup;
+			children = (
+				59638F6225E1C0D600B2AF84 /* Base */,
+			);
+			name = LaunchScreen.storyboard;
+			sourceTree = "<group>";
+		};
+/* End PBXVariantGroup section */
+
+/* Begin XCBuildConfiguration section */
+		59638F6525E1C0D600B2AF84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"DEBUG=1",
+					"$(inherited)",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+			};
+			name = Debug;
+		};
+		59638F6625E1C0D600B2AF84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 13.5;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				VALIDATE_PRODUCT = YES;
+			};
+			name = Release;
+		};
+		59638F6825E1C0D600B2AF84 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 680DA3AC7746E79E90D20D16 /* Pods-GymLog.debug.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8QP428GRCZ;
+				INFOPLIST_FILE = GymLog/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kacperp.gymlog;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		59638F6925E1C0D600B2AF84 /* Release */ = {
+			isa = XCBuildConfiguration;
+			baseConfigurationReference = 952918140AC50067C51B905C /* Pods-GymLog.release.xcconfig */;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_STYLE = Automatic;
+				DEVELOPMENT_TEAM = 8QP428GRCZ;
+				INFOPLIST_FILE = GymLog/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.kacperp.gymlog;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 5.0;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		59638F4E25E1C0D400B2AF84 /* Build configuration list for PBXProject "GymLog" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				59638F6525E1C0D600B2AF84 /* Debug */,
+				59638F6625E1C0D600B2AF84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		59638F6725E1C0D600B2AF84 /* Build configuration list for PBXNativeTarget "GymLog" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				59638F6825E1C0D600B2AF84 /* Debug */,
+				59638F6925E1C0D600B2AF84 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 59638F4B25E1C0D400B2AF84 /* Project object */;
+}
