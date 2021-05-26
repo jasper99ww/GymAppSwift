@@ -17,12 +17,18 @@ struct RetrievedWorkoutMax {
     
     let workoutTitle: String
     let exerciseTitle: String
-    let sets: String
-    let max: Int
+    let sets: Int
+    let maxWeight: Int
+    let maxReps: Int
     let date: Date
 //    let max: [String:String]
+
+}
+
+struct HighlightedExercise {
     
-    
+    let reps: Int
+    let sets: Int
     
 }
 
@@ -32,12 +38,8 @@ import Firebase
 
 class ProgressChartViewController: UIViewController, ChartViewDelegate {
 
-    @IBOutlet weak var weightView: UIView!
-    @IBOutlet weak var repsView: UIView!
-    @IBOutlet weak var setsView: UIView!
-    @IBOutlet weak var changeView: UIView!
     let formatter = DateFormatter()
-    
+    var dateCount: Int = 0
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     var retrievedExercise: [String: [RetrievedWorkout]] = [:]
 //    @IBOutlet weak var lineChart2: LineChartView!
@@ -58,6 +60,12 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
     
     var int = 0
     
+    
+    @IBOutlet weak var weightValue: UILabel!
+    @IBOutlet weak var repsValue: UILabel!
+    @IBOutlet weak var changeValue: UILabel!
+    var highlightedValue: [HighlightedExercise] = []
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         retrieveArrays()
@@ -68,10 +76,16 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
         getData(title: "Workout4")
         
         lineChart.delegate = self
+   
     }
     
     override func viewDidLayoutSubviews() {
         setChartProperties()
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        print("RETRIEVED WORKOUT MAX \(retrievedExerciseMax)")
+        print("RETRIEVED WORKOUT N \(retrievedExercise)")
     }
 
     func setUpNavigationBarItems() {
@@ -80,42 +94,89 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
         workoutTitle.text = "Upper"
         workoutTitle.textColor = .white
         navigationItem.title = workoutTitle.text
-        cornerRadiusForViews()
+
     }
     
-    func cornerRadiusForViews() {
-        weightView.layer.cornerRadius = 20
-        repsView.layer.cornerRadius = 20
-        setsView.layer.cornerRadius = 20
-        changeView.layer.cornerRadius = 20
-    }
-    
+  
     
     func setChartProperties() {
  
         viewChart.layer.cornerRadius = 20
             lineChart.backgroundColor = .clear
-            
+            lineChart.extraBottomOffset = 15
+
             lineChart.rightAxis.enabled = false
         
             let yAxis = lineChart.leftAxis
             yAxis.labelFont = .boldSystemFont(ofSize: 8)
-        yAxis.setLabelCount(6, force: false)
+            yAxis.setLabelCount(6, force: false)
+            yAxis.axisMinimum = 0
             yAxis.labelTextColor = .white
             yAxis.axisLineColor = .clear
             yAxis.labelPosition = .outsideChart
             yAxis.drawGridLinesEnabled = true
 
           
-            lineChart.xAxis.labelPosition = .bottom
-        lineChart.xAxis.labelFont = .boldSystemFont(ofSize: 8)
-        lineChart.xAxis.setLabelCount(retrievedExercise.values.count, force: false)
+        lineChart.xAxis.labelPosition = .bottom
+
+        lineChart.xAxis.avoidFirstLastClippingEnabled = true
+        lineChart.xAxis.granularity = 1
+
+        print("DATE COUNT \(dateCount)")
+        lineChart.xAxis.labelFont = .systemFont(ofSize: 12)
         lineChart.xAxis.axisLineColor = .white
         lineChart.xAxis.labelTextColor = .white
         lineChart.xAxis.drawGridLinesEnabled = false
-    //        chartView.animate(xAxisDuration: 1)
-    
+
+        lineChart.legend.font = .systemFont(ofSize: 10)
+        
+        lineChart.legend.textColor = .white
+       
     }
+    
+    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
+        
+        let dataSetIndex = highlight.dataSetIndex
+
+        
+        if let entryData = entry.data as? HighlightedExercise, let stringValue = String(format: "%.0f", highlight.y) as? String {
+            
+            // ZROBIC STRZALKE ZIELONA I CZERWONA W ZALEZNOSCI OD SPADKU
+            
+            if entry.x > 0 {
+                let previousEntry = dataSets[dataSetIndex][Int(entry.x - 1)]
+                print("first  \(Int(previousEntry.y))")
+                print("second \(Int(highlight.y))")
+                let previousEntryData = Int((((highlight.y) - (previousEntry.y)) / (previousEntry.y)) * 100)
+                changeValue.text = String(previousEntryData)
+                print("ENTRY \(previousEntryData)")
+                
+            }
+            
+            let repsEntryData = String(entryData.reps)
+            repsValue.text = repsEntryData
+            weightValue.text = "\(stringValue)kg"
+        
+        
+            
+            let percentageProgress = (highlight.y)
+            
+        }
+        
+       
+        
+        
+//        let previousEntry = entry.x.advanced(by: -1) as? ChartDataEntry
+//        let previousEntryData = previousEntry?.data as? HighlightedExercise
+//        let pr = previousEntryData?.reps
+//        let pr2 = previousEntryData?.sets
+//        let pr3 = entry.y.advanced(by: -1)
+//        print("PREVIOUS KG \(pr3)")
+//        print("PREVIOUS REPS \(pr)")
+//        print("PREVIOUS SETS \(pr2)")
+        
+    }
+    
     
     func setData(entries: [LineChartDataSet]) {
 
@@ -125,69 +186,22 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
         set.drawCirclesEnabled = true
         set.circleColors = set.colors
         set.drawCircleHoleEnabled = false
-        set.lineWidth = 3
-        
-//        set.fill = set.colors
-//        set.fillAlpha = 0.6
-//        set.drawFilledEnabled = true
-            
+        set.circleRadius = 4
+        set.lineWidth = 4
+
         set.drawHorizontalHighlightIndicatorEnabled = false
         set.highlightColor = .red
         }
-//        let data = LineChartData(dataSet: set)
+        
         let data = LineChartData(dataSets: entries)
         lineChart.data = data
-        data.setDrawValues(true)
+        data.setDrawValues(false)
 
     }
 
    
-
-//    func appendData() {
-//
-////        let set = LineChartDataSet(entries: self.dataEntry, label: "Workout4")
-//
-////        var dataSets: [LineChartDataSet] = [LineChartDataSet]()
-//
-//        var lineChartEntry1 = [ChartDataEntry]()
-//        print("RETRIEVED \(retrievedExercise)")
-//        let group2 = DispatchGroup()
-//
-//        for x in 0..<retrievedExercise.count {
-//            print("\(x) TO x")
-//            group2.enter()
-//            let newData = retrievedExercise[x]
-//            let weight = newData.weight
-//
-//
-//            lineChartEntry1.append(ChartDataEntry(x: Double(weight) ?? 0, y: Double(weight) ?? 0))
-//
-//            lineChartEntry1.sort(by: { $0.x < $1.x})
-//
-//            let set = LineChartDataSet(entries: lineChartEntry1, label: "\(retrievedExercise[x].exerciseTitle)")
-//            dataSets.append(set)
-//            print("APPENDED")
-////            dataEntry.append(ChartDataEntry(x: Double(weight) ?? 0, y: Double(weight) ?? 0))
-//            group2.leave()
-//        }
-//
-//        group2.notify(queue: .main) {
-//            self.setData(entries: self.dataSets)
-////            self.dataEntry.sort(by: { $0.x < $1.x})
-////            self.setData(entries: self.dataEntry)
-//            print("DATA SETS \(self.dataSets)")
-////            self.dataSets.sort(by: { $0.x < $1.x})
-//
-//
-//        }
-//
-//        print("DATA ENTRY \(dataEntry)")
-//    }
-
-//    let minimumTimeInterval = retrievedExerciseMax.values.compactMap({$0})
-    
     func findMaxValue() {
-        
+        dateCount = 0
         var referenceTimeInterval: TimeInterval = 0
 
         if let minTimeInterval = (retrievedExerciseMax.compactMap({$0.value}).compactMap({$0.compactMap({$0.date})}).min(by: {$0[0].timeIntervalSince1970 < $1[0].timeIntervalSince1970}))?.min() {
@@ -203,8 +217,7 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
         let dateFormatter = DateFormatter()
         
         lineChart.xAxis.valueFormatter = ChartXAxisFormatter(referenceTimeInterval: referenceTimeInterval, dateFormatter: dateFormatter)
-                
-        
+            
         var numberOfColors = 0
         let colors = [UIColor.red, UIColor.green, UIColor.purple, UIColor.gray,  UIColor.white]
         
@@ -215,12 +228,16 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
             for values in value {
                
                 let date = values.date
+                let setsInt = Int(values.sets)
+                dateCount += 1
                 let timeInterval = date.timeIntervalSince1970
                 let xValue = (timeInterval - referenceTimeInterval) / (3600 * 24)
                 
-                let maxWeight = Double(values.max)
-
-                lineChartEntry1.append(ChartDataEntry(x: xValue, y: Double(maxWeight)))
+                let maxWeight = Double(values.maxWeight)
+                
+                let highlightedValue = HighlightedExercise(reps: values.maxReps, sets: values.sets)
+                
+                lineChartEntry1.append(ChartDataEntry(x: xValue, y: Double(maxWeight), data: highlightedValue))
                 
             }
             
@@ -235,8 +252,9 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
         
         group2.notify(queue: .main) {
             self.setData(entries: self.dataSets)
-
+            print("DATA \(self.dataSets.count)")
             print("DATA SETS \(self.dataSets)")
+            print("date count \(self.dateCount)")
         }
     }
         
@@ -267,14 +285,15 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
                     
                         let data = doc.data()
         
-                        if let docSets = data["Sets"] as? [String: [String:String]] {
+                        if let docSets = data["Sets"] as? [String: [String:String]], let max = data["Max"] as? [String:Int] {
                             
-                            if let date = data["date"] as? String, let max = data["Max"] as? Int {
+                            if let date = data["date"] as? String, let maxWeight = max["weight"], let maxReps = max["doneReps"] {
                                 
                                 guard let dateFormattedToDate = self.formatter.date(from: date) else {return}
-                                
-                                let newModelMax = RetrievedWorkoutMax(workoutTitle: "\(title)", exerciseTitle: "\(document)", sets: "\(docSets.count)", max: max, date: dateFormattedToDate)
+                               
+                                let newModelMax = RetrievedWorkoutMax(workoutTitle: "\(title)", exerciseTitle: "\(document)", sets: (docSets.count), maxWeight: maxWeight, maxReps: maxReps,date: dateFormattedToDate)
                                 self.retrievedExerciseMax["\(document)", default: []].append(newModelMax)
+                                
                 
                             for _ in docSets {
                             self.int += 1
@@ -392,3 +411,46 @@ extension UINavigationItem {
 //
 //    return chartView
 //}()
+
+//    func appendData() {
+//
+////        let set = LineChartDataSet(entries: self.dataEntry, label: "Workout4")
+//
+////        var dataSets: [LineChartDataSet] = [LineChartDataSet]()
+//
+//        var lineChartEntry1 = [ChartDataEntry]()
+//        print("RETRIEVED \(retrievedExercise)")
+//        let group2 = DispatchGroup()
+//
+//        for x in 0..<retrievedExercise.count {
+//            print("\(x) TO x")
+//            group2.enter()
+//            let newData = retrievedExercise[x]
+//            let weight = newData.weight
+//
+//
+//            lineChartEntry1.append(ChartDataEntry(x: Double(weight) ?? 0, y: Double(weight) ?? 0))
+//
+//            lineChartEntry1.sort(by: { $0.x < $1.x})
+//
+//            let set = LineChartDataSet(entries: lineChartEntry1, label: "\(retrievedExercise[x].exerciseTitle)")
+//            dataSets.append(set)
+//            print("APPENDED")
+////            dataEntry.append(ChartDataEntry(x: Double(weight) ?? 0, y: Double(weight) ?? 0))
+//            group2.leave()
+//        }
+//
+//        group2.notify(queue: .main) {
+//            self.setData(entries: self.dataSets)
+////            self.dataEntry.sort(by: { $0.x < $1.x})
+////            self.setData(entries: self.dataEntry)
+//            print("DATA SETS \(self.dataSets)")
+////            self.dataSets.sort(by: { $0.x < $1.x})
+//
+//
+//        }
+//
+//        print("DATA ENTRY \(dataEntry)")
+//    }
+
+//    let minimumTimeInterval = retrievedExerciseMax.values.compactMap({$0})

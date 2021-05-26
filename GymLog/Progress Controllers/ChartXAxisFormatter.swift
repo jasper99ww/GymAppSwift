@@ -11,6 +11,7 @@ import Charts
 
 class ChartXAxisFormatter: NSObject {
     
+    private var dates: [Double]?
     fileprivate var dateFormatter: DateFormatter?
     fileprivate var referenceTimeInterval: TimeInterval?
     
@@ -21,16 +22,18 @@ class ChartXAxisFormatter: NSObject {
     }
 }
 
+
 extension ChartXAxisFormatter: IAxisValueFormatter {
-    
+
     func stringForValue(_ value: Double, axis: AxisBase?) -> String {
-    
+
         guard let dateFormatter = dateFormatter,
         let referenceTimeInterval = referenceTimeInterval
         else {
             return ""
         }
-        dateFormatter.dateFormat = "MMM dd"
+        dateFormatter.timeZone = .current
+        dateFormatter.dateFormat = "dd.MM"
         let date = Date(timeIntervalSince1970: value * 3600 * 24 + referenceTimeInterval)
         return dateFormatter.string(from: date)
     }

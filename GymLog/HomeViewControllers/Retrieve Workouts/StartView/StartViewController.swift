@@ -8,8 +8,6 @@
 import UIKit
 import Firebase
 
-
-
 class StartViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, StartViewCellDelegate {
     
     var weightArraySend = [String?]()
@@ -207,6 +205,7 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         
         var docSets : [String : [String:String]] = [:]
         var docArray: [String:String] = [:]
+        var maxValue = [String:Int]()
         weightArraySend = []
         repsArraySend = []
         
@@ -228,27 +227,17 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         }
         
 
-//        var maxValue = [Int: Int]()
-        
-//        for (key,value) in docSets {
-//            for (key,value) in value {
-//                let valueKeyInt = Int(key)
-//                print("valueKeyInt \(valueKeyInt)")
-//                let valueValueInt = Int(value)
-//                print("valueValueInt \(valueValueInt)")
-//                maxValue[valueKeyInt!] = valueValueInt!
-//
-//            }
-//
-//        }
+       
         
         let intWeightArray = weightArraySend.compactMap { Int($0!)}
-//        let intRepsArray = repsArraySend.compactMap {Int($0!)}
-//        maxValue = [intWeightArray.max()! : intRepsArray.max()!]
+        let intRepsArray = repsArraySend.compactMap {Int($0!)}
+        maxValue["weight"] = intWeightArray.max()!
+        maxValue["doneReps"] = intRepsArray.max()!
+        
 //        print("MAX VALue \(maxValue)")
         
         //AS ANY DODALEM??
-        let docData : [String:Any] = ["Max": intWeightArray.max() as Any, "date" : dateString, "Sets": docSets]
+        let docData : [String:Any] = ["Max": maxValue, "date" : dateString, "Sets": docSets]
    
         
         db.collection("users").document("\(user!.uid)").collection("WorkoutsName").document("\(titleValue)").collection("Exercises").document("\(exerciseLabel.text!)").collection("History").document("\(formate)").setData(docData) { err in
