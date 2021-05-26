@@ -9,7 +9,7 @@ class CalendarViewController: UIViewController {
     @IBOutlet weak var numberDayOfDoneTraining: UILabel!
     @IBOutlet weak var nameDayOfDoneTraining: UILabel!
     
-    var exampleArray: [String: [String]] = [:]
+    var exercisesInTraining: [String: [String]] = [:]
     var hourOfDoneTraining: [String] = []
     var exercisesInDoneTraining: [String: [String]] = [:]
 
@@ -24,7 +24,7 @@ class CalendarViewController: UIViewController {
     var selectDoneDates: [Date] = []
     var selectDoneDates2: [String] = []
     var selectDoneDates3: [String] = []
-    var arrayOfDocumentsTitle: [String] = []
+    var arrayOfDocumentsTitle: [String : [String]] = [:]
     
     var selectedString = String()
     
@@ -46,13 +46,11 @@ class CalendarViewController: UIViewController {
     // MARK: PopUp
 
     override func viewWillAppear(_ animated: Bool) {
-
+   
         calendarView.allowsMultipleSelection = true
-        
-        // SPRAWDZ CZY TO MOGLO POWODOWAC BLAD
-//        arrayOfTitles = []
-//        arrayOfDocumentsTitle = []
-//        doneDates = []
+        calendarView.deselectAllDates()
+        selectTodayDate()
+        emptyDict = [:]
         selectDoneDates = []
         retrieveTitleWorkouts()
         retrieveDocumentsId
@@ -70,11 +68,20 @@ class CalendarViewController: UIViewController {
         calendarView.calendarDelegate = self
         calendarViewCorners()
         setDefaultDate()
-        selectTodayDate()
+        
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 110
        
+    }
+    
+    override func viewWillDisappear(_ animated: Bool) {
+        saveArrayOfDocumentsInMemory()
+    }
+    
+    func saveArrayOfDocumentsInMemory() {
+        UserDefaults.standard.set(exercisesInTraining, forKey: "dictionaryOfTitleDocuments")
+        print("TO ARRAY OF DOCUMENTS \(exercisesInTraining)")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -84,8 +91,9 @@ class CalendarViewController: UIViewController {
 //                self.selectDoneDates2 = []
                 self.selectedString = text
                 self.calendarView.allowsMultipleSelection = true
-//                self.calendarView.deselectAllDates()
+                self.calendarView.deselectAllDates()
                 self.preSelectDataAfterPopUp()
+                self.selectTodayDate()
                 self.calendarView.allowsMultipleSelection = false
             }
         }
@@ -158,7 +166,7 @@ class CalendarViewController: UIViewController {
     func retrieveDocumentsId(completion: @escaping () -> ()) {
 
         let grp = DispatchGroup()
-        arrayOfDocumentsTitle = []
+        arrayOfDocumentsTitle = [:]
         for title in arrayOfTitles {
             grp.enter()
         db.collection("users").document("\(user!.uid)").collection("WorkoutsName").document("\(title)").collection("Exercises").getDocuments { (querySnapshot, error) in
@@ -172,8 +180,8 @@ class CalendarViewController: UIViewController {
                     for i in 0..<documents.count {
                         let documentID2 = documents[i].documentID
                         
-                            self.arrayOfDocumentsTitle.append(documentID2)
-                        self.exampleArray[title, default: []].append(documentID2)
+//                        self.arrayOfDocumentsTitle[title, default: []].append(<#T##newElement: String##String#>)
+                        self.exercisesInTraining[title, default: []].append(documentID2)
                     }
                     grp.leave()
                 }
@@ -186,8 +194,9 @@ class CalendarViewController: UIViewController {
     }
     
     func getDateOfWorkout() {
+        
         let grp = DispatchGroup()
-        arrayOfDocumentsTitle = []
+//        arrayOfDocumentsTitle = []
         for title in arrayOfTitles {
             grp.enter()
         db.collection("users").document("\(user!.uid)").collection("WorkoutsName").document("\(title)").collection("Calendar").getDocuments { (querySnapshot, error) in
@@ -224,14 +233,13 @@ class CalendarViewController: UIViewController {
     }
     
    
-    
     func preSelectData() {
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
 
         print("empty Dict \(emptyDict)")
-        for (key, date) in emptyDict {
+        for (_, date) in emptyDict {
             print("DATE TO \(date)")
 
             for date2 in date {
@@ -308,8 +316,8 @@ class CalendarViewController: UIViewController {
         let cellDate = dateFormatter.string(from: cellState.date)
        
         
-        if (validCell.isSelected || selectDoneDates2.contains(cellDate)) && selectDoneDates3
-            .isEmpty {
+        if validCell.isSelected || (selectDoneDates2.contains(cellDate) && selectDoneDates3
+            .isEmpty) {
             validCell.selectedView.isHidden = false
         } else if cellState.date == Date() || selectDoneDates3.contains(cellDate) {
             validCell.selectedView.isHidden = false
@@ -320,6 +328,8 @@ class CalendarViewController: UIViewController {
             validCell.selectedView.isHidden = true
         }
 }
+    
+  
 }
 
 extension CalendarViewController: JTACMonthViewDataSource {
@@ -390,7 +400,7 @@ extension CalendarViewController: JTACMonthViewDelegate {
             for dateOfWorkout in value {
                 
             dateFormatter.dateFormat = "yyyy-MM-dd"
-                let value1 = dateFormatter.string(from: dateOfWorkout ?? date)
+            let value1 = dateFormatter.string(from: dateOfWorkout ?? date)
             dateFormatter.dateFormat = "HH:mm"
             let hour = dateFormatter.string(from: dateOfWorkout ?? date)
                 
@@ -438,7 +448,11 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "calendarCell", for: indexPath) as! CalendarTableViewCell
-
+        
+        print("ARRAY OF DOCUMENTS TITLE \(arrayOfDocumentsTitle)")
+        print("ARRAY OF TITLES \(arrayOfTitles)")
+        print("DONE TRAINING DATE \(doneTrainingDate)")
+        print("HOURS OF DONE TRAININg \(hourOfDoneTraining)")
         if doneTrainingDate.count == 0 {
             cell.showDetailsButton?.alpha = 0
             cell.viewColor?.backgroundColor = .clear
@@ -453,7 +467,7 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
          
             cell.workoutCellLabel?.text = doneTrainingDate[indexPath.row]
             cell.cellHourOfDoneTraining?.text = hourOfDoneTraining[indexPath.row]
-            cell.exercisesInWorkout?.text = exampleArray["\(doneTrainingDate[indexPath.row])"]?.joined(separator: ", ")
+            cell.exercisesInWorkout?.text = exercisesInTraining["\(doneTrainingDate[indexPath.row])"]?.joined(separator: ", ")
         }
         
         return cell

@@ -197,30 +197,59 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func afterNextButtonTapped() {
         
         let df = DateFormatter()
-        df.dateFormat = "yyyy-MM-dd HH:mm"
+        df.dateFormat = "yyyy-MM-dd"
+        df.timeZone = TimeZone.current
         let dateString = df.string(from: currentDateTime)
         
         
        let date = Date()
         let formate = date.getFormattedDate(format: "yyyy-MM-dd HH:mm")
         
-        var docSets : [String : [Any]] = [:]
-        var docArray: [Any] = []
+        var docSets : [String : [String:String]] = [:]
+        var docArray: [String:String] = [:]
+        weightArraySend = []
+        repsArraySend = []
+        
+//        var experiment: [docSetsCodable] = []
        
         for indexPath in tableView.indexPathsForVisibleRows! {
 
         let cell = tableView.cellForRow(at: indexPath) as? StartViewCell
-            
-            docArray.append(["kg" : cell?.setKg.text, "reps" : cell?.setReps.text])
+//            let others1 = Others(weight: cell?.setKg.text, reps: cell?.setReps.text)
+//            let newExperiment = docSetsCodable(sets: "\(indexPath.row)", others: [others1])
+//            experiment.append(newExperiment)
+            docArray["kg"] = cell?.setKg.text
+            docArray["reps"] = cell?.setReps.text
+            docSets["\(indexPath.row + 1)"] = docArray
+//            docArray.append(["kg" : cell?.setKg.text, "reps" : cell?.setReps.text])
             weightArraySend.append(cell?.setKg.text)
             repsArraySend.append(cell?.setReps.text)
            
         }
         
-        docSets["Sets"] = docArray
-       
+
+//        var maxValue = [Int: Int]()
         
-        let docData : [String:Any] = ["date" : dateString, "Sets": docArray]
+//        for (key,value) in docSets {
+//            for (key,value) in value {
+//                let valueKeyInt = Int(key)
+//                print("valueKeyInt \(valueKeyInt)")
+//                let valueValueInt = Int(value)
+//                print("valueValueInt \(valueValueInt)")
+//                maxValue[valueKeyInt!] = valueValueInt!
+//
+//            }
+//
+//        }
+        
+        let intWeightArray = weightArraySend.compactMap { Int($0!)}
+//        let intRepsArray = repsArraySend.compactMap {Int($0!)}
+//        maxValue = [intWeightArray.max()! : intRepsArray.max()!]
+//        print("MAX VALue \(maxValue)")
+        
+        //AS ANY DODALEM??
+        let docData : [String:Any] = ["Max": intWeightArray.max() as Any, "date" : dateString, "Sets": docSets]
+   
         
         db.collection("users").document("\(user!.uid)").collection("WorkoutsName").document("\(titleValue)").collection("Exercises").document("\(exerciseLabel.text!)").collection("History").document("\(formate)").setData(docData) { err in
             if let err = err {
@@ -288,4 +317,16 @@ extension Date {
     }
     
     
+}
+
+struct docSetsCodable: Codable {
+
+    var sets: String
+    var others: [Others]
+    
+}
+
+struct Others: Codable {
+    var weight: String?
+    var reps: String?
 }

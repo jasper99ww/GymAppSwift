@@ -38,6 +38,7 @@ class HomeTableViewController: UIViewController, UITableViewDelegate, UITableVie
     }
     override func viewWillDisappear(_ animated: Bool) {
         sendDataToCalendar()
+        print("\(workoutsName.distinct()) TO WYSYLAM ")
     }
     
     
