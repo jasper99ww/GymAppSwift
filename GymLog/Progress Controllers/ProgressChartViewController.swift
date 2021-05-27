@@ -64,6 +64,7 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
     @IBOutlet weak var weightValue: UILabel!
     @IBOutlet weak var repsValue: UILabel!
     @IBOutlet weak var changeValue: UILabel!
+    @IBOutlet weak var arrowImage: UIImageView!
     var highlightedValue: [HighlightedExercise] = []
     
     override func viewDidLoad() {
@@ -148,8 +149,20 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
                 print("first  \(Int(previousEntry.y))")
                 print("second \(Int(highlight.y))")
                 let previousEntryData = Int((((highlight.y) - (previousEntry.y)) / (previousEntry.y)) * 100)
-                changeValue.text = String(previousEntryData)
+                changeValue.text = String("\(previousEntryData)%")
                 print("ENTRY \(previousEntryData)")
+                
+                if previousEntryData > 0 {
+                    changeValue.textColor = .green
+                    changeValue.text = String("+\(previousEntryData)%")
+//                    arrowImage.image = UIImage(systemName: "arrow.up")
+//                    arrowImage.tintColor = .green
+                } else {
+//                    arrowImage.image = UIImage(systemName: "arrow.down")
+//                    arrowImage.tintColor = .red
+//                    changeValue.text = String("\(previousEntryData)%")
+                    changeValue.textColor = .red
+                }
                 
             }
             
