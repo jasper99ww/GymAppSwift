@@ -11,10 +11,11 @@ import Firebase
 class EndWorkoutViewController: UIViewController {
     
     var titleValue: String = ""
-    var weightArray = [String?]()
-    var setsArray = [String?]()
-    var repsArray = [String?]()
+    var weightArray: Int = 0
+    var setsArray: Int = 0
+    var repsArray: Int = 0
     var endedTime = String()
+    var volume: Int = 0
     
     let user = Auth.auth().currentUser
     var db = Firestore.firestore()
@@ -56,34 +57,34 @@ class EndWorkoutViewController: UIViewController {
     
 
     func getWeight() {
-        let sumWeights = weightArray.map {Int($0!) ?? 0}
-        let totalLabel = sumWeights.reduce(0,+)
+      
+        let totalLabel = weightArray
         weight.text = String(totalLabel)
         
     }
     
     func getSets() {
-        let sumSets = weightArray.count
+        let sumSets = setsArray
         sets.text = String(sumSets)
     }
 
     func getReps() {
-        let sumReps = repsArray.map {Int($0!) ?? 0}
-        let sumRepsLabel = sumReps.reduce(0, +)
+
+        let sumRepsLabel = repsArray
         reps.text = String(sumRepsLabel)
     }
     
     func getTime() {
         totalTime.text! = endedTime
-        print("TO JEST TOTAL \(totalTime.text!)")
     }
+    
     
     func saveData() {
        
         let date = Date()
         let formate = date.getFormattedDate(format: "yyyy-MM-dd HH:mm")
         
-        let docData : [String: String] = ["Weight" : weight.text!, "Reps" : reps.text!, "Time": endedTime]
+        let docData : [String: Any] = ["Weight" : weight.text!, "Reps" : reps.text!, "Time": endedTime, "Volume": volume]
         
         db.collection("users").document("\(user!.uid)").collection("WorkoutsName").document("\(titleValue)").collection("Calendar").document("\(formate)").setData(docData) { err in
             if let err = err {

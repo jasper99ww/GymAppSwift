@@ -11,9 +11,10 @@ import Firebase
 class StartViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, StartViewCellDelegate {
     
     var weightArraySend = [String?]()
-    var setsArraySend = [String?]()
+    var setsArraySend = [Int]()
     var repsArraySend = [String?]()
-
+    
+    var volumeArray: Int = 0
     
     @IBOutlet weak var workoutName: UILabel!
     
@@ -206,38 +207,37 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         var docSets : [String : [String:String]] = [:]
         var docArray: [String:String] = [:]
         var maxValue = [String:Int]()
-        weightArraySend = []
-        repsArraySend = []
-        
+      
+
 //        var experiment: [docSetsCodable] = []
        
         for indexPath in tableView.indexPathsForVisibleRows! {
 
         let cell = tableView.cellForRow(at: indexPath) as? StartViewCell
-//            let others1 = Others(weight: cell?.setKg.text, reps: cell?.setReps.text)
-//            let newExperiment = docSetsCodable(sets: "\(indexPath.row)", others: [others1])
-//            experiment.append(newExperiment)
+
             docArray["kg"] = cell?.setKg.text
             docArray["reps"] = cell?.setReps.text
             docSets["\(indexPath.row + 1)"] = docArray
 //            docArray.append(["kg" : cell?.setKg.text, "reps" : cell?.setReps.text])
             weightArraySend.append(cell?.setKg.text)
             repsArraySend.append(cell?.setReps.text)
-           
+            setsArraySend.append(indexPath.row + 1)
+            if let kg = cell?.setKg.text, let reps = cell?.setReps.text {
+                let value = Int(kg)! * Int(reps)!
+                volumeArray += value
+            }
+            
         }
         
-
-       
-        
+            
         let intWeightArray = weightArraySend.compactMap { Int($0!)}
         let intRepsArray = repsArraySend.compactMap {Int($0!)}
         maxValue["weight"] = intWeightArray.max()!
         maxValue["doneReps"] = intRepsArray.max()!
         
-//        print("MAX VALue \(maxValue)")
         
-        //AS ANY DODALEM??
-        let docData : [String:Any] = ["Max": maxValue, "date" : dateString, "Sets": docSets]
+        
+        let docData : [String:Any] = ["Volume": volumeArray ,"Max": maxValue, "date" : dateString, "Sets": docSets]
    
         
         db.collection("users").document("\(user!.uid)").collection("WorkoutsName").document("\(titleValue)").collection("Exercises").document("\(exerciseLabel.text!)").collection("History").document("\(formate)").setData(docData) { err in
@@ -287,8 +287,13 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         let view = storyboard?.instantiateViewController(identifier: "end") as! EndWorkoutViewController
         self.navigationController?.pushViewController(view, animated: true)
         
-        view.weightArray = weightArraySend
-        view.repsArray = repsArraySend
+        let weightArraySendSum = weightArraySend.compactMap { Int($0!)}.reduce(0, +)
+        let repsArraySendSum = repsArraySend.compactMap {Int($0!)}.reduce(0,+)
+        let setsArraySendSum = setsArraySend.compactMap {Int($0)}.reduce(0,+)
+        view.weightArray = weightArraySendSum
+        view.repsArray = repsArraySendSum
+        view.setsArray = setsArraySendSum
+        view.volume = volumeArray
         
         timeStruct.timer.invalidate()
         view.endedTime = timerLabel.text!
@@ -306,16 +311,4 @@ extension Date {
     }
     
     
-}
-
-struct docSetsCodable: Codable {
-
-    var sets: String
-    var others: [Others]
-    
-}
-
-struct Others: Codable {
-    var weight: String?
-    var reps: String?
 }
