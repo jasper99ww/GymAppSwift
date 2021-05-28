@@ -38,6 +38,7 @@ import Firebase
 
 class ProgressChartViewController: UIViewController, ChartViewDelegate {
 
+    @IBOutlet weak var selectAlert: UIBarButtonItem!
     let formatter = DateFormatter()
     var dateCount: Int = 0
     @IBOutlet weak var segmentedControl: UISegmentedControl!
@@ -64,7 +65,12 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
     @IBOutlet weak var weightValue: UILabel!
     @IBOutlet weak var repsValue: UILabel!
     @IBOutlet weak var changeValue: UILabel!
-    @IBOutlet weak var arrowImage: UIImageView!
+    @IBOutlet weak var weightView: UIView!
+    @IBOutlet weak var repsView: UIView!
+    @IBOutlet weak var changeView: UIView!
+    
+    @IBOutlet weak var selectBy: UIView!
+    @IBOutlet weak var selectByButton: UIButton!
     var highlightedValue: [HighlightedExercise] = []
     
     override func viewDidLoad() {
@@ -73,7 +79,8 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
         retrieveDocumentsArray()
         
         setUpNavigationBarItems()
-        
+        controlSegmentSetUp()
+        setUpViews()
         getData(title: "Workout4")
         
         lineChart.delegate = self
@@ -90,15 +97,57 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
     }
 
     func setUpNavigationBarItems() {
-
-        let workoutTitle = UILabel()
-        workoutTitle.text = "Upper"
+        
+        let titleView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+      
+        let workoutTitle = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 40))
+        workoutTitle.textAlignment = .left
+        workoutTitle.text = "Progress Charts"
         workoutTitle.textColor = .white
-        navigationItem.title = workoutTitle.text
+        workoutTitle.font = UIFont.systemFont(ofSize: 28)
+      
+    
+        
+        titleView.addSubview(workoutTitle)
+   
+        
+        navigationItem.titleView = titleView
+    
+        if let navigationBar = navigationController?.navigationBar {
+            titleView.leadingAnchor.constraint(equalTo: navigationBar.leadingAnchor, constant: 10).isActive = true
+        }
+        
+//        view.translatesAutoresizingMaskIntoConstraints = false
+//        selectedExercise.topAnchor.constraint(equalTo: view.topAnchor, constant: 0).isActive = true
+//        selectedExercise.leadingAnchor.constraint(equalTo: view.leadingAnchor, constant: 10).isActive = true
+//        selectedExercise.widthAnchor.constraint(equalToConstant: view.frame.width).isActive = true
+//        selectedExercise.heightAnchor.constraint(equalToConstant: 80).isActive = true
 
     }
     
-  
+    @IBAction func selectAlertTapped(_ sender: UIBarButtonItem) {
+    
+        
+    }
+    
+    func setUpViews() {
+        
+        weightView.layer.cornerRadius = 10
+        repsView.layer.cornerRadius = 10
+        changeView.layer.cornerRadius = 10
+        selectBy.layer.cornerRadius = 15
+        
+    }
+    
+    func controlSegmentSetUp() {
+        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.darkGray], for: .normal)
+        let greenColor = UIColor.init(red: 48/255, green: 173/255, blue: 99/255, alpha: 1)
+        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: greenColor], for: .selected)
+
+        if let viewColor = view.backgroundColor {
+        segmentedControl.clearBG(color: viewColor)
+        }
+    }
     
     func setChartProperties() {
  
@@ -357,34 +406,29 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
     }
 }
 
-extension UINavigationItem {
-    func setTitle(title:String, subtitle:String) {
-        
-        let one = UILabel()
-        one.text = title
-        one.font = UIFont.systemFont(ofSize: 17)
-        one.sizeToFit()
-        
-        let two = UILabel()
-        two.text = subtitle
-        two.font = UIFont.systemFont(ofSize: 12)
-        two.textAlignment = .center
-        two.sizeToFit()
-        
-        let stackView = UIStackView(arrangedSubviews: [one, two])
-        stackView.distribution = .equalCentering
-        stackView.axis = .vertical
-        stackView.alignment = .center
-        
-        let width = max(one.frame.size.width, two.frame.size.width)
-        stackView.frame = CGRect(x: 0, y: 0, width: width, height: 35)
-        
-        one.sizeToFit()
-        two.sizeToFit()
-        
-        self.titleView = stackView
+extension UISegmentedControl {
+    func clearBG(color: UIColor) {
+        let clearImage = UIImage().imageWithColor(color: color)
+        setBackgroundImage(clearImage, for: .normal, barMetrics: .default)
+        setBackgroundImage(clearImage, for: .selected, barMetrics: .default)
+        setDividerImage(clearImage, forLeftSegmentState: .normal, rightSegmentState: .normal, barMetrics: .default)
     }
 }
+
+public extension UIImage {
+    public func imageWithColor(color: UIColor) -> UIImage {
+        let rect = CGRect(x: 0, y: 0, width: 1, height: 1)
+        UIGraphicsBeginImageContext(rect.size)
+        guard let context = UIGraphicsGetCurrentContext() else { return UIImage()}
+        context.setFillColor(color.cgColor)
+        context.fill(rect)
+        let image = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return image!
+    }
+    
+}
+
 
 
 //let minimumTimeInterval = retrievedExerciseMax.compactMap({$0.value}).compactMap({$0.compactMap({$0.date})})
