@@ -84,7 +84,7 @@ class EndWorkoutViewController: UIViewController {
         let date = Date()
         let formate = date.getFormattedDate(format: "yyyy-MM-dd HH:mm")
         
-        let docData : [String: Any] = ["Weight" : weight.text!, "Reps" : reps.text!, "Time": endedTime, "Volume": volume]
+        let docData : [String: Any] = ["Weight" : weightArray, "Reps" : repsArray, "Time": endedTime, "Volume": volume]
         
         db.collection("users").document("\(user!.uid)").collection("WorkoutsName").document("\(titleValue)").collection("Calendar").document("\(formate)").setData(docData) { err in
             if let err = err {

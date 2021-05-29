@@ -10,25 +10,25 @@ import UIKit
 class ExercisesPopUp: UIViewController, UIPickerViewDelegate, UIPickerViewDataSource {
             
           
-    var exercises: [String] = ["FBW", "UPPER", "LOWER"]
+    var exercises: [String] = []
     let screenWidth = UIScreen.main.bounds.width - 20
     let screenHeight = UIScreen.main.bounds.height / 7
     let vc = UIViewController()
     var selectedRow = 0
     var selectedExercise: ((_ data: String) -> ())?
+    var selectedWorkout: String = ""
     
     override func viewDidLoad() {
-       getWorkoutsTitle()
+        print("selected workout \(selectedWorkout)")
+        getWorkoutsTitle()
         alert()
     }
     
     func getWorkoutsTitle() {
-        if let exercisesRetrieved = UserDefaults.standard.object(forKey: "workoutsName") as? [String] {
-       exercises = exercisesRetrieved
             exercises.insert("ALL EXERCISES", at: 0)
+        
         }
-        print("\(exercises) TO exercises")
-    }
+        
     
     func alert() {
     

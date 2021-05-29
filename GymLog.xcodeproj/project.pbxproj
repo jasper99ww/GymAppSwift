@@ -57,6 +57,8 @@
 		59F33BB326111FE700A6DBB0 /* AddNextExerciseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F33BB226111FE700A6DBB0 /* AddNextExerciseController.swift */; };
 		59F33BB62611218300A6DBB0 /* NextExerciseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F33BB52611218300A6DBB0 /* NextExerciseCell.swift */; };
 		59F70386260A1FC200E1CB80 /* EditWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F70385260A1FC200E1CB80 /* EditWorkoutViewController.swift */; };
+		E718EDF726629F54004AFE8C /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718EDF626629F54004AFE8C /* Service.swift */; };
+		E718EDFE2662EC7F004AFE8C /* CriteriaOfSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718EDFD2662EC7F004AFE8C /* CriteriaOfSelectViewController.swift */; };
 		E71947CE265D6C0000DD17F3 /* ExercisesPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71947CD265D6C0000DD17F3 /* ExercisesPopUp.swift */; };
 		E734A745265F01BD00621667 /* ProgressChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E734A744265F01BD00621667 /* ProgressChartViewController.swift */; };
 		E734A749265F01D400621667 /* ChartXAxisFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E734A748265F01D400621667 /* ChartXAxisFormatter.swift */; };
@@ -120,6 +122,8 @@
 		59F70385260A1FC200E1CB80 /* EditWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWorkoutViewController.swift; sourceTree = "<group>"; };
 		680DA3AC7746E79E90D20D16 /* Pods-GymLog.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GymLog.debug.xcconfig"; path = "Target Support Files/Pods-GymLog/Pods-GymLog.debug.xcconfig"; sourceTree = "<group>"; };
 		952918140AC50067C51B905C /* Pods-GymLog.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GymLog.release.xcconfig"; path = "Target Support Files/Pods-GymLog/Pods-GymLog.release.xcconfig"; sourceTree = "<group>"; };
+		E718EDF626629F54004AFE8C /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
+		E718EDFD2662EC7F004AFE8C /* CriteriaOfSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CriteriaOfSelectViewController.swift; sourceTree = "<group>"; };
 		E71947CD265D6C0000DD17F3 /* ExercisesPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesPopUp.swift; sourceTree = "<group>"; };
 		E734A744265F01BD00621667 /* ProgressChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressChartViewController.swift; sourceTree = "<group>"; };
 		E734A748265F01D400621667 /* ChartXAxisFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartXAxisFormatter.swift; sourceTree = "<group>"; };
@@ -354,6 +358,8 @@
 				E734A744265F01BD00621667 /* ProgressChartViewController.swift */,
 				E7CD99772661A88000EDBE51 /* ProgressPopUpView.swift */,
 				E71947CD265D6C0000DD17F3 /* ExercisesPopUp.swift */,
+				E718EDF626629F54004AFE8C /* Service.swift */,
+				E718EDFD2662EC7F004AFE8C /* CriteriaOfSelectViewController.swift */,
 			);
 			path = "Progress Controllers";
 			sourceTree = "<group>";
@@ -480,6 +486,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				596BC84125E29DE700166D9C /* LoginViewController.swift in Sources */,
+				E718EDF726629F54004AFE8C /* Service.swift in Sources */,
 				596D125C26360407003B7292 /* DateCell.swift in Sources */,
 				5964EA02261B50FF00998B2F /* StartViewController.swift in Sources */,
 				592EC294263CB73200761632 /* CalendarTableViewCell.swift in Sources */,
@@ -495,6 +502,7 @@
 				596620A925EBD690002B04D5 /* MainTabBarController.swift in Sources */,
 				5980D477260CEDC60070F23B /* ProfileViewController.swift in Sources */,
 				59CD49672624EAC20004A722 /* TimerViewController.swift in Sources */,
+				E718EDFE2662EC7F004AFE8C /* CriteriaOfSelectViewController.swift in Sources */,
 				59F70386260A1FC200E1CB80 /* EditWorkoutViewController.swift in Sources */,
 				591ABE35262E2F7100B6ECC1 /* EndWorkoutViewController.swift in Sources */,
 				59F33BB326111FE700A6DBB0 /* AddNextExerciseController.swift in Sources */,

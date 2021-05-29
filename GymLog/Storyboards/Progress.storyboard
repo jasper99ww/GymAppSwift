@@ -201,7 +201,7 @@
                                                 </subviews>
                                             </stackView>
                                         </subviews>
-                                        <color key="backgroundColor" red="0.094117647058823528" green="0.094117647058823528" blue="0.094117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                        <color key="backgroundColor" red="0.094105310740000003" green="0.094125516709999996" blue="0.094100885090000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <constraints>
                                             <constraint firstAttribute="bottom" secondItem="WdV-4p-3kQ" secondAttribute="bottom" constant="8.5" id="ErE-6A-HaZ"/>
                                             <constraint firstItem="WdV-4p-3kQ" firstAttribute="leading" secondItem="SDC-ca-MjQ" secondAttribute="leading" constant="-2" id="ON5-sK-Jpq"/>
@@ -226,11 +226,16 @@
                                             <constraint firstAttribute="width" constant="90" id="sp4-PF-87u"/>
                                         </constraints>
                                         <fontDescription key="fontDescription" type="system" pointSize="16"/>
+                                        <color key="tintColor" red="0.25140050050000001" green="0.48750680689999998" blue="0.30246680970000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         <inset key="imageEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <state key="normal" title="Weight" image="chevron.down" catalog="system"/>
+                                        <connections>
+                                            <action selector="selectByButtonTapped:" destination="6kQ-kc-Vuz" eventType="touchUpInside" id="I5b-BN-fMP"/>
+                                            <segue destination="37m-cX-Jg9" kind="presentation" identifier="toCriteriaSelection" modalPresentationStyle="overCurrentContext" id="s2h-6c-VHu"/>
+                                        </connections>
                                     </button>
                                 </subviews>
-                                <color key="backgroundColor" red="0.14117647059999999" green="0.14117647059999999" blue="0.14117647059999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                <color key="backgroundColor" red="0.094117647058823528" green="0.094117647058823528" blue="0.094117647058823528" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstItem="CFb-7E-hMm" firstAttribute="centerX" secondItem="EsF-9O-9GY" secondAttribute="centerX" id="3ze-rZ-Pbn"/>
                                     <constraint firstAttribute="height" constant="31" id="JQz-rb-Fcj"/>
@@ -247,6 +252,9 @@
                                 <color key="tintColor" red="0.25140050050000001" green="0.48750680689999998" blue="0.30246680970000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="imageEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                 <state key="normal" title="All exercises" image="chevron.down" catalog="system"/>
+                                <connections>
+                                    <segue destination="m7J-Rd-ypC" kind="presentation" identifier="toExerciseSelection" modalPresentationStyle="overCurrentContext" id="6Qj-3e-BXZ"/>
+                                </connections>
                             </button>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="mwh-9K-b1q"/>
@@ -289,6 +297,7 @@
                         <outlet property="selectAlert" destination="KI2-ZR-Hhe" id="zQc-9H-kZ0"/>
                         <outlet property="selectBy" destination="EsF-9O-9GY" id="4SY-Uc-mc7"/>
                         <outlet property="selectByButton" destination="CFb-7E-hMm" id="QoH-gu-zbz"/>
+                        <outlet property="selectExercise" destination="Nmo-sz-OBZ" id="uUD-hX-jen"/>
                         <outlet property="viewChart" destination="8Ol-8M-8hb" id="hlr-of-ihl"/>
                         <outlet property="weightValue" destination="gvu-Rp-reG" id="yoJ-Ku-Qft"/>
                         <outlet property="weightView" destination="uA6-qQ-Onw" id="f77-vF-Ykn"/>
@@ -306,12 +315,27 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <viewLayoutGuide key="safeArea" id="45b-BK-wRv"/>
-                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                     </view>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="KSN-7C-j8f" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5760" y="1118"/>
+            <point key="canvasLocation" x="5857" y="864"/>
+        </scene>
+        <!--Criteria Of Select View Controller-->
+        <scene sceneID="Ftm-6H-a6u">
+            <objects>
+                <viewController id="37m-cX-Jg9" customClass="CriteriaOfSelectViewController" customModule="GymLog" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="B5t-m3-WVR">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="vAH-u6-uR6"/>
+                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="awi-m4-Qkt" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="5856.521739130435" y="1570.9821428571429"/>
         </scene>
         <!--Progress Pop Up View-->
         <scene sceneID="sUK-rR-nym">
@@ -326,7 +350,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0Xg-ov-lvq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="5759" y="466"/>
+            <point key="canvasLocation" x="5857" y="155"/>
         </scene>
     </scenes>
     <resources>

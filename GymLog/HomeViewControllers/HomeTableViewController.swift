@@ -18,6 +18,8 @@ class HomeTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     var workouts: [WorkoutsTitle] = []
     
+    var exercises: [String: [String]] = [:]
+    
     let db = Firestore.firestore()
     
     let user = Auth.auth().currentUser
@@ -25,7 +27,6 @@ class HomeTableViewController: UIViewController, UITableViewDelegate, UITableVie
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.backgroundColor = UIColor.init(red: 18/255, green: 18/255, blue: 18/255, alpha: 1)
         retrieveWorkouts()
-        
     }
     
     override func viewDidLoad() {
@@ -34,11 +35,17 @@ class HomeTableViewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.dataSource = self
         self.tableView.backgroundColor = UIColor.init(red: 18/255, green: 18/255, blue: 18/255, alpha: 1)
         
+        
        
     }
     override func viewWillDisappear(_ animated: Bool) {
         sendDataToCalendar()
+        saveExercisesInMemory()
+        getDocumentsTitle(workouts: workoutsName)
+        print("Exer \(exercises)")
         print("\(workoutsName.distinct()) TO WYSYLAM ")
+       
+        
     }
     
     
@@ -65,6 +72,7 @@ class HomeTableViewController: UIViewController, UITableViewDelegate, UITableVie
                                        }
                                 DispatchQueue.main.async {
                                     self.tableView.reloadData()
+                                  
                                  print("Success")
             
                                 }
@@ -73,6 +81,7 @@ class HomeTableViewController: UIViewController, UITableViewDelegate, UITableVie
                                }
                        }
         })
+ 
         }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
@@ -100,7 +109,43 @@ class HomeTableViewController: UIViewController, UITableViewDelegate, UITableVie
         UserDefaults.standard.set(workoutsName.distinct(), forKey: "workoutsName")
       
     }
-}
+    
+    func saveExercisesInMemory() {
+        UserDefaults.standard.set(exercises, forKey: "exercises")
+    }
+    
+    func getDocumentsTitle(workouts: [String]) {
+        
+     
+        
+        for workout in workouts {
+        db.collection("users").document("\(user!.uid)").collection("WorkoutsName").document(workout).collection("Exercises").getDocuments(completion: { (querySnapshot, error) in
+            self.workouts = []
+            if let error = error
+                       {
+                           print("\(error.localizedDescription)")
+                       }
+                       else {
+                           if let snapshotDocuments = querySnapshot?.documents {
+                            
+                             
+                               for doc in snapshotDocuments {
+           
+                                let exercise = doc.documentID
+                                
+                                self.exercises["\(workout)",default: []].append(exercise)
+                                       }
+                                }
+                           
+                               
+                                   }
+                               })
+                       }
+        print("otrzymane \(exercises)")
+        }
+        
+    }
+
 extension HomeTableViewController  {
     func onClickCell(index: Int) {
         guard let vc = storyboard?.instantiateViewController(withIdentifier: "optionsVC") as? OptionsViewController else { return }

@@ -11,6 +11,25 @@ struct RetrievedWorkout {
     
 }
 
+struct RetrievedWorkoutsByExercise {
+    
+    let exerciseTitle: String
+    let sets: Int
+    let maxWeight: Int
+    let maxReps: Int
+    let date: Date
+    let volume: Int
+    
+}
+
+struct RetrievedWorkoutsByVolume {
+    let reps: Int
+    let time: String
+    let volume: Int
+    let weight: Int
+    let date: Date
+}
+
 struct RetrievedWorkoutMax {
     
     let workoutTitle: String
@@ -43,11 +62,13 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
     var dateCount: Int = 0
 
     var workoutTitle = UILabel()
+    var exercisesForSelectedWorkout: [String] = []
     @IBOutlet weak var selectAlert: UIBarButtonItem!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     @IBOutlet weak var lineChart: LineChartView!
     @IBOutlet weak var viewChart: UIView!
-    @IBOutlet weak var selectedExercise: UILabel!
+   
+    @IBOutlet weak var selectExercise: UIButton!
     
     
     @IBOutlet weak var weightValue: UILabel!
@@ -70,9 +91,11 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
     var arrayOfTitles: [String] = []
     var arrayOfTitleDocuments:  [String: [String]]? = [:]
     var retrievedExerciseMax: [String: [RetrievedWorkoutMax]] = [:]
+    var retrievedAllWorkouts: [String: [RetrievedWorkoutsByVolume]] = [:]
+    var retrievedByExercise: [RetrievedWorkoutsByExercise] = []
     var int = 0
     var highlightedValue: [HighlightedExercise] = []
-
+    var checkIfWorkoutIsSelected: Bool = false
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -83,13 +106,15 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
         setUpNavigationBarItems()
         controlSegmentSetUp()
         setUpViews()
-        getData(title: ["Workout4"])
+        getData(title: "Workout4")
 
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        print("ebe \(retrievedExercise)")
-        print("eb1e \(retrievedExerciseMax)")
+//        print("array of titles documents \(arrayOfTitleDocuments)")
+//        print("titles \(arrayOfTitles)")
+//        print("retrieved Exercise \(retrievedExercise)")
+//        print("ALL \(retrievedAllWorkouts)")
     }
     
     
@@ -98,19 +123,65 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toWorkoutSelection" {
             let popup = segue.destination as! ProgressPopUpView
+            
             popup.selectedWorkoutChart = { text in
 
                 self.workoutTitle.text = text
                 if text == "ALL WORKOUTS" {
-                    self.getData(title: self.arrayOfTitles)
+                    self.getDataByVolume(titles: self.arrayOfTitles)
+                    self.selectByButton.setTitle("Volume", for: .normal)
+                    self.selectByButton.isUserInteractionEnabled = false
+                
                 } else {
-                    self.getData(title: [text])
+                    self.getData(title: text)
+                }
+                self.selectExercise.setTitle("All exercises", for: .normal)
+                self.lineChart.notifyDataSetChanged()
+                self.checkIfWorkoutIsSelected = true
+                self.getExercisesForSelectedWorkout()
+            }
+        }
+        
+        if checkIfWorkoutIsSelected == true {
+        if segue.identifier == "toExerciseSelection" {
+            let popup = segue.destination as! ExercisesPopUp
+            
+            popup.exercises = exercisesForSelectedWorkout
+            popup.selectedExercise = { text in
+
+                self.selectExercise.setTitle(text, for: .normal)
+                if text == "ALL EXERCISES" {
+                    self.getData(title:  self.workoutTitle.text!)
+                } else {
+                    self.getDataByExercise(title: self.workoutTitle.text!, document: text)
                 }
                 
                 self.lineChart.notifyDataSetChanged()
-
+            }
             }
         }
+        
+        if segue.identifier == "toCriteriaSelection" {
+            let popup = segue.destination as! CriteriaOfSelectViewController
+            popup.selectedCriteria = { criteria in
+                
+                self.selectByButton.setTitle(criteria, for: .normal)
+                
+                if criteria == "Weight" {
+                    self.findByExercise(criteria: "Weight")
+                } else {
+                    self.findByExercise(criteria: "Volume")
+                }
+                self.lineChart.notifyDataSetChanged()
+            }
+        }
+    }
+    
+    
+    @IBAction func selectByButtonTapped(_ sender: UIButton) {
+    
+  
+     
     }
     
     //MARK: - SET UP UI
@@ -126,7 +197,6 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
         workoutTitle.font = UIFont.systemFont(ofSize: 28)
       
         titleView.addSubview(workoutTitle)
-   
         navigationItem.titleView = titleView
     
         if let navigationBar = navigationController?.navigationBar {
@@ -159,9 +229,10 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
  
         viewChart.layer.cornerRadius = 20
             lineChart.backgroundColor = .clear
-            lineChart.extraBottomOffset = 15
+            lineChart.extraBottomOffset = 25
 
             lineChart.rightAxis.enabled = false
+        lineChart.scaleXEnabled = true
         
             let yAxis = lineChart.leftAxis
             yAxis.labelFont = .boldSystemFont(ofSize: 8)
@@ -176,12 +247,13 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
         lineChart.xAxis.labelPosition = .bottom
         lineChart.xAxis.avoidFirstLastClippingEnabled = true
         lineChart.xAxis.granularity = 1
-
+        lineChart.xAxis.labelRotationAngle = -45
         lineChart.xAxis.labelFont = .systemFont(ofSize: 12)
         lineChart.xAxis.axisLineColor = .white
         lineChart.xAxis.labelTextColor = .white
         lineChart.xAxis.drawGridLinesEnabled = false
         lineChart.legend.font = .systemFont(ofSize: 10)
+//        lineChart.xAxis.setLabelCount(8, force: true)
         
         lineChart.legend.textColor = .white
   
@@ -193,7 +265,6 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
         
         let dataSetIndex = highlight.dataSetIndex
     
-        
         let stringValue = String(format: "%.0f", highlight.y)
       
         guard let dataSet = chartView.data?.dataSets[highlight.dataSetIndex] else { return }
@@ -228,6 +299,7 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
             repsValue.text = repsEntryData
             weightValue.text = "\(stringValue)kg"
         }
+
     }
     
   
@@ -235,7 +307,7 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
     
     
     func setData(entries: [LineChartDataSet]) {
-
+        
         for set in entries {
 
         set.mode = .cubicBezier
@@ -269,21 +341,19 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
         func findTrainingVolume() {
             
             dateCount = 0
+            numberOfColors = 0
            
-            
             lineChartEntry1 = []
             dataSets = []
             let group2 = DispatchGroup()
             
-     
-           
             
-            for (key, value) in retrievedExercise {
+            for (key, value) in retrievedAllWorkouts {
                 group2.enter()
                 numberOfColors += 1
                 lineChartEntry1 = []
                 for values in value {
-//                    print("VALUES \(value)")
+                    
                     let date = values.date
 
                     dateCount += 1
@@ -302,7 +372,7 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
                 print("LINE CHART ENTRY BBBBBBBBBBBOO \(lineChartEntry1)")
                 let set = LineChartDataSet(entries: lineChartEntry1, label: "\(key)")
                 print(" A TO SET \(set)")
-//                set.setColor(colors[numberOfColors])
+                set.setColor(colors[numberOfColors])
                 
                 dataSets.append(set)
                 group2.leave()
@@ -311,59 +381,60 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
             group2.notify(queue: .main) {
                 self.setData(entries: self.dataSets)
             }
-//            lineChartEntry1 = []
-//            dataSets = []
-//
-//            let group2 = DispatchGroup()
-//
-//            for (key,value) in retrievedExercise {
-//
-//                // Trzeba workouty pozbierac do kupy i dopiero append
-//                group2.enter()
-//                numberOfColors += 1
-//                for values in value {
-//                    print("value \(value)")
-//                let date = values.date
-//
-//                let timeInterval = date.timeIntervalSince1970
-//                let xValue = (timeInterval - referenceTimeInterval) / (3600 * 24)
-//
-//                    let volume = values.volume
-//
-//                    lineChartEntry1.append(ChartDataEntry(x: xValue, y: Double(volume)))
-//                    print("Volume \(volume)")
-//                }
-//
-//                lineChartEntry1.sort(by: { $0.x < $1.x})
-//
-//
-//                let set = LineChartDataSet(entries: lineChartEntry1, label: "\(key)")
-//                set.setColor(colors[numberOfColors])
-//                dataSets.append(set)
-//
-//                group2.leave()
-//            }
-//
-//            group2.notify(queue: .main) {
-//                self.setData(entries: self.dataSets)
-//                print("DYMY DATA SET \(self.dataSets)")
-//
-//
-//            }
-//
-//            print("DATA ENTRY \(dataEntry)")
         }
+    
+    func findByExercise(criteria: String) {
+        
+        lineChartEntry1 = []
+        dataSets = []
+        
+        let group2 = DispatchGroup()
+        
+        var titleOfExercise: String = ""
+     
+        
+        for value in retrievedByExercise {
+            group2.enter()
+            let date = value.date
+            
+            let timeInterval = date.timeIntervalSince1970
+            let xValue = (timeInterval - referenceTimeInterval) / (3600 * 24)
+            
+            let weight = value.maxWeight
+            let volume = value.volume
+            
+            let highlightedValue = HighlightedExercise(reps: value.maxReps, sets: value.sets)
+            titleOfExercise = value.exerciseTitle
+            
+            if criteria == "Weight" {
+            lineChartEntry1.append(ChartDataEntry(x: xValue, y: Double(weight), data: highlightedValue))
+            }
+            else {
+                lineChartEntry1.append(ChartDataEntry(x: xValue, y: Double(volume), data: highlightedValue))
+            }
+            group2.leave()
+        }
+       
+        lineChartEntry1.sort(by: { $0.x < $1.x})
+        let set = LineChartDataSet(entries: lineChartEntry1, label: "\(titleOfExercise)")
+        group2.notify(queue: .main) {
+   
+            self.dataSets.append(set)
+            self.setData(entries: self.dataSets)
+        print("set \([set])")
+        }
+        
+        
+        
+    }
 
     func findMaxValue() {
         
         dateCount = 0
-       
-        
+       numberOfColors = 0
         lineChartEntry1 = []
         dataSets = []
         let group2 = DispatchGroup()
-        
-
         
         for (key, value) in retrievedExerciseMax {
             group2.enter()
@@ -386,13 +457,14 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
             
             lineChartEntry1.sort(by: { $0.x < $1.x})
             let set = LineChartDataSet(entries: lineChartEntry1, label: "\(key)")
-//            set.setColor(colors[numberOfColors])
+            set.setColor(colors[numberOfColors])
             
             dataSets.append(set)
             group2.leave()
         }
         
         group2.notify(queue: .main) {
+            print("DATA SETs \(self.dataSets)")
             self.setData(entries: self.dataSets)
         }
     }
@@ -416,21 +488,127 @@ func retrieveDocumentsArray() {
 }
     
     //MARK: - FIRESTORE
+    
+    func getExercisesForSelectedWorkout() {
+//        exercisesForSelectedWorkout = []
+        let service = Service()
+        if let workoutTitle = workoutTitle.text {
+        service.getDocumentsTitle(workout: workoutTitle) { (result) in
+            self.exercisesForSelectedWorkout = result
+        }
+        }
+    }
+    
+    func getDataByVolume(titles: [String]) {
+        
+        formatter.dateFormat = "yyyy-MM-dd HH:mm"
+        formatter.timeZone = TimeZone.current
+        let group2 = DispatchGroup()
+        
+        for title in titles {
+            group2.enter()
+        db.collection("users").document("\(user!.uid)").collection("WorkoutsName").document("\(title)").collection("Calendar").getDocuments(completion:  { (querySnapshot, error) in
+            if let error = error {
+                print("\(error.localizedDescription)")
+            }
+            else {
+                if let documents = querySnapshot?.documents {
+                    
+                    for doc in documents {
+                        
+                        let data = doc.data()
+                        
+                        if let volume = data["Volume"] as? Int, let reps = data["Reps"] as? Int, let time = data["Time"] as? String, let weight = data["Weight"] as? Int {
 
-    func getData(title: [String]) {
+                            let dateDocumentID = self.formatter.date(from: doc.documentID)
+        
+                            guard let dateConverted = dateDocumentID?.removeTimeStamp else {return}
+   
+//                            guard let dateFormattedToDate = self.formatter.date(from: doc.documentID) else {return}
+                         
+                            let newData = RetrievedWorkoutsByVolume(reps: reps, time: time, volume: volume, weight: weight, date: dateConverted)
+                            
+                         
+                            
+                            self.retrievedAllWorkouts["\(title)", default: []].append(newData)
+                        }
+        
+                    }
+                }
+                group2.leave()
+            }
+        })
+            
+        }
+      
+        group2.notify(queue: .main) {
+            print("ALL WORKOUTS \(self.retrievedAllWorkouts)")
+            self.convertDateForAxis()
+            self.findTrainingVolume()
+        }
+    
+
+    }
+    
+    func getDataByExercise(title: String, document: String) {
+        
+        retrievedByExercise = []
+        
+        let group = DispatchGroup()
+        group.enter()
+        db.collection("users").document("\(user!.uid)").collection("WorkoutsName").document("\(title)").collection("Exercises").document("\(document)").collection("History").getDocuments(completion:  { (querySnapshot, error) in
+            if let error = error {
+                print("\(error.localizedDescription)")
+            }
+            else {
+                
+                if let documents = querySnapshot?.documents {
+                    
+                    for doc in documents {
+                        
+                        let data = doc.data()
+                        
+                        if let docSets = data["Sets"] as? [String: [String:String]], let max = data["Max"] as? [String:Int] {
+                            
+                            if let date = data["date"] as? String, let maxWeight = max["weight"] , let maxReps = max["doneReps"], let volume = data["Volume"] as? Int {
+                                
+                                guard let dateFormattedToDate = self.formatter.date(from: date) else {return}
+                               
+                                let newModel = RetrievedWorkoutsByExercise(exerciseTitle: "\(document)", sets: docSets.count, maxWeight: maxWeight, maxReps: maxReps, date: dateFormattedToDate, volume: volume)
+                                
+                                self.retrievedByExercise.append(newModel)
+                                print("DONE DONE")
+
+                                
+                    }
+                }
+            }
+        }
+                group.leave()
+            }
+        })
+        group.notify(queue: .main) {
+            print("rere \(self.retrievedByExercise)")
+        self.convertDateForAxis()
+            self.findByExercise(criteria: "Weight")
+            print("OLABOGAA")
+        }
+    }
+
+    func getData(title: String) {
         
         formatter.dateFormat = "yyyy-MM-dd"
         formatter.timeZone = TimeZone.current
         let group = DispatchGroup()
         
-        retrievedExercise = [:]
+//        retrievedExercise = [:]
         retrievedExerciseMax = [:]
 
         if let dictionaryOfTitleDocuments = arrayOfTitleDocuments {
-            for titles in title {
-        for document in dictionaryOfTitleDocuments[titles]! {
+           
+        for document in dictionaryOfTitleDocuments[title]! {
             group.enter()
-        db.collection("users").document("\(user!.uid)").collection("WorkoutsName").document("\(titles)").collection("Exercises").document("\(document)").collection("History").getDocuments(completion:  { (querySnapshot, error) in
+        db.collection("users").document("\(user!.uid)").collection("WorkoutsName").document("\(title)").collection("Exercises").document("\(document)").collection("History").getDocuments(completion:  { (querySnapshot, error) in
             if let error = error {
                 print("\(error.localizedDescription)")
             }
@@ -442,33 +620,24 @@ func retrieveDocumentsArray() {
                     
                         let data = doc.data()
         
-                        if let docSets = data["Sets"] as? [String: [String:String]], let max = data["Max"] as? [String:Int], let volume = data["Volume"] as? Int {
+                        if let docSets = data["Sets"] as? [String: [String:String]], let max = data["Max"] as? [String:Int] {
                             
-                            if let date = data["date"] as? String, let maxWeight = max["weight"], let maxReps = max["doneReps"] {
+                            if let date = data["date"] as? String, let maxWeight = max["weight"] , let maxReps = max["doneReps"], let volume = data["Volume"] as? Int {
                                 
                                 guard let dateFormattedToDate = self.formatter.date(from: date) else {return}
                                
-                                let newModelMax = RetrievedWorkoutMax(workoutTitle: titles, exerciseTitle: "\(document)", sets: (docSets.count), maxWeight: maxWeight, maxReps: maxReps,date: dateFormattedToDate, volume: volume)
-                                let newModel = RetrievedWorkout(workoutTitle: titles, exerciseTitle: "\(document)", sets: ("\(docSets.count)"), date: dateFormattedToDate, volume: volume)
+                                let newModelMax = RetrievedWorkoutMax(workoutTitle: title, exerciseTitle: "\(document)", sets: (docSets.count), maxWeight: maxWeight, maxReps: maxReps,date: dateFormattedToDate, volume: volume)
+
                                 self.retrievedExerciseMax["\(document)", default: []].append(newModelMax)
-                                self.retrievedExercise["\(titles)", default: []].append(newModel)
-                
-//                            for _ in docSets {
-//                            self.int += 1
-//                                if let weight = docSets["\(self.int)"]?["kg"], let reps = docSets["\(self.int)"]?["reps"] {
-//
-//                                    let newModel = RetrievedWorkout(workoutTitle: "\(title)", exerciseTitle: "\(document)", weight: weight, reps: reps, sets: "\(self.int)", date: dateFormattedToDate, volume: volume)
-//
-//                            self.retrievedExercise["\(titles)", default: []].append(newModel)
-//
-//                        }
-//                        }
+
                             }
                             }
                         }
+                   
         }
-                    group.leave()
+                group.leave()
     }
+         
 })
         
 }
@@ -477,17 +646,14 @@ func retrieveDocumentsArray() {
          
             group.notify(queue: .main) {
                 self.convertDateForAxis()
-                if title == self.arrayOfTitles {
-                self.findTrainingVolume()
-            }
-                else {
                     self.findMaxValue()
+                print("Retrieved \(self.retrievedExerciseMax)")
                 }
 }
     }
 
-}
-}
+
+
 
 extension UISegmentedControl {
     func clearBG(color: UIColor) {
