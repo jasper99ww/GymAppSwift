@@ -25,7 +25,7 @@ class ExercisesPopUp: UIViewController, UIPickerViewDelegate, UIPickerViewDataSo
     }
     
     func getWorkoutsTitle() {
-            exercises.insert("ALL EXERCISES", at: 0)
+            exercises.insert("All exercises", at: 0)
         
         }
         

@@ -138,12 +138,12 @@
                                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" translatesAutoresizingMaskIntoConstraints="NO" id="IH2-zl-IiO">
                                                         <rect key="frame" x="0.0" y="33" width="115" height="87"/>
                                                         <subviews>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="12" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Wu-nc-aDM">
+                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="1h 30m" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="6Wu-nc-aDM">
                                                                 <rect key="frame" x="0.0" y="0.0" width="115" height="50"/>
                                                                 <constraints>
                                                                     <constraint firstAttribute="height" constant="50" id="vFP-Yd-Mrb"/>
                                                                 </constraints>
-                                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="33"/>
+                                                                <fontDescription key="fontDescription" type="system" weight="light" pointSize="28"/>
                                                                 <color key="textColor" red="0.99999600649999998" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                                 <nil key="highlightedColor"/>
                                                             </label>
@@ -230,7 +230,6 @@
                                         <inset key="imageEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
                                         <state key="normal" title="Weight" image="chevron.down" catalog="system"/>
                                         <connections>
-                                            <action selector="selectByButtonTapped:" destination="6kQ-kc-Vuz" eventType="touchUpInside" id="I5b-BN-fMP"/>
                                             <segue destination="37m-cX-Jg9" kind="presentation" identifier="toCriteriaSelection" modalPresentationStyle="overCurrentContext" id="s2h-6c-VHu"/>
                                         </connections>
                                     </button>
@@ -243,15 +242,16 @@
                                     <constraint firstAttribute="width" constant="120" id="jYX-Ad-NeV"/>
                                 </constraints>
                             </view>
-                            <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nmo-sz-OBZ">
-                                <rect key="frame" x="10" y="0.0" width="123.5" height="23"/>
+                            <button opaque="NO" contentMode="scaleToFill" semanticContentAttribute="forceRightToLeft" contentHorizontalAlignment="left" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Nmo-sz-OBZ">
+                                <rect key="frame" x="10" y="0.0" width="155.5" height="23"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="23" id="5Ag-4l-Yze"/>
+                                    <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="150" id="hUy-hp-QBL"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="system" pointSize="19"/>
                                 <color key="tintColor" red="0.25140050050000001" green="0.48750680689999998" blue="0.30246680970000001" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <inset key="imageEdgeInsets" minX="10" minY="0.0" maxX="0.0" maxY="0.0"/>
-                                <state key="normal" title="All exercises" image="chevron.down" catalog="system"/>
+                                <state key="normal" title="Select exercises" image="chevron.down" catalog="system"/>
                                 <connections>
                                     <segue destination="m7J-Rd-ypC" kind="presentation" identifier="toExerciseSelection" modalPresentationStyle="overCurrentContext" id="6Qj-3e-BXZ"/>
                                 </connections>
@@ -270,7 +270,6 @@
                             <constraint firstItem="gd2-5v-BpX" firstAttribute="top" secondItem="8Ol-8M-8hb" secondAttribute="bottom" constant="8" symbolic="YES" id="VyI-9p-eFH"/>
                             <constraint firstItem="EsF-9O-9GY" firstAttribute="top" secondItem="Nmo-sz-OBZ" secondAttribute="bottom" constant="37" id="a4U-Uh-3gk"/>
                             <constraint firstItem="EsF-9O-9GY" firstAttribute="leading" secondItem="mwh-9K-b1q" secondAttribute="leading" constant="10" id="bdR-BM-09Z"/>
-                            <constraint firstItem="Nmo-sz-OBZ" firstAttribute="top" secondItem="mwh-9K-b1q" secondAttribute="top" id="jRX-aE-Q7M"/>
                             <constraint firstItem="EsF-9O-9GY" firstAttribute="top" secondItem="Nmo-sz-OBZ" secondAttribute="bottom" constant="37" id="u5w-vM-QMd"/>
                             <constraint firstItem="8Ol-8M-8hb" firstAttribute="top" secondItem="EsF-9O-9GY" secondAttribute="bottom" constant="10" id="vXP-Qd-z1K"/>
                             <constraint firstItem="8Ol-8M-8hb" firstAttribute="trailing" secondItem="mwh-9K-b1q" secondAttribute="trailing" id="wfa-Ya-6Sw"/>
@@ -288,17 +287,20 @@
                         </barButtonItem>
                     </navigationItem>
                     <connections>
+                        <outlet property="changeLabel" destination="zcJ-6O-nfL" id="LLY-cx-KFJ"/>
                         <outlet property="changeValue" destination="Yh5-pw-yYr" id="CPO-IA-pWo"/>
                         <outlet property="changeView" destination="SDC-ca-MjQ" id="S3I-ew-5rJ"/>
                         <outlet property="lineChart" destination="15p-1Z-Lp1" id="63m-gN-WJE"/>
+                        <outlet property="repsLabel" destination="dUC-fE-vRa" id="d3x-Wn-sUb"/>
                         <outlet property="repsValue" destination="6Wu-nc-aDM" id="qdk-6V-rcL"/>
                         <outlet property="repsView" destination="eaP-fZ-sPx" id="ANS-CG-0Db"/>
                         <outlet property="segmentedControl" destination="gd2-5v-BpX" id="aj0-d2-DPr"/>
                         <outlet property="selectAlert" destination="KI2-ZR-Hhe" id="zQc-9H-kZ0"/>
                         <outlet property="selectBy" destination="EsF-9O-9GY" id="4SY-Uc-mc7"/>
-                        <outlet property="selectByButton" destination="CFb-7E-hMm" id="QoH-gu-zbz"/>
+                        <outlet property="selectByButton" destination="CFb-7E-hMm" id="hzj-cm-lMf"/>
                         <outlet property="selectExercise" destination="Nmo-sz-OBZ" id="uUD-hX-jen"/>
                         <outlet property="viewChart" destination="8Ol-8M-8hb" id="hlr-of-ihl"/>
+                        <outlet property="weightLabel" destination="m68-yT-dYO" id="kNk-MY-KB4"/>
                         <outlet property="weightValue" destination="gvu-Rp-reG" id="yoJ-Ku-Qft"/>
                         <outlet property="weightView" destination="uA6-qQ-Onw" id="f77-vF-Ykn"/>
                     </connections>
