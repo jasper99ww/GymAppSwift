@@ -207,7 +207,8 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         var docSets : [String : [String:String]] = [:]
         var docArray: [String:String] = [:]
         var maxValue = [String:Int]()
-      
+      weightArraySend = []
+        repsArraySend = []
 
 //        var experiment: [docSetsCodable] = []
        

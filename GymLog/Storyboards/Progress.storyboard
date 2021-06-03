@@ -73,6 +73,9 @@
                                     <segment title="YEAR"/>
                                 </segments>
                                 <color key="selectedSegmentTintColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                <connections>
+                                    <action selector="segmentedControlChanged:" destination="6kQ-kc-Vuz" eventType="valueChanged" id="tHF-HG-RYA"/>
+                                </connections>
                             </segmentedControl>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="equalSpacing" spacing="15" translatesAutoresizingMaskIntoConstraints="NO" id="Wby-ha-kSv">
                                 <rect key="frame" x="14" y="550" width="386" height="140"/>

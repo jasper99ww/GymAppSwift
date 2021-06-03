@@ -61,7 +61,8 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
     
     let formatter = DateFormatter()
     var dateCount: Int = 0
-
+    let calendar = Calendar(identifier: .iso8601)
+    
     var workoutTitle = UILabel()
     var exercisesForSelectedWorkout: [String] = []
     @IBOutlet weak var selectAlert: UIBarButtonItem!
@@ -98,6 +99,7 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
     var arrayOfTitles: [String] = []
     var arrayOfTitleDocuments:  [String: [String]]? = [:]
     var retrievedExerciseMax: [String: [RetrievedWorkoutMax]] = [:]
+    var retrievedExerciseMaxWithSelection: [String: [RetrievedWorkoutMax]] = [:]
     var retrievedAllWorkouts: [String: [RetrievedWorkoutsByVolume]] = [:]
     var retrievedByExercise: [RetrievedWorkoutsByExercise] = []
     var int = 0
@@ -115,174 +117,32 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
         controlSegmentSetUp()
         setUpViews()
         getData(title: "Workout4")
+//        self.getDataByVolume(titles: self.arrayOfTitles)
 
+    }
+    
+    override func viewDidDisappear(_ animated: Bool) {
+        print(" poczatek miesiace \(Date().firstDateOfMonth()) koniec \(Date().lastDateOfMonth()))")
+        
     }
  
     
-    //MARK: - POP UP DATA
+    //MARK: - MAKING PERIOD OF TIME SELECTION
     
-    func changeLabelsForVolume() {
-        
-        weightLabel.text = "VOLUME"
-        repsLabel.text = "TIME"
-     
-    }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == "toWorkoutSelection" {
-            let popup = segue.destination as! ProgressPopUpView
-            
-            popup.selectedWorkoutChart = { text in
-
-                self.workoutTitle.text = text
-                if text == "ALL WORKOUTS" {
-                    self.getDataByVolume(titles: self.arrayOfTitles)
-                    self.selectByButton.setTitle("Volume", for: .normal)
-                    self.selectExercise.isUserInteractionEnabled = false
-                    self.selectByButton.isUserInteractionEnabled = false
-                    self.changeLabelsForVolume()
-                
-                } else {
-//                    self.getData(title: text)
-                    self.getDataByVolume(titles: [text])
-                    self.selectExercise.isUserInteractionEnabled = true
-                    self.selectByButton.isUserInteractionEnabled = false
-                }
-//                self.selectExercise.setTitle("All exercises", for: .normal)
-                self.lineChart.notifyDataSetChanged()
-                self.checkIfWorkoutIsSelected = true
-                self.getExercisesForSelectedWorkout()
-            }
-        }
-        
-        if checkIfWorkoutIsSelected == true {
-        if segue.identifier == "toExerciseSelection" {
-            let popup = segue.destination as! ExercisesPopUp
-            
-            popup.exercises = exercisesForSelectedWorkout
-            popup.selectedExercise = { text in
-
-                self.selectExercise.setTitle(text, for: .normal)
-                if text == "All exercises" {
-                    self.getData(title:  self.workoutTitle.text!)
-                 
-                } else {
-                    self.getDataByExercise(title: self.workoutTitle.text!, document: text)
-                    print("OK OK")
-                }
-                
-                self.lineChart.notifyDataSetChanged()
-                self.selectByButton.isUserInteractionEnabled = true
-            }
-            }
-            
-        }
-        
-        if segue.identifier == "toCriteriaSelection" {
-            let popup = segue.destination as! CriteriaOfSelectViewController
-            popup.selectedCriteria = { criteria in
-                
-                self.selectByButton.setTitle(criteria, for: .normal)
-                
-                if criteria == "Volume" {
-                    if self.selectExercise.titleLabel?.text == "All exercises" {
-//                       self.findTrainingVolume(ex: [self.workoutTitle.text!])
-                        self.findMaxValue(type: "Volume")
-                   
-                    } else {
-                        self.findByExercise(criteria: "Volume")
-                    }
-                    self.changeLabelsForVolume()
-                } else {
-                    if self.selectExercise.titleLabel?.text == "All exercises" {
-                        self.findMaxValue(type: "Weight")
-                    } else {
-                        self.findByExercise(criteria: "Weight")
-                    }
-
-                }
-                self.lineChart.notifyDataSetChanged()
-            }
+    @IBAction func segmentedControlChanged(_ sender: UISegmentedControl) {
+        if sender.selectedSegmentIndex == 0 {
+            findMaxValueWithSelection(type: "Weight", period: "week")
+            print("tapped Week")
+        } else if sender.selectedSegmentIndex == 1 {
+            findMaxValueWithSelection(type: "Weight", period: "month")
+            print("tapped Month")
+        } else if sender.selectedSegmentIndex == 2 {
+            findMaxValueWithSelection(type: "Weight", period: "year")
+            print("tapped Year")
         }
     }
     
-    //MARK: - SET UP UI
-
-    func setUpNavigationBarItems() {
-        
-        let titleView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
-      
-        workoutTitle = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 40))
-        workoutTitle.textAlignment = .left
-        workoutTitle.text = "Progress Charts"
-        workoutTitle.textColor = .white
-        workoutTitle.font = UIFont.systemFont(ofSize: 28)
-      
-        titleView.addSubview(workoutTitle)
-        navigationItem.titleView = titleView
-    
-        if let navigationBar = navigationController?.navigationBar {
-            titleView.leadingAnchor.constraint(equalTo: navigationBar.leadingAnchor, constant: 10).isActive = true
-        }
-    }
-    
-    func setUpViews() {
-        
-        weightView.layer.cornerRadius = 10
-        repsView.layer.cornerRadius = 10
-        changeView.layer.cornerRadius = 10
-        selectBy.layer.cornerRadius = 15
-        
-    }
-    
-    func controlSegmentSetUp() {
-        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.darkGray], for: .normal)
-        let greenColor = UIColor.init(red: 48/255, green: 173/255, blue: 99/255, alpha: 1)
-        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: greenColor], for: .selected)
-
-        if let viewColor = view.backgroundColor {
-        segmentedControl.clearBG(color: viewColor)
-        }
-    }
-    
-    //MARK: - SET CHART PROPERTIES
-    
-    func setChartProperties() {
- 
-        viewChart.layer.cornerRadius = 20
-            lineChart.backgroundColor = .clear
-            lineChart.extraBottomOffset = 25
-
-            lineChart.rightAxis.enabled = false
-        lineChart.scaleXEnabled = true
-        
-            let yAxis = lineChart.leftAxis
-            yAxis.labelFont = .boldSystemFont(ofSize: 8)
-            yAxis.setLabelCount(6, force: false)
-            yAxis.axisMinimum = 0
-            yAxis.labelTextColor = .white
-            yAxis.axisLineColor = .clear
-            yAxis.labelPosition = .outsideChart
-            yAxis.drawGridLinesEnabled = true
-
-          
-        lineChart.xAxis.labelPosition = .bottom
-        lineChart.xAxis.avoidFirstLastClippingEnabled = true
-        lineChart.xAxis.granularity = 1
-        lineChart.xAxis.labelRotationAngle = -45
-        lineChart.xAxis.labelFont = .systemFont(ofSize: 12)
-        lineChart.xAxis.axisLineColor = .white
-        lineChart.xAxis.labelTextColor = .white
-        lineChart.xAxis.drawGridLinesEnabled = false
-        lineChart.legend.font = .systemFont(ofSize: 10)
-//        lineChart.xAxis.setLabelCount(8, force: true)
-        
-        lineChart.legend.textColor = .white
-  
-        self.lineChart.animate(xAxisDuration: 0.04 * Double(self.lineChartEntry1.count), easingOption: .linear)
-
-    }
-    
+   
     func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
         
         let dataSetIndex = highlight.dataSetIndex
@@ -360,22 +220,14 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
             self.setChartProperties()
        
     }
-    
+  
     func convertDateForAxis() {
         
         if let minTimeInterval = (retrievedExerciseMax.compactMap({$0.value}).compactMap({$0.compactMap({$0.date})}).min(by: {$0[0].timeIntervalSince1970 < $1[0].timeIntervalSince1970}))?.min() {
             referenceTimeInterval = minTimeInterval.timeIntervalSince1970
         }
-        let dateFormatter = DateFormatter()
-        lineChart.xAxis.valueFormatter = ChartXAxisFormatter(referenceTimeInterval: referenceTimeInterval, dateFormatter: dateFormatter)
+
     }
-    
-    func findVolumeForAllExercises() {
-        
-        
-        
-    }
-    
     
     func findTrainingVolume(ex: [String]) {
             
@@ -401,6 +253,8 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
                     let date = values.date
 
                     dateCount += 1
+                    
+                
                     let timeInterval = date.timeIntervalSince1970
                     let xValue = (timeInterval - referenceTimeInterval) / (3600 * 24)
                     
@@ -470,36 +324,99 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
    
             self.dataSets.append(set)
             self.setData(entries: self.dataSets)
-        print("setTETETETETE \([set])")
+  
         }
-        
-        
-        
+      
     }
+    
+    func forLoopingForMonth() {
 
-    func findMaxValue(type: String) {
+        let group4 = DispatchGroup()
+        for (key, value) in retrievedExerciseMax {
+            group4.enter()
+            for values in value where values.date >= Date().firstDateOfMonth() && values.date <= Date().lastDateOfMonth() {
+                
+                self.retrievedExerciseMaxWithSelection[key, default: []].append(values)
+            }
+            group4.leave()
+    }
         
-        dateCount = 0
-       numberOfColors = 0
-        lineChartEntry1 = []
-        dataSets = []
-        let group2 = DispatchGroup()
+        referenceTimeInterval = (Date().firstDateOfMonth().timeIntervalSince1970)
+        group4.notify(queue: .main) {
+            print("DONE LOOPING FOR MONTH")
+        }
+}
+    
+    func forLoopingForWeek() {
+ 
+        retrievedExerciseMaxWithSelection = [:]
+        let group4 = DispatchGroup()
         
         for (key, value) in retrievedExerciseMax {
+            group4.enter()
+            for values in value where values.date >= (calendar.currentWeekBoundary()?.startOfWeek)! && values.date <=
+                (calendar.currentWeekBoundary()?.endOfWeek)! {
+    
+                self.retrievedExerciseMaxWithSelection[key, default: []].append(values)
+                        print("value \(values)")
+                 
+    }
+            group4.leave()
+            }
+      
+        referenceTimeInterval = (calendar.currentWeekBoundary()?.startOfWeek)!.timeIntervalSince1970
+        group4.notify(queue: .main) {
+            print("DONE LOOPING FOR WEEK")
+        }
+}
+    
+
+    func findMaxValueWithSelection(type: String, period: String) {
+        
+        let group2 = DispatchGroup()
+        lineChartEntry1 = []
+        dataSets = []
+        retrievedExerciseMaxWithSelection = [:]
+        print("STarted")
+     
+      
+        if period == "year" {
+            group2.enter()
+          retrievedExerciseMaxWithSelection = retrievedExerciseMax
+            convertDateForAxis()
+            group2.leave()
+        } else if period == "month" {
+            group2.enter()
+            forLoopingForMonth()
+            group2.leave()
+        } else if period == "week" {
+            group2.enter()
+            forLoopingForWeek()
+            group2.leave()
+        } else {
+            print("weird")
+        }
+       
+        let dateFormatter = DateFormatter()
+        lineChart.xAxis.valueFormatter = ChartXAxisFormatter(referenceTimeInterval: referenceTimeInterval, dateFormatter: dateFormatter)
+        numberOfColors = 0
+        
+
+        for (key, value) in retrievedExerciseMaxWithSelection {
             group2.enter()
             numberOfColors += 1
             lineChartEntry1 = []
             for values in value {
                
-                let date = values.date
-
                 dateCount += 1
-                let timeInterval = date.timeIntervalSince1970
-                let xValue = (timeInterval - referenceTimeInterval) / (3600 * 24)
+                
+                let timeInterval = values.date.timeIntervalSince1970
                 
                 let maxWeight = Double(values.maxWeight)
                 let volume = Double(values.volume)
                 let highlightedValue = HighlightedExercise(reps: values.maxReps, sets: values.sets, time: "")
+
+                let xValue = (timeInterval - referenceTimeInterval) / (3600 * 24)
                 
                 if type == "Weight" {
                     lineChartEntry1.append(ChartDataEntry(x: xValue, y: Double(maxWeight), data: highlightedValue))
@@ -518,11 +435,62 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
         }
         
         group2.notify(queue: .main) {
-            print("DATA SETs \(self.dataSets)")
+
+            self.setData(entries: self.dataSets)
+         
+        }
+        
+    }
+    
+    func findMaxValue(type: String, period: String) {
+        
+        dateCount = 0
+        numberOfColors = 0
+        lineChartEntry1 = []
+        dataSets = []
+        
+        let group2 = DispatchGroup()
+      
+        let dateFormatter = DateFormatter()
+        lineChart.xAxis.valueFormatter = ChartXAxisFormatter(referenceTimeInterval: referenceTimeInterval, dateFormatter: dateFormatter)
+       
+        for (key, value) in retrievedExerciseMax {
+            group2.enter()
+            numberOfColors += 1
+            lineChartEntry1 = []
+            for values in value {
+               
+                dateCount += 1
+                
+                var timeInterval = values.date.timeIntervalSince1970
+                
+                let maxWeight = Double(values.maxWeight)
+                let volume = Double(values.volume)
+                let highlightedValue = HighlightedExercise(reps: values.maxReps, sets: values.sets, time: "")
+
+                let xValue = (timeInterval - referenceTimeInterval) / (3600 * 24)
+                
+                if type == "Weight" {
+                    lineChartEntry1.append(ChartDataEntry(x: xValue, y: Double(maxWeight), data: highlightedValue))
+                } else {
+                    lineChartEntry1.append(ChartDataEntry(x: xValue, y: Double(volume), data: highlightedValue))
+                }
+       
+            }
+            
+            lineChartEntry1.sort(by: { $0.x < $1.x})
+            let set = LineChartDataSet(entries: lineChartEntry1, label: "\(key)")
+            set.setColor(colors[numberOfColors])
+            
+            dataSets.append(set)
+            group2.leave()
+        }
+        
+        group2.notify(queue: .main) {
             self.setData(entries: self.dataSets)
         }
     }
- 
+    
     
     //MARK: - UserDefaults
 
@@ -634,7 +602,6 @@ func retrieveDocumentsArray() {
                                 let newModel = RetrievedWorkoutsByExercise(exerciseTitle: "\(document)", sets: docSets.count, maxWeight: maxWeight, maxReps: maxReps, date: dateFormattedToDate, volume: volume)
                               
                                 self.retrievedByExercise.append(newModel)
-                                print("DONE DONE")
                     }
                 }
                  
@@ -648,9 +615,7 @@ func retrieveDocumentsArray() {
             print("rere \(self.retrievedByExercise)")
         self.convertDateForAxis()
             self.findByExercise(criteria: "Weight")
-            print("OLABOGAA")
         }
-        print("TOTO \(retrievedByExercise)")
     }
 
     func getData(title: String) {
@@ -695,23 +660,185 @@ func retrieveDocumentsArray() {
         }
                 group.leave()
     }
-         
 })
-        
 }
-        
     }
          
             group.notify(queue: .main) {
                 self.convertDateForAxis()
-                self.findMaxValue(type: "Weight")
-                print("Retrieved \(self.retrievedExerciseMax)")
+                self.findMaxValue(type: "Weight", period: "year")
+                
                 }
 }
+    
+    //MARK: -SEGUES
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toWorkoutSelection" {
+            let popup = segue.destination as! ProgressPopUpView
+            
+            popup.selectedWorkoutChart = { text in
+
+                self.workoutTitle.text = text
+                if text == "ALL WORKOUTS" {
+                    self.getDataByVolume(titles: self.arrayOfTitles)
+                    self.selectByButton.setTitle("Volume", for: .normal)
+                    self.selectExercise.isUserInteractionEnabled = false
+                    self.selectByButton.isUserInteractionEnabled = false
+                    self.changeLabelsForVolume()
+                
+                } else {
+//                    self.getData(title: text)
+                    self.getDataByVolume(titles: [text])
+                    self.selectExercise.isUserInteractionEnabled = true
+                    self.selectByButton.isUserInteractionEnabled = false
+                }
+//                self.selectExercise.setTitle("All exercises", for: .normal)
+                self.lineChart.notifyDataSetChanged()
+                self.checkIfWorkoutIsSelected = true
+                self.getExercisesForSelectedWorkout()
+            }
+        }
+        
+        if checkIfWorkoutIsSelected == true {
+        if segue.identifier == "toExerciseSelection" {
+            let popup = segue.destination as! ExercisesPopUp
+            
+            popup.exercises = exercisesForSelectedWorkout
+            popup.selectedExercise = { text in
+
+                self.selectExercise.setTitle(text, for: .normal)
+                if text == "All exercises" {
+                    self.getData(title:  self.workoutTitle.text!)
+                 
+                } else {
+                    self.getDataByExercise(title: self.workoutTitle.text!, document: text)
+                    print("OK OK")
+                }
+                
+                self.lineChart.notifyDataSetChanged()
+                self.selectByButton.isUserInteractionEnabled = true
+            }
+            }
+            
+        }
+        
+        if segue.identifier == "toCriteriaSelection" {
+            let popup = segue.destination as! CriteriaOfSelectViewController
+            popup.selectedCriteria = { criteria in
+                
+                self.selectByButton.setTitle(criteria, for: .normal)
+                
+                if criteria == "Volume" {
+                    if self.selectExercise.titleLabel?.text == "All exercises" {
+//                       self.findTrainingVolume(ex: [self.workoutTitle.text!])
+                        self.findMaxValue(type: "Volume", period: "year")
+                   
+                    } else {
+                        self.findByExercise(criteria: "Volume")
+                    }
+                    self.changeLabelsForVolume()
+                } else {
+                    if self.selectExercise.titleLabel?.text == "All exercises" {
+                        self.findMaxValue(type: "Weight", period: "year")
+                    } else {
+                        self.findByExercise(criteria: "Weight")
+                    }
+
+                }
+                self.lineChart.notifyDataSetChanged()
+            }
+        }
     }
+    
+    //MARK: - SET UP UI
 
+    func setUpNavigationBarItems() {
+        
+        let titleView = UIView(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: UIScreen.main.bounds.height))
+      
+        workoutTitle = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 40))
+        workoutTitle.textAlignment = .left
+        workoutTitle.text = "Progress Charts"
+        workoutTitle.textColor = .white
+        workoutTitle.font = UIFont.systemFont(ofSize: 28)
+      
+        titleView.addSubview(workoutTitle)
+        navigationItem.titleView = titleView
+    
+        if let navigationBar = navigationController?.navigationBar {
+            titleView.leadingAnchor.constraint(equalTo: navigationBar.leadingAnchor, constant: 10).isActive = true
+        }
+    }
+    
+    func setUpViews() {
+        
+        weightView.layer.cornerRadius = 10
+        repsView.layer.cornerRadius = 10
+        changeView.layer.cornerRadius = 10
+        selectBy.layer.cornerRadius = 15
+        
+    }
+    
+    func controlSegmentSetUp() {
+        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.darkGray], for: .normal)
+        let greenColor = UIColor.init(red: 48/255, green: 173/255, blue: 99/255, alpha: 1)
+        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: greenColor], for: .selected)
 
+        if let viewColor = view.backgroundColor {
+        segmentedControl.clearBG(color: viewColor)
+        }
+    }
+    
+    
+    //MARK: - SET CHART PROPERTIES
+    
+    func setChartProperties() {
+ 
+        viewChart.layer.cornerRadius = 20
+            lineChart.backgroundColor = .clear
+            lineChart.extraBottomOffset = 25
 
+            lineChart.rightAxis.enabled = false
+        lineChart.scaleXEnabled = true
+        
+            let yAxis = lineChart.leftAxis
+            yAxis.labelFont = .boldSystemFont(ofSize: 8)
+            yAxis.setLabelCount(6, force: false)
+            yAxis.axisMinimum = 0
+            yAxis.labelTextColor = .white
+            yAxis.axisLineColor = .clear
+            yAxis.labelPosition = .outsideChart
+            yAxis.drawGridLinesEnabled = true
+
+          
+        lineChart.xAxis.labelPosition = .bottom
+        lineChart.xAxis.avoidFirstLastClippingEnabled = true
+        lineChart.xAxis.granularity = 1
+        lineChart.xAxis.labelRotationAngle = -45
+        lineChart.xAxis.labelFont = .systemFont(ofSize: 12)
+        lineChart.xAxis.axisLineColor = .white
+        lineChart.xAxis.labelTextColor = .white
+        lineChart.xAxis.drawGridLinesEnabled = false
+        lineChart.legend.font = .systemFont(ofSize: 10)
+//        lineChart.xAxis.setLabelCount(8, force: true)
+        
+        lineChart.legend.textColor = .white
+  
+        self.lineChart.animate(xAxisDuration: 0.04 * Double(self.lineChartEntry1.count), easingOption: .linear)
+
+    }
+    
+    //MARK: - CHANING UI
+    func changeLabelsForVolume() {
+        
+        weightLabel.text = "VOLUME"
+        repsLabel.text = "TIME"
+     
+    }
+    
+    
+    }
 
 extension UISegmentedControl {
     func clearBG(color: UIColor) {
@@ -737,86 +864,6 @@ public extension UIImage {
 
 
 
-//let minimumTimeInterval = retrievedExerciseMax.compactMap({$0.value}).compactMap({$0.compactMap({$0.date})})
-//let letmin1 = minimumTimeInterval.min(by: {$0[0] < $1[0]})?.min()
-//print("letmin1 \(letmin1)")
-//let min = minimumTimeInterval.sorted(by: {$0[0] < $1[0] })
-//print("min FIRST \(min.first)")
-
-//
-//
-//var retrievedExercise: [String: [RetrievedWorkout]] = [:]
-////    @IBOutlet weak var lineChart2: LineChartView!
-//@IBOutlet weak var lineChart: LineChartView! = {
-//    let chartView = LineChartView()
-//    chartView.backgroundColor = .clear
-//
-//    chartView.rightAxis.enabled = false
-//
-//    let yAxis = chartView.leftAxis
-////        yAxis.drawZeroLineEnabled = false
-////        yAxis.drawGridLinesEnabled = false
-//    yAxis.labelFont = .boldSystemFont(ofSize: 12)
-//    yAxis.setLabelCount(10, force: false)
-//    yAxis.labelTextColor = .white
-//    yAxis.axisLineColor = .clear
-//    yAxis.labelPosition = .outsideChart
-//    yAxis.drawGridLinesEnabled = true
-//
-//
-//    chartView.xAxis.labelPosition = .bottom
-//    chartView.xAxis.labelFont = .boldSystemFont(ofSize: 8)
-////        chartView.xAxis.setLabelCount(retrievedExercise.values.count, force: false)
-//    chartView.xAxis.axisLineColor = .white
-//    chartView.xAxis.labelTextColor = .white
-//    chartView.xAxis.drawGridLinesEnabled = false
-////        chartView.animate(xAxisDuration: 1)
-//
-//    return chartView
-//}()
-
-//    func appendData() {
-//
-////        let set = LineChartDataSet(entries: self.dataEntry, label: "Workout4")
-//
-////        var dataSets: [LineChartDataSet] = [LineChartDataSet]()
-//
-//        var lineChartEntry1 = [ChartDataEntry]()
-//        print("RETRIEVED \(retrievedExercise)")
-//        let group2 = DispatchGroup()
-//
-//        for x in 0..<retrievedExercise.count {
-//            print("\(x) TO x")
-//            group2.enter()
-//            let newData = retrievedExercise[x]
-//            let weight = newData.weight
-//
-//
-//            lineChartEntry1.append(ChartDataEntry(x: Double(weight) ?? 0, y: Double(weight) ?? 0))
-//
-//            lineChartEntry1.sort(by: { $0.x < $1.x})
-//
-//            let set = LineChartDataSet(entries: lineChartEntry1, label: "\(retrievedExercise[x].exerciseTitle)")
-//            dataSets.append(set)
-//            print("APPENDED")
-////            dataEntry.append(ChartDataEntry(x: Double(weight) ?? 0, y: Double(weight) ?? 0))
-//            group2.leave()
-//        }
-//
-//        group2.notify(queue: .main) {
-//            self.setData(entries: self.dataSets)
-////            self.dataEntry.sort(by: { $0.x < $1.x})
-////            self.setData(entries: self.dataEntry)
-//            print("DATA SETS \(self.dataSets)")
-////            self.dataSets.sort(by: { $0.x < $1.x})
-//
-//
-//        }
-//
-//        print("DATA ENTRY \(dataEntry)")
-//    }
-
-//    let minimumTimeInterval = retrievedExerciseMax.values.compactMap({$0})
 extension String {
 
 func convertFormatTime() -> String {
@@ -838,3 +885,140 @@ func convertFormatTime() -> String {
     }
 }
 }
+
+
+
+extension Calendar {
+
+    typealias WeekBoundary = (startOfWeek: Date?, endOfWeek: Date?)
+
+    func currentWeekBoundary() -> WeekBoundary? {
+        return weekBoundary(for: Date())
+    }
+    
+    
+    func weekBoundary(for date: Date) -> WeekBoundary? {
+        let components = dateComponents([.yearForWeekOfYear, .weekOfYear], from: date)
+        
+        guard let startOfWeek = self.date(from: components) else {
+            return nil
+        }
+        
+        let dateFormatter = DateFormatter()
+        dateFormatter.timeZone = .current
+        
+        let endOfWeekOffset = weekdaySymbols.count - 1
+        let endOfWeekComponents = DateComponents(day: endOfWeekOffset, hour: 23, minute: 59, second: 59)
+        guard let endOfWeek = self.date(byAdding: endOfWeekComponents, to: startOfWeek) else {
+            return nil
+        }
+        return (startOfWeek, endOfWeek)
+    }
+    
+//    func getFirstDayOfMonth(date: Date) -> (firstDay: Date?, lastDay: Date?){
+//        let calendar = Calendar(identifier: .iso8601)
+//
+//
+//
+//        let firstDayComponents = calendar.dateComponents([.year, .month], from: date)
+//        let firstDay = calendar.date(from: firstDayComponents)!
+//
+//        let lastDayComponents = DateComponents(month: 1, day: -1)
+//        let lastDay = calendar.date(byAdding: lastDayComponents, to: firstDay)!
+//
+//        return (firstDay, lastDay)
+//    }
+
+}
+//
+//extension Date {
+//    func firstDayOfMonth() -> Date {
+//
+//        return Calendar.current.date(from: Calendar.current.dateComponents([.year, .month], from: Calendar.current.startOfDay(for: self)))!
+//    }
+//
+//    func endDayOfMonth() -> Date {
+//        return Calendar.current.date(byAdding: DateComponents(month: 1, day: -1), to: self.firstDayOfMonth())!
+//    }
+//}
+
+extension Date {
+    
+    func firstDateOfMonth() -> Date {
+        
+        let calendar = Calendar.current
+        var startDate = Date()
+        var interval: TimeInterval = 0
+        _ = calendar.dateInterval(of: .month, start: &startDate, interval: &interval, for: self)
+        return startDate
+    }
+    
+    func lastDateOfMonth() -> Date {
+        
+        let calendar = Calendar.current
+        let dayRange = calendar.range(of: .day, in: .month, for: self)!
+        let dayLength = dayRange.upperBound
+        var components = calendar.dateComponents([.year, .month, .day], from: self)
+        components.day = dayLength
+        
+        return calendar.date(from: components)!
+    }
+}
+
+
+//func findMaxValueForMonth() {
+//
+//        dateCount = 0
+//        numberOfColors = 0
+//        lineChartEntry1 = []
+//        dataSets = []
+//
+//        let group2 = DispatchGroup()
+//
+//        referenceTimeInterval = Date().firstDateOfMonth().timeIntervalSince1970
+//
+//        let dateFormatter = DateFormatter()
+//        lineChart.xAxis.valueFormatter = ChartXAxisFormatter(referenceTimeInterval: referenceTimeInterval, dateFormatter: dateFormatter)
+//
+//        var date: Date = Date()
+//        for (key, value) in retrievedExerciseMax {
+//            group2.enter()
+//            numberOfColors += 1
+//            lineChartEntry1 = []
+//            for values in value {
+//
+//                if values.date >= Date().firstDateOfMonth() && values.date <= Date().lastDateOfMonth() {
+//                dateCount += 1
+//
+//
+//                let maxWeight = Double(values.maxWeight)
+//                let volume = Double(values.volume)
+//                let highlightedValue = HighlightedExercise(reps: values.maxReps, sets: values.sets, time: "")
+//
+//
+//
+//                let timeInterval = values.date.timeIntervalSince1970
+//
+//                let xValue = (timeInterval - referenceTimeInterval) / (3600 * 24)
+//
+//                lineChartEntry1.append(ChartDataEntry(x: xValue, y: Double(maxWeight), data: highlightedValue))
+//                }
+//                else {
+//                    print("poza range")
+//            }
+//            }
+//
+//            lineChartEntry1.sort(by: { $0.x < $1.x})
+//            let set = LineChartDataSet(entries: lineChartEntry1, label: "\(key)")
+//            set.setColor(colors[numberOfColors])
+//
+//            dataSets.append(set)
+//            group2.leave()
+//        }
+//
+//        group2.notify(queue: .main) {
+//            self.setData(entries: self.dataSets)
+//        }
+//
+//    }
+
