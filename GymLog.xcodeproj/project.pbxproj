@@ -60,6 +60,7 @@
 		E718EDF726629F54004AFE8C /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718EDF626629F54004AFE8C /* Service.swift */; };
 		E718EDFE2662EC7F004AFE8C /* CriteriaOfSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718EDFD2662EC7F004AFE8C /* CriteriaOfSelectViewController.swift */; };
 		E71947CE265D6C0000DD17F3 /* ExercisesPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71947CD265D6C0000DD17F3 /* ExercisesPopUp.swift */; };
+		E72D7D9526694E26001EC1F8 /* DateSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72D7D9426694E26001EC1F8 /* DateSelection.swift */; };
 		E734A745265F01BD00621667 /* ProgressChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E734A744265F01BD00621667 /* ProgressChartViewController.swift */; };
 		E734A749265F01D400621667 /* ChartXAxisFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E734A748265F01D400621667 /* ChartXAxisFormatter.swift */; };
 		E74427082648901E00B1E3BC /* PopUpCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74427072648901E00B1E3BC /* PopUpCalendarViewController.swift */; };
@@ -125,6 +126,7 @@
 		E718EDF626629F54004AFE8C /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		E718EDFD2662EC7F004AFE8C /* CriteriaOfSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CriteriaOfSelectViewController.swift; sourceTree = "<group>"; };
 		E71947CD265D6C0000DD17F3 /* ExercisesPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesPopUp.swift; sourceTree = "<group>"; };
+		E72D7D9426694E26001EC1F8 /* DateSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelection.swift; sourceTree = "<group>"; };
 		E734A744265F01BD00621667 /* ProgressChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressChartViewController.swift; sourceTree = "<group>"; };
 		E734A748265F01D400621667 /* ChartXAxisFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartXAxisFormatter.swift; sourceTree = "<group>"; };
 		E74427072648901E00B1E3BC /* PopUpCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpCalendarViewController.swift; sourceTree = "<group>"; };
@@ -360,6 +362,7 @@
 				E71947CD265D6C0000DD17F3 /* ExercisesPopUp.swift */,
 				E718EDF626629F54004AFE8C /* Service.swift */,
 				E718EDFD2662EC7F004AFE8C /* CriteriaOfSelectViewController.swift */,
+				E72D7D9426694E26001EC1F8 /* DateSelection.swift */,
 			);
 			path = "Progress Controllers";
 			sourceTree = "<group>";
@@ -487,6 +490,7 @@
 			files = (
 				596BC84125E29DE700166D9C /* LoginViewController.swift in Sources */,
 				E718EDF726629F54004AFE8C /* Service.swift in Sources */,
+				E72D7D9526694E26001EC1F8 /* DateSelection.swift in Sources */,
 				596D125C26360407003B7292 /* DateCell.swift in Sources */,
 				5964EA02261B50FF00998B2F /* StartViewController.swift in Sources */,
 				592EC294263CB73200761632 /* CalendarTableViewCell.swift in Sources */,

@@ -95,6 +95,7 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
     var dataSets: [LineChartDataSet] = [LineChartDataSet]()
     var referenceTimeInterval: TimeInterval = 0
     
+    var dateSelection = DateSelection()
     var retrievedExercise: [String: [RetrievedWorkout]] = [:]
     var arrayOfTitles: [String] = []
     var arrayOfTitleDocuments:  [String: [String]]? = [:]
@@ -131,14 +132,12 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
     
     @IBAction func segmentedControlChanged(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
-            findMaxValueWithSelection(type: "Weight", period: "week")
-            print("tapped Week")
+            segmentedControlForWeek(period: "week")
+          
         } else if sender.selectedSegmentIndex == 1 {
-            findMaxValueWithSelection(type: "Weight", period: "month")
-            print("tapped Month")
+            segmentedControlForWeek(period: "month")
         } else if sender.selectedSegmentIndex == 2 {
-            findMaxValueWithSelection(type: "Weight", period: "year")
-            print("tapped Year")
+           segmentedControlForWeek(period: "year")
         }
     }
     
@@ -178,8 +177,6 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
             if checkIfWeightCriteriaIsSelected == false {
                 repsValue.text = entryData.time
             }
-            
-            
             
             if entryData.time == "" {
             let repsEntryData = String(entryData.reps)
@@ -229,8 +226,35 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
 
     }
     
-    func findTrainingVolume(ex: [String]) {
-            
+    func findTrainingVolume(ex: [String], period: String) {
+        
+        let group2 = DispatchGroup()
+        
+        var new: [String: [RetrievedWorkoutsByVolume]] = [:]
+    
+        if period == "year" {
+            group2.enter()
+          new = retrievedAllWorkouts
+            convertDateForAxis()
+            group2.leave()
+        } else if period == "month" {
+            group2.enter()
+            dateSelection.loopForMonthVolume(data: retrievedAllWorkouts) { (data) in
+                new = data
+            }
+          group2.leave()
+        }
+         else if period == "week" {
+            group2.enter()
+            dateSelection.loopForWeekVolume(data: retrievedAllWorkouts) { (data) in
+               new = data
+            }
+            group2.leave()
+        } else {
+            print("weird")
+        }
+        
+        
             let formatter = DateFormatter()
             formatter.dateFormat = "HH:mm"
 
@@ -239,10 +263,10 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
            
             lineChartEntry1 = []
             dataSets = []
-            let group2 = DispatchGroup()
+       
             
             
-            for (key, value) in retrievedAllWorkouts {
+            for (key, value) in new {
                
                 group2.enter()
                 numberOfColors += 1
@@ -282,20 +306,42 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
                 self.setData(entries: self.dataSets)
         
             }
-        
     }
     
-    func findByExercise(criteria: String) {
+    func findByExercise(criteria: String, period: String) {
         
         lineChartEntry1 = []
         dataSets = []
+        
+        var newData: [RetrievedWorkoutsByExercise] = []
         
         let group2 = DispatchGroup()
         
         var titleOfExercise: String = ""
      
+          if period == "year" {
+              group2.enter()
+            newData = retrievedByExercise
+              convertDateForAxis()
+              group2.leave()
+          } else if period == "month" {
+              group2.enter()
+            dateSelection.loopForMonthByExercise(data: retrievedByExercise) { (data) in
+                newData = data
+            }
+            group2.leave()
+          }
+           else if period == "week" {
+              group2.enter()
+              dateSelection.loopForWeekByExercise(data: retrievedByExercise) { (data) in
+                  newData = retrievedByExercise
+              }
+              group2.leave()
+          } else {
+              print("weird")
+          }
         
-        for value in retrievedByExercise {
+        for value in newData {
             group2.enter()
             let date = value.date
             
@@ -328,48 +374,7 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
         }
       
     }
-    
-    func forLoopingForMonth() {
 
-        let group4 = DispatchGroup()
-        for (key, value) in retrievedExerciseMax {
-            group4.enter()
-            for values in value where values.date >= Date().firstDateOfMonth() && values.date <= Date().lastDateOfMonth() {
-                
-                self.retrievedExerciseMaxWithSelection[key, default: []].append(values)
-            }
-            group4.leave()
-    }
-        
-        referenceTimeInterval = (Date().firstDateOfMonth().timeIntervalSince1970)
-        group4.notify(queue: .main) {
-            print("DONE LOOPING FOR MONTH")
-        }
-}
-    
-    func forLoopingForWeek() {
- 
-        retrievedExerciseMaxWithSelection = [:]
-        let group4 = DispatchGroup()
-        
-        for (key, value) in retrievedExerciseMax {
-            group4.enter()
-            for values in value where values.date >= (calendar.currentWeekBoundary()?.startOfWeek)! && values.date <=
-                (calendar.currentWeekBoundary()?.endOfWeek)! {
-    
-                self.retrievedExerciseMaxWithSelection[key, default: []].append(values)
-                        print("value \(values)")
-                 
-    }
-            group4.leave()
-            }
-      
-        referenceTimeInterval = (calendar.currentWeekBoundary()?.startOfWeek)!.timeIntervalSince1970
-        group4.notify(queue: .main) {
-            print("DONE LOOPING FOR WEEK")
-        }
-}
-    
 
     func findMaxValueWithSelection(type: String, period: String) {
         
@@ -387,11 +392,15 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
             group2.leave()
         } else if period == "month" {
             group2.enter()
-            forLoopingForMonth()
+            dateSelection.loopForMonthByMaxValue(data: retrievedExerciseMax) { (data) in
+                retrievedExerciseMaxWithSelection = data
+            }
             group2.leave()
         } else if period == "week" {
             group2.enter()
-            forLoopingForWeek()
+            dateSelection.loopForWeekByMaxValue(data: retrievedExerciseMax) { (data) in
+                retrievedExerciseMaxWithSelection = data
+            }
             group2.leave()
         } else {
             print("weird")
@@ -566,7 +575,7 @@ func retrieveDocumentsArray() {
         group2.notify(queue: .main) {
             print("ALL WORKOUTS \(self.retrievedAllWorkouts)")
             self.convertDateForAxis()
-            self.findTrainingVolume(ex: titles)
+            self.findTrainingVolume(ex: titles, period: "year")
         }
     
 
@@ -614,7 +623,7 @@ func retrieveDocumentsArray() {
         group.notify(queue: .main) {
             print("rere \(self.retrievedByExercise)")
         self.convertDateForAxis()
-            self.findByExercise(criteria: "Weight")
+            self.findByExercise(criteria: "Weight", period: "year")
         }
     }
 
@@ -672,6 +681,46 @@ func retrieveDocumentsArray() {
 }
     
     //MARK: -SEGUES
+    
+    func segmentedControlForWeek(period: String) {
+        
+        
+        switch (workoutTitle.text, selectExercise.currentTitle) {
+        
+        case ("ALL WORKOUTS", "Select exercises"):
+            self.findTrainingVolume(ex: arrayOfTitles, period: period)
+        
+        case (let title1, "Select exercises") where title1 != "ALL WORKOUTS":
+            self.findTrainingVolume(ex: [selectExercise.currentTitle!], period: period)
+            
+        case (_, "All exercises"):
+            self.findMaxValueWithSelection(type: "Weight", period: period)
+        
+        case (_, let exercise) where exercise != "All exercises":
+            self.findByExercise(criteria: "Weight", period: period)
+            
+        default:
+            print("SOMETHING WEIRD HAS HAPPENED")
+            
+        }
+        
+        
+        
+//
+//        if workoutTitle.text == "ALL WORKOUTS" && selectExercise.currentTitle! == "Select Exercises"{
+//
+//        } else if workoutTitle.text != "ALL WORKOUTS" && selectExercise.currentTitle! == "Select Exercises" {
+//
+//        }
+//
+//        if selectExercise.currentTitle! == "All exercises" {
+//
+//        } else {
+//
+//        }
+        
+        
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toWorkoutSelection" {
@@ -732,17 +781,19 @@ func retrieveDocumentsArray() {
                 if criteria == "Volume" {
                     if self.selectExercise.titleLabel?.text == "All exercises" {
 //                       self.findTrainingVolume(ex: [self.workoutTitle.text!])
-                        self.findMaxValue(type: "Volume", period: "year")
+//                        self.findMaxValue(type: "Volume", period: "year")
+                        self.findMaxValueWithSelection(type: "Volume", period: "year")
                    
                     } else {
-                        self.findByExercise(criteria: "Volume")
+                        self.findByExercise(criteria: "Volume", period: "year")
                     }
                     self.changeLabelsForVolume()
                 } else {
                     if self.selectExercise.titleLabel?.text == "All exercises" {
-                        self.findMaxValue(type: "Weight", period: "year")
+//                        self.findMaxValue(type: "Weight", period: "year")
+                        self.findMaxValueWithSelection(type: "Weight", period: "year")
                     } else {
-                        self.findByExercise(criteria: "Weight")
+                        self.findByExercise(criteria: "Weight", period: "year")
                     }
 
                 }
