@@ -58,6 +58,7 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
     
     let db = Firestore.firestore()
     let user = Auth.auth().currentUser
+    let service = Service()
     
     let formatter = DateFormatter()
     var dateCount: Int = 0
@@ -107,6 +108,11 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
     var highlightedValue: [HighlightedExercise] = []
     var checkIfWorkoutIsSelected: Bool = false
     var checkIfWeightCriteriaIsSelected: Bool = true
+    let dateFormatter = DateFormatter()
+    
+    
+   
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -117,8 +123,8 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
         setUpNavigationBarItems()
         controlSegmentSetUp()
         setUpViews()
-        getData(title: "Workout4")
-//        self.getDataByVolume(titles: self.arrayOfTitles)
+//        getData(title: "Workout4")
+        self.getDataByVolume(titles: self.arrayOfTitles)
 
     }
     
@@ -126,6 +132,7 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
         print(" poczatek miesiace \(Date().firstDateOfMonth()) koniec \(Date().lastDateOfMonth()))")
         
     }
+    
  
     
     //MARK: - MAKING PERIOD OF TIME SELECTION
@@ -133,7 +140,6 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
     @IBAction func segmentedControlChanged(_ sender: UISegmentedControl) {
         if sender.selectedSegmentIndex == 0 {
             segmentedControlForWeek(period: "week")
-          
         } else if sender.selectedSegmentIndex == 1 {
             segmentedControlForWeek(period: "month")
         } else if sender.selectedSegmentIndex == 2 {
@@ -159,11 +165,11 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
                 let previousEntry = dataSets[dataSetIndex][indexOfEntry - 1]
                 let previousEntryData = Int((((highlight.y) - (previousEntry.y)) / (previousEntry.y)) * 100)
                 changeValue.text = String("\(previousEntryData)%")
+                changeValue.fadeTransition(0.4)
               
                 if previousEntryData > 0 {
                     changeValue.textColor = .green
                     changeValue.text = String("+\(previousEntryData)%")
-
                 } else {
                     changeValue.textColor = .red
                 }
@@ -176,16 +182,21 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
             
             if checkIfWeightCriteriaIsSelected == false {
                 repsValue.text = entryData.time
+                repsValue.fadeTransition(0.4)
             }
             
             if entryData.time == "" {
             let repsEntryData = String(entryData.reps)
             repsValue.text = repsEntryData
+                repsValue.fadeTransition(0.4)
                 weightValue.text = "\(stringValue)kg"
+                weightValue.fadeTransition(0.4)
             }
             else {
                 repsValue.text = entryData.time.convertFormatTime()
+                repsValue.fadeTransition(0.4)
                 weightValue.text = "\(stringValue)"
+                weightValue.fadeTransition(0.4)
             }
         }
 
@@ -220,7 +231,7 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
   
     func convertDateForAxis() {
         
-        if let minTimeInterval = (retrievedExerciseMax.compactMap({$0.value}).compactMap({$0.compactMap({$0.date})}).min(by: {$0[0].timeIntervalSince1970 < $1[0].timeIntervalSince1970}))?.min() {
+        if let minTimeInterval = (retrievedAllWorkouts.compactMap({$0.value}).compactMap({$0.compactMap({$0.date})}).min(by: {$0[0].timeIntervalSince1970 < $1[0].timeIntervalSince1970}))?.min() {
             referenceTimeInterval = minTimeInterval.timeIntervalSince1970
         }
 
@@ -229,7 +240,7 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
     func findTrainingVolume(ex: [String], period: String) {
         
         let group2 = DispatchGroup()
-        
+     
         var new: [String: [RetrievedWorkoutsByVolume]] = [:]
     
         if period == "year" {
@@ -254,9 +265,8 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
             print("weird")
         }
         
+        lineChart.xAxis.valueFormatter = ChartXAxisFormatter(referenceTimeInterval: referenceTimeInterval, dateFormatter: dateFormatter)
         
-            let formatter = DateFormatter()
-            formatter.dateFormat = "HH:mm"
 
             dateCount = 0
             numberOfColors = 0
@@ -311,7 +321,7 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
         
         lineChartEntry1 = []
         dataSets = []
-        
+
         var newData: [RetrievedWorkoutsByExercise] = []
         
         let group2 = DispatchGroup()
@@ -321,7 +331,7 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
           if period == "year" {
               group2.enter()
             newData = retrievedByExercise
-              convertDateForAxis()
+            convertDateForAxis()
               group2.leave()
           } else if period == "month" {
               group2.enter()
@@ -339,6 +349,8 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
           } else {
               print("weird")
           }
+        
+        lineChart.xAxis.valueFormatter = ChartXAxisFormatter(referenceTimeInterval: referenceTimeInterval, dateFormatter: dateFormatter)
         
         for value in newData {
             group2.enter()
@@ -381,7 +393,6 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
         lineChartEntry1 = []
         dataSets = []
         retrievedExerciseMaxWithSelection = [:]
-        print("STarted")
      
       
         if period == "year" {
@@ -405,7 +416,7 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
             print("weird")
         }
        
-        let dateFormatter = DateFormatter()
+      
         lineChart.xAxis.valueFormatter = ChartXAxisFormatter(referenceTimeInterval: referenceTimeInterval, dateFormatter: dateFormatter)
         numberOfColors = 0
         
@@ -520,8 +531,7 @@ func retrieveDocumentsArray() {
     //MARK: - FIRESTORE
     
     func getExercisesForSelectedWorkout() {
-//        exercisesForSelectedWorkout = []
-        let service = Service()
+
         if let workoutTitle = workoutTitle.text {
         service.getDocumentsTitle(workout: workoutTitle) { (result) in
             self.exercisesForSelectedWorkout = result
@@ -531,153 +541,35 @@ func retrieveDocumentsArray() {
     
     func getDataByVolume(titles: [String]) {
         retrievedAllWorkouts = [:]
-        formatter.dateFormat = "yyyy-MM-dd HH:mm"
-        formatter.timeZone = TimeZone.current
-        let group2 = DispatchGroup()
-        
-        for title in titles {
-            group2.enter()
-        db.collection("users").document("\(user!.uid)").collection("WorkoutsName").document("\(title)").collection("Calendar").getDocuments(completion:  { (querySnapshot, error) in
-            if let error = error {
-                print("\(error.localizedDescription)")
-            }
-            else {
-                if let documents = querySnapshot?.documents {
-                    
-                    for doc in documents {
-                        
-                        let data = doc.data()
-                        
-                        if let volume = data["Volume"] as? Int, let reps = data["Reps"] as? Int, let time = data["Time"] as? String, let weight = data["Weight"] as? Int {
-
-                            let dateDocumentID = self.formatter.date(from: doc.documentID)
-        
-                            guard let dateConverted = dateDocumentID?.removeTimeStamp else {return}
-   
-//                            guard let dateFormattedToDate = self.formatter.date(from: doc.documentID) else {return}
-                         
-                            let newData = RetrievedWorkoutsByVolume(reps: reps, time: time, volume: volume, weight: weight, date: dateConverted)
-                            
-                         
-                            
-                            self.retrievedAllWorkouts["\(title)", default: []].append(newData)
-                        }
-        
-                    }
-                }
-                group2.leave()
-            }
-        })
-            
-        }
-      
-        group2.notify(queue: .main) {
-            print("ALL WORKOUTS \(self.retrievedAllWorkouts)")
+        service.getDataByVolume(titles: titles, completionHandler: { data in
+            self.retrievedAllWorkouts = data
             self.convertDateForAxis()
             self.findTrainingVolume(ex: titles, period: "year")
-        }
-    
-
+            print("retreived \(self.retrievedAllWorkouts)")
+        })
     }
     
     func getDataByExercise(title: String, document: String) {
       
         retrievedByExercise = []
-        
-        print("title \(title) document \(document)")
-        formatter.dateFormat = "yyyy-MM-dd"
-        formatter.timeZone = TimeZone.current
-        let group = DispatchGroup()
-        group.enter()
-        db.collection("users").document("\(user!.uid)").collection("WorkoutsName").document(title).collection("Exercises").document(document).collection("History").getDocuments(completion:  { (querySnapshot, error) in
-            if let error = error {
-                print("\(error.localizedDescription)")
-            }
-            else {
-                
-                if let documents = querySnapshot?.documents {
-                   
-                    for doc in documents {
-                        
-                        let data = doc.data()
-                        
-                        if let docSets = data["Sets"] as? [String: [String:String]], let max = data["Max"] as? [String:Int] {
-                            
-                            if let date = data["date"] as? String, let maxWeight = max["weight"] , let maxReps = max["doneReps"], let volume = data["Volume"] as? Int {
-                                
-                                guard let dateFormattedToDate = self.formatter.date(from: date) else {return}
-                               
-                                let newModel = RetrievedWorkoutsByExercise(exerciseTitle: "\(document)", sets: docSets.count, maxWeight: maxWeight, maxReps: maxReps, date: dateFormattedToDate, volume: volume)
-                              
-                                self.retrievedByExercise.append(newModel)
-                    }
-                }
-                 
-            }
-                 
-        }
-                group.leave()
-            }
-        })
-        group.notify(queue: .main) {
-            print("rere \(self.retrievedByExercise)")
-        self.convertDateForAxis()
+        service.getDataByExercise(title: title, document: document) { (data) in
+            self.retrievedByExercise = data
+            self.convertDateForAxis()
             self.findByExercise(criteria: "Weight", period: "year")
         }
     }
 
     func getData(title: String) {
         
-        formatter.dateFormat = "yyyy-MM-dd"
-        formatter.timeZone = TimeZone.current
-        let group = DispatchGroup()
-        
-//        retrievedExercise = [:]
         retrievedExerciseMax = [:]
-
-        if let dictionaryOfTitleDocuments = arrayOfTitleDocuments {
-           
-        for document in dictionaryOfTitleDocuments[title]! {
-            group.enter()
-        db.collection("users").document("\(user!.uid)").collection("WorkoutsName").document("\(title)").collection("Exercises").document("\(document)").collection("History").getDocuments(completion:  { (querySnapshot, error) in
-            if let error = error {
-                print("\(error.localizedDescription)")
-            }
-            else {
-                if let documents = querySnapshot?.documents {
-                    
-                    for doc in documents {
-                        self.int = 0
-                    
-                        let data = doc.data()
-        
-                        if let docSets = data["Sets"] as? [String: [String:String]], let max = data["Max"] as? [String:Int] {
-                            
-                            if let date = data["date"] as? String, let maxWeight = max["weight"] , let maxReps = max["doneReps"], let volume = data["Volume"] as? Int {
-                                
-                                guard let dateFormattedToDate = self.formatter.date(from: date) else {return}
-                               
-                                let newModelMax = RetrievedWorkoutMax(workoutTitle: title, exerciseTitle: "\(document)", sets: (docSets.count), maxWeight: maxWeight, maxReps: maxReps,date: dateFormattedToDate, volume: volume)
-
-                                self.retrievedExerciseMax["\(document)", default: []].append(newModelMax)
-
-                            }
-                            }
-                        }
-                   
+        service.getAllExercisesInWorkout(title: title, arrayOfDocuments: arrayOfTitleDocuments!) { (data) in
+            self.retrievedExerciseMax = data
+            self.convertDateForAxis()
+            self.findMaxValue(type: "Weight", period: "year")
+            print("TO BYLO WCZESNIEJ \(self.retrievedExerciseMax)")
         }
-                group.leave()
     }
-})
-}
-    }
-         
-            group.notify(queue: .main) {
-                self.convertDateForAxis()
-                self.findMaxValue(type: "Weight", period: "year")
-                
-                }
-}
+
     
     //MARK: -SEGUES
     
@@ -723,8 +615,7 @@ func retrieveDocumentsArray() {
                     self.getDataByVolume(titles: [text])
                     self.selectExercise.isUserInteractionEnabled = true
                     self.selectByButton.isUserInteractionEnabled = false
-                  
-//
+       
                 }
 
                 self.lineChart.notifyDataSetChanged()
@@ -769,15 +660,15 @@ func retrieveDocumentsArray() {
                 
                 if criteria == "Volume" {
                     if self.selectExercise.titleLabel?.text == "All exercises" {
-//                       self.findTrainingVolume(ex: [self.workoutTitle.text!])
-//                        self.findMaxValue(type: "Volume", period: "year")
+
                         self.findMaxValueWithSelection(type: "Volume", period: "year")
                    
                     } else {
                         self.findByExercise(criteria: "Volume", period: "year")
                     }
                     self.changeLabelsForVolume()
-                } else {
+                }
+                else {
                     if self.selectExercise.titleLabel?.text == "All exercises" {
                         self.findMaxValueWithSelection(type: "Weight", period: "year")
                     } else {
@@ -871,18 +762,14 @@ func retrieveDocumentsArray() {
     
     //MARK: - CHANING UI
     func changeLabelsForVolume() {
-        
         weightLabel.text = "VOLUME"
         repsLabel.text = "TIME"
-     
     }
     
     func changeLabelsForWeight() {
         weightLabel.text = "WEIGHT"
         repsLabel.text = "REPS"
     }
-    
-    
     }
 
 extension UISegmentedControl {

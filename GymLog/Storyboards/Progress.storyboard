@@ -296,7 +296,7 @@
                         <outlet property="lineChart" destination="15p-1Z-Lp1" id="63m-gN-WJE"/>
                         <outlet property="repsLabel" destination="dUC-fE-vRa" id="d3x-Wn-sUb"/>
                         <outlet property="repsValue" destination="6Wu-nc-aDM" id="qdk-6V-rcL"/>
-                        <outlet property="repsView" destination="eaP-fZ-sPx" id="ANS-CG-0Db"/>
+                        <outlet property="repsView" destination="eaP-fZ-sPx" id="ASE-mZ-yvu"/>
                         <outlet property="segmentedControl" destination="gd2-5v-BpX" id="aj0-d2-DPr"/>
                         <outlet property="selectAlert" destination="KI2-ZR-Hhe" id="zQc-9H-kZ0"/>
                         <outlet property="selectBy" destination="EsF-9O-9GY" id="4SY-Uc-mc7"/>
@@ -305,7 +305,7 @@
                         <outlet property="viewChart" destination="8Ol-8M-8hb" id="hlr-of-ihl"/>
                         <outlet property="weightLabel" destination="m68-yT-dYO" id="kNk-MY-KB4"/>
                         <outlet property="weightValue" destination="gvu-Rp-reG" id="yoJ-Ku-Qft"/>
-                        <outlet property="weightView" destination="uA6-qQ-Onw" id="f77-vF-Ykn"/>
+                        <outlet property="weightView" destination="uA6-qQ-Onw" id="Gq0-cI-SUn"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="krp-ou-iNn" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
