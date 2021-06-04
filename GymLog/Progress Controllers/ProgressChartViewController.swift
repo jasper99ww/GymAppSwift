@@ -283,7 +283,6 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
                     let xValue = (timeInterval - referenceTimeInterval) / (3600 * 24)
                     
                     let volume = values.volume
-                    
                     let highlightedValue = HighlightedExercise(reps: values.reps, sets: 0, time: values.time)
                     
                     
@@ -334,7 +333,7 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
            else if period == "week" {
               group2.enter()
               dateSelection.loopForWeekByExercise(data: retrievedByExercise) { (data) in
-                  newData = retrievedByExercise
+                  newData = data
               }
               group2.leave()
           } else {
@@ -684,7 +683,6 @@ func retrieveDocumentsArray() {
     
     func segmentedControlForWeek(period: String) {
         
-        
         switch (workoutTitle.text, selectExercise.currentTitle) {
         
         case ("ALL WORKOUTS", "Select exercises"):
@@ -694,31 +692,15 @@ func retrieveDocumentsArray() {
             self.findTrainingVolume(ex: [selectExercise.currentTitle!], period: period)
             
         case (_, "All exercises"):
-            self.findMaxValueWithSelection(type: "Weight", period: period)
+            self.findMaxValueWithSelection(type: selectByButton.currentTitle!, period: period)
         
         case (_, let exercise) where exercise != "All exercises":
-            self.findByExercise(criteria: "Weight", period: period)
+            self.findByExercise(criteria: selectByButton.currentTitle!, period: period)
             
         default:
             print("SOMETHING WEIRD HAS HAPPENED")
             
         }
-        
-        
-        
-//
-//        if workoutTitle.text == "ALL WORKOUTS" && selectExercise.currentTitle! == "Select Exercises"{
-//
-//        } else if workoutTitle.text != "ALL WORKOUTS" && selectExercise.currentTitle! == "Select Exercises" {
-//
-//        }
-//
-//        if selectExercise.currentTitle! == "All exercises" {
-//
-//        } else {
-//
-//        }
-        
         
     }
     
@@ -737,15 +719,18 @@ func retrieveDocumentsArray() {
                     self.changeLabelsForVolume()
                 
                 } else {
-//                    self.getData(title: text)
+
                     self.getDataByVolume(titles: [text])
                     self.selectExercise.isUserInteractionEnabled = true
                     self.selectByButton.isUserInteractionEnabled = false
+                  
+//
                 }
-//                self.selectExercise.setTitle("All exercises", for: .normal)
+
                 self.lineChart.notifyDataSetChanged()
                 self.checkIfWorkoutIsSelected = true
                 self.getExercisesForSelectedWorkout()
+                
             }
         }
         
@@ -762,12 +747,16 @@ func retrieveDocumentsArray() {
                  
                 } else {
                     self.getDataByExercise(title: self.workoutTitle.text!, document: text)
-                    print("OK OK")
+              
                 }
                 
                 self.lineChart.notifyDataSetChanged()
                 self.selectByButton.isUserInteractionEnabled = true
+                self.changeLabelsForWeight()
+       
+                self.selectByButton.imageView?.tintColor = UIColor.init(red: 48/255, green: 173/255, blue: 99/255, alpha: 1)
             }
+            
             }
             
         }
@@ -790,14 +779,14 @@ func retrieveDocumentsArray() {
                     self.changeLabelsForVolume()
                 } else {
                     if self.selectExercise.titleLabel?.text == "All exercises" {
-//                        self.findMaxValue(type: "Weight", period: "year")
                         self.findMaxValueWithSelection(type: "Weight", period: "year")
                     } else {
                         self.findByExercise(criteria: "Weight", period: "year")
                     }
-
+                    self.changeLabelsForWeight()
                 }
                 self.lineChart.notifyDataSetChanged()
+                
             }
         }
     }
@@ -886,6 +875,11 @@ func retrieveDocumentsArray() {
         weightLabel.text = "VOLUME"
         repsLabel.text = "TIME"
      
+    }
+    
+    func changeLabelsForWeight() {
+        weightLabel.text = "WEIGHT"
+        repsLabel.text = "REPS"
     }
     
     
