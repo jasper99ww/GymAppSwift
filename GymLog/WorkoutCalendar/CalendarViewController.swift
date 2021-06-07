@@ -6,6 +6,7 @@ import Firebase
 
 class CalendarViewController: UIViewController {
 
+    let service = Service()
     @IBOutlet weak var numberDayOfDoneTraining: UILabel!
     @IBOutlet weak var nameDayOfDoneTraining: UILabel!
     
@@ -53,7 +54,7 @@ class CalendarViewController: UIViewController {
         emptyDict = [:]
         selectDoneDates = []
         retrieveTitleWorkouts()
-        retrieveDocumentsId
+        retrieveExercisesForWorkouts
         {
             self.getDateOfWorkout()
         }
@@ -162,33 +163,14 @@ class CalendarViewController: UIViewController {
         arrayOfTitles = workoutName
         }
     }
- 
-    func retrieveDocumentsId(completion: @escaping () -> ()) {
-
-        let grp = DispatchGroup()
-        arrayOfDocumentsTitle = [:]
-        for title in arrayOfTitles {
-            grp.enter()
-        db.collection("users").document("\(user!.uid)").collection("WorkoutsName").document("\(title)").collection("Exercises").getDocuments { (querySnapshot, error) in
-                        
-            if let error = error {
-                print("\(error.localizedDescription)")
-            }
-            else {
-                if let documents = querySnapshot?.documents {
-                  
-                    for i in 0..<documents.count {
-                        let documentID2 = documents[i].documentID
-                        
-//                        self.arrayOfDocumentsTitle[title, default: []].append(<#T##newElement: String##String#>)
-                        self.exercisesInTraining[title, default: []].append(documentID2)
-                    }
-                    grp.leave()
-                }
-            }
-        }
+    
+    func retrieveDocumentsArrayCalendar() {
+        
     }
-        grp.notify(queue: DispatchQueue.main) {
+    
+    func retrieveExercisesForWorkouts(completion: @escaping() -> ()) {
+        service.getExercisesForWorkouts(arrayOfTitles: arrayOfTitles) { (data) in
+            self.exercisesInTraining = data
             completion()
         }
     }
@@ -196,7 +178,6 @@ class CalendarViewController: UIViewController {
     func getDateOfWorkout() {
         
         let grp = DispatchGroup()
-//        arrayOfDocumentsTitle = []
         for title in arrayOfTitles {
             grp.enter()
         db.collection("users").document("\(user!.uid)").collection("WorkoutsName").document("\(title)").collection("Calendar").getDocuments { (querySnapshot, error) in
@@ -288,12 +269,10 @@ class CalendarViewController: UIViewController {
             validCell.selectedView.backgroundColor = .darkGray
             validCell.todayLabel.isHidden = false
         } else {
-            print("\(todayDateString) OHOOO HO")
             validCell.todayLabel.isHidden = true
             validCell.selectedView.backgroundColor = UIColor.init(red: 81/255, green: 134/255, blue: 87/255, alpha: 1)
         }
 
-        print("TODAY DATE \(todayDateString)")
         if cellState.isSelected {
             validCell.datelabel.textColor = .white
         }
@@ -368,7 +347,6 @@ extension CalendarViewController: JTACMonthViewDelegate {
 
         handleCellSelected(view: cell, cellState: cellState)
         handleCellTextColor(view: cell, cellState: cellState)
-//        calendarView.selectDates([currentDate])
         
     }
     
@@ -412,7 +390,6 @@ extension CalendarViewController: JTACMonthViewDelegate {
             }
             else {
                 print("Nie zrobiles tego dnia treningu")
-                
             }
         }
 

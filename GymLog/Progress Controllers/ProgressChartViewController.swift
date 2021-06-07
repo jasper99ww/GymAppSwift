@@ -89,7 +89,7 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
     
     
     var numberOfColors = 0
-    let colors = [UIColor.red, UIColor.green, UIColor.purple, UIColor.gray,  UIColor.white]
+    let colors = [UIColor.green, UIColor.purple, UIColor.cyan, UIColor.gray,  UIColor.white, UIColor.yellow]
     
     var lineChartEntry1 = [ChartDataEntry]()
     var dataEntry: [ChartDataEntry] = []
@@ -111,7 +111,9 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
     let dateFormatter = DateFormatter()
     
     
-   
+    override func viewWillAppear(_ animated: Bool) {
+        self.getDataByVolume(titles: self.arrayOfTitles)
+    }
     
     
     override func viewDidLoad() {
@@ -119,21 +121,12 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
         lineChart.delegate = self
         retrieveArrays()
         retrieveDocumentsArray()
-        
         setUpNavigationBarItems()
         controlSegmentSetUp()
         setUpViews()
-//        getData(title: "Workout4")
-        self.getDataByVolume(titles: self.arrayOfTitles)
-
+       
+        segmentedControl.selectedSegmentIndex = 2
     }
-    
-    override func viewDidDisappear(_ animated: Bool) {
-        print(" poczatek miesiace \(Date().firstDateOfMonth()) koniec \(Date().lastDateOfMonth()))")
-        
-    }
-    
- 
     
     //MARK: - MAKING PERIOD OF TIME SELECTION
     
@@ -152,7 +145,7 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
         
         let dataSetIndex = highlight.dataSetIndex
     
-        let stringValue = String(format: "%.0f", highlight.y)
+        let higlightedY = String(format: "%.0f", highlight.y)
       
         guard let dataSet = chartView.data?.dataSets[highlight.dataSetIndex] else { return }
             
@@ -189,13 +182,13 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
             let repsEntryData = String(entryData.reps)
             repsValue.text = repsEntryData
                 repsValue.fadeTransition(0.4)
-                weightValue.text = "\(stringValue)kg"
+                weightValue.text = "\(higlightedY)kg"
                 weightValue.fadeTransition(0.4)
             }
             else {
                 repsValue.text = entryData.time.convertFormatTime()
                 repsValue.fadeTransition(0.4)
-                weightValue.text = "\(stringValue)"
+                weightValue.text = "\(higlightedY)"
                 weightValue.fadeTransition(0.4)
             }
         }
@@ -204,21 +197,40 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
     
   
     //MARK: - SET CHART DATA
-    
-    
+
     func setData(entries: [LineChartDataSet]) {
         
+        let color = UIColor.init(red: 48/255, green: 173/255, blue: 99/255, alpha: 1)
+       
+        let colorLocations: [CGFloat] = [0.0, 1.0]
+        
+        numberOfColors = 0
+        
         for set in entries {
-
+        set.setColor(colors[numberOfColors])
+            if entries.count == 1 {
+                let gradColors = [colors[numberOfColors].cgColor, UIColor.clear.cgColor]
+                if let gradient = CGGradient.init(colorsSpace: CGColorSpaceCreateDeviceRGB(), colors: gradColors as CFArray, locations: colorLocations) {
+                    set.fill = Fill(linearGradient: gradient, angle: 90.0)
+                }
+                set.drawFilledEnabled = true
+            }
+        
         set.mode = .cubicBezier
         set.drawCirclesEnabled = true
         set.circleColors = set.colors
         set.drawCircleHoleEnabled = false
         set.circleRadius = 4
         set.lineWidth = 4
-
         set.drawHorizontalHighlightIndicatorEnabled = false
         set.highlightColor = .red
+         
+            if numberOfColors < colors.count {
+                numberOfColors += 1
+            }
+            else {
+                print("number of colors is done")
+            }
         }
         
         let data = LineChartData(dataSets: entries)
@@ -226,10 +238,12 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
         data.setDrawValues(false)
 
             self.setChartProperties()
-       
+      
     }
   
     func convertDateForAxis() {
+        retrievedAllWorkouts.compactMap({$0.value}).compactMap({$0.compactMap({$0.date})})
+        print("TEGO \(retrievedAllWorkouts.compactMap({$0.value}).compactMap({$0.compactMap({$0.date})}))")
         
         if let minTimeInterval = (retrievedAllWorkouts.compactMap({$0.value}).compactMap({$0.compactMap({$0.date})}).min(by: {$0[0].timeIntervalSince1970 < $1[0].timeIntervalSince1970}))?.min() {
             referenceTimeInterval = minTimeInterval.timeIntervalSince1970
@@ -264,18 +278,15 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
         } else {
             print("weird")
         }
+        dateFormatter.dateFormat = "dd.MM"
         
         lineChart.xAxis.valueFormatter = ChartXAxisFormatter(referenceTimeInterval: referenceTimeInterval, dateFormatter: dateFormatter)
-        
-
+    
             dateCount = 0
-            numberOfColors = 0
-           
+            
             lineChartEntry1 = []
             dataSets = []
        
-            
-            
             for (key, value) in new {
                
                 group2.enter()
@@ -288,24 +299,19 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
 
                     dateCount += 1
                     
-                
                     let timeInterval = date.timeIntervalSince1970
                     let xValue = (timeInterval - referenceTimeInterval) / (3600 * 24)
                     
                     let volume = values.volume
                     let highlightedValue = HighlightedExercise(reps: values.reps, sets: 0, time: values.time)
                     
-                    
                     lineChartEntry1.append(ChartDataEntry(x: xValue, y: Double(volume), data: highlightedValue))
-                   
                 }
                 
                 lineChartEntry1.sort(by: { $0.x < $1.x})
                 
                 let set = LineChartDataSet(entries: lineChartEntry1, label: "\(key)")
        
-                set.setColor(colors[numberOfColors])
-                
                 dataSets.append(set)
                 checkIfWeightCriteriaIsSelected = false
                 group2.leave()
@@ -383,7 +389,6 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
             self.setData(entries: self.dataSets)
   
         }
-      
     }
 
 
@@ -447,7 +452,7 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
             
             lineChartEntry1.sort(by: { $0.x < $1.x})
             let set = LineChartDataSet(entries: lineChartEntry1, label: "\(key)")
-            set.setColor(colors[numberOfColors])
+//            set.setColor(colors[numberOfColors])
             
             dataSets.append(set)
             group2.leave()
@@ -458,7 +463,7 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
             self.setData(entries: self.dataSets)
          
         }
-        
+
     }
     
     func findMaxValue(type: String, period: String) {
@@ -499,7 +504,7 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
             
             lineChartEntry1.sort(by: { $0.x < $1.x})
             let set = LineChartDataSet(entries: lineChartEntry1, label: "\(key)")
-            set.setColor(colors[numberOfColors])
+//            set.setColor(colors[numberOfColors])
             
             dataSets.append(set)
             group2.leave()
@@ -523,7 +528,7 @@ func retrieveArrays() {
 
 func retrieveDocumentsArray() {
     
-    if let arrayTitleDocuments = UserDefaults.standard.object(forKey: "dictionaryOfTitleDocuments") as? [String: [String]] {
+    if let arrayTitleDocuments = UserDefaults.standard.object(forKey: "exercises") as? [String: [String]] {
         arrayOfTitleDocuments = arrayTitleDocuments
     }
 }
@@ -531,7 +536,8 @@ func retrieveDocumentsArray() {
     //MARK: - FIRESTORE
     
     func getExercisesForSelectedWorkout() {
-
+        selectExercise.setTitle("Select exercises", for: .normal)
+        exercisesForSelectedWorkout = []
         if let workoutTitle = workoutTitle.text {
         service.getDocumentsTitle(workout: workoutTitle) { (result) in
             self.exercisesForSelectedWorkout = result
@@ -545,7 +551,8 @@ func retrieveDocumentsArray() {
             self.retrievedAllWorkouts = data
             self.convertDateForAxis()
             self.findTrainingVolume(ex: titles, period: "year")
-            print("retreived \(self.retrievedAllWorkouts)")
+            self.changeLabelsForVolume()
+            self.lineChart.xAxis.spaceMax = 0.2
         })
     }
     
@@ -577,10 +584,10 @@ func retrieveDocumentsArray() {
         
         switch (workoutTitle.text, selectExercise.currentTitle) {
         
-        case ("ALL WORKOUTS", "Select exercises"):
+        case ("All workouts", "Select exercises"):
             self.findTrainingVolume(ex: arrayOfTitles, period: period)
         
-        case (let title1, "Select exercises") where title1 != "ALL WORKOUTS":
+        case (let title1, "Select exercises") where title1 != "All workouts":
             self.findTrainingVolume(ex: [selectExercise.currentTitle!], period: period)
             
         case (_, "All exercises"):
@@ -603,7 +610,7 @@ func retrieveDocumentsArray() {
             popup.selectedWorkoutChart = { text in
 
                 self.workoutTitle.text = text
-                if text == "ALL WORKOUTS" {
+                if text == "All workouts" {
                     self.getDataByVolume(titles: self.arrayOfTitles)
                     self.selectByButton.setTitle("Volume", for: .normal)
                     self.selectExercise.isUserInteractionEnabled = false
@@ -615,12 +622,12 @@ func retrieveDocumentsArray() {
                     self.getDataByVolume(titles: [text])
                     self.selectExercise.isUserInteractionEnabled = true
                     self.selectByButton.isUserInteractionEnabled = false
-       
+                    self.getExercisesForSelectedWorkout()
                 }
 
                 self.lineChart.notifyDataSetChanged()
                 self.checkIfWorkoutIsSelected = true
-                self.getExercisesForSelectedWorkout()
+              
                 
             }
         }
@@ -630,6 +637,7 @@ func retrieveDocumentsArray() {
             let popup = segue.destination as! ExercisesPopUp
             
             popup.exercises = exercisesForSelectedWorkout
+            
             popup.selectedExercise = { text in
 
                 self.selectExercise.setTitle(text, for: .normal)
@@ -690,7 +698,7 @@ func retrieveDocumentsArray() {
       
         workoutTitle = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width, height: 40))
         workoutTitle.textAlignment = .left
-        workoutTitle.text = "Progress Charts"
+        workoutTitle.text = "All workouts"
         workoutTitle.textColor = .white
         workoutTitle.font = UIFont.systemFont(ofSize: 28)
       
@@ -726,11 +734,12 @@ func retrieveDocumentsArray() {
     
     func setChartProperties() {
  
+       
         viewChart.layer.cornerRadius = 20
-            lineChart.backgroundColor = .clear
-            lineChart.extraBottomOffset = 25
+        lineChart.backgroundColor = .clear
+        lineChart.extraBottomOffset = 25
 
-            lineChart.rightAxis.enabled = false
+        lineChart.rightAxis.enabled = false
         lineChart.scaleXEnabled = true
         
             let yAxis = lineChart.leftAxis
@@ -742,23 +751,40 @@ func retrieveDocumentsArray() {
             yAxis.labelPosition = .outsideChart
             yAxis.drawGridLinesEnabled = true
 
+//        let number = dataSets[0].entries.count - 1
+        var number: Int = 0
+     
+        if !dataSets.isEmpty {
+            number = dataSets[0].entries.count - 1
+            self.lineChart.highlightValue(x: dataSets[0][number].x, y: dataSets[0][number].y, dataSetIndex: 0)
+        } else {
+            print("out of range")
+        }
+       
+       
+        
+        
+        lineChart.xAxis.setLabelCount(8, force: false)
           
+        
         lineChart.xAxis.labelPosition = .bottom
         lineChart.xAxis.avoidFirstLastClippingEnabled = true
         lineChart.xAxis.granularity = 1
         lineChart.xAxis.labelRotationAngle = -45
         lineChart.xAxis.labelFont = .systemFont(ofSize: 12)
+
         lineChart.xAxis.axisLineColor = .white
         lineChart.xAxis.labelTextColor = .white
         lineChart.xAxis.drawGridLinesEnabled = false
         lineChart.legend.font = .systemFont(ofSize: 10)
-//        lineChart.xAxis.setLabelCount(8, force: true)
+   
         
         lineChart.legend.textColor = .white
   
         self.lineChart.animate(xAxisDuration: 0.04 * Double(self.lineChartEntry1.count), easingOption: .linear)
-
+       
     }
+    
     
     //MARK: - CHANING UI
     func changeLabelsForVolume() {
@@ -846,34 +872,8 @@ extension Calendar {
         }
         return (startOfWeek, endOfWeek)
     }
-    
-//    func getFirstDayOfMonth(date: Date) -> (firstDay: Date?, lastDay: Date?){
-//        let calendar = Calendar(identifier: .iso8601)
-//
-//
-//
-//        let firstDayComponents = calendar.dateComponents([.year, .month], from: date)
-//        let firstDay = calendar.date(from: firstDayComponents)!
-//
-//        let lastDayComponents = DateComponents(month: 1, day: -1)
-//        let lastDay = calendar.date(byAdding: lastDayComponents, to: firstDay)!
-//
-//        return (firstDay, lastDay)
-//    }
-
 }
-//
-//extension Date {
-//    func firstDayOfMonth() -> Date {
-//
-//        return Calendar.current.date(from: Calendar.current.dateComponents([.year, .month], from: Calendar.current.startOfDay(for: self)))!
-//    }
-//
-//    func endDayOfMonth() -> Date {
-//        return Calendar.current.date(byAdding: DateComponents(month: 1, day: -1), to: self.firstDayOfMonth())!
-//    }
-//}
-
+    
 extension Date {
     
     func firstDateOfMonth() -> Date {
@@ -896,61 +896,4 @@ extension Date {
         return calendar.date(from: components)!
     }
 }
-
-
-//func findMaxValueForMonth() {
-//
-//        dateCount = 0
-//        numberOfColors = 0
-//        lineChartEntry1 = []
-//        dataSets = []
-//
-//        let group2 = DispatchGroup()
-//
-//        referenceTimeInterval = Date().firstDateOfMonth().timeIntervalSince1970
-//
-//        let dateFormatter = DateFormatter()
-//        lineChart.xAxis.valueFormatter = ChartXAxisFormatter(referenceTimeInterval: referenceTimeInterval, dateFormatter: dateFormatter)
-//
-//        var date: Date = Date()
-//        for (key, value) in retrievedExerciseMax {
-//            group2.enter()
-//            numberOfColors += 1
-//            lineChartEntry1 = []
-//            for values in value {
-//
-//                if values.date >= Date().firstDateOfMonth() && values.date <= Date().lastDateOfMonth() {
-//                dateCount += 1
-//
-//
-//                let maxWeight = Double(values.maxWeight)
-//                let volume = Double(values.volume)
-//                let highlightedValue = HighlightedExercise(reps: values.maxReps, sets: values.sets, time: "")
-//
-//
-//
-//                let timeInterval = values.date.timeIntervalSince1970
-//
-//                let xValue = (timeInterval - referenceTimeInterval) / (3600 * 24)
-//
-//                lineChartEntry1.append(ChartDataEntry(x: xValue, y: Double(maxWeight), data: highlightedValue))
-//                }
-//                else {
-//                    print("poza range")
-//            }
-//            }
-//
-//            lineChartEntry1.sort(by: { $0.x < $1.x})
-//            let set = LineChartDataSet(entries: lineChartEntry1, label: "\(key)")
-//            set.setColor(colors[numberOfColors])
-//
-//            dataSets.append(set)
-//            group2.leave()
-//        }
-//
-//        group2.notify(queue: .main) {
-//            self.setData(entries: self.dataSets)
-//        }
-//
-//    }
 

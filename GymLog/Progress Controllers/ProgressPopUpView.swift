@@ -24,7 +24,7 @@ class ProgressPopUpView: UIViewController, UIPickerViewDelegate, UIPickerViewDat
     func getWorkoutsTitle() {
       if let workoutsRetrieved = UserDefaults.standard.object(forKey: "workoutsName") as? [String] {
      workouts = workoutsRetrieved
-        workouts.insert("ALL WORKOUTS", at: 0)
+        workouts.insert("All workouts", at: 0)
       }
       print("\(workouts) TO workouts")
     }

@@ -16,10 +16,11 @@ class Service {
     let user = Auth.auth().currentUser
     
     var exercises: [String] = []
+    var exercisesForWorkout: [String : [String]] = [:]
+    var workouts: [WorkoutsTitle] = []
+    var workoutsName: [String] = []
     
     var formatter = DateFormatter()
-       
-     
     
     var newDictionaryByVolume: [String: [RetrievedWorkoutsByVolume]] = [:]
     var newArrayByExercise: [RetrievedWorkoutsByExercise] = []
@@ -28,7 +29,41 @@ class Service {
     var dispatchGroup = DispatchGroup()
     
     
+    func getExercisesForWorkouts(arrayOfTitles: [String], completionHandler: @escaping([String : [String]]) -> Void)
+    
+    {
+        exercisesForWorkout = [:]
+       
+        for title in arrayOfTitles {
+            dispatchGroup.enter()
+        db.collection("users").document("\(user!.uid)").collection("WorkoutsName").document("\(title)").collection("Exercises").getDocuments { (querySnapshot, error) in
+                        
+            if let error = error {
+                print("\(error.localizedDescription)")
+            }
+            else {
+                if let documents = querySnapshot?.documents {
+                  
+                    for i in 0..<documents.count {
+                        let documentID2 = documents[i].documentID
+                        
+                        self.exercisesForWorkout[title, default: []].append(documentID2)
+                    }
+                    self.dispatchGroup.leave()
+                }
+            }
+        }
+    }
+        dispatchGroup.notify(queue: DispatchQueue.main) {
+            completionHandler(self.exercisesForWorkout)
+        }
+        
+    }
+    
+    
     func getDocumentsTitle(workout: String, completion: @escaping (_ result: [String]) -> ()) {
+        
+        exercises = []
         
         db.collection("users").document("\(user!.uid)").collection("WorkoutsName").document(workout).collection("Exercises").getDocuments(completion: { (querySnapshot, error) in
             
@@ -48,11 +83,57 @@ class Service {
                                
                                    }
             completion(self.exercises)
-            print("EXEr \(self.exercises)")
+
                                })
     
                        }
     
+    
+    //MARK: - HOME VIEW CONTROLLER
+    
+    func retrieveWorkoutTitle(completionHandler: @escaping([WorkoutsTitle], [String]) -> Void) {
+        
+        workouts = []
+        workoutsName = []
+        
+        db.collection("users").document("\(user!.uid)").collection("WorkoutsName").getDocuments(completion: { (querySnapshot, error) in
+            self.dispatchGroup.enter()
+            if let error = error
+                       {
+                           print("\(error.localizedDescription)")
+                       }
+                       else {
+                           if let snapshotDocuments = querySnapshot?.documents {
+                               for doc in snapshotDocuments {
+                              
+                                   let data = doc.data()
+                                   if let workoutTitle = data["workoutTitle"] as? String, let workoutDay = data["workoutDay"] as? String {
+           
+                                    let newTitle = WorkoutsTitle(workoutTitle: workoutTitle, workoutDay: workoutDay)
+           
+                                        self.workouts.append(newTitle)
+                                    self.workoutsName.append(workoutTitle)
+                           print("new tile \(newTitle)")
+                              
+                                   }
+                              
+                                   }
+                            self.dispatchGroup.leave()
+                            self.dispatchGroup.notify(queue: .main) {
+                                completionHandler(self.workouts, self.workoutsName)
+                            }
+                               }
+                       }
+        })
+ 
+        
+    }
+    
+    //MARK: - CALENDAR CONTROLLER
+    
+    
+   
+    //MARK: - PROGRESS CONTROLLER
     func getDataByVolume(titles: [String], completionHandler: @escaping([String: [RetrievedWorkoutsByVolume]]) -> Void) {
         
         formatter.dateFormat = "yyyy-MM-dd HH:mm"

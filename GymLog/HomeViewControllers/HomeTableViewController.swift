@@ -10,6 +10,7 @@ import Firebase
 
 class HomeTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, WorkoutTableCellDelegate {
    
+    let service = Service()
     @IBOutlet weak var addWorkoutButton: UIBarButtonItem!
     
     @IBOutlet weak var tableView: UITableView!
@@ -39,50 +40,24 @@ class HomeTableViewController: UIViewController, UITableViewDelegate, UITableVie
        
     }
     override func viewWillDisappear(_ animated: Bool) {
-        sendDataToCalendar()
+        saveWorkoutsTitleInMemory()
         saveExercisesInMemory()
-        getDocumentsTitle(workouts: workoutsName)
-        print("Exer \(exercises)")
-        print("\(workoutsName.distinct()) TO WYSYLAM ")
-       
-        
     }
     
-    
     func retrieveWorkouts() {
-        
-        db.collection("users").document("\(user!.uid)").collection("WorkoutsName").getDocuments(completion: { (querySnapshot, error) in
-            self.workouts = []
-            if let error = error
-                       {
-                           print("\(error.localizedDescription)")
-                       }
-                       else {
-                           if let snapshotDocuments = querySnapshot?.documents {
-                               for doc in snapshotDocuments {
+      
+        workouts = []
+        workoutsName = []
+            self.service.retrieveWorkoutTitle { (a,b) in
            
-                                   let data = doc.data()
-                                   if let workoutTitle = data["workoutTitle"] as? String, let workoutDay = data["workoutDay"] as? String {
-           
-                                    let newTitle = WorkoutsTitle(workoutTitle: workoutTitle, workoutDay: workoutDay)
-           
-                                        self.workouts.append(newTitle)
-                                    self.workoutsName.append(workoutTitle)
-                           
-                                       }
-                                DispatchQueue.main.async {
-                                    self.tableView.reloadData()
-                                  
-                                 print("Success")
-            
-                                }
-                               
-                                   }
-                               }
-                       }
-        })
- 
+            self.workouts = a
+            self.workoutsName = b
+      
+            DispatchQueue.main.async {
+                    self.tableView.reloadData()
+            }
         }
+    }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         
@@ -104,7 +79,7 @@ class HomeTableViewController: UIViewController, UITableViewDelegate, UITableVie
         return 120
     }
     
-    func sendDataToCalendar() {
+    func saveWorkoutsTitleInMemory() {
         
         UserDefaults.standard.set(workoutsName.distinct(), forKey: "workoutsName")
       
@@ -114,36 +89,12 @@ class HomeTableViewController: UIViewController, UITableViewDelegate, UITableVie
         UserDefaults.standard.set(exercises, forKey: "exercises")
     }
     
-    func getDocumentsTitle(workouts: [String]) {
+    func getExercisesForWorkout() {
         
-     
-        
-        for workout in workouts {
-        db.collection("users").document("\(user!.uid)").collection("WorkoutsName").document(workout).collection("Exercises").getDocuments(completion: { (querySnapshot, error) in
-            self.workouts = []
-            if let error = error
-                       {
-                           print("\(error.localizedDescription)")
-                       }
-                       else {
-                           if let snapshotDocuments = querySnapshot?.documents {
-                            
-                             
-                               for doc in snapshotDocuments {
-           
-                                let exercise = doc.documentID
-                                
-                                self.exercises["\(workout)",default: []].append(exercise)
-                                       }
-                                }
-                           
-                               
-                                   }
-                               })
-                       }
-        print("otrzymane \(exercises)")
+        service.getExercisesForWorkouts(arrayOfTitles: workoutsName) { (data) in
+            self.exercises = data
         }
-        
+    }
     }
 
 extension HomeTableViewController  {
