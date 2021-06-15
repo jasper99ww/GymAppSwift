@@ -27,6 +27,10 @@ class LoginViewController: UIViewController {
        
     }
     
+    override func viewWillAppear(_ animated: Bool) {
+        self.navigationController?.isNavigationBarHidden = false
+    }
+    
 //    override func viewDidAppear(_ animated: Bool) {
 //        checkUserInfo()
 //    }
@@ -63,6 +67,7 @@ class LoginViewController: UIViewController {
                     return
                 } else {
                     self.performSegue(withIdentifier: "loginToHome", sender: self)
+                 
                 }
             }
         }

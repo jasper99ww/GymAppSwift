@@ -21,8 +21,7 @@ class MainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         // Do any additional setup after loading the view.
-        
-        
+
         setUpElements()
     }
     
@@ -34,6 +33,7 @@ class MainViewController: UIViewController {
             }
     }
     }
+    
         
 //        if Auth.auth().currentUser != nil  {
 //            DispatchQueue.main.async {
@@ -42,7 +42,9 @@ class MainViewController: UIViewController {
 //        }
         
     
-   
+    @IBAction func unwindToFirstVC(_ sender: UIStoryboardSegue) {
+        
+    }
    
 
 

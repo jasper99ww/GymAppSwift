@@ -82,7 +82,7 @@ class CalendarViewController: UIViewController {
     
     func saveArrayOfDocumentsInMemory() {
         UserDefaults.standard.set(exercisesInTraining, forKey: "dictionaryOfTitleDocuments")
-        print("TO ARRAY OF DOCUMENTS \(exercisesInTraining)")
+ 
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -98,9 +98,7 @@ class CalendarViewController: UIViewController {
                 self.calendarView.allowsMultipleSelection = false
             }
         }
-        print("\(selectedString) SELECTED STRING")
       
-        
     }
     
     func preSelectDataAfterPopUp() {
@@ -109,7 +107,6 @@ class CalendarViewController: UIViewController {
         selectDoneDates3 = []
         
         if selectedString == "ALL" {
-            print("DO NOTHING, BECAUSE ALL WAS PRESENTED BEFORE")
             preSelectData()
         }
         else {
@@ -119,7 +116,6 @@ class CalendarViewController: UIViewController {
             
             if let examples = emptyDict[selectedString] {
                 let examplesInString = examples.compactMap { dateFormatter.string(from: $0!) } as [String]
-            print("\(examples) tO EXAMPLES ")
             selectDoneDates3 = examplesInString
             }
         }
@@ -201,7 +197,6 @@ class CalendarViewController: UIViewController {
                         self.selectDoneDates2.append(value2)
                     }
                     grp.leave()
-                    print("NOWA TABLICA \(self.emptyDict)")
                 }
             }
         }
@@ -219,9 +214,7 @@ class CalendarViewController: UIViewController {
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
 
-        print("empty Dict \(emptyDict)")
         for (_, date) in emptyDict {
-            print("DATE TO \(date)")
 
             for date2 in date {
             selectDoneDates.append(date2!)
@@ -360,7 +353,6 @@ extension CalendarViewController: JTACMonthViewDelegate {
         doneTrainingDate = []
         exercisesInDoneTraining = [:]
         hourOfDoneTraining = []
-        print("DONE TRAINING TO \(doneTrainingDate)")
         
         let dateFormatter = DateFormatter()
         dateFormatter.dateFormat = "yyyy-MM-dd"
@@ -389,7 +381,7 @@ extension CalendarViewController: JTACMonthViewDelegate {
 
             }
             else {
-                print("Nie zrobiles tego dnia treningu")
+//                print("Nie zrobiles tego dnia treningu")
             }
         }
 
@@ -425,11 +417,7 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "calendarCell", for: indexPath) as! CalendarTableViewCell
-        
-        print("ARRAY OF DOCUMENTS TITLE \(arrayOfDocumentsTitle)")
-        print("ARRAY OF TITLES \(arrayOfTitles)")
-        print("DONE TRAINING DATE \(doneTrainingDate)")
-        print("HOURS OF DONE TRAININg \(hourOfDoneTraining)")
+
         if doneTrainingDate.count == 0 {
             cell.showDetailsButton?.alpha = 0
             cell.viewColor?.backgroundColor = .clear

@@ -200,7 +200,7 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
 
     func setData(entries: [LineChartDataSet]) {
         
-        let color = UIColor.init(red: 48/255, green: 173/255, blue: 99/255, alpha: 1)
+      
        
         let colorLocations: [CGFloat] = [0.0, 1.0]
         
@@ -242,8 +242,8 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
     }
   
     func convertDateForAxis() {
-        retrievedAllWorkouts.compactMap({$0.value}).compactMap({$0.compactMap({$0.date})})
-        print("TEGO \(retrievedAllWorkouts.compactMap({$0.value}).compactMap({$0.compactMap({$0.date})}))")
+//        retrievedAllWorkouts.compactMap({$0.value}).compactMap({$0.compactMap({$0.date})})
+//        print("TEGO \(retrievedAllWorkouts.compactMap({$0.value}).compactMap({$0.compactMap({$0.date})}))")
         
         if let minTimeInterval = (retrievedAllWorkouts.compactMap({$0.value}).compactMap({$0.compactMap({$0.date})}).min(by: {$0[0].timeIntervalSince1970 < $1[0].timeIntervalSince1970}))?.min() {
             referenceTimeInterval = minTimeInterval.timeIntervalSince1970
@@ -283,7 +283,6 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
         lineChart.xAxis.valueFormatter = ChartXAxisFormatter(referenceTimeInterval: referenceTimeInterval, dateFormatter: dateFormatter)
     
             dateCount = 0
-            
             lineChartEntry1 = []
             dataSets = []
        
@@ -486,7 +485,7 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
                
                 dateCount += 1
                 
-                var timeInterval = values.date.timeIntervalSince1970
+                let timeInterval = values.date.timeIntervalSince1970
                 
                 let maxWeight = Double(values.maxWeight)
                 let volume = Double(values.volume)
@@ -706,6 +705,7 @@ func retrieveDocumentsArray() {
         navigationItem.titleView = titleView
     
         if let navigationBar = navigationController?.navigationBar {
+            titleView.translatesAutoresizingMaskIntoConstraints = false
             titleView.leadingAnchor.constraint(equalTo: navigationBar.leadingAnchor, constant: 10).isActive = true
         }
     }
@@ -737,7 +737,7 @@ func retrieveDocumentsArray() {
        
         viewChart.layer.cornerRadius = 20
         lineChart.backgroundColor = .clear
-        lineChart.extraBottomOffset = 25
+        lineChart.extraBottomOffset = 35
 
         lineChart.rightAxis.enabled = false
         lineChart.scaleXEnabled = true

@@ -57,6 +57,10 @@
 		59F33BB326111FE700A6DBB0 /* AddNextExerciseController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F33BB226111FE700A6DBB0 /* AddNextExerciseController.swift */; };
 		59F33BB62611218300A6DBB0 /* NextExerciseCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F33BB52611218300A6DBB0 /* NextExerciseCell.swift */; };
 		59F70386260A1FC200E1CB80 /* EditWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 59F70385260A1FC200E1CB80 /* EditWorkoutViewController.swift */; };
+		E7170F402679153A00ED7C26 /* AccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7170F3F2679153A00ED7C26 /* AccountViewController.swift */; };
+		E7170F432679198500ED7C26 /* AccountTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7170F422679198500ED7C26 /* AccountTableViewCell.swift */; };
+		E7170F4626791C8700ED7C26 /* ProfileService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7170F4526791C8700ED7C26 /* ProfileService.swift */; };
+		E7170F49267959E100ED7C26 /* EditAccountViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7170F48267959E100ED7C26 /* EditAccountViewController.swift */; };
 		E718EDF726629F54004AFE8C /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718EDF626629F54004AFE8C /* Service.swift */; };
 		E718EDFE2662EC7F004AFE8C /* CriteriaOfSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718EDFD2662EC7F004AFE8C /* CriteriaOfSelectViewController.swift */; };
 		E71947CE265D6C0000DD17F3 /* ExercisesPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71947CD265D6C0000DD17F3 /* ExercisesPopUp.swift */; };
@@ -123,6 +127,10 @@
 		59F70385260A1FC200E1CB80 /* EditWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditWorkoutViewController.swift; sourceTree = "<group>"; };
 		680DA3AC7746E79E90D20D16 /* Pods-GymLog.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GymLog.debug.xcconfig"; path = "Target Support Files/Pods-GymLog/Pods-GymLog.debug.xcconfig"; sourceTree = "<group>"; };
 		952918140AC50067C51B905C /* Pods-GymLog.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GymLog.release.xcconfig"; path = "Target Support Files/Pods-GymLog/Pods-GymLog.release.xcconfig"; sourceTree = "<group>"; };
+		E7170F3F2679153A00ED7C26 /* AccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountViewController.swift; sourceTree = "<group>"; };
+		E7170F422679198500ED7C26 /* AccountTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountTableViewCell.swift; sourceTree = "<group>"; };
+		E7170F4526791C8700ED7C26 /* ProfileService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileService.swift; sourceTree = "<group>"; };
+		E7170F48267959E100ED7C26 /* EditAccountViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAccountViewController.swift; sourceTree = "<group>"; };
 		E718EDF626629F54004AFE8C /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		E718EDFD2662EC7F004AFE8C /* CriteriaOfSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CriteriaOfSelectViewController.swift; sourceTree = "<group>"; };
 		E71947CD265D6C0000DD17F3 /* ExercisesPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesPopUp.swift; sourceTree = "<group>"; };
@@ -313,6 +321,10 @@
 			isa = PBXGroup;
 			children = (
 				5980D476260CEDC60070F23B /* ProfileViewController.swift */,
+				E7170F3F2679153A00ED7C26 /* AccountViewController.swift */,
+				E7170F422679198500ED7C26 /* AccountTableViewCell.swift */,
+				E7170F4526791C8700ED7C26 /* ProfileService.swift */,
+				E7170F48267959E100ED7C26 /* EditAccountViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -491,6 +503,7 @@
 				596BC84125E29DE700166D9C /* LoginViewController.swift in Sources */,
 				E718EDF726629F54004AFE8C /* Service.swift in Sources */,
 				E72D7D9526694E26001EC1F8 /* DateSelection.swift in Sources */,
+				E7170F432679198500ED7C26 /* AccountTableViewCell.swift in Sources */,
 				596D125C26360407003B7292 /* DateCell.swift in Sources */,
 				5964EA02261B50FF00998B2F /* StartViewController.swift in Sources */,
 				592EC294263CB73200761632 /* CalendarTableViewCell.swift in Sources */,
@@ -499,6 +512,7 @@
 				E7CD99782661A88000EDBE51 /* ProgressPopUpView.swift in Sources */,
 				595E15B5261B90DB00CB4627 /* DataCell2.swift in Sources */,
 				59611D9825FEB6EB00EB772E /* WorkoutsTitle.swift in Sources */,
+				E7170F49267959E100ED7C26 /* EditAccountViewController.swift in Sources */,
 				5964DE772605479600A941D8 /* OptionsViewController.swift in Sources */,
 				5962997E26234D9900EF414D /* TimerStruct.swift in Sources */,
 				597F781725FC2124005F97A2 /* ShowWorkoutViewController.swift in Sources */,
@@ -518,6 +532,7 @@
 				59B1E87625E8674000A8E172 /* TabMainController.swift in Sources */,
 				596620A425EA9A5F002B04D5 /* AddWorkoutCell.swift in Sources */,
 				59E3856926161FC700B31EA4 /* ModalAddViewController.swift in Sources */,
+				E7170F402679153A00ED7C26 /* AccountViewController.swift in Sources */,
 				596D12272635A800003B7292 /* CalendarViewController.swift in Sources */,
 				596BC83B25E29D6400166D9C /* Constants.swift in Sources */,
 				5961427525E9B54000A83DD6 /* HomeTableViewController.swift in Sources */,
@@ -527,6 +542,7 @@
 				E74427082648901E00B1E3BC /* PopUpCalendarViewController.swift in Sources */,
 				59638F5725E1C0D400B2AF84 /* AppDelegate.swift in Sources */,
 				59A533A425F0310A0064DFB5 /* UnderlinedTextField.swift in Sources */,
+				E7170F4626791C8700ED7C26 /* ProfileService.swift in Sources */,
 				596168B4260B9BE00033B29D /* EditWorkoutCell.swift in Sources */,
 				592EC291263CB45200761632 /* CalendarTableViewController.swift in Sources */,
 				596BC83825E29D5700166D9C /* Utilities.swift in Sources */,

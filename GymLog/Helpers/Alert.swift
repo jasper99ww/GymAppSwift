@@ -32,4 +32,16 @@ struct Alert {
         showBasicAlert(on: vc, with: "Incomplete data", message: " Please fill out all fields and checkmarks")
     }
     
+    static func showBeforeLogOut(on vc: UIViewController, completionHandler: @escaping(String) -> ()) {
+        let alert = UIAlertController(title: "Signing out", message: "Are you sure you want to sign out?", preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "Yes", style: .default, handler: { (action) in
+            print("tapped Yes")
+            completionHandler("Yes")
+        }))
+        alert.addAction(UIAlertAction(title: "Cancel", style: .default, handler: { (action) in
+            print("tapped No")
+        }))
+        
+        vc.present(alert, animated: true)
+    }
 }

@@ -178,7 +178,7 @@
         <!--Main Tab Bar Controller-->
         <scene sceneID="DBh-FC-b54">
             <objects>
-                <tabBarController id="o08-jv-w1p" customClass="MainTabBarController" customModule="GymLog" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController storyboardIdentifier="tabBar" id="o08-jv-w1p" customClass="MainTabBarController" customModule="GymLog" customModuleProvider="target" sceneMemberID="viewController">
                     <navigationItem key="navigationItem" id="dPI-cv-znM"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" id="8WG-lq-uRd">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="49"/>
@@ -387,7 +387,7 @@
         </scene>
     </scenes>
     <inferredMetricsTieBreakers>
-        <segue reference="KgS-fI-xuA"/>
+        <segue reference="dNW-UP-pWc"/>
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.up.right" catalog="system" width="128" height="112"/>
