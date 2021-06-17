@@ -21,10 +21,13 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
     var titleToEdit: String = ""
     var valueToEdit: String = ""
     
+//    override func viewWillAppear(_ animated: Bool) {
+
+//    }
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-       
-        retrieveUserData()
+                retrieveUserData()
         tableView.dataSource = self
         tableView.delegate = self
         
@@ -68,22 +71,46 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if (segue.identifier == "toEditAccount") {
-            print("OPEN")
-            if let editVC = segue.destination as? EditAccountViewController {
-                print("title to edit \(titleToEdit)")
+       
+            guard let editVC = segue.destination as? EditAccountViewController else { return }
+
                 editVC.first = titleToEdit
                 editVC.second = valueToEdit
+                
+            editVC.changedEmail = { text in
+
+                    self.secondLabels[1] = text
+
+                DispatchQueue.main.async {
+                    self.tableView.reloadData()
+                }
+            }
+//            editVC.changedValueDelegate = self
             }
         }
     }
-}
+
 
 extension AccountViewController: AccountTableViewCellDelegate {
     func didTapButton(with title: String, with value: String) {
-        print("TADAM")
         titleToEdit = title
         valueToEdit = value
         performSegue(withIdentifier: "toEditAccount", sender: nil)
     }
   
+}
+
+extension AccountViewController: ChangedValueDelegate {
+    
+    func didChangeValue(value: String) {
+        if titleToEdit == "Username" {
+            self.secondLabels[0] = value
+        } else {
+            self.secondLabels[1] = value
+        }
+        DispatchQueue.main.async {
+            self.tableView.reloadData()
+        }
+        
+    }
 }

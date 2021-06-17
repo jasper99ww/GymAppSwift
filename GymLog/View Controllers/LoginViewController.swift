@@ -40,21 +40,12 @@ class LoginViewController: UIViewController {
         // Hide the error label
         errorLabel.alpha = 0
         
-//        // Style the elements
-//        Utilities.styleTextField(emailTextField)
-//        Utilities.styleTextField(passwordTextField)
+
         Utilities.styleFilledButton(loginButton)
-        
-        
+     
     }
     
-    
-    // TODO: Validate Text Fields
-    
-//        // Create cleaned versions of the text field
-//        let emailTrimmed = emailTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-//        let passwordTrimmed = passwordTextField.text!.trimmingCharacters(in: .whitespacesAndNewlines)
-    
+
     @IBAction func loginTapped(_ sender: UIButton) {
         
         if let email = emailTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines), let password = passwordTextField.text?.trimmingCharacters(in: .whitespacesAndNewlines) {

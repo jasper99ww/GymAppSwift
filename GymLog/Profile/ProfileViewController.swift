@@ -41,6 +41,7 @@ class ProfileViewController: UIViewController {
     func setUpCornerRadiusButton() {
         logoutButton.layer.cornerRadius = 20
     }
+     
     
     @IBAction func logoutButtonPressed(_ sender: UIButton) {
         func alertBeforeLogOut() {
