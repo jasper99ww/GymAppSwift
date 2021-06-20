@@ -66,6 +66,12 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
         cell.secondLabel.text = secondLabels[indexPath.row]
         cell.delegate = self
         
+        if indexPath.row == 2 {
+            cell.editImage.isHidden = true
+        } else {
+            cell.editImage.isHidden = false
+        }
+        
         return cell
     }
     
@@ -77,15 +83,21 @@ class AccountViewController: UIViewController, UITableViewDelegate, UITableViewD
                 editVC.first = titleToEdit
                 editVC.second = valueToEdit
                 
-            editVC.changedEmail = { text in
-
-                    self.secondLabels[1] = text
-
+            editVC.changedEmail = { newEmail in
+                    self.secondLabels[1] = newEmail
                 DispatchQueue.main.async {
+                    print("email done")
                     self.tableView.reloadData()
                 }
             }
-//            editVC.changedValueDelegate = self
+            
+            editVC.changedUsername = { newUsername in
+                self.secondLabels[0] = newUsername
+                DispatchQueue.main.async {
+                    print("username done")
+                    self.tableView.reloadData()
+                }
+            }
             }
         }
     }
@@ -100,17 +112,3 @@ extension AccountViewController: AccountTableViewCellDelegate {
   
 }
 
-extension AccountViewController: ChangedValueDelegate {
-    
-    func didChangeValue(value: String) {
-        if titleToEdit == "Username" {
-            self.secondLabels[0] = value
-        } else {
-            self.secondLabels[1] = value
-        }
-        DispatchQueue.main.async {
-            self.tableView.reloadData()
-        }
-        
-    }
-}

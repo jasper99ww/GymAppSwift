@@ -8,9 +8,6 @@
 import UIKit
 
 
-protocol ChangedValueDelegate {
-    func didChangeValue(value: String)
-}
 
 class EditAccountViewController: UIViewController {
 
@@ -51,11 +48,10 @@ class EditAccountViewController: UIViewController {
           
             self.navigationController?.popViewController(animated: true)
         case "E-mail address":
-          
-            
+                      
             service.showBeforeChangeEmail(vc: self, submitedEmail: newValue) {
                 self.changedEmail?(newValue)
-//                self.changedValueDelegate.didChangeValue(value: newValue)
+
                 self.navigationController?.popViewController(animated: true)
             }
        

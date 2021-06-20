@@ -68,6 +68,12 @@
 		E734A745265F01BD00621667 /* ProgressChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E734A744265F01BD00621667 /* ProgressChartViewController.swift */; };
 		E734A749265F01D400621667 /* ChartXAxisFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E734A748265F01D400621667 /* ChartXAxisFormatter.swift */; };
 		E74427082648901E00B1E3BC /* PopUpCalendarViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74427072648901E00B1E3BC /* PopUpCalendarViewController.swift */; };
+		E74F7E91267D0C94000A6C99 /* ProfileWorkoutViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74F7E90267D0C94000A6C99 /* ProfileWorkoutViewController.swift */; };
+		E74F7E94267D0E5B000A6C99 /* ProfileWorkoutTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74F7E93267D0E5B000A6C99 /* ProfileWorkoutTableViewCell.swift */; };
+		E74F7E98267E3793000A6C99 /* ProfileWorkoutOtherSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74F7E96267E3793000A6C99 /* ProfileWorkoutOtherSettings.swift */; };
+		E74F7E99267E3793000A6C99 /* ProfileWorkoutOtherSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = E74F7E97267E3793000A6C99 /* ProfileWorkoutOtherSettings.xib */; };
+		E74F7E9C267E6112000A6C99 /* NotificationNamesClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74F7E9B267E6112000A6C99 /* NotificationNamesClass.swift */; };
+		E74F7EA0267F7D2F000A6C99 /* UnitClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74F7E9F267F7D2F000A6C99 /* UnitClass.swift */; };
 		E7985F1826473D86007EC06D /* CalendarPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7985F1726473D86007EC06D /* CalendarPopupViewController.swift */; };
 		E7CD99782661A88000EDBE51 /* ProgressPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CD99772661A88000EDBE51 /* ProgressPopUpView.swift */; };
 /* End PBXBuildFile section */
@@ -138,6 +144,12 @@
 		E734A744265F01BD00621667 /* ProgressChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressChartViewController.swift; sourceTree = "<group>"; };
 		E734A748265F01D400621667 /* ChartXAxisFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartXAxisFormatter.swift; sourceTree = "<group>"; };
 		E74427072648901E00B1E3BC /* PopUpCalendarViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PopUpCalendarViewController.swift; sourceTree = "<group>"; };
+		E74F7E90267D0C94000A6C99 /* ProfileWorkoutViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileWorkoutViewController.swift; sourceTree = "<group>"; };
+		E74F7E93267D0E5B000A6C99 /* ProfileWorkoutTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileWorkoutTableViewCell.swift; sourceTree = "<group>"; };
+		E74F7E96267E3793000A6C99 /* ProfileWorkoutOtherSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileWorkoutOtherSettings.swift; sourceTree = "<group>"; };
+		E74F7E97267E3793000A6C99 /* ProfileWorkoutOtherSettings.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileWorkoutOtherSettings.xib; sourceTree = "<group>"; };
+		E74F7E9B267E6112000A6C99 /* NotificationNamesClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNamesClass.swift; sourceTree = "<group>"; };
+		E74F7E9F267F7D2F000A6C99 /* UnitClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitClass.swift; sourceTree = "<group>"; };
 		E7985F1726473D86007EC06D /* CalendarPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CalendarPopupViewController.swift; path = ../../../../CalendarPopupViewController.swift; sourceTree = "<group>"; };
 		E7CD99772661A88000EDBE51 /* ProgressPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressPopUpView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -313,6 +325,7 @@
 				596BC83A25E29D6400166D9C /* Constants.swift */,
 				59A533A325F0310A0064DFB5 /* UnderlinedTextField.swift */,
 				5961156D25F7BBC9008BD51B /* Alert.swift */,
+				E74F7E9F267F7D2F000A6C99 /* UnitClass.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -320,11 +333,10 @@
 		5980D475260CEDAB0070F23B /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				E74F7E8F267D090C000A6C99 /* Workout */,
+				E74F7E8E267D08F8000A6C99 /* Account */,
 				5980D476260CEDC60070F23B /* ProfileViewController.swift */,
-				E7170F3F2679153A00ED7C26 /* AccountViewController.swift */,
-				E7170F422679198500ED7C26 /* AccountTableViewCell.swift */,
 				E7170F4526791C8700ED7C26 /* ProfileService.swift */,
-				E7170F48267959E100ED7C26 /* EditAccountViewController.swift */,
 			);
 			path = Profile;
 			sourceTree = "<group>";
@@ -377,6 +389,28 @@
 				E72D7D9426694E26001EC1F8 /* DateSelection.swift */,
 			);
 			path = "Progress Controllers";
+			sourceTree = "<group>";
+		};
+		E74F7E8E267D08F8000A6C99 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				E7170F48267959E100ED7C26 /* EditAccountViewController.swift */,
+				E7170F422679198500ED7C26 /* AccountTableViewCell.swift */,
+				E7170F3F2679153A00ED7C26 /* AccountViewController.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		E74F7E8F267D090C000A6C99 /* Workout */ = {
+			isa = PBXGroup;
+			children = (
+				E74F7E90267D0C94000A6C99 /* ProfileWorkoutViewController.swift */,
+				E74F7E93267D0E5B000A6C99 /* ProfileWorkoutTableViewCell.swift */,
+				E74F7E96267E3793000A6C99 /* ProfileWorkoutOtherSettings.swift */,
+				E74F7E97267E3793000A6C99 /* ProfileWorkoutOtherSettings.xib */,
+				E74F7E9B267E6112000A6C99 /* NotificationNamesClass.swift */,
+			);
+			path = Workout;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -440,6 +474,7 @@
 			files = (
 				59638F6325E1C0D600B2AF84 /* LaunchScreen.storyboard in Resources */,
 				59638F6C25E1C16A00B2AF84 /* GoogleService-Info.plist in Resources */,
+				E74F7E99267E3793000A6C99 /* ProfileWorkoutOtherSettings.xib in Resources */,
 				59E6B8A826431AF90001DBC9 /* CalendarCell.storyboard in Resources */,
 				59B1E85925E85B3700A8E172 /* Profile.storyboard in Resources */,
 				59638F6025E1C0D600B2AF84 /* Assets.xcassets in Resources */,
@@ -504,6 +539,7 @@
 				E718EDF726629F54004AFE8C /* Service.swift in Sources */,
 				E72D7D9526694E26001EC1F8 /* DateSelection.swift in Sources */,
 				E7170F432679198500ED7C26 /* AccountTableViewCell.swift in Sources */,
+				E74F7E98267E3793000A6C99 /* ProfileWorkoutOtherSettings.swift in Sources */,
 				596D125C26360407003B7292 /* DateCell.swift in Sources */,
 				5964EA02261B50FF00998B2F /* StartViewController.swift in Sources */,
 				592EC294263CB73200761632 /* CalendarTableViewCell.swift in Sources */,
@@ -522,6 +558,7 @@
 				59CD49672624EAC20004A722 /* TimerViewController.swift in Sources */,
 				E718EDFE2662EC7F004AFE8C /* CriteriaOfSelectViewController.swift in Sources */,
 				59F70386260A1FC200E1CB80 /* EditWorkoutViewController.swift in Sources */,
+				E74F7E9C267E6112000A6C99 /* NotificationNamesClass.swift in Sources */,
 				591ABE35262E2F7100B6ECC1 /* EndWorkoutViewController.swift in Sources */,
 				59F33BB326111FE700A6DBB0 /* AddNextExerciseController.swift in Sources */,
 				5976918825ED9D36006C9E38 /* EntryViewController.swift in Sources */,
@@ -533,7 +570,9 @@
 				596620A425EA9A5F002B04D5 /* AddWorkoutCell.swift in Sources */,
 				59E3856926161FC700B31EA4 /* ModalAddViewController.swift in Sources */,
 				E7170F402679153A00ED7C26 /* AccountViewController.swift in Sources */,
+				E74F7E94267D0E5B000A6C99 /* ProfileWorkoutTableViewCell.swift in Sources */,
 				596D12272635A800003B7292 /* CalendarViewController.swift in Sources */,
+				E74F7E91267D0C94000A6C99 /* ProfileWorkoutViewController.swift in Sources */,
 				596BC83B25E29D6400166D9C /* Constants.swift in Sources */,
 				5961427525E9B54000A83DD6 /* HomeTableViewController.swift in Sources */,
 				59610F9E25FD65160006C32F /* RetrieveWorkoutCell.swift in Sources */,
@@ -546,6 +585,7 @@
 				596168B4260B9BE00033B29D /* EditWorkoutCell.swift in Sources */,
 				592EC291263CB45200761632 /* CalendarTableViewController.swift in Sources */,
 				596BC83825E29D5700166D9C /* Utilities.swift in Sources */,
+				E74F7EA0267F7D2F000A6C99 /* UnitClass.swift in Sources */,
 				E71947CE265D6C0000DD17F3 /* ExercisesPopUp.swift in Sources */,
 				596620BE25EBF541002B04D5 /* DataCell.swift in Sources */,
 				5961157125F81A80008BD51B /* WorkoutTableCell.swift in Sources */,

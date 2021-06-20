@@ -56,12 +56,13 @@ class Service {
     }
         dispatchGroup.notify(queue: DispatchQueue.main) {
             completionHandler(self.exercisesForWorkout)
+            print("exercises for workout from service \(self.exercisesForWorkout)")
         }
         
     }
     
     
-    func getDocumentsTitle(workout: String, completion: @escaping (_ result: [String]) -> ()) {
+    func getDocumentForOneWorkout(workout: String, completion: @escaping (_ result: [String]) -> ()) {
         
         exercises = []
         
@@ -139,7 +140,7 @@ class Service {
         formatter.dateFormat = "yyyy-MM-dd HH:mm"
         formatter.timeZone = TimeZone.current
         newDictionaryByVolume = [:]
-       
+       print("titles to \(titles)")
         for title in titles {
             dispatchGroup.enter()
             db.collection("users").document("\(user!.uid)").collection("WorkoutsName").document("\(title)").collection("Calendar").getDocuments(completion:  { (querySnapshot, error) in
@@ -153,7 +154,7 @@ class Service {
                             
                             let data = doc.data()
                             
-                            if let volume = data["Volume"] as? Int, let reps = data["Reps"] as? Int, let time = data["Time"] as? String, let weight = data["Weight"] as? Int {
+                            if let volume = data["Volume"] as? Double, let reps = data["Reps"] as? Int, let time = data["Time"] as? String, let weight = data["Weight"] as? Double {
 
                                 let dateDocumentID = self.formatter.date(from: doc.documentID)
             
@@ -173,6 +174,7 @@ class Service {
             }
         dispatchGroup.notify(queue: .main) {
         completionHandler(self.newDictionaryByVolume)
+            print("new \(self.newDictionaryByVolume)")
         }
     }
     
@@ -236,13 +238,13 @@ class Service {
                     
                         let data = doc.data()
         
-                        if let docSets = data["Sets"] as? [String: [String:String]], let max = data["Max"] as? [String:Int] {
+                        if let docSets = data["Sets"] as? [String: [String:String]], let max = data["Max"] as? [String:Double] {
                             
                             if let date = data["date"] as? String, let maxWeight = max["weight"] , let maxReps = max["doneReps"], let volume = data["Volume"] as? Int {
                                 
                                 guard let dateFormattedToDate = self.formatter.date(from: date) else {return}
                                
-                                let newModelMax = RetrievedWorkoutMax(workoutTitle: title, exerciseTitle: "\(document)", sets: (docSets.count), maxWeight: maxWeight, maxReps: maxReps,date: dateFormattedToDate, volume: volume)
+                                let newModelMax = RetrievedWorkoutMax(workoutTitle: title, exerciseTitle: "\(document)", sets: (docSets.count), maxWeight: maxWeight, maxReps: Int(maxReps),date: dateFormattedToDate, volume: volume)
 
                                 self.newDictionaryForAllExercises["\(document)", default: []].append(newModelMax)
 

@@ -25,8 +25,8 @@ struct RetrievedWorkoutsByExercise {
 struct RetrievedWorkoutsByVolume {
     let reps: Int
     let time: String
-    let volume: Int
-    let weight: Int
+    let volume: Double
+    let weight: Double
     let date: Date
 }
 
@@ -35,7 +35,7 @@ struct RetrievedWorkoutMax {
     let workoutTitle: String
     let exerciseTitle: String
     let sets: Int
-    let maxWeight: Int
+    let maxWeight: Double
     let maxReps: Int
     let date: Date
     let volume: Int
@@ -110,22 +110,41 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
     var checkIfWeightCriteriaIsSelected: Bool = true
     let dateFormatter = DateFormatter()
     
+    var weightUnit = "kg"
     
     override func viewWillAppear(_ animated: Bool) {
-        self.getDataByVolume(titles: self.arrayOfTitles)
+        
+        self.selectByButton.isUserInteractionEnabled = false
+        getDataByVolume(titles: self.arrayOfTitles)
     }
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
+       
         lineChart.delegate = self
         retrieveArrays()
         retrieveDocumentsArray()
         setUpNavigationBarItems()
         controlSegmentSetUp()
         setUpViews()
-       
+        createObservers()
         segmentedControl.selectedSegmentIndex = 2
+    }
+    
+    func createObservers() {
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(transformForKg), name: NotificationNamesClass.nameKG, object: nil)
+        
+        NotificationCenter.default.addObserver(self, selector: #selector(transformForLb), name: NotificationNamesClass.nameLB, object: nil)
+    }
+    
+    @objc func transformForKg() {
+        weightUnit = "kg"
+    }
+    
+    @objc func transformForLb() {
+        weightUnit = "lb"
     }
     
     //MARK: - MAKING PERIOD OF TIME SELECTION
@@ -182,7 +201,7 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
             let repsEntryData = String(entryData.reps)
             repsValue.text = repsEntryData
                 repsValue.fadeTransition(0.4)
-                weightValue.text = "\(higlightedY)kg"
+                weightValue.text = "\(higlightedY)\(weightUnit)"
                 weightValue.fadeTransition(0.4)
             }
             else {
@@ -538,7 +557,7 @@ func retrieveDocumentsArray() {
         selectExercise.setTitle("Select exercises", for: .normal)
         exercisesForSelectedWorkout = []
         if let workoutTitle = workoutTitle.text {
-        service.getDocumentsTitle(workout: workoutTitle) { (result) in
+        service.getDocumentForOneWorkout(workout: workoutTitle) { (result) in
             self.exercisesForSelectedWorkout = result
         }
         }

@@ -35,7 +35,7 @@ class HomeTableViewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.delegate = self
         tableView.dataSource = self
         self.tableView.backgroundColor = UIColor.init(red: 18/255, green: 18/255, blue: 18/255, alpha: 1)
-        
+      
         
        
     }
@@ -56,6 +56,7 @@ class HomeTableViewController: UIViewController, UITableViewDelegate, UITableVie
             DispatchQueue.main.async {
                     self.tableView.reloadData()
             }
+                self.getExercisesForWorkout()
         }
     }
     
@@ -87,12 +88,15 @@ class HomeTableViewController: UIViewController, UITableViewDelegate, UITableVie
     
     func saveExercisesInMemory() {
         UserDefaults.standard.set(exercises, forKey: "exercises")
+        print("exercises are \(exercises)")
     }
     
     func getExercisesForWorkout() {
         
         service.getExercisesForWorkouts(arrayOfTitles: workoutsName) { (data) in
             self.exercises = data
+            
+            print("exercises to \(data)")
         }
     }
     }

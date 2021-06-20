@@ -77,13 +77,9 @@ class CalendarViewController: UIViewController {
     }
     
     override func viewWillDisappear(_ animated: Bool) {
-        saveArrayOfDocumentsInMemory()
+     
     }
     
-    func saveArrayOfDocumentsInMemory() {
-        UserDefaults.standard.set(exercisesInTraining, forKey: "dictionaryOfTitleDocuments")
- 
-    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toCalendarPopUp" {
@@ -124,9 +120,6 @@ class CalendarViewController: UIViewController {
        
     }
     
-    @IBAction func menuButtonTapped(_ sender: UIButton) {
-        
-    }
     
     func selectTodayDate() {
        
@@ -153,17 +146,12 @@ class CalendarViewController: UIViewController {
     }
     
 
-
     func retrieveTitleWorkouts() {
         if let workoutName = UserDefaults.standard.object(forKey: "workoutsName") as? [String] {
         arrayOfTitles = workoutName
         }
     }
-    
-    func retrieveDocumentsArrayCalendar() {
-        
-    }
-    
+ 
     func retrieveExercisesForWorkouts(completion: @escaping() -> ()) {
         service.getExercisesForWorkouts(arrayOfTitles: arrayOfTitles) { (data) in
             self.exercisesInTraining = data
