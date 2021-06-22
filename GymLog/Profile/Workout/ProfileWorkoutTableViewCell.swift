@@ -22,9 +22,7 @@ class ProfileWorkoutTableViewCell: UITableViewCell {
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
-        super.setSelected(selected, animated: animated)
-
-        
+        super.setSelected(selected, animated: animated)        
     }
     
     func segmentedControlTitle() {
@@ -33,19 +31,4 @@ class ProfileWorkoutTableViewCell: UITableViewCell {
         segmentedControl.setTitleTextAttributes(titleTextAttributes, for: .selected)
     }
 
-    @IBAction func segmentedControlChanged(_ sender: UISegmentedControl) {
-        
-        if sender.selectedSegmentIndex == 0 {
-            // KG UNIT SELECTED
-            NotificationCenter.default.post(name: NotificationNamesClass.nameKG, object: nil)
-            unitClass.changeUnitFromLBtoKGInCalendar()
-            unitClass.changeUnitFromLBtoKGInHistory()
-            
-        } else {
-            // LB UNIT SELECTED
-            NotificationCenter.default.post(name: NotificationNamesClass.nameLB, object: nil)
-            unitClass.changeUnitFromKGtoLBInCalendar()
-            unitClass.changeUnitFromKGtoLBInHistory()
-        }
-    }
 }

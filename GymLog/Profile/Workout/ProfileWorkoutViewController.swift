@@ -9,6 +9,11 @@ import UIKit
 
 class ProfileWorkoutViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
  
+    var constantValueInPlaceholder: Bool = false
+
+    
+    let unitClass = UnitClass()
+    let start = StartViewController()
     @IBOutlet weak var tableView: UITableView!
     var arrayOfSettings = ["Units", "Progression", "Vibrations"]
     var arrayOfSecondLabels = ["Select unit", "Prompt values: from last training or constant value", "Vibrations when pause is finished"]
@@ -36,6 +41,7 @@ class ProfileWorkoutViewController: UIViewController, UITableViewDelegate, UITab
             customCell.secondLabel.text = arrayOfSecondLabels[indexPath.row]
             customCell.segmentedControl.setTitle(segmentedControlFirstSegment[indexPath.row], forSegmentAt: 0)
             customCell.segmentedControl.setTitle(segmentedControlSecondSegment[indexPath.row], forSegmentAt: 1)
+            customCell.segmentedControl.tag = indexPath.row
         return customCell
             
         }
@@ -47,6 +53,39 @@ class ProfileWorkoutViewController: UIViewController, UITableViewDelegate, UITab
         return cell
     }
     
+  
+    @IBAction func segmentedControlChange(_ sender: UISegmentedControl) {
+        
+        switch sender.tag {
+        case 0:
+            if sender.selectedSegmentIndex == 0 {
+//                NotificationCenter.default.post(name: NotificationNamesClass.nameKG, object: nil)
+//            self.unitClass.changeUnitFromLBtoKGInCalendar()
+//            self.unitClass.changeUnitFromLBtoKGInHistory()
+                print("selected KG")
+            } else {
+                // LB UNIT SELECTED
+//                NotificationCenter.default.post(name: NotificationNamesClass.nameLB, object: nil)
+//                self.unitClass.changeUnitFromKGtoLBInCalendar()
+//                self.unitClass.changeUnitFromKGtoLBInHistory()
+                print("selected LB")
+            }
+        case 1:
+            if sender.selectedSegmentIndex == 0 {
+                placeholderConstantValue(value: false)
+                print("selected LAST")
+            } else {
+                placeholderConstantValue(value: true)
+                print("selected CONSTANT")
+            }
+        default:
+        break
+            }
+    }
+    
+    func placeholderConstantValue(value: Bool) {
+        UserDefaults.standard.setValue(value, forKey: "placeholderConstantValue")
+    }
 
 
 }

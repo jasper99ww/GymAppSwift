@@ -10,6 +10,10 @@ import Firebase
 
 class StartViewController: UIViewController, UITableViewDelegate, UITableViewDataSource, StartViewCellDelegate {
     
+    let startService = StartService()
+    var lastTrainingData: [String: [LastTraining]] = [:]
+   
+    
     var weightArraySend = [String?]()
     var setsArraySend = [Int]()
     var repsArraySend = [String?]()
@@ -36,7 +40,9 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     let user = Auth.auth().currentUser
     
     var db = Firestore.firestore()
-  
+    
+    var constantValueInPlaceholder = Bool()
+    var arrayOfTitleDocuments: [String: [String]] = [:]
     
     @IBOutlet weak var tableView: UITableView!
   
@@ -46,11 +52,15 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.backgroundColor = UIColor.init(red: 24/255, green: 24/255, blue: 24/255, alpha: 1)
         nextButton.titleLabel?.adjustsFontSizeToFitWidth = true
+        placeholderValue()
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+    
+        retrieveDocumentsArray()
+        getLastTraining()
+     
         progressView?.transform = progressView.transform.scaledBy(x: 1, y: 3)
         
         tableView?.delegate = self
@@ -58,10 +68,30 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         retrieveWorkouts()
         startTimers(isEnded: false)
         workoutName.text = titleValue
+        
     }
     
     override func viewDidAppear(_ animated: Bool) {
         initialSelect()
+    }
+    
+    func getLastTraining() {
+        startService.getLastTraining(titleValue: titleValue, exercises: arrayOfTitleDocuments, completionHandler: { data in
+            self.lastTrainingData = data
+            self.tableView.reloadData()
+        })
+    }
+    
+    func retrieveDocumentsArray() {
+        
+        if let arrayTitleDocuments = UserDefaults.standard.object(forKey: "exercises") as? [String: [String]] {
+            arrayOfTitleDocuments = arrayTitleDocuments
+        }
+    }
+    
+    func placeholderValue() {
+        let placeholderConstantValueFromMemory = UserDefaults.standard.bool(forKey: "placeholderConstantValue")
+        constantValueInPlaceholder = placeholderConstantValueFromMemory
     }
     
     func startTimers(isEnded: Bool) {
@@ -143,15 +173,28 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableView.dequeueReusableCell(withIdentifier: "startViewCell", for: indexPath) as! StartViewCell
         
+        print("cnstant value \(constantValueInPlaceholder)")
         cell.setKg.text = ""
         cell.setReps.text = ""
         cell.setField?.text = String(indexPath.row + 1)
-        cell.setKg?.placeholder = models[exerciseNumber].kg
-        cell.setReps?.placeholder = models[exerciseNumber].reps
         exerciseLabel?.text = models[exerciseNumber].Exercise
         cell.checkmarkButton.isSelected = false
         cell.index = indexPath
         cell.cellDelegate = self
+        
+        if constantValueInPlaceholder {
+            cell.setKg?.placeholder = models[indexPath.row].kg
+            cell.setReps?.placeholder = models[indexPath.row].reps
+          
+        }
+            else {
+                for (key,values) in lastTrainingData {
+                    if key == models[exerciseNumber].Exercise {
+                            cell.setKg?.placeholder = values[indexPath.row].kg
+                            cell.setReps?.placeholder = values[indexPath.row].reps
+                        }
+                    }
+        }
         
         return cell
             
@@ -177,7 +220,6 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
                                    let data = doc.data()
                                    if let numberDb = data["Number"] as? String, let exerciseDb = data["Exercise"] as? String, let kgDb = data["kg"] as? String, let setsDb = data["Sets"] as? String, let repsDb = data["Reps"] as? String, let workoutName = data["workoutName"] as? String {
            
-                                       print("data is \(data)")
                                        let newModel = DataCell(Number: numberDb, Exercise: exerciseDb, kg: kgDb, sets: setsDb, reps: repsDb, workoutName: workoutName)
            
                                        self.models.append(newModel)
@@ -302,7 +344,6 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         view.titleValue = titleValue
     }
 }
-    
 
 extension Date {
     func getFormattedDate(format: String) -> String {

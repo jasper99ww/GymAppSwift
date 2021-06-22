@@ -64,6 +64,7 @@
 		E718EDF726629F54004AFE8C /* Service.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718EDF626629F54004AFE8C /* Service.swift */; };
 		E718EDFE2662EC7F004AFE8C /* CriteriaOfSelectViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E718EDFD2662EC7F004AFE8C /* CriteriaOfSelectViewController.swift */; };
 		E71947CE265D6C0000DD17F3 /* ExercisesPopUp.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71947CD265D6C0000DD17F3 /* ExercisesPopUp.swift */; };
+		E71CC4852681442B004B4FF7 /* StartService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E71CC4842681442B004B4FF7 /* StartService.swift */; };
 		E72D7D9526694E26001EC1F8 /* DateSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E72D7D9426694E26001EC1F8 /* DateSelection.swift */; };
 		E734A745265F01BD00621667 /* ProgressChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E734A744265F01BD00621667 /* ProgressChartViewController.swift */; };
 		E734A749265F01D400621667 /* ChartXAxisFormatter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E734A748265F01D400621667 /* ChartXAxisFormatter.swift */; };
@@ -74,6 +75,7 @@
 		E74F7E99267E3793000A6C99 /* ProfileWorkoutOtherSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = E74F7E97267E3793000A6C99 /* ProfileWorkoutOtherSettings.xib */; };
 		E74F7E9C267E6112000A6C99 /* NotificationNamesClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74F7E9B267E6112000A6C99 /* NotificationNamesClass.swift */; };
 		E74F7EA0267F7D2F000A6C99 /* UnitClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74F7E9F267F7D2F000A6C99 /* UnitClass.swift */; };
+		E791E2612682591500FBED0F /* HapticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E791E2602682591500FBED0F /* HapticsManager.swift */; };
 		E7985F1826473D86007EC06D /* CalendarPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7985F1726473D86007EC06D /* CalendarPopupViewController.swift */; };
 		E7CD99782661A88000EDBE51 /* ProgressPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CD99772661A88000EDBE51 /* ProgressPopUpView.swift */; };
 /* End PBXBuildFile section */
@@ -140,6 +142,7 @@
 		E718EDF626629F54004AFE8C /* Service.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Service.swift; sourceTree = "<group>"; };
 		E718EDFD2662EC7F004AFE8C /* CriteriaOfSelectViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CriteriaOfSelectViewController.swift; sourceTree = "<group>"; };
 		E71947CD265D6C0000DD17F3 /* ExercisesPopUp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ExercisesPopUp.swift; sourceTree = "<group>"; };
+		E71CC4842681442B004B4FF7 /* StartService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StartService.swift; sourceTree = "<group>"; };
 		E72D7D9426694E26001EC1F8 /* DateSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DateSelection.swift; sourceTree = "<group>"; };
 		E734A744265F01BD00621667 /* ProgressChartViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ProgressChartViewController.swift; sourceTree = "<group>"; };
 		E734A748265F01D400621667 /* ChartXAxisFormatter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ChartXAxisFormatter.swift; sourceTree = "<group>"; };
@@ -150,6 +153,7 @@
 		E74F7E97267E3793000A6C99 /* ProfileWorkoutOtherSettings.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileWorkoutOtherSettings.xib; sourceTree = "<group>"; };
 		E74F7E9B267E6112000A6C99 /* NotificationNamesClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNamesClass.swift; sourceTree = "<group>"; };
 		E74F7E9F267F7D2F000A6C99 /* UnitClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitClass.swift; sourceTree = "<group>"; };
+		E791E2602682591500FBED0F /* HapticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsManager.swift; sourceTree = "<group>"; };
 		E7985F1726473D86007EC06D /* CalendarPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CalendarPopupViewController.swift; path = ../../../../CalendarPopupViewController.swift; sourceTree = "<group>"; };
 		E7CD99772661A88000EDBE51 /* ProgressPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressPopUpView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -313,6 +317,7 @@
 				5962997D26234D9800EF414D /* TimerStruct.swift */,
 				59CD49662624EAC20004A722 /* TimerViewController.swift */,
 				59B8BBE92627A42A0029D00E /* MinutesTimerView.swift */,
+				E71CC4842681442B004B4FF7 /* StartService.swift */,
 			);
 			path = StartView;
 			sourceTree = "<group>";
@@ -326,6 +331,7 @@
 				59A533A325F0310A0064DFB5 /* UnderlinedTextField.swift */,
 				5961156D25F7BBC9008BD51B /* Alert.swift */,
 				E74F7E9F267F7D2F000A6C99 /* UnitClass.swift */,
+				E791E2602682591500FBED0F /* HapticsManager.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -581,6 +587,7 @@
 				E74427082648901E00B1E3BC /* PopUpCalendarViewController.swift in Sources */,
 				59638F5725E1C0D400B2AF84 /* AppDelegate.swift in Sources */,
 				59A533A425F0310A0064DFB5 /* UnderlinedTextField.swift in Sources */,
+				E791E2612682591500FBED0F /* HapticsManager.swift in Sources */,
 				E7170F4626791C8700ED7C26 /* ProfileService.swift in Sources */,
 				596168B4260B9BE00033B29D /* EditWorkoutCell.swift in Sources */,
 				592EC291263CB45200761632 /* CalendarTableViewController.swift in Sources */,
@@ -589,6 +596,7 @@
 				E71947CE265D6C0000DD17F3 /* ExercisesPopUp.swift in Sources */,
 				596620BE25EBF541002B04D5 /* DataCell.swift in Sources */,
 				5961157125F81A80008BD51B /* WorkoutTableCell.swift in Sources */,
+				E71CC4852681442B004B4FF7 /* StartService.swift in Sources */,
 				5966209D25EA93B8002B04D5 /* AddWorkoutViewController.swift in Sources */,
 				5961156E25F7BBC9008BD51B /* Alert.swift in Sources */,
 				59638F5925E1C0D400B2AF84 /* SceneDelegate.swift in Sources */,

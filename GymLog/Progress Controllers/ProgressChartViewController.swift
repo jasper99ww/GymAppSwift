@@ -214,13 +214,10 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
 
     }
     
-  
     //MARK: - SET CHART DATA
 
     func setData(entries: [LineChartDataSet]) {
         
-      
-       
         let colorLocations: [CGFloat] = [0.0, 1.0]
         
         numberOfColors = 0
@@ -239,8 +236,8 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
         set.drawCirclesEnabled = true
         set.circleColors = set.colors
         set.drawCircleHoleEnabled = false
-        set.circleRadius = 4
-        set.lineWidth = 4
+        set.circleRadius = 2
+        set.lineWidth = 2
         set.drawHorizontalHighlightIndicatorEnabled = false
         set.highlightColor = .red
          
@@ -408,7 +405,6 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
   
         }
     }
-
 
     func findMaxValueWithSelection(type: String, period: String) {
         
@@ -753,11 +749,10 @@ func retrieveDocumentsArray() {
     
     func setChartProperties() {
  
-       
         viewChart.layer.cornerRadius = 20
         lineChart.backgroundColor = .clear
         lineChart.extraBottomOffset = 35
-
+  
         lineChart.rightAxis.enabled = false
         lineChart.scaleXEnabled = true
         
@@ -780,16 +775,13 @@ func retrieveDocumentsArray() {
             print("out of range")
         }
        
-       
-        
-        
         lineChart.xAxis.setLabelCount(8, force: false)
-          
-        
+      
         lineChart.xAxis.labelPosition = .bottom
         lineChart.xAxis.avoidFirstLastClippingEnabled = true
         lineChart.xAxis.granularity = 1
         lineChart.xAxis.labelRotationAngle = -45
+     
         lineChart.xAxis.labelFont = .systemFont(ofSize: 12)
 
         lineChart.xAxis.axisLineColor = .white
