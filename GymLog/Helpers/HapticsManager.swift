@@ -16,9 +16,9 @@ final class HapticsManager {
     public func selectionVibrate() {
       
         DispatchQueue.main.async {
-        let selectionFeedbackGenerator = UISelectionFeedbackGenerator()
+            let selectionFeedbackGenerator = UIImpactFeedbackGenerator(style: .heavy)
         selectionFeedbackGenerator.prepare()
-        selectionFeedbackGenerator.selectionChanged()
+        selectionFeedbackGenerator.impactOccurred()
         }
     }
     

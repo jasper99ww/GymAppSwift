@@ -110,7 +110,9 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
     var checkIfWeightCriteriaIsSelected: Bool = true
     let dateFormatter = DateFormatter()
     
-    var weightUnit = "kg"
+    var weightUnit: String {
+        UserDefaults.standard.string(forKey: "unit") ?? "kg"
+    }
     
     override func viewWillAppear(_ animated: Bool) {
         
@@ -128,23 +130,8 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
         setUpNavigationBarItems()
         controlSegmentSetUp()
         setUpViews()
-        createObservers()
         segmentedControl.selectedSegmentIndex = 2
-    }
-    
-    func createObservers() {
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(transformForKg), name: NotificationNamesClass.nameKG, object: nil)
-        
-        NotificationCenter.default.addObserver(self, selector: #selector(transformForLb), name: NotificationNamesClass.nameLB, object: nil)
-    }
-    
-    @objc func transformForKg() {
-        weightUnit = "kg"
-    }
-    
-    @objc func transformForLb() {
-        weightUnit = "lb"
+       
     }
     
     //MARK: - MAKING PERIOD OF TIME SELECTION
@@ -175,6 +162,7 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
             if indexOfEntry > 0 {
                 
                 let previousEntry = dataSets[dataSetIndex][indexOfEntry - 1]
+                guard highlight.y > 0 && previousEntry.y > 0  else {return}
                 let previousEntryData = Int((((highlight.y) - (previousEntry.y)) / (previousEntry.y)) * 100)
                 changeValue.text = String("\(previousEntryData)%")
                 changeValue.fadeTransition(0.4)
@@ -258,13 +246,10 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
     }
   
     func convertDateForAxis() {
-//        retrievedAllWorkouts.compactMap({$0.value}).compactMap({$0.compactMap({$0.date})})
-//        print("TEGO \(retrievedAllWorkouts.compactMap({$0.value}).compactMap({$0.compactMap({$0.date})}))")
         
         if let minTimeInterval = (retrievedAllWorkouts.compactMap({$0.value}).compactMap({$0.compactMap({$0.date})}).min(by: {$0[0].timeIntervalSince1970 < $1[0].timeIntervalSince1970}))?.min() {
             referenceTimeInterval = minTimeInterval.timeIntervalSince1970
         }
-
     }
     
     func findTrainingVolume(ex: [String], period: String) {
@@ -292,7 +277,7 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
             }
             group2.leave()
         } else {
-            print("weird")
+            print("No training in this week")
         }
         dateFormatter.dateFormat = "dd.MM"
         

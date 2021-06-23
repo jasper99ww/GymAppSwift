@@ -12,6 +12,7 @@ class MinutesTimerView: UIViewController {
     var timer:Timer = Timer()
     var count:Int = 0
     var label: ((String) -> Void)?
+    
     func startTimer() {
         self.timer = Timer.scheduledTimer(timeInterval: 1, target: self, selector: #selector(timerCounter), userInfo: nil, repeats: true)
         

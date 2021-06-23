@@ -1,8 +1,11 @@
 
 import UIKit
+import AVFoundation
 
-class TimerViewController: UIViewController {
+class TimerViewController: UIViewController, CAAnimationDelegate {
     
+    
+    let vibrationsON: Bool = UserDefaults.standard.bool(forKey: "vibrations")
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var newView: UIView!
     
@@ -17,6 +20,9 @@ class TimerViewController: UIViewController {
     
     override func viewDidLoad() {
         super.viewDidLoad()
+        
+       
+        
     }
     
     override func viewDidLayoutSubviews() {
@@ -74,15 +80,35 @@ class TimerViewController: UIViewController {
     
     func animation() {
         let duration: TimeInterval = 10
-        
+
         let animation = CABasicAnimation(keyPath: "strokeEnd")
+        animation.delegate = self
         animation.fromValue = 0
         animation.toValue = 1
         animation.duration = duration
         animation.isRemovedOnCompletion = false
         animation.fillMode = .forwards
+     
         shape.add(animation, forKey: "urSoBasic")
-        
+
+    }
+    
+    func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
+
+        DispatchQueue.main.async {
+            self.minutesTimerView.timer.invalidate()
+            if self.vibrationsON == true {
+        AudioServicesPlaySystemSoundWithCompletion(kSystemSoundID_Vibrate) {
+            AudioServicesPlaySystemSound(kSystemSoundID_Vibrate)
+        }
+            } else {
+                print("vibrations are off")
+            }
+            
+            DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
+                self.dismiss(animated: true, completion: nil)
+            }
+        }
     }
 
     @IBAction func restartButtonTapped(_ sender: UIButton) {
@@ -125,3 +151,5 @@ func setTimerInLabel() {
         layer.beginTime = timeSincePause
     }
 }
+
+

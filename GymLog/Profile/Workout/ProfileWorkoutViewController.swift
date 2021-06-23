@@ -59,24 +59,22 @@ class ProfileWorkoutViewController: UIViewController, UITableViewDelegate, UITab
         switch sender.tag {
         case 0:
             if sender.selectedSegmentIndex == 0 {
-//                NotificationCenter.default.post(name: NotificationNamesClass.nameKG, object: nil)
+                saveSelectedUnitInMemory(unit: "kg")
+                print("kg")
 //            self.unitClass.changeUnitFromLBtoKGInCalendar()
 //            self.unitClass.changeUnitFromLBtoKGInHistory()
-                print("selected KG")
             } else {
                 // LB UNIT SELECTED
-//                NotificationCenter.default.post(name: NotificationNamesClass.nameLB, object: nil)
+                saveSelectedUnitInMemory(unit: "lb")
+                print("lb")
 //                self.unitClass.changeUnitFromKGtoLBInCalendar()
 //                self.unitClass.changeUnitFromKGtoLBInHistory()
-                print("selected LB")
             }
         case 1:
             if sender.selectedSegmentIndex == 0 {
                 placeholderConstantValue(value: false)
-                print("selected LAST")
             } else {
                 placeholderConstantValue(value: true)
-                print("selected CONSTANT")
             }
         default:
         break
@@ -85,6 +83,10 @@ class ProfileWorkoutViewController: UIViewController, UITableViewDelegate, UITab
     
     func placeholderConstantValue(value: Bool) {
         UserDefaults.standard.setValue(value, forKey: "placeholderConstantValue")
+    }
+
+    func saveSelectedUnitInMemory(unit: String) {
+        UserDefaults.standard.setValue(unit, forKey: "unit")
     }
 
 

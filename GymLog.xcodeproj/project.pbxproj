@@ -75,6 +75,8 @@
 		E74F7E99267E3793000A6C99 /* ProfileWorkoutOtherSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = E74F7E97267E3793000A6C99 /* ProfileWorkoutOtherSettings.xib */; };
 		E74F7E9C267E6112000A6C99 /* NotificationNamesClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74F7E9B267E6112000A6C99 /* NotificationNamesClass.swift */; };
 		E74F7EA0267F7D2F000A6C99 /* UnitClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74F7E9F267F7D2F000A6C99 /* UnitClass.swift */; };
+		E75232362683E73F00986F71 /* BodyWeightTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75232352683E73F00986F71 /* BodyWeightTableViewController.swift */; };
+		E75232392683EB7200986F71 /* BodyWeightTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75232382683EB7200986F71 /* BodyWeightTableViewCell.swift */; };
 		E791E2612682591500FBED0F /* HapticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E791E2602682591500FBED0F /* HapticsManager.swift */; };
 		E7985F1826473D86007EC06D /* CalendarPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7985F1726473D86007EC06D /* CalendarPopupViewController.swift */; };
 		E7CD99782661A88000EDBE51 /* ProgressPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CD99772661A88000EDBE51 /* ProgressPopUpView.swift */; };
@@ -153,6 +155,8 @@
 		E74F7E97267E3793000A6C99 /* ProfileWorkoutOtherSettings.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileWorkoutOtherSettings.xib; sourceTree = "<group>"; };
 		E74F7E9B267E6112000A6C99 /* NotificationNamesClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNamesClass.swift; sourceTree = "<group>"; };
 		E74F7E9F267F7D2F000A6C99 /* UnitClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitClass.swift; sourceTree = "<group>"; };
+		E75232352683E73F00986F71 /* BodyWeightTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyWeightTableViewController.swift; sourceTree = "<group>"; };
+		E75232382683EB7200986F71 /* BodyWeightTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyWeightTableViewCell.swift; sourceTree = "<group>"; };
 		E791E2602682591500FBED0F /* HapticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsManager.swift; sourceTree = "<group>"; };
 		E7985F1726473D86007EC06D /* CalendarPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CalendarPopupViewController.swift; path = ../../../../CalendarPopupViewController.swift; sourceTree = "<group>"; };
 		E7CD99772661A88000EDBE51 /* ProgressPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressPopUpView.swift; sourceTree = "<group>"; };
@@ -339,6 +343,7 @@
 		5980D475260CEDAB0070F23B /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				E75232342683E65A00986F71 /* Body weight */,
 				E74F7E8F267D090C000A6C99 /* Workout */,
 				E74F7E8E267D08F8000A6C99 /* Account */,
 				5980D476260CEDC60070F23B /* ProfileViewController.swift */,
@@ -417,6 +422,15 @@
 				E74F7E9B267E6112000A6C99 /* NotificationNamesClass.swift */,
 			);
 			path = Workout;
+			sourceTree = "<group>";
+		};
+		E75232342683E65A00986F71 /* Body weight */ = {
+			isa = PBXGroup;
+			children = (
+				E75232352683E73F00986F71 /* BodyWeightTableViewController.swift */,
+				E75232382683EB7200986F71 /* BodyWeightTableViewCell.swift */,
+			);
+			path = "Body weight";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -549,6 +563,7 @@
 				596D125C26360407003B7292 /* DateCell.swift in Sources */,
 				5964EA02261B50FF00998B2F /* StartViewController.swift in Sources */,
 				592EC294263CB73200761632 /* CalendarTableViewCell.swift in Sources */,
+				E75232392683EB7200986F71 /* BodyWeightTableViewCell.swift in Sources */,
 				596BC83E25E29DAD00166D9C /* SignUpViewController.swift in Sources */,
 				5964EA05261B5A9C00998B2F /* startViewBrain.swift in Sources */,
 				E7CD99782661A88000EDBE51 /* ProgressPopUpView.swift in Sources */,
@@ -560,6 +575,7 @@
 				597F781725FC2124005F97A2 /* ShowWorkoutViewController.swift in Sources */,
 				E7985F1826473D86007EC06D /* CalendarPopupViewController.swift in Sources */,
 				596620A925EBD690002B04D5 /* MainTabBarController.swift in Sources */,
+				E75232362683E73F00986F71 /* BodyWeightTableViewController.swift in Sources */,
 				5980D477260CEDC60070F23B /* ProfileViewController.swift in Sources */,
 				59CD49672624EAC20004A722 /* TimerViewController.swift in Sources */,
 				E718EDFE2662EC7F004AFE8C /* CriteriaOfSelectViewController.swift in Sources */,
