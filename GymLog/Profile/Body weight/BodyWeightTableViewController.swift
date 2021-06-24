@@ -33,9 +33,20 @@ class BodyWeightTableViewController: UIViewController, UITableViewDelegate, UITa
         
         cell.mainLabel.text = arrayMain[indexPath.row]
         cell.secondLabel.text = arraySecond[indexPath.row]
-        
+        cell.delegate = self
         
         return cell
+    }
+}
+
+extension BodyWeightTableViewController: TitleOfSelectedRow {
+    func didTapButton(with title: String) {
+        switch title {
+        case "BMI":
+            performSegue(withIdentifier: "toBMI", sender: self)
+        default:
+            print("No title in BodyWeightTableViewController")
+        }
     }
     
     

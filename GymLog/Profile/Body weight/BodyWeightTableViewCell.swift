@@ -7,8 +7,11 @@
 
 import UIKit
 
+
 class BodyWeightTableViewCell: UITableViewCell {
 
+    weak var delegate: TitleOfSelectedRow?
+    
     @IBOutlet weak var mainLabel: UILabel!
     @IBOutlet weak var secondLabel: UILabel!
     @IBOutlet weak var button: UIButton!
@@ -20,8 +23,11 @@ class BodyWeightTableViewCell: UITableViewCell {
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
-        // Configure the view for the selected state
+        
     }
-
+    
+    @IBAction func bodyWeightTableViewTapped(_ sender: UIButton) {
+        delegate?.didTapButton(with: mainLabel.text ?? "Error")
+    }
+    
 }
