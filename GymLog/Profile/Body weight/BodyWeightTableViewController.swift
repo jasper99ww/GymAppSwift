@@ -42,6 +42,8 @@ class BodyWeightTableViewController: UIViewController, UITableViewDelegate, UITa
 extension BodyWeightTableViewController: TitleOfSelectedRow {
     func didTapButton(with title: String) {
         switch title {
+        case "Body weight calendar":
+            performSegue(withIdentifier: "toBodyWeightCalendar", sender: self)
         case "BMI":
             performSegue(withIdentifier: "toBMI", sender: self)
         default:

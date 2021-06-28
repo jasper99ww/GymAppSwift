@@ -17,12 +17,14 @@ class BMIViewController: UIViewController {
     @IBOutlet weak var heightSlider: UISlider!
     @IBOutlet weak var weightSlider: UISlider!
     
+    @IBOutlet weak var calculateButton: UIButton!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         heightSlider.setValue(1.5, animated: true)
         weightSlider.setValue(80, animated: true)
+        calculateButton.layer.cornerRadius = 15
     }
     
     @IBAction func heightSliderChanged(_ sender: UISlider) {

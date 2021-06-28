@@ -29,10 +29,12 @@ class BMIResultViewController: UIViewController {
         resultDescription.text = resultDescriptionValue
         resultDescription.textColor = color
         result.textColor = color
-        print("result is \(bmiValueResult)")
+        recalculateButton.layer.cornerRadius = 15
     }
 
     @IBAction func recalculateButtonTapped(_ sender: UIButton) {
         self.dismiss(animated: true, completion: nil)
     }
+    
+   
 }
