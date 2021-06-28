@@ -9,9 +9,13 @@ import UIKit
 
 class BMIResultViewController: UIViewController {
 
-    var bmiValue: String?
+    var bmiValueResult: String?
     var diagnosisText: String?
+    var resultDescriptionValue: String?
     
+    var color: UIColor?
+    
+    @IBOutlet weak var resultDescription: UILabel!
     @IBOutlet weak var diagnosis: UILabel!
     
     @IBOutlet weak var result: UILabel!
@@ -20,8 +24,12 @@ class BMIResultViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        result.text = bmiValue
+        result.text = bmiValueResult
         diagnosis.text = diagnosisText
+        resultDescription.text = resultDescriptionValue
+        resultDescription.textColor = color
+        result.textColor = color
+        print("result is \(bmiValueResult)")
     }
 
     @IBAction func recalculateButtonTapped(_ sender: UIButton) {

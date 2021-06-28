@@ -21,6 +21,8 @@ class BMIViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        heightSlider.setValue(1.5, animated: true)
+        weightSlider.setValue(80, animated: true)
     }
     
     @IBAction func heightSliderChanged(_ sender: UISlider) {
@@ -50,16 +52,25 @@ class BMIViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toCalculatedBMI" {
             let destinationVC = segue.destination as! BMIResultViewController
-            destinationVC.bmiValue = bmiValue
-            
+            destinationVC.bmiValueResult = bmiValue
+
             if let bmi = Double(bmiValue) {
             if bmi < 18.5 {
-                destinationVC.diagnosisText = "Underweight, you should eat more calories"
+                destinationVC.diagnosisText = "You should eat more calories"
+                destinationVC.resultDescriptionValue = "Underweight"
+//                destinationVC.resultDescription.textColor = .red
+                destinationVC.color = .red
             } else if bmi < 24.9
                 {
                 destinationVC.diagnosisText = "Your weight is great! Keep it up!"
+                destinationVC.resultDescriptionValue = ""
+//                destinationVC.resultDescription.textColor = .green
+                destinationVC.color = .green
             } else {
-                destinationVC.diagnosisText = "Overweight, you should eat less calories"
+                destinationVC.diagnosisText = "You should eat less calories"
+                destinationVC.resultDescriptionValue = "Overweight"
+                destinationVC.color = .red
+               
             }
         }
         }
