@@ -9,7 +9,7 @@ import UIKit
 import JTAppleCalendar
 import Firebase
 
-class BodyWeightCalendarViewController: UIViewController {
+class BodyWeightCalendarViewController: UIViewController, UITextFieldDelegate {
 
     var bodyWeightService = BodyWeightService()
     let date = Date()
@@ -38,22 +38,69 @@ class BodyWeightCalendarViewController: UIViewController {
         setUpCalendar()
         viewForCalendar.layer.cornerRadius = 20
         saveButton.layer.cornerRadius = 20
+        weightTextField.delegate = self
        
     }
+    
+    
+    
+    func textField(_ textField: UITextField, shouldChangeCharactersIn range: NSRange, replacementString string: String) -> Bool {
+
+        guard let currentText = weightTextField.text else { return false }
+
+        let lastPositionOfTextField = weightTextField.endOfDocument
+        
+        let nextToLastPositionOfTextField = weightTextField.position(from: weightTextField.endOfDocument, offset: -1)
+        
+        //Check if cursor is on last or next to last position (on kg letters)
+        if weightTextField.selectedTextRange == weightTextField.textRange(from: lastPositionOfTextField, to: lastPositionOfTextField) || weightTextField.selectedTextRange == weightTextField.textRange(from: nextToLastPositionOfTextField ?? lastPositionOfTextField, to: nextToLastPositionOfTextField ?? lastPositionOfTextField) {
+            return false
+        }
+        
+        if currentText == "kg" && string == "" {
+            return false
+        }
+
+        guard let textRange = Range(range, in: currentText) else { return false }
+
+        let updatedText = currentText.replacingCharacters(in: textRange, with: string)
+
+        return updatedText.count <= 7
+        
+    }
+    
+    func textFieldDidBeginEditing(_ textField: UITextField) {
+        let newPosition = weightTextField.beginningOfDocument
+        weightTextField.selectedTextRange = weightTextField.textRange(from: newPosition, to: newPosition)
+    }
+    
+    
+    func textFieldDidEndEditing(_ textField: UITextField) {
+        if weightTextField.text?.contains("kg") == true {
+            guard let editedWeight = weightTextField.text?.dropLast(2) else { return }
+            guard let editedWeightFloat = Float(editedWeight) else { return  }
+                weight = editedWeightFloat
+            print("weight is \(weight)")
+            }
+        else {
+            guard let editedWeight = weightTextField.text else { return  }
+            guard let editedWeightFloat = Float(editedWeight) else { return }
+                weight = editedWeightFloat
+            print("weight false is \(weight)")
+            }
+        }
     
     @IBAction func plusButtonTapped(_ sender: UIButton) {
         weight += 0.1
         let newWeight = String(format: "%.1f", weight)
-        weightTextField.text = "\(newWeight)"
+        weightTextField.text = "\(newWeight) kg"
     }
     
     @IBAction func minusButtonTapped(_ sender: UIButton) {
         weight -= 0.1
         let newWeight = String(format: "%.1f", weight)
-        weightTextField.text = "\(newWeight)"
+        weightTextField.text = "\(newWeight) kg"
     }
-    
-    
     
     func setUpButtons() {
         minusButton.layer.cornerRadius = minusButton.frame.width / 2
@@ -67,18 +114,65 @@ class BodyWeightCalendarViewController: UIViewController {
       
     }
 
-    
-    
     @IBAction func saveButtonTapped(_ sender: UIButton) {
-        
-        if let weightToSave = Float(String(format: "%.1f", weight)) {
-        let dateFormatter = DateFormatter()
-        dateFormatter.dateFormat = "YYYY MM dd"
-        let dateString = dateFormatter.string(from: date)
-        bodyWeightService.saveNewWeight(weight: weightToSave, date: dateString)
+       
+       
+        saveInDatabase {
+            performSegue(withIdentifier: "toBodyWeightChart", sender: self)
         }
+
     }
     
+    func saveInDatabase(completion: () -> Void) {
+        
+        if let weightValue = weightTextField.text {
+        
+            if weightValue.contains("kg") == true {
+              
+                let weightAfterDropLast = String(weightValue.dropLast(2).trimmingCharacters(in: .whitespaces))
+                
+                bodyWeightService.saveNewWeight(weight: weightAfterDropLast)
+               
+            } else {
+                bodyWeightService.saveNewWeight(weight: weightValue.trimmingCharacters(in: .whitespaces))
+
+                print("I tak sie robi")
+            }
+            completion()
+        }
+        
+//        if let weightValue = weightTextField.text {
+//
+//            if weightValue.contains("kg") == true {
+//                if weightValue.count == 7 {
+//                    let weightAfterDropLast = String(weightValue.dropLast(2))
+//                    bodyWeightService.saveNewWeight(weight: weightAfterDropLast)
+//                } else {
+//                let weightAfterDropLast = String(weightValue.dropLast(3))
+//                print("wegith dorp \(weightAfterDropLast)")
+//                bodyWeightService.saveNewWeight(weight: weightAfterDropLast)
+//
+//            }
+//            } else {
+//                bodyWeightService.saveNewWeight(weight: weightValue)
+//
+//                print("I tak sie robi")
+//            }
+//            completion()
+//        }
+    }
+    
+//    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+//
+//        if segue.identifier == "toBodyWeightChart" {
+//            guard let weightValue = weightTextField.text else {return}
+//            print("weight value \(weightValue)")
+//            print("weight to \(weight) a new weight \(weight)")
+//            bodyWeightService.saveNewWeight(weight: weightValue)
+//        }
+//
+//    }
+
 
     func setUpCalendar() {
         calendarBodyWeight.minimumLineSpacing = 0

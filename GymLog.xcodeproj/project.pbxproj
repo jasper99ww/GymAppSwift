@@ -86,6 +86,7 @@
 		E7AC68D52688E5B6007F3C2B /* BodyWeightCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AC68D42688E5B6007F3C2B /* BodyWeightCalendarCell.swift */; };
 		E7AC68D8268A4406007F3C2B /* BodyWeightService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AC68D7268A4405007F3C2B /* BodyWeightService.swift */; };
 		E7AC68DB268A7953007F3C2B /* BodyWeightChartsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AC68DA268A7953007F3C2B /* BodyWeightChartsViewController.swift */; };
+		E7B38147268D213A00D7CA8D /* BodyWeightTableViewCellChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B38146268D213A00D7CA8D /* BodyWeightTableViewCellChart.swift */; };
 		E7CD99782661A88000EDBE51 /* ProgressPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CD99772661A88000EDBE51 /* ProgressPopUpView.swift */; };
 /* End PBXBuildFile section */
 
@@ -173,6 +174,7 @@
 		E7AC68D42688E5B6007F3C2B /* BodyWeightCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyWeightCalendarCell.swift; sourceTree = "<group>"; };
 		E7AC68D7268A4405007F3C2B /* BodyWeightService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyWeightService.swift; sourceTree = "<group>"; };
 		E7AC68DA268A7953007F3C2B /* BodyWeightChartsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyWeightChartsViewController.swift; sourceTree = "<group>"; };
+		E7B38146268D213A00D7CA8D /* BodyWeightTableViewCellChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyWeightTableViewCellChart.swift; sourceTree = "<group>"; };
 		E7CD99772661A88000EDBE51 /* ProgressPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressPopUpView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -466,6 +468,7 @@
 				E7AC68D42688E5B6007F3C2B /* BodyWeightCalendarCell.swift */,
 				E7AC68D7268A4405007F3C2B /* BodyWeightService.swift */,
 				E7AC68DA268A7953007F3C2B /* BodyWeightChartsViewController.swift */,
+				E7B38146268D213A00D7CA8D /* BodyWeightTableViewCellChart.swift */,
 			);
 			path = "Body Weight Calendar";
 			sourceTree = "<group>";
@@ -622,6 +625,7 @@
 				59F70386260A1FC200E1CB80 /* EditWorkoutViewController.swift in Sources */,
 				E74F7E9C267E6112000A6C99 /* NotificationNamesClass.swift in Sources */,
 				591ABE35262E2F7100B6ECC1 /* EndWorkoutViewController.swift in Sources */,
+				E7B38147268D213A00D7CA8D /* BodyWeightTableViewCellChart.swift in Sources */,
 				59F33BB326111FE700A6DBB0 /* AddNextExerciseController.swift in Sources */,
 				5976918825ED9D36006C9E38 /* EntryViewController.swift in Sources */,
 				E734A749265F01D400621667 /* ChartXAxisFormatter.swift in Sources */,
