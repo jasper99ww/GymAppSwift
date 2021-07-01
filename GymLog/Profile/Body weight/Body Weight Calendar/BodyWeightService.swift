@@ -28,10 +28,12 @@ class BodyWeightService {
     func saveNewWeight(weight: String) {
         print("weight is \(weight)")
             let date = Date()
-            let formattedDate = date.getFormattedDate(format: "yyyy-MM-dd")
+            let formattedDateDocument = date.getFormattedDate(format: "yyyy-MM-dd")
+            let formattedDate = date.getFormattedDate(format: "yyyy-MM-dd HH:mm")
+      
         
         if let user = user?.uid {
-            db.collection("users").document(user).collection("Weight").document(formattedDate).setData(["weight": weight, "date": formattedDate]) { (error) in
+            db.collection("users").document(user).collection("Weight").document(formattedDateDocument).setData(["weight": weight, "date": formattedDate]) { (error) in
                 if let error = error {
                     print("error is \(error.localizedDescription)")
                 }
@@ -41,7 +43,7 @@ class BodyWeightService {
 
     func getData(completionHandler: @escaping([Weight]) -> Void) {
         
-        dateFormatter.dateFormat = "yyyy-MM-dd"
+        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
         
         if let user = user?.uid {
             db.collection("users").document(user).collection("Weight").getDocuments { (result, error) in
@@ -63,6 +65,7 @@ class BodyWeightService {
                             }
                         }
                     }
+                
                     completionHandler(self.array)
                 }
             }

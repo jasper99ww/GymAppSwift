@@ -10,36 +10,44 @@ import Charts
 
 class BodyWeightChartsViewController: UIViewController, ChartViewDelegate {
 
-    
     @IBOutlet weak var tableViewUnderChart: UITableView!
-    
-    
     
     @IBOutlet weak var weightChart: LineChartView!
     var bodyWeightService = BodyWeightService()
+    @IBOutlet weak var segmentedControl: UISegmentedControl!
     
     var arrayWithEntries: [Weight] = []
     var referenceTimeInterval: TimeInterval = 0
     let dateFormatter = DateFormatter()
     let color = UIColor.init(red: 48/255, green: 173/255, blue: 99/255, alpha: 1)
-    
+    var weightUnit: String {
+        UserDefaults.standard.string(forKey: "unit") ?? "kg"
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
 
         weightChart.delegate = self
-        tableViewUnderChart.rowHeight = 100
+        
         setChartProperties()
         getData()
         self.tableViewUnderChart.delegate = self
         self.tableViewUnderChart.dataSource = self
+        tableViewUnderChart.rowHeight = 90
+        controlSegmentSetUp()
+    }
+    
+    
+    @IBAction func segmentedControlChanged(_ sender: UISegmentedControl) {
+        
+        
     }
     
     func setChartProperties() {
  
 //        viewChart.layer.cornerRadius = 20
         weightChart.backgroundColor = .clear
-        weightChart.extraBottomOffset = 35
+        
   
         weightChart.rightAxis.enabled = false
         weightChart.scaleXEnabled = true
@@ -94,6 +102,8 @@ class BodyWeightChartsViewController: UIViewController, ChartViewDelegate {
         bodyWeightService.getData { (data) in
             self.arrayWithEntries = data
             self.doDataEntries()
+            self.sortArray()
+            print("array is \(self.arrayWithEntries)")
             DispatchQueue.main.async {
                 self.tableViewUnderChart.reloadData()
             }
@@ -130,36 +140,89 @@ class BodyWeightChartsViewController: UIViewController, ChartViewDelegate {
         
     }
     
+    func sortArray() {
+        arrayWithEntries.sort { (a, b) -> Bool in
+            a.date > b.date
+        }
+    }
+    
     func convertDateForAxis() {
 
         if let minTimeInterval = arrayWithEntries.compactMap({$0.date}).min() {
             referenceTimeInterval = minTimeInterval.timeIntervalSince1970
         }
     }
+    
+    func controlSegmentSetUp() {
+        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
+        
+        segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .selected)
+
+//        if let viewColor = view.backgroundColor {
+//        segmentedControl.clearBG(color: viewColor)
+//        }
+        let greenColor = UIColor.init(red: 48/255, green: 173/255, blue: 99/255, alpha: 1)
+        segmentedControl.selectedSegmentTintColor = greenColor
+    }
 }
 
 extension BodyWeightChartsViewController: UITableViewDelegate, UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        print("count is \(arrayWithEntries.count)")
+
         return arrayWithEntries.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableViewUnderChart.dequeueReusableCell(withIdentifier: "bodyWeightCellChart", for: indexPath) as! BodyWeightTableViewCellChart
         
-        let weight = String(arrayWithEntries[indexPath.row].weight)
-        print("weight to to \(weight)")
-//        let date = dateFormatter.string(from: arrayWithEntries[indexPath.row].date)
-//        print("date is \(date)")
-//        cell.dayLabel.text = date
-        cell.weightProgress.text = weight
+        //formatted retrieved date
+        let dateFromArray = arrayWithEntries[indexPath.row].date
+        dateFormatter.dateFormat = "dd.MM, HH:mm"
+        let dateFormatted = dateFormatter.string(from: dateFromArray)
+     
+        //formatted date without HH:mm
+        dateFormatter.dateFormat = "yyyy-MM-dd"
+        let dateFormatWithoutTime = dateFormatter.string(from: dateFromArray)
         
+        //Retrieve weight value
+        let weight = String(arrayWithEntries[indexPath.row].weight)
+        cell.weightValue.text = "\(weight) \(weightUnit)"
+     
+       // if last row, hide progression parameteres
+        if indexPath.row == arrayWithEntries.count - 1 {
+            cell.arrowProgress.isHidden = true
+            cell.weightProgress.isHidden = true
+        } else {
+            cell.arrowProgress.isHidden = false
+            cell.weightProgress.isHidden = false
+            
+            let progressValue = arrayWithEntries[indexPath.row].weight - arrayWithEntries[indexPath.row + 1].weight
+            let progressValueString = String(format: "%.2f", progressValue)
+            cell.weightProgress.text = ("\(progressValueString) kg")
+            
+            //Check if progression is on + or -
+            if progressValue > 0 {
+                cell.arrowProgress.image = UIImage(systemName: "arrow.up")
+                cell.arrowProgress.tintColor = .green
+                cell.weightProgress.textColor = .green
+            } else {
+                cell.arrowProgress.image = UIImage(systemName: "arrow.down")
+                cell.arrowProgress.tintColor = .red
+                cell.weightProgress.textColor = .red
+            }
+        }
+        
+        // Check if last record is from today
+        let todayDate = Date().getFormattedDate(format: "yyy-MM-dd")
+        if dateFormatWithoutTime == todayDate {
+            cell.dayLabel.text = "Today"
+        } else {
+            cell.dayLabel.text = dateFormatted
+        }
         
         
         return cell
     }
-    
-    
 }
 
