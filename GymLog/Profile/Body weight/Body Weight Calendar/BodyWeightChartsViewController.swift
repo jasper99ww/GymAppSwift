@@ -11,12 +11,17 @@ import Charts
 class BodyWeightChartsViewController: UIViewController, ChartViewDelegate {
 
     @IBOutlet weak var tableViewUnderChart: UITableView!
+    let periodSelection = BodyWeightPeriodSelection()
     
     @IBOutlet weak var weightChart: LineChartView!
     var bodyWeightService = BodyWeightService()
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
+    var lineChartEntries = [ChartDataEntry]()
     var arrayWithEntries: [Weight] = []
+    var arrayForTableView: [Weight] = []
+    var arrayWithSelectedPeriod: [Weight] = []
+    
     var referenceTimeInterval: TimeInterval = 0
     let dateFormatter = DateFormatter()
     let color = UIColor.init(red: 48/255, green: 173/255, blue: 99/255, alpha: 1)
@@ -29,7 +34,6 @@ class BodyWeightChartsViewController: UIViewController, ChartViewDelegate {
 
         weightChart.delegate = self
         
-        setChartProperties()
         getData()
         self.tableViewUnderChart.delegate = self
         self.tableViewUnderChart.dataSource = self
@@ -37,9 +41,26 @@ class BodyWeightChartsViewController: UIViewController, ChartViewDelegate {
         controlSegmentSetUp()
     }
     
+    override func viewWillDisappear(_ animated: Bool) {
+        let vc = BodyWeightTableViewController()
+        self.navigationController!.replaceCurrentViewControllerWith(viewController: vc, animated: true)
+    }
+    
+   
+    
     
     @IBAction func segmentedControlChanged(_ sender: UISegmentedControl) {
         
+        if sender.selectedSegmentIndex == 0 {
+          
+            doDataEntries(period: "week")
+        } else if sender.selectedSegmentIndex == 1 {
+            doDataEntries(period: "month")
+          
+        } else if sender.selectedSegmentIndex == 2 {
+            doDataEntries(period: "year")
+          
+        }
         
     }
     
@@ -53,7 +74,7 @@ class BodyWeightChartsViewController: UIViewController, ChartViewDelegate {
         weightChart.scaleXEnabled = true
         
         let yAxis = weightChart.leftAxis
-        yAxis.labelFont = .boldSystemFont(ofSize: 8)
+        yAxis.labelFont = .boldSystemFont(ofSize: 12)
         yAxis.setLabelCount(6, force: false)
         yAxis.axisMinimum = 0
         yAxis.labelTextColor = .white
@@ -61,20 +82,41 @@ class BodyWeightChartsViewController: UIViewController, ChartViewDelegate {
         yAxis.labelPosition = .outsideChart
         yAxis.drawGridLinesEnabled = true
        
-        weightChart.xAxis.setLabelCount(8, force: false)
+        weightChart.xAxis.setLabelCount(arrayWithSelectedPeriod.count, force: false)
       
         weightChart.xAxis.labelPosition = .bottom
         weightChart.xAxis.avoidFirstLastClippingEnabled = true
         weightChart.xAxis.granularity = 1
     
-        weightChart.xAxis.labelFont = .systemFont(ofSize: 12)
+        weightChart.xAxis.labelFont = .systemFont(ofSize: 14)
 
         weightChart.xAxis.axisLineColor = .white
         weightChart.xAxis.labelTextColor = .white
         weightChart.xAxis.drawGridLinesEnabled = false
-        
         weightChart.legend.enabled = false
+        
+//        DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
+//            if let lineChartX = self.lineChartEntries.last?.x, let lineChartY = self.lineChartEntries.last?.y {
+//                self.weightChart.highlightValue(x: lineChartX, y: lineChartY, dataSetIndex: 0)
+////            }
+//        }
     }
+    
+    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
+        
+        guard let dataSet = chartView.data?.dataSets[highlight.dataSetIndex] else { return }
+        
+        let indexOfEntry : Int = ((self.tableViewUnderChart.numberOfRows(inSection: 0) - 1 ) - dataSet.entryIndex(entry: entry))
+      
+        let indexPath = IndexPath(row: indexOfEntry, section: 0)
+    
+        
+        self.tableViewUnderChart.selectRow(at: indexPath, animated: true, scrollPosition: .middle)
+    
+    }
+    
+    
+
     
     func setDataSetProperties(set: LineChartDataSet) {
         
@@ -82,11 +124,14 @@ class BodyWeightChartsViewController: UIViewController, ChartViewDelegate {
         set.mode = .cubicBezier
         set.drawCirclesEnabled = true
         set.circleColors = set.colors
-        set.drawCircleHoleEnabled = false
-        set.circleRadius = 2
-        set.lineWidth = 3
+        set.drawCircleHoleEnabled = true
+        set.circleRadius = 6
+        set.circleHoleRadius = 4
+        set.circleHoleColor = view.backgroundColor
+        set.lineWidth = 4
         set.drawHorizontalHighlightIndicatorEnabled = false
         set.highlightColor = .red
+        set.drawValuesEnabled = false
         
         let colorLocations: [CGFloat] = [0.0, 1.0]
        
@@ -96,30 +141,64 @@ class BodyWeightChartsViewController: UIViewController, ChartViewDelegate {
         }
         set.drawFilledEnabled = true
         
+        setChartProperties()
     }
     
     func getData() {
         bodyWeightService.getData { (data) in
             self.arrayWithEntries = data
-            self.doDataEntries()
+        
+            self.doDataEntries(period: "year")
             self.sortArray()
-            print("array is \(self.arrayWithEntries)")
             DispatchQueue.main.async {
                 self.tableViewUnderChart.reloadData()
             }
+            
+            self.setChartProperties()
         }
     }
     
-    func doDataEntries() {
+    func doDataEntries(period: String) {
+        
+        let group = DispatchGroup()
+     
+        
+        arrayWithSelectedPeriod = []
+        
+        if period == "year" {
+        
+            arrayWithSelectedPeriod = []
+            group.enter()
+          arrayWithSelectedPeriod = arrayWithEntries
+            convertDateForAxis()
+            group.leave()
+        } else if period == "month" {
+           
+            group.enter()
+            periodSelection.loopForMonth(data: arrayWithEntries) { (data) in
+                arrayWithSelectedPeriod = data
+            }
+          group.leave()
+        }
+         else if period == "week" {
+            
+            group.enter()
+            periodSelection.loopForWeek(data: arrayWithEntries) { (data) in
+               arrayWithSelectedPeriod = data
+            }
+            group.leave()
+        } else {
+            print("No weight measurement in this week")
+        }
         
         let dispatchGroup = DispatchGroup()
-        convertDateForAxis()
-        var lineChartEntries = [ChartDataEntry]()
+//        convertDateForAxis()
+        lineChartEntries = []
         dateFormatter.dateFormat = "yyyy-MM-dd"
         
         weightChart.xAxis.valueFormatter = ChartXAxisFormatter(referenceTimeInterval: referenceTimeInterval, dateFormatter: dateFormatter)
- 
-        for value in arrayWithEntries {
+
+        for value in arrayWithSelectedPeriod {
             dispatchGroup.enter()
             
             let date = value.date
@@ -128,26 +207,35 @@ class BodyWeightChartsViewController: UIViewController, ChartViewDelegate {
             let xValue = (timeInterval - referenceTimeInterval) / (3600 * 24)
             
             lineChartEntries.append(ChartDataEntry(x: xValue, y: Double(value.weight)))
-            print("line chart is \(lineChartEntries))")
+
             dispatchGroup.leave()
         }
-        
+  
+     
         let set = LineChartDataSet(entries: lineChartEntries)
-        setDataSetProperties(set: set)
+      
         let data = LineChartData(dataSet: set)
+        setDataSetProperties(set: set)
+       
         self.weightChart.data = data
-        
-        
+    
     }
     
     func sortArray() {
-        arrayWithEntries.sort { (a, b) -> Bool in
+       
+//        arrayWithEntries.sort { (a, b) -> Bool in
+//              a.date < b.date
+//          }
+//         arrayForTableView = arrayWithEntries
+//          print("new array is \(newArray)")
+      let newArray =  arrayWithEntries.sorted { (a, b) -> Bool in
             a.date > b.date
         }
+       arrayForTableView = newArray
+        print("new array is \(newArray)")
     }
     
     func convertDateForAxis() {
-
         if let minTimeInterval = arrayWithEntries.compactMap({$0.date}).min() {
             referenceTimeInterval = minTimeInterval.timeIntervalSince1970
         }
@@ -170,14 +258,14 @@ extension BodyWeightChartsViewController: UITableViewDelegate, UITableViewDataSo
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
 
-        return arrayWithEntries.count
+        return arrayForTableView.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let cell = tableViewUnderChart.dequeueReusableCell(withIdentifier: "bodyWeightCellChart", for: indexPath) as! BodyWeightTableViewCellChart
         
         //formatted retrieved date
-        let dateFromArray = arrayWithEntries[indexPath.row].date
+        let dateFromArray = arrayForTableView[indexPath.row].date
         dateFormatter.dateFormat = "dd.MM, HH:mm"
         let dateFormatted = dateFormatter.string(from: dateFromArray)
      
@@ -186,7 +274,7 @@ extension BodyWeightChartsViewController: UITableViewDelegate, UITableViewDataSo
         let dateFormatWithoutTime = dateFormatter.string(from: dateFromArray)
         
         //Retrieve weight value
-        let weight = String(arrayWithEntries[indexPath.row].weight)
+        let weight = String(arrayForTableView[indexPath.row].weight)
         cell.weightValue.text = "\(weight) \(weightUnit)"
      
        // if last row, hide progression parameteres
@@ -197,7 +285,7 @@ extension BodyWeightChartsViewController: UITableViewDelegate, UITableViewDataSo
             cell.arrowProgress.isHidden = false
             cell.weightProgress.isHidden = false
             
-            let progressValue = arrayWithEntries[indexPath.row].weight - arrayWithEntries[indexPath.row + 1].weight
+            let progressValue = arrayForTableView[indexPath.row].weight - arrayForTableView[indexPath.row + 1].weight
             let progressValueString = String(format: "%.2f", progressValue)
             cell.weightProgress.text = ("\(progressValueString) kg")
             
@@ -220,9 +308,18 @@ extension BodyWeightChartsViewController: UITableViewDelegate, UITableViewDataSo
         } else {
             cell.dayLabel.text = dateFormatted
         }
-        
-        
+//        
+////        let bgColorView = UIView()
+////        bgColorView.backgroundColor = UIColor.red
+////        cell.selectedBackgroundView = bgColorView
+//        cell.selectionStyle = .blue
         return cell
+    }
+   
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+  
+//        let selectedCell: UITableViewCell = tableViewUnderChart.cellForRow(at: indexPath)!
+//        selectedCell.contentView.backgroundColor = UIColor.darkGray
     }
 }
 

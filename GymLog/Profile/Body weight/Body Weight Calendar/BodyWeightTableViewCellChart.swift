@@ -22,7 +22,20 @@ class BodyWeightTableViewCellChart: UITableViewCell {
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-        // Configure the view for the selected state
+        let color = contentView.backgroundColor
+        let selectedColor = color?.withAlphaComponent(0.8)
+        let colorX = UIColor.init(red: 20/255, green: 20/255, blue: 20/255, alpha: 1)
+        
+        if selected {
+            self.contentView.backgroundColor = colorX
+        } else {
+            self.contentView.backgroundColor = .clear
+        }
+        
+//        let bgColorView = UIView()
+//        bgColorView.backgroundColor = .red
+//        self.selectedBackgroundView = bgColorView
+        
     }
 
 }

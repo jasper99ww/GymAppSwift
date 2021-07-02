@@ -3,4 +3,486 @@
    uuid = "65D6080C-E376-45FC-BDAA-C2A5CCAA1751"
    type = "0"
    version = "2.0">
+   <Breakpoints>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "30217714-4D6B-4F89-8E6A-7990F1EE68A0"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GymLog/Profile/Body weight/Body Weight Calendar/BodyWeightPeriodSelection.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "19"
+            endingLineNumber = "19"
+            landmarkName = "loopForWeek(data:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "C052E10E-53FD-4B32-8C9E-C4C5063AFE82"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GymLog/Profile/Body weight/Body Weight Calendar/BodyWeightPeriodSelection.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "18"
+            endingLineNumber = "18"
+            landmarkName = "BodyWeightPeriodSelection"
+            landmarkType = "3">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F567C8EA-A913-4EE2-BEA3-C13D972F4546"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GymLog/Profile/Body weight/Body Weight Calendar/BodyWeightPeriodSelection.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "21"
+            endingLineNumber = "21"
+            landmarkName = "loopForWeek(data:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "75A9D0B1-A9FA-49FF-BAED-B8117469CEB7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GymLog/Profile/Body weight/Body Weight Calendar/BodyWeightPeriodSelection.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "22"
+            endingLineNumber = "22"
+            landmarkName = "loopForWeek(data:completionHandler:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "75A9D0B1-A9FA-49FF-BAED-B8117469CEB7 - cbb380b3b1712728"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GymLog.BodyWeightPeriodSelection.loopForWeek(data: Swift.Array&lt;GymLog.Weight&gt;, completionHandler: (Swift.Array&lt;GymLog.Weight&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "GymLog"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kacper/Desktop/newDuplicat/GymLog/Profile/Body%20weight/Body%20Weight%20Calendar/BodyWeightPeriodSelection.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "551">
+               </Location>
+               <Location
+                  uuid = "75A9D0B1-A9FA-49FF-BAED-B8117469CEB7 - cbb380b3b1712728"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GymLog.BodyWeightPeriodSelection.loopForWeek(data: Swift.Array&lt;GymLog.Weight&gt;, completionHandler: (Swift.Array&lt;GymLog.Weight&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "GymLog"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kacper/Desktop/newDuplicat/GymLog/Profile/Body%20weight/Body%20Weight%20Calendar/BodyWeightPeriodSelection.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "2310">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "3C7A4D14-CF76-44B5-87A3-0978F0F9FE00"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GymLog/Profile/Body weight/Body Weight Calendar/BodyWeightPeriodSelection.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "23"
+            endingLineNumber = "23"
+            landmarkName = "loopForWeek(data:completionHandler:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "3C7A4D14-CF76-44B5-87A3-0978F0F9FE00 - cbb380b3b1712728"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GymLog.BodyWeightPeriodSelection.loopForWeek(data: Swift.Array&lt;GymLog.Weight&gt;, completionHandler: (Swift.Array&lt;GymLog.Weight&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "GymLog"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kacper/Desktop/newDuplicat/GymLog/Profile/Body%20weight/Body%20Weight%20Calendar/BodyWeightPeriodSelection.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "551">
+               </Location>
+               <Location
+                  uuid = "3C7A4D14-CF76-44B5-87A3-0978F0F9FE00 - cbb380b3b1712728"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GymLog.BodyWeightPeriodSelection.loopForWeek(data: Swift.Array&lt;GymLog.Weight&gt;, completionHandler: (Swift.Array&lt;GymLog.Weight&gt;) -&gt; ()) -&gt; ()"
+                  moduleName = "GymLog"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kacper/Desktop/newDuplicat/GymLog/Profile/Body%20weight/Body%20Weight%20Calendar/BodyWeightPeriodSelection.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "23"
+                  endingLineNumber = "23"
+                  offsetFromSymbolStart = "2310">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B6CF99A2-C248-44E7-A89F-AA68DD874F28"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GymLog/Profile/Body weight/Body Weight Calendar/BodyWeightPeriodSelection.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "25"
+            endingLineNumber = "25"
+            landmarkName = "loopForWeek(data:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "848F3954-000C-4D56-930A-B6B02BA4558A"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GymLog/Profile/Body weight/Body Weight Calendar/BodyWeightPeriodSelection.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "26"
+            endingLineNumber = "26"
+            landmarkName = "loopForWeek(data:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "A346068E-088B-45EB-AC3D-1FECFD368847"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GymLog/Profile/Body weight/Body Weight Calendar/BodyWeightPeriodSelection.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "29"
+            endingLineNumber = "29"
+            landmarkName = "loopForMonth(data:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "4814EB80-E4B7-474A-99B1-555AEBFFDD83"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GymLog/Profile/Body weight/Body Weight Calendar/BodyWeightPeriodSelection.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "31"
+            endingLineNumber = "31"
+            landmarkName = "loopForMonth(data:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "45EEFD84-9F92-442D-90DF-8D0F8C843DDE"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GymLog/Profile/Body weight/Body Weight Calendar/BodyWeightPeriodSelection.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "32"
+            endingLineNumber = "32"
+            landmarkName = "loopForMonth(data:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "F4A3CF4E-AD3F-4B6D-94AC-AD85ACBD0279"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GymLog/Profile/Body weight/Body Weight Calendar/BodyWeightPeriodSelection.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "33"
+            endingLineNumber = "33"
+            landmarkName = "loopForMonth(data:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "323DE6F4-EE78-4BE9-A2E3-E7662AB29418"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GymLog/Profile/Body weight/Body Weight Calendar/BodyWeightPeriodSelection.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "34"
+            endingLineNumber = "34"
+            landmarkName = "loopForMonth(data:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0F22658A-8AD1-47D2-96B9-B691E1515DB7"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GymLog/Profile/Body weight/Body Weight Calendar/BodyWeightPeriodSelection.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "36"
+            endingLineNumber = "36"
+            landmarkName = "loopForMonth(data:completionHandler:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "56FC9565-42FA-4A60-A46B-8A4D5F5145D3"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GymLog/Profile/Body weight/Body Weight Calendar/BodyWeightChartsViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "56"
+            endingLineNumber = "56"
+            landmarkName = "segmentedControlChanged(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5193EA85-179E-4818-A194-CAB8A5943B9E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GymLog/Profile/Body weight/Body Weight Calendar/BodyWeightChartsViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "58"
+            endingLineNumber = "58"
+            landmarkName = "segmentedControlChanged(_:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "47F05F9D-984D-4A60-89AC-1327FFCC7E55"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GymLog/Profile/Body weight/Body Weight Calendar/BodyWeightChartsViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "165"
+            endingLineNumber = "165"
+            landmarkName = "doDataEntries(period:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "D9B9F68D-475D-4522-9FF7-73B9D470C811"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GymLog/Profile/Body weight/Body Weight Calendar/BodyWeightChartsViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "178"
+            endingLineNumber = "178"
+            landmarkName = "doDataEntries(period:)"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "D9B9F68D-475D-4522-9FF7-73B9D470C811 - 1b372307da6be183"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GymLog.BodyWeightChartsViewController.doDataEntries(period: Swift.String) -&gt; ()"
+                  moduleName = "GymLog"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kacper/Desktop/newDuplicat/GymLog/Profile/Body%20weight/Body%20Weight%20Calendar/BodyWeightChartsViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "162"
+                  endingLineNumber = "162"
+                  offsetFromSymbolStart = "758">
+               </Location>
+               <Location
+                  uuid = "D9B9F68D-475D-4522-9FF7-73B9D470C811 - 24fcc4bd8bd133c5"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (Swift.Array&lt;GymLog.Weight&gt;) -&gt; () in GymLog.BodyWeightChartsViewController.doDataEntries(period: Swift.String) -&gt; ()"
+                  moduleName = "GymLog"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kacper/Desktop/newDuplicat/GymLog/Profile/Body%20weight/Body%20Weight%20Calendar/BodyWeightChartsViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "163"
+                  endingLineNumber = "163"
+                  offsetFromSymbolStart = "40">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "0F074B88-6EF3-4DE9-8F78-B54AAED3817E"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GymLog/Profile/Body weight/Body Weight Calendar/BodyWeightChartsViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "179"
+            endingLineNumber = "179"
+            landmarkName = "doDataEntries(period:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "36EB5719-EE65-4567-92C2-FEFDCD59619D"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GymLog/Profile/Body weight/Body Weight Calendar/BodyWeightChartsViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "181"
+            endingLineNumber = "181"
+            landmarkName = "doDataEntries(period:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "5A97EFAC-94C6-4EC3-8E70-F67DD2192095"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GymLog/Profile/Body weight/Body Weight Calendar/BodyWeightChartsViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "201"
+            endingLineNumber = "201"
+            landmarkName = "doDataEntries(period:)"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B1CA38F5-FEB6-4B0A-AC68-613835B3A1EF"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GymLog/Profile/Body weight/Body Weight Calendar/BodyWeightChartsViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "238"
+            endingLineNumber = "238"
+            landmarkName = "convertDateForAxis()"
+            landmarkType = "7">
+         </BreakpointContent>
+      </BreakpointProxy>
+      <BreakpointProxy
+         BreakpointExtensionID = "Xcode.Breakpoint.FileBreakpoint">
+         <BreakpointContent
+            uuid = "B7D59D6D-8D5F-4B00-8A47-AF982BC7D19B"
+            shouldBeEnabled = "No"
+            ignoreCount = "0"
+            continueAfterRunningActions = "No"
+            filePath = "GymLog/Profile/Body weight/Body Weight Calendar/BodyWeightChartsViewController.swift"
+            startingColumnNumber = "9223372036854775807"
+            endingColumnNumber = "9223372036854775807"
+            startingLineNumber = "239"
+            endingLineNumber = "239"
+            landmarkName = "convertDateForAxis()"
+            landmarkType = "7">
+            <Locations>
+               <Location
+                  uuid = "B7D59D6D-8D5F-4B00-8A47-AF982BC7D19B - 756842876caebb6"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "GymLog.BodyWeightChartsViewController.convertDateForAxis() -&gt; ()"
+                  moduleName = "GymLog"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kacper/Desktop/newDuplicat/GymLog/Profile/Body%20weight/Body%20Weight%20Calendar/BodyWeightChartsViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "218"
+                  endingLineNumber = "218"
+                  offsetFromSymbolStart = "147">
+               </Location>
+               <Location
+                  uuid = "B7D59D6D-8D5F-4B00-8A47-AF982BC7D19B - f8ccb4034e89cbee"
+                  shouldBeEnabled = "Yes"
+                  ignoreCount = "0"
+                  continueAfterRunningActions = "No"
+                  symbolName = "closure #1 (GymLog.Weight) -&gt; Swift.Optional&lt;Foundation.Date&gt; in GymLog.BodyWeightChartsViewController.convertDateForAxis() -&gt; ()"
+                  moduleName = "GymLog"
+                  usesParentBreakpointCondition = "Yes"
+                  urlString = "file:///Users/kacper/Desktop/newDuplicat/GymLog/Profile/Body%20weight/Body%20Weight%20Calendar/BodyWeightChartsViewController.swift"
+                  startingColumnNumber = "9223372036854775807"
+                  endingColumnNumber = "9223372036854775807"
+                  startingLineNumber = "218"
+                  endingLineNumber = "218"
+                  offsetFromSymbolStart = "28">
+               </Location>
+            </Locations>
+         </BreakpointContent>
+      </BreakpointProxy>
+   </Breakpoints>
 </Bucket>

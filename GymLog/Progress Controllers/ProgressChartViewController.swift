@@ -398,7 +398,6 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
         dataSets = []
         retrievedExerciseMaxWithSelection = [:]
      
-      
         if period == "year" {
             group2.enter()
           retrievedExerciseMaxWithSelection = retrievedExerciseMax
