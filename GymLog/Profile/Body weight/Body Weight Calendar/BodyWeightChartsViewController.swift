@@ -39,21 +39,35 @@ class BodyWeightChartsViewController: UIViewController, ChartViewDelegate {
         self.tableViewUnderChart.dataSource = self
         tableViewUnderChart.rowHeight = 90
         controlSegmentSetUp()
+        checking()
     }
     
-    override func viewWillDisappear(_ animated: Bool) {
-        let vc = BodyWeightTableViewController()
-        self.navigationController!.replaceCurrentViewControllerWith(viewController: vc, animated: true)
+    func checking() {
+        let viewControllers: [UIViewController] = self.navigationController!.viewControllers as [UIViewController]
+//        self.navigationController!.popToViewController(viewControllers[viewControllers.count - 1], animated: false)
+        print(" vc \(viewControllers[viewControllers.count - 2])")
+        }
+    
+    
+
+    
+    override func willMove(toParent parent: UIViewController?) {
+        super.willMove(toParent: parent)
+        
+        if parent == nil {
+        let viewControllers: [UIViewController] = self.navigationController!.viewControllers as [UIViewController]
+        self.navigationController!.popToViewController(viewControllers[viewControllers.count - 2], animated: false)
+        }
     }
-    
-   
-    
-    
+  
+
     @IBAction func segmentedControlChanged(_ sender: UISegmentedControl) {
         
         if sender.selectedSegmentIndex == 0 {
-          
-            doDataEntries(period: "week")
+            let storyboard = UIStoryboard(name: "Profile", bundle: nil)
+            let vc = storyboard.instantiateViewController(identifier: "bodyWeightTableViewController")
+            self.present(vc, animated: true)
+//            doDataEntries(period: "week")
         } else if sender.selectedSegmentIndex == 1 {
             doDataEntries(period: "month")
           

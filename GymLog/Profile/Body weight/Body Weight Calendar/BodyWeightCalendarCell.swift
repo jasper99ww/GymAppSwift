@@ -13,4 +13,5 @@ class BodyWeightCalendarCell: JTACDayCell {
     @IBOutlet weak var bodyWeightDateLabel: UILabel!
     
     @IBOutlet weak var bodyWeightView: UIView!
+    @IBOutlet weak var todayLabel: UILabel!
 }

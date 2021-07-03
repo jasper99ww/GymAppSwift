@@ -890,5 +890,22 @@ extension Date {
         
         return calendar.date(from: components)!
     }
+    
+    func firstDateOfYear() -> Date {
+    
+        let year = Calendar.current.component(.year, from: Date())
+        
+        
+        guard let firstDayOfYear = Calendar.current.date(from: DateComponents(year: year, month: 1, day: 1)) else {return Date()}
+        
+//        let calendar = Calendar.current
+//        var startDate = Date()
+//        var interval: TimeInterval = 0
+//        _ = calendar.dateInterval(of: .year, start: &startDate, interval: &interval, for: self)
+//
+//        return startDate
+        return firstDayOfYear
+    }
+    
 }
 

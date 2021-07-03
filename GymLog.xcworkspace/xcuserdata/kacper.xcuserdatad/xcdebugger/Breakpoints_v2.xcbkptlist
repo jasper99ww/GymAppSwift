@@ -286,8 +286,8 @@
             filePath = "GymLog/Profile/Body weight/Body Weight Calendar/BodyWeightChartsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "56"
-            endingLineNumber = "56"
+            startingLineNumber = "70"
+            endingLineNumber = "70"
             landmarkName = "segmentedControlChanged(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -302,8 +302,8 @@
             filePath = "GymLog/Profile/Body weight/Body Weight Calendar/BodyWeightChartsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "58"
-            endingLineNumber = "58"
+            startingLineNumber = "72"
+            endingLineNumber = "72"
             landmarkName = "segmentedControlChanged(_:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -318,8 +318,8 @@
             filePath = "GymLog/Profile/Body weight/Body Weight Calendar/BodyWeightChartsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "165"
-            endingLineNumber = "165"
+            startingLineNumber = "179"
+            endingLineNumber = "179"
             landmarkName = "doDataEntries(period:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -334,8 +334,8 @@
             filePath = "GymLog/Profile/Body weight/Body Weight Calendar/BodyWeightChartsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "178"
-            endingLineNumber = "178"
+            startingLineNumber = "192"
+            endingLineNumber = "192"
             landmarkName = "doDataEntries(period:)"
             landmarkType = "7">
             <Locations>
@@ -382,8 +382,8 @@
             filePath = "GymLog/Profile/Body weight/Body Weight Calendar/BodyWeightChartsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "179"
-            endingLineNumber = "179"
+            startingLineNumber = "193"
+            endingLineNumber = "193"
             landmarkName = "doDataEntries(period:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -398,8 +398,8 @@
             filePath = "GymLog/Profile/Body weight/Body Weight Calendar/BodyWeightChartsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "181"
-            endingLineNumber = "181"
+            startingLineNumber = "195"
+            endingLineNumber = "195"
             landmarkName = "doDataEntries(period:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -414,8 +414,8 @@
             filePath = "GymLog/Profile/Body weight/Body Weight Calendar/BodyWeightChartsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "201"
-            endingLineNumber = "201"
+            startingLineNumber = "215"
+            endingLineNumber = "215"
             landmarkName = "doDataEntries(period:)"
             landmarkType = "7">
          </BreakpointContent>
@@ -430,8 +430,8 @@
             filePath = "GymLog/Profile/Body weight/Body Weight Calendar/BodyWeightChartsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "238"
-            endingLineNumber = "238"
+            startingLineNumber = "252"
+            endingLineNumber = "252"
             landmarkName = "convertDateForAxis()"
             landmarkType = "7">
          </BreakpointContent>
@@ -446,8 +446,8 @@
             filePath = "GymLog/Profile/Body weight/Body Weight Calendar/BodyWeightChartsViewController.swift"
             startingColumnNumber = "9223372036854775807"
             endingColumnNumber = "9223372036854775807"
-            startingLineNumber = "239"
-            endingLineNumber = "239"
+            startingLineNumber = "253"
+            endingLineNumber = "253"
             landmarkName = "convertDateForAxis()"
             landmarkType = "7">
             <Locations>

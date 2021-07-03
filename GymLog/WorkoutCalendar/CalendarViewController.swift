@@ -50,6 +50,7 @@ class CalendarViewController: UIViewController {
    
         calendarView.allowsMultipleSelection = true
         calendarView.deselectAllDates()
+        calendarView.scrollToDate(Date(), animateScroll: false)
         selectTodayDate()
         emptyDict = [:]
         selectDoneDates = []
@@ -60,6 +61,7 @@ class CalendarViewController: UIViewController {
         }
         
         setUpCalendar()
+    
     }
     
     override func viewDidLoad() {
@@ -73,7 +75,9 @@ class CalendarViewController: UIViewController {
         tableView.delegate = self
         tableView.dataSource = self
         tableView.rowHeight = 110
-       
+     
+        print("date is \(Date().firstDateOfYear())")
+        print("DATA DZISIEJSZA \(Date())")
     }
     
     override func viewWillDisappear(_ animated: Bool) {
@@ -296,13 +300,14 @@ extension CalendarViewController: JTACMonthViewDataSource {
 
     func configureCalendar(_ calendar: JTACMonthView) -> ConfigurationParameters {
         formatter.dateFormat = "yyyy MM dd"
-        formatter.timeZone = Calendar.current.timeZone
-        formatter.locale = Calendar.current.locale
-        
-        let startDate = Date()
-        let endDate = formatter.date(from: "2021 12 12")!
 
-        let parameteres = ConfigurationParameters(startDate: startDate, endDate: endDate)
+        let startDate = Date().firstDateOfYear()
+        let endDate = formatter.date(from: "2021 12 12")!
+        
+        let firstDayOfWeek: DaysOfWeek = .monday
+    
+        let parameteres = ConfigurationParameters(startDate: startDate, endDate: endDate, firstDayOfWeek: firstDayOfWeek)
+        
         return parameteres
     }
 
@@ -426,6 +431,7 @@ extension CalendarViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
 }
+
 
 extension Date {
     

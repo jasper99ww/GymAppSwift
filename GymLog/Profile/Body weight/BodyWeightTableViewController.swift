@@ -8,13 +8,11 @@
 import UIKit
 
 class BodyWeightTableViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
-    
   
     @IBOutlet weak var tableView: UITableView!
     
-    
-    var arrayMain: [String] = ["Body weight calendar", "Calories", "BMI"]
-    var arraySecond: [String] = ["Fill your body weight diary", "Calculate your daily calorie requirement", "Calculate your bmi"]
+    var arrayMain: [String] = ["Add new weight","Body weight progress","Calories", "BMI"]
+    var arraySecond: [String] = ["Update your weight calendar", "Check your body weight progress", "Calculate your daily calorie requirement", "Calculate your bmi"]
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -42,8 +40,10 @@ class BodyWeightTableViewController: UIViewController, UITableViewDelegate, UITa
 extension BodyWeightTableViewController: TitleOfSelectedRow {
     func didTapButton(with title: String) {
         switch title {
-        case "Body weight calendar":
+        case "Add new weight":
             performSegue(withIdentifier: "toBodyWeightCalendar", sender: self)
+        case "Body weight progress":
+            performSegue(withIdentifier: "toBodyWeightProgress", sender: self)
         case "BMI":
             performSegue(withIdentifier: "toBMI", sender: self)
         default:
