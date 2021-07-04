@@ -407,15 +407,15 @@
             </objects>
             <point key="canvasLocation" x="6589.8550724637689" y="1384.8214285714284"/>
         </scene>
-        <!--Body Weight Table View Controller-->
+        <!--bodyWeightTableViewController-->
         <scene sceneID="fUz-2w-qCX">
             <objects>
-                <viewController storyboardIdentifier="bodyWeightTableViewController" id="xB5-pF-6Gi" customClass="BodyWeightTableViewController" customModule="GymLog" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="bodyWeightTableViewController" title="bodyWeightTableViewController" id="xB5-pF-6Gi" customClass="BodyWeightTableViewController" customModule="GymLog" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8xP-Ds-2Um">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="692"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fCU-VY-t6J">
+                            <tableView clipsSubviews="YES" contentMode="scaleToFill" alwaysBounceVertical="YES" dataMode="prototypes" style="plain" separatorStyle="none" allowsSelection="NO" rowHeight="-1" estimatedRowHeight="-1" sectionHeaderHeight="28" sectionFooterHeight="28" translatesAutoresizingMaskIntoConstraints="NO" id="fCU-VY-t6J">
                                 <rect key="frame" x="0.0" y="20" width="414" height="424"/>
                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <prototypes>
@@ -610,10 +610,25 @@
             </objects>
             <point key="canvasLocation" x="9610" y="1001"/>
         </scene>
-        <!--Body Weight Calendar View Controller-->
+        <!--View Controller-->
+        <scene sceneID="3wP-6f-GYR">
+            <objects>
+                <viewController id="uz1-3j-RPE" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="fyk-hs-jEp">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <viewLayoutGuide key="safeArea" id="kdE-0O-1hN"/>
+                        <color key="backgroundColor" systemColor="systemBackgroundColor"/>
+                    </view>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="NqU-0E-2Wh" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="9688" y="3020"/>
+        </scene>
+        <!--bodyWeightCalendarViewController-->
         <scene sceneID="SdN-2H-sgt">
             <objects>
-                <viewController id="bcP-DW-KP7" customClass="BodyWeightCalendarViewController" customModule="GymLog" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController title="bodyWeightCalendarViewController" id="bcP-DW-KP7" customClass="BodyWeightCalendarViewController" customModule="GymLog" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="Vqo-Gd-nsg">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="692"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -913,7 +928,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="6xj-nE-TAz" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="10041" y="2548"/>
+            <point key="canvasLocation" x="10955" y="2567"/>
         </scene>
         <!--Statistics-->
         <scene sceneID="CTj-pb-ttP">
@@ -1084,7 +1099,7 @@
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EOq-9M-dYF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="11359" y="1794"/>
+            <point key="canvasLocation" x="12029" y="1632"/>
         </scene>
         <!--Result View Controller-->
         <scene sceneID="SNG-HJ-CXG">

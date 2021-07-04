@@ -28,7 +28,7 @@ class BodyWeightChartsViewController: UIViewController, ChartViewDelegate {
     var weightUnit: String {
         UserDefaults.standard.string(forKey: "unit") ?? "kg"
     }
-    
+   
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -39,34 +39,39 @@ class BodyWeightChartsViewController: UIViewController, ChartViewDelegate {
         self.tableViewUnderChart.dataSource = self
         tableViewUnderChart.rowHeight = 90
         controlSegmentSetUp()
-        checking()
+       
     }
     
-    func checking() {
-        let viewControllers: [UIViewController] = self.navigationController!.viewControllers as [UIViewController]
-//        self.navigationController!.popToViewController(viewControllers[viewControllers.count - 1], animated: false)
-        print(" vc \(viewControllers[viewControllers.count - 2])")
-        }
-    
-    
+//    func checking() {
+//        let viewControllers: [UIViewController] = self.navigationController!.viewControllers as [UIViewController]
+//        self.navigationController!.popToViewController(viewControllers[viewControllers.count - 3], animated: false)
+////        if let previousViewController = navigationController?.previousViewController, let previoustitle = previousViewController.title {
+////
+////        }
+//    }
+//    bodyWeightTableViewController
+//    bodyWeightCalendarViewController
+//
+    override func viewWillDisappear(_ animated: Bool) {
 
-    
-    override func willMove(toParent parent: UIViewController?) {
-        super.willMove(toParent: parent)
-        
-        if parent == nil {
-        let viewControllers: [UIViewController] = self.navigationController!.viewControllers as [UIViewController]
-        self.navigationController!.popToViewController(viewControllers[viewControllers.count - 2], animated: false)
+        guard let viewControllers: [UIViewController] = self.navigationController?.viewControllers else {return}
+
+        guard let previousViewControllerTitle = navigationController?.previousViewController?.title else {return}
+
+        if self.isMovingFromParent && previousViewControllerTitle == "bodyWeightCalendarViewController" {
+            self.navigationController?.popToViewController(viewControllers[viewControllers.count - 2], animated: false)
         }
     }
-  
+
+
 
     @IBAction func segmentedControlChanged(_ sender: UISegmentedControl) {
         
         if sender.selectedSegmentIndex == 0 {
-            let storyboard = UIStoryboard(name: "Profile", bundle: nil)
-            let vc = storyboard.instantiateViewController(identifier: "bodyWeightTableViewController")
-            self.present(vc, animated: true)
+//            let storyboard = UIStoryboard(name: "Profile", bundle: nil)
+//            let vc = storyboard.instantiateViewController(identifier: "bodyWeightTableViewController")
+//            self.present(vc, animated: true)
+//            checking()
 //            doDataEntries(period: "week")
         } else if sender.selectedSegmentIndex == 1 {
             doDataEntries(period: "month")
@@ -109,6 +114,7 @@ class BodyWeightChartsViewController: UIViewController, ChartViewDelegate {
         weightChart.xAxis.drawGridLinesEnabled = false
         weightChart.legend.enabled = false
         
+        self.weightChart.animate(xAxisDuration: 0.04 * Double(self.lineChartEntries.count), easingOption: .linear)
 //        DispatchQueue.main.asyncAfter(deadline: .now() + 4.0) {
 //            if let lineChartX = self.lineChartEntries.last?.x, let lineChartY = self.lineChartEntries.last?.y {
 //                self.weightChart.highlightValue(x: lineChartX, y: lineChartY, dataSetIndex: 0)
@@ -334,6 +340,12 @@ extension BodyWeightChartsViewController: UITableViewDelegate, UITableViewDataSo
   
 //        let selectedCell: UITableViewCell = tableViewUnderChart.cellForRow(at: indexPath)!
 //        selectedCell.contentView.backgroundColor = UIColor.darkGray
+    }
+}
+
+extension UINavigationController {
+    var previousViewController: UIViewController? {
+        viewControllers.count > 1 ? viewControllers[viewControllers.count - 2] : nil
     }
 }
 
