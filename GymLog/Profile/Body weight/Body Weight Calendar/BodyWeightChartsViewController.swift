@@ -55,11 +55,11 @@ class BodyWeightChartsViewController: UIViewController, ChartViewDelegate {
     override func viewWillDisappear(_ animated: Bool) {
 
         guard let viewControllers: [UIViewController] = self.navigationController?.viewControllers else {return}
-
+print("1")
         guard let previousViewControllerTitle = navigationController?.previousViewController?.title else {return}
-
-        if self.isMovingFromParent && previousViewControllerTitle == "bodyWeightCalendarViewController" {
-            self.navigationController?.popToViewController(viewControllers[viewControllers.count - 2], animated: false)
+        print("2")
+        if  previousViewControllerTitle == "bodyWeightCalendarViewController" {
+            self.navigationController?.popToViewController(viewControllers[viewControllers.count - 2], animated: true)
         }
     }
 
@@ -345,7 +345,7 @@ extension BodyWeightChartsViewController: UITableViewDelegate, UITableViewDataSo
 
 extension UINavigationController {
     var previousViewController: UIViewController? {
-        viewControllers.count > 1 ? viewControllers[viewControllers.count - 2] : nil
+        viewControllers.count > 1 ? viewControllers[viewControllers.count - 1] : nil
     }
 }
 

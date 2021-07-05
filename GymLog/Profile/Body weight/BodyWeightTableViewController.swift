@@ -46,6 +46,8 @@ extension BodyWeightTableViewController: TitleOfSelectedRow {
             performSegue(withIdentifier: "toBodyWeightProgress", sender: self)
         case "BMI":
             performSegue(withIdentifier: "toBMI", sender: self)
+        case "Calories":
+            performSegue(withIdentifier: "toCalories", sender: self)
         default:
             print("No title in BodyWeightTableViewController")
         }
