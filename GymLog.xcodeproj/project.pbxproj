@@ -90,6 +90,7 @@
 		E7AC68D8268A4406007F3C2B /* BodyWeightService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AC68D7268A4405007F3C2B /* BodyWeightService.swift */; };
 		E7AC68DB268A7953007F3C2B /* BodyWeightChartsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AC68DA268A7953007F3C2B /* BodyWeightChartsViewController.swift */; };
 		E7B38147268D213A00D7CA8D /* BodyWeightTableViewCellChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B38146268D213A00D7CA8D /* BodyWeightTableViewCellChart.swift */; };
+		E7C83C672695DCAE0075D642 /* CaloriesPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C83C662695DCAE0075D642 /* CaloriesPickerController.swift */; };
 		E7CD99782661A88000EDBE51 /* ProgressPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CD99772661A88000EDBE51 /* ProgressPopUpView.swift */; };
 /* End PBXBuildFile section */
 
@@ -181,6 +182,7 @@
 		E7AC68D7268A4405007F3C2B /* BodyWeightService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyWeightService.swift; sourceTree = "<group>"; };
 		E7AC68DA268A7953007F3C2B /* BodyWeightChartsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyWeightChartsViewController.swift; sourceTree = "<group>"; };
 		E7B38146268D213A00D7CA8D /* BodyWeightTableViewCellChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyWeightTableViewCellChart.swift; sourceTree = "<group>"; };
+		E7C83C662695DCAE0075D642 /* CaloriesPickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaloriesPickerController.swift; sourceTree = "<group>"; };
 		E7CD99772661A88000EDBE51 /* ProgressPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressPopUpView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -470,6 +472,7 @@
 		E7AC68CF26869004007F3C2B /* Body Weight Calendar */ = {
 			isa = PBXGroup;
 			children = (
+				E7C83C652695D9B40075D642 /* Calories Calculator */,
 				E7AC68D02686904B007F3C2B /* BodyWeightCalendarViewController.swift */,
 				E7AC68D42688E5B6007F3C2B /* BodyWeightCalendarCell.swift */,
 				E7AC68D7268A4405007F3C2B /* BodyWeightService.swift */,
@@ -477,9 +480,17 @@
 				E7B38146268D213A00D7CA8D /* BodyWeightTableViewCellChart.swift */,
 				E774A1D8268F41BA0073830F /* CircleMarker.swift */,
 				E774A1DB268F79630073830F /* BodyWeightPeriodSelection.swift */,
-				E798AA6A26926D580044743A /* BodyWeightCalories.swift */,
 			);
 			path = "Body Weight Calendar";
+			sourceTree = "<group>";
+		};
+		E7C83C652695D9B40075D642 /* Calories Calculator */ = {
+			isa = PBXGroup;
+			children = (
+				E798AA6A26926D580044743A /* BodyWeightCalories.swift */,
+				E7C83C662695DCAE0075D642 /* CaloriesPickerController.swift */,
+			);
+			path = "Calories Calculator";
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -629,6 +640,7 @@
 				E774A1DC268F79630073830F /* BodyWeightPeriodSelection.swift in Sources */,
 				E7985F1826473D86007EC06D /* CalendarPopupViewController.swift in Sources */,
 				596620A925EBD690002B04D5 /* MainTabBarController.swift in Sources */,
+				E7C83C672695DCAE0075D642 /* CaloriesPickerController.swift in Sources */,
 				E774A1D9268F41BA0073830F /* CircleMarker.swift in Sources */,
 				E75232362683E73F00986F71 /* BodyWeightTableViewController.swift in Sources */,
 				5980D477260CEDC60070F23B /* ProfileViewController.swift in Sources */,

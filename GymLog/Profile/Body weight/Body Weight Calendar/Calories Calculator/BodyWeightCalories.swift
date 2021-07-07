@@ -8,7 +8,10 @@
 import UIKit
 
 class BodyWeightCalories: UIViewController {
-
+  
+    
+    @IBOutlet weak var activityButton: UIButton!
+    
     @IBOutlet weak var heightView: UIView!
     @IBOutlet weak var heightSlider: UISlider!
     @IBOutlet weak var heightValueLabel: UILabel!
@@ -26,15 +29,17 @@ class BodyWeightCalories: UIViewController {
     @IBOutlet weak var ageMinusButton: UIButton!
     @IBOutlet weak var agePlusButton: UIButton!
     @IBOutlet weak var activityView: UIView!
-    @IBOutlet weak var activityPicker: UIPickerView!
+   
     
     @IBOutlet weak var manGenderView: UIView!
     @IBOutlet weak var manGender: UIImageView!
+    @IBOutlet weak var maleLabel: UILabel!
     
     
     @IBOutlet weak var womanGenderView: UIView!
     @IBOutlet weak var womanGender: UIImageView!
-    let color = UIColor.init(red: 236/255, green: 240/255, blue: 241/255, alpha: 1)
+    @IBOutlet weak var femaleLabel: UILabel!
+    let color = UIColor.init(red: 48/255, green: 173/255, blue: 99/255, alpha: 1)
     
     var gender = String()
     var height = Int()
@@ -47,30 +52,28 @@ class BodyWeightCalories: UIViewController {
 
     makeTintImages()
     buttonsCorneRadius()
-        genderViewsButton()
-        heightSlider.setValue(170, animated: true)
-        weightSlider.setValue(80, animated: true)
+    genderViewsButton()
+    heightSlider.setValue(170, animated: true)
+    weightSlider.setValue(80, animated: true)
     }
     
-    func makeTintImages() {
-        guard let manGenderImage = UIImage(named: "manGender") else { return }
-        let tintManImage = manGenderImage.withRenderingMode(.alwaysTemplate)
-        manGender.image = tintManImage
-        manGender.tintColor = .green
-        manGenderView.layer.cornerRadius = 15
+    
+    //MARK:- PICKER VIEW
+    
+    @IBAction func activityButtonTapped(_ sender: UIButton) {
         
-        guard let womanGenderImage = UIImage(named: "womanGender") else { return }
-        let tintWomanGender = womanGenderImage.withRenderingMode(.alwaysTemplate)
-        womanGender.image = tintWomanGender
-        womanGender.tintColor = .systemPink
-        womanGenderView.layer.cornerRadius = 15
+        let caloriesPickerController = CaloriesPickerController()
+
+        caloriesPickerController.caloriesPickerDelegate = self
         
-        heightView.layer.cornerRadius = 15
-        weightView.layer.cornerRadius = 15
-        ageView.layer.cornerRadius = 15
-        activityView.layer.cornerRadius = 15
+        
+        caloriesPickerController.modalPresentationStyle = .overCurrentContext
+        present(caloriesPickerController, animated: true, completion: nil)
+        
         
     }
+    
+   
     
     //MARK:- GENDER VIEWS
     
@@ -84,15 +87,29 @@ class BodyWeightCalories: UIViewController {
     }
     
    @objc func maleButtonTapped() {
-    manGender.alpha = 0.5
-        gender = "male"
-    print("man tapped ")
+    gender = "male"
+    
+    manGenderView.showAnimation {
+        self.manGenderView.alpha = 1
+        self.manGender.tintColor = self.color
+        self.maleLabel.textColor = .white
+        self.womanGender.tintColor = .darkGray
+        self.femaleLabel.textColor = .lightGray
+        self.womanGenderView.alpha = 0.5
+    }
     }
     
     @objc func femaleButtonTapped() {
         gender = "female"
-        womanGenderView.alpha = 0.5
-        print("women tapped")
+   
+        womanGenderView.showAnimation {
+            self.womanGenderView.alpha = 1
+            self.womanGender.tintColor = .systemPink
+            self.femaleLabel.textColor = .white
+            self.manGender.tintColor = .darkGray
+            self.maleLabel.textColor = .lightGray
+            self.manGenderView.alpha = 0.5
+        }
     }
     
     
@@ -110,7 +127,6 @@ class BodyWeightCalories: UIViewController {
     
     @IBAction func heightSliderChanged(_ sender: UISlider) {
         height = Int(sender.value)
-        print("height is \(sender.value / 2.54)")
         let heightInInch = cmToFootAndInches(Double(sender.value))
         heightValueLabel.text = "\(String(height))cm (\(heightInInch))"
         
@@ -137,6 +153,27 @@ class BodyWeightCalories: UIViewController {
     }
     
     //MARK:- UI SET UP
+    
+    func makeTintImages() {
+        guard let manGenderImage = UIImage(named: "manGender") else { return }
+        let tintManImage = manGenderImage.withRenderingMode(.alwaysTemplate)
+        manGender.image = tintManImage
+        manGender.tintColor = color
+        manGenderView.layer.cornerRadius = 15
+        
+        guard let womanGenderImage = UIImage(named: "womanGender") else { return }
+        let tintWomanGender = womanGenderImage.withRenderingMode(.alwaysTemplate)
+        womanGender.image = tintWomanGender
+        womanGender.tintColor = .systemPink
+        womanGenderView.layer.cornerRadius = 15
+        
+        heightView.layer.cornerRadius = 15
+        weightView.layer.cornerRadius = 15
+        ageView.layer.cornerRadius = 15
+        activityView.layer.cornerRadius = 15
+        
+    }
+    
     func buttonsCorneRadius() {
         let greenColor = UIColor.init(red: 48/255, green: 173/255, blue: 99/255, alpha: 1).cgColor
         
@@ -149,8 +186,32 @@ class BodyWeightCalories: UIViewController {
         agePlusButton.layer.borderColor = greenColor
         agePlusButton.layer.borderWidth = 1
     }
-    
-   
+}
 
+extension BodyWeightCalories: CaloriesPickerControllerDelegate {
+    func getActivityLevel(activity: String) {
+        print("activity is \(activity)")
+    }
+}
 
+public extension UIView {
+    func showAnimation(_ completionBlock: @escaping () -> Void) {
+          isUserInteractionEnabled = false
+            UIView.animate(withDuration: 0.1,
+                           delay: 0,
+                           options: .curveLinear,
+                           animations: { [weak self] in
+                                self?.transform = CGAffineTransform.init(scaleX: 0.95, y: 0.95)
+            }) {  (done) in
+                UIView.animate(withDuration: 0.1,
+                               delay: 0,
+                               options: .curveLinear,
+                               animations: { [weak self] in
+                                    self?.transform = CGAffineTransform.init(scaleX: 1, y: 1)
+                }) { [weak self] (_) in
+                    self?.isUserInteractionEnabled = true
+                    completionBlock()
+                }
+            }
+        }
 }

@@ -631,8 +631,8 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="4k9-BY-Qu9">
                                                         <rect key="frame" x="0.0" y="0.0" width="174.66666666666666" height="160"/>
                                                         <subviews>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="XXF-R0-PUP">
-                                                                <rect key="frame" x="48.666666666666671" y="25.666666666666671" width="77" height="109.00000000000001"/>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="XXF-R0-PUP">
+                                                                <rect key="frame" x="48.666666666666671" y="23" width="77" height="114"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="manGender" translatesAutoresizingMaskIntoConstraints="NO" id="BOp-eL-ecU">
                                                                         <rect key="frame" x="0.0" y="0.0" width="77" height="90"/>
@@ -642,7 +642,7 @@
                                                                         </constraints>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="MALE" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="wHo-QK-KKa">
-                                                                        <rect key="frame" x="14.333333333333325" y="94.999999999999986" width="48.666666666666657" height="14"/>
+                                                                        <rect key="frame" x="14.333333333333325" y="100" width="48.666666666666657" height="14"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="14" id="lJv-ln-8Nh"/>
                                                                         </constraints>
@@ -667,8 +667,8 @@
                                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="vMR-pI-mBw">
                                                         <rect key="frame" x="189.66666666666663" y="0.0" width="174.33333333333337" height="160"/>
                                                         <subviews>
-                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="5" translatesAutoresizingMaskIntoConstraints="NO" id="b9n-BK-I8q">
-                                                                <rect key="frame" x="48.666666666666657" y="25.666666666666671" width="77" height="109.00000000000001"/>
+                                                            <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="10" translatesAutoresizingMaskIntoConstraints="NO" id="b9n-BK-I8q">
+                                                                <rect key="frame" x="48.666666666666657" y="23" width="77" height="114"/>
                                                                 <subviews>
                                                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="womanGender" translatesAutoresizingMaskIntoConstraints="NO" id="6AK-mW-zlY">
                                                                         <rect key="frame" x="0.0" y="0.0" width="77" height="90"/>
@@ -678,7 +678,7 @@
                                                                         </constraints>
                                                                     </imageView>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="FEMALE" textAlignment="natural" lineBreakMode="clip" baselineAdjustment="alignBaselines" minimumFontSize="13" translatesAutoresizingMaskIntoConstraints="NO" id="FBX-iy-LyV">
-                                                                        <rect key="frame" x="5" y="94.999999999999986" width="67" height="14"/>
+                                                                        <rect key="frame" x="5" y="100" width="67" height="14"/>
                                                                         <constraints>
                                                                             <constraint firstAttribute="height" constant="14" id="xc8-2H-Ffj"/>
                                                                         </constraints>
@@ -714,7 +714,7 @@
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="HEIGHT" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="es1-Tw-0nY">
                                                                         <rect key="frame" x="120" y="0.0" width="74.333333333333314" height="29"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="170 cm" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="11" adjustsLetterSpacingToFitWidth="YES" translatesAutoresizingMaskIntoConstraints="NO" id="N4O-8k-nbg">
@@ -755,7 +755,7 @@
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="WEIGHT" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="Avh-Wx-5j2">
                                                                         <rect key="frame" x="117.66666666666666" y="0.0" width="79" height="29"/>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="85 kg" textAlignment="center" lineBreakMode="tailTruncation" numberOfLines="2" baselineAdjustment="alignBaselines" minimumFontSize="11" translatesAutoresizingMaskIntoConstraints="NO" id="YoB-54-0sl">
@@ -807,7 +807,7 @@
                                                                             <constraint firstAttribute="height" constant="18" id="grc-8H-zn5"/>
                                                                         </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
                                                                     <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="left" contentVerticalAlignment="center" text="25" textAlignment="center" minimumFontSize="9" translatesAutoresizingMaskIntoConstraints="NO" id="asR-YB-U7l">
@@ -880,14 +880,29 @@
                                                                             <constraint firstAttribute="height" constant="18" id="cbq-j3-Lfh"/>
                                                                         </constraints>
                                                                         <fontDescription key="fontDescription" type="system" pointSize="21"/>
-                                                                        <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                        <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                         <nil key="highlightedColor"/>
                                                                     </label>
-                                                                    <pickerView contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="gyq-gv-9KD">
+                                                                    <stackView opaque="NO" contentMode="scaleToFill" distribution="fillProportionally" translatesAutoresizingMaskIntoConstraints="NO" id="BKY-1F-ErD">
                                                                         <rect key="frame" x="0.0" y="26" width="144.33333333333334" height="96"/>
-                                                                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                                                        <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
-                                                                    </pickerView>
+                                                                        <subviews>
+                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="wSd-5f-SXs">
+                                                                                <rect key="frame" x="0.0" y="0.0" width="123" height="96"/>
+                                                                                <fontDescription key="fontDescription" type="system" pointSize="18"/>
+                                                                                <state key="normal" title="Select activity">
+                                                                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                                                </state>
+                                                                            </button>
+                                                                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="Usd-vG-usr">
+                                                                                <rect key="frame" x="123.00000000000001" y="0.0" width="21.333333333333329" height="96"/>
+                                                                                <color key="tintColor" red="0.45009386540000001" green="0.98132258650000004" blue="0.4743030667" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                                                <state key="normal" image="chevron.down.circle" catalog="system"/>
+                                                                                <connections>
+                                                                                    <action selector="activityButtonTapped:" destination="uz1-3j-RPE" eventType="touchUpInside" id="hwg-mz-bnz"/>
+                                                                                </connections>
+                                                                            </button>
+                                                                        </subviews>
+                                                                    </stackView>
                                                                 </subviews>
                                                             </stackView>
                                                         </subviews>
@@ -931,15 +946,16 @@
                     </view>
                     <navigationItem key="navigationItem" id="EDJ-iv-8sh"/>
                     <connections>
-                        <outlet property="activityPicker" destination="gyq-gv-9KD" id="guY-Wv-75o"/>
                         <outlet property="activityView" destination="jlJ-LF-zdt" id="ziX-WZ-bmB"/>
                         <outlet property="ageMinusButton" destination="xF5-7x-pdH" id="GOl-BM-5TX"/>
                         <outlet property="agePlusButton" destination="N22-k9-GMk" id="lAB-Ev-EgU"/>
                         <outlet property="ageTextField" destination="asR-YB-U7l" id="eGr-I7-MNV"/>
                         <outlet property="ageView" destination="mov-ja-5Ha" id="3sK-hq-Cyi"/>
+                        <outlet property="femaleLabel" destination="FBX-iy-LyV" id="JM2-QL-Iv8"/>
                         <outlet property="heightSlider" destination="dgg-IW-3gy" id="5ZC-mR-kd1"/>
                         <outlet property="heightValueLabel" destination="N4O-8k-nbg" id="mc3-8G-woR"/>
                         <outlet property="heightView" destination="ecM-Z4-hQt" id="0yI-Fb-ngP"/>
+                        <outlet property="maleLabel" destination="wHo-QK-KKa" id="9S1-NM-N0E"/>
                         <outlet property="manGender" destination="BOp-eL-ecU" id="LEu-Sg-Ymf"/>
                         <outlet property="manGenderView" destination="4k9-BY-Qu9" id="gBS-Rt-df6"/>
                         <outlet property="weightSlider" destination="erF-0O-7Bt" id="Eq3-5Y-lr0"/>
@@ -1561,6 +1577,7 @@
     </inferredMetricsTieBreakers>
     <resources>
         <image name="arrow.up" catalog="system" width="120" height="128"/>
+        <image name="chevron.down.circle" catalog="system" width="128" height="121"/>
         <image name="chevron.left" catalog="system" width="96" height="128"/>
         <image name="chevron.right" catalog="system" width="96" height="128"/>
         <image name="manGender" width="128" height="128"/>
