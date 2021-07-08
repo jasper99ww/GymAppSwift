@@ -9,6 +9,7 @@ import UIKit
 
 class BodyWeightCalories: UIViewController {
   
+    @IBOutlet weak var calculateButton: UIButton!
     
     @IBOutlet weak var activityButton: UIButton!
     
@@ -41,11 +42,14 @@ class BodyWeightCalories: UIViewController {
     @IBOutlet weak var femaleLabel: UILabel!
     let color = UIColor.init(red: 48/255, green: 173/255, blue: 99/255, alpha: 1)
     
-    var gender = String()
-    var height = Int()
-    var weight = Int()
+    var gender: String?
+    var height: Int?
+    var weight: Int?
     var age = 25
     var newAge = String()
+    var activityLabel = String()
+    var activityIndex: Double?
+    var caloriesRequirement = Int()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -53,7 +57,7 @@ class BodyWeightCalories: UIViewController {
     makeTintImages()
     buttonsCorneRadius()
     genderViewsButton()
-    heightSlider.setValue(170, animated: true)
+    heightSlider.setValue(100, animated: true)
     weightSlider.setValue(80, animated: true)
     }
     
@@ -127,15 +131,16 @@ class BodyWeightCalories: UIViewController {
     
     @IBAction func heightSliderChanged(_ sender: UISlider) {
         height = Int(sender.value)
+        guard let heightValue = height else { return }
         let heightInInch = cmToFootAndInches(Double(sender.value))
-        heightValueLabel.text = "\(String(height))cm (\(heightInInch))"
+        heightValueLabel.text = "\(String(heightValue))cm (\(heightInInch))"
         
-      
     }
     
     @IBAction func weightSliderChanged(_ sender: UISlider) {
         weight = Int(sender.value)
-        weightValueLabel.text = "\(String(weight))\(weightUnit)"
+        guard let weightValue = weight else { return }
+        weightValueLabel.text = "\(String(weightValue))\(weightUnit)"
     }
     
     @IBAction func minusButtonTapped(_ sender: UIButton) {
@@ -152,6 +157,30 @@ class BodyWeightCalories: UIViewController {
         ageTextField.text = newAge
     }
     
+    @IBAction func calculateButton(_ sender: UIButton) {
+   
+        guard let weightValue = weight, let heightValue = height, let activityIndexValue = activityIndex, let genderValue = gender else { return Alert.showBasicAlert(on: self, with: "Incomplete data", message: "Please configure all parameteres") }
+        
+        if genderValue == "male" {
+            
+        caloriesRequirement = Int((66.47 + 13.75 * Double(weightValue) + 5.03 * Double(heightValue) - 6.7550 * Double(age)) * activityIndexValue)
+            
+            
+        } else {
+            
+            caloriesRequirement = Int((665.09 + 8.56 * Double(weightValue) + 1.84 * Double(heightValue) - 4.67 * Double(age)) * activityIndexValue)
+            
+        }
+        
+       performSegue(withIdentifier: "toCaloriesResult", sender: self)
+    }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == "toCaloriesResult" {
+            let caloriesResultDestination = segue.destination as? CaloriesResultViewController
+            caloriesResultDestination?.calories = caloriesRequirement
+    }
+    }
     //MARK:- UI SET UP
     
     func makeTintImages() {
@@ -185,11 +214,36 @@ class BodyWeightCalories: UIViewController {
         agePlusButton.layer.masksToBounds = true
         agePlusButton.layer.borderColor = greenColor
         agePlusButton.layer.borderWidth = 1
+        
+        calculateButton.layer.cornerRadius = 20
     }
 }
 
 extension BodyWeightCalories: CaloriesPickerControllerDelegate {
     func getActivityLevel(activity: String) {
+        activityButton.setTitle(activity, for: .normal)
+        // "ACTIVE" is to short, and it looks better when its in center
+        if activity == "Active" {
+            activityButton.contentHorizontalAlignment = .center
+        } else {
+            activityButton.contentHorizontalAlignment = .right
+        }
+ 
+        switch activity {
+        case "Sedentary":
+            activityIndex = 1.2
+        case "Low":
+            activityIndex = 1.3
+        case "Moderately":
+            activityIndex = 1.4
+        case "Active":
+            activityIndex = 1.5
+        case "Very active":
+            activityIndex = 1.7
+        default:
+            activityIndex = 1.4
+            print("activity index is not choosen")
+        }
         print("activity is \(activity)")
     }
 }

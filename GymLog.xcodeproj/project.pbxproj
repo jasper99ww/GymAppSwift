@@ -89,6 +89,8 @@
 		E7AC68D52688E5B6007F3C2B /* BodyWeightCalendarCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AC68D42688E5B6007F3C2B /* BodyWeightCalendarCell.swift */; };
 		E7AC68D8268A4406007F3C2B /* BodyWeightService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AC68D7268A4405007F3C2B /* BodyWeightService.swift */; };
 		E7AC68DB268A7953007F3C2B /* BodyWeightChartsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AC68DA268A7953007F3C2B /* BodyWeightChartsViewController.swift */; };
+		E7B049CD2697742E00CAF559 /* CaloriesResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B049CC2697742E00CAF559 /* CaloriesResultViewController.swift */; };
+		E7B049D1269781A300CAF559 /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B049D0269781A300CAF559 /* SupportViewController.swift */; };
 		E7B38147268D213A00D7CA8D /* BodyWeightTableViewCellChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B38146268D213A00D7CA8D /* BodyWeightTableViewCellChart.swift */; };
 		E7C83C672695DCAE0075D642 /* CaloriesPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C83C662695DCAE0075D642 /* CaloriesPickerController.swift */; };
 		E7CD99782661A88000EDBE51 /* ProgressPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CD99772661A88000EDBE51 /* ProgressPopUpView.swift */; };
@@ -181,6 +183,8 @@
 		E7AC68D42688E5B6007F3C2B /* BodyWeightCalendarCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyWeightCalendarCell.swift; sourceTree = "<group>"; };
 		E7AC68D7268A4405007F3C2B /* BodyWeightService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyWeightService.swift; sourceTree = "<group>"; };
 		E7AC68DA268A7953007F3C2B /* BodyWeightChartsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyWeightChartsViewController.swift; sourceTree = "<group>"; };
+		E7B049CC2697742E00CAF559 /* CaloriesResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaloriesResultViewController.swift; sourceTree = "<group>"; };
+		E7B049D0269781A300CAF559 /* SupportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportViewController.swift; sourceTree = "<group>"; };
 		E7B38146268D213A00D7CA8D /* BodyWeightTableViewCellChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyWeightTableViewCellChart.swift; sourceTree = "<group>"; };
 		E7C83C662695DCAE0075D642 /* CaloriesPickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaloriesPickerController.swift; sourceTree = "<group>"; };
 		E7CD99772661A88000EDBE51 /* ProgressPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressPopUpView.swift; sourceTree = "<group>"; };
@@ -367,6 +371,7 @@
 		5980D475260CEDAB0070F23B /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				E7B049CF2697819500CAF559 /* Support */,
 				E75232342683E65A00986F71 /* Body weight */,
 				E74F7E8F267D090C000A6C99 /* Workout */,
 				E74F7E8E267D08F8000A6C99 /* Account */,
@@ -484,11 +489,20 @@
 			path = "Body Weight Calendar";
 			sourceTree = "<group>";
 		};
+		E7B049CF2697819500CAF559 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+				E7B049D0269781A300CAF559 /* SupportViewController.swift */,
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
 		E7C83C652695D9B40075D642 /* Calories Calculator */ = {
 			isa = PBXGroup;
 			children = (
 				E798AA6A26926D580044743A /* BodyWeightCalories.swift */,
 				E7C83C662695DCAE0075D642 /* CaloriesPickerController.swift */,
+				E7B049CC2697742E00CAF559 /* CaloriesResultViewController.swift */,
 			);
 			path = "Calories Calculator";
 			sourceTree = "<group>";
@@ -653,6 +667,7 @@
 				59F33BB326111FE700A6DBB0 /* AddNextExerciseController.swift in Sources */,
 				5976918825ED9D36006C9E38 /* EntryViewController.swift in Sources */,
 				E734A749265F01D400621667 /* ChartXAxisFormatter.swift in Sources */,
+				E7B049D1269781A300CAF559 /* SupportViewController.swift in Sources */,
 				59F33BB62611218300A6DBB0 /* NextExerciseCell.swift in Sources */,
 				5964EA08261B856400998B2F /* StartViewCell.swift in Sources */,
 				59B8BBEA2627A42A0029D00E /* MinutesTimerView.swift in Sources */,
@@ -684,6 +699,7 @@
 				E71947CE265D6C0000DD17F3 /* ExercisesPopUp.swift in Sources */,
 				596620BE25EBF541002B04D5 /* DataCell.swift in Sources */,
 				5961157125F81A80008BD51B /* WorkoutTableCell.swift in Sources */,
+				E7B049CD2697742E00CAF559 /* CaloriesResultViewController.swift in Sources */,
 				E71CC4852681442B004B4FF7 /* StartService.swift in Sources */,
 				5966209D25EA93B8002B04D5 /* AddWorkoutViewController.swift in Sources */,
 				5961156E25F7BBC9008BD51B /* Alert.swift in Sources */,

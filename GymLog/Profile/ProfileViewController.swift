@@ -24,9 +24,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.delegate = self
-        tableView.dataSource = self
-        tableView.rowHeight = 80
+        self.tableView.delegate = self
+        self.tableView.dataSource = self
+        tableView.rowHeight = 70
         setUpPhotoLayer()
         setUpCornerRadiusButton()
     }

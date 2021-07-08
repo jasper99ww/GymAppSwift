@@ -7,6 +7,11 @@
 
 import UIKit
 
+struct ActivityLevels {
+    let levelOfActivity: String
+    let descriptionOfActivity: String
+}
+
 protocol CaloriesPickerControllerDelegate {
     func getActivityLevel(activity: String)
 }
@@ -15,15 +20,15 @@ class CaloriesPickerController: UIViewController, UIPickerViewDelegate, UIPicker
 
     var caloriesPickerDelegate: CaloriesPickerControllerDelegate!
     
-    var activityIndex: [String:String] = ["Sedentary": "mostly sitting, no exercise", "Low": "short walks, exercise 1-3 times/week", "Moderately": "exercises 2-3 times/week", "Active": "mostly walking, exercise more than 3 times/week", "Extremely active": "hard workouts every day"]
+    var activityIndexes: [ActivityLevels] = [ActivityLevels(levelOfActivity: "Sedentary", descriptionOfActivity: "mostly sitting, no exercise") ,ActivityLevels(levelOfActivity: "Low", descriptionOfActivity: "short walks, exercise 1-3 times/week"), ActivityLevels(levelOfActivity: "Moderately", descriptionOfActivity: "exercises 2-3 times/week"), ActivityLevels(levelOfActivity: "Active", descriptionOfActivity: "mostly walking, exercise more than 3 times/week"), ActivityLevels(levelOfActivity: "Very active", descriptionOfActivity: "hard workouts every day")]
+    
+//    var activityIndex: [String:String] = ["Sedentary": "mostly sitting, no exercise", "Low": "short walks, exercise 1-3 times/week", "Moderately": "exercises 2-3 times/week", "Active": "mostly walking, exercise more than 3 times/week", "Extremely active": "hard workouts every day"]
 
         let screenWidth = UIScreen.main.bounds.width - 20
         let screenHeight = UIScreen.main.bounds.height / 4
     
         let vc = UIViewController()
-        var selectedRow = 0
-//        var selectedActivity: ((_ data: String) -> ())?
-    
+        var selectedRow = 0    
         
         override func viewDidLoad() {
 
@@ -66,8 +71,8 @@ class CaloriesPickerController: UIViewController, UIPickerViewDelegate, UIPicker
           alert.addAction(UIAlertAction(title: "Select", style: .default, handler: { (UIAlertAction) in
               self.dismiss(animated: true, completion: nil)
             self.selectedRow = pickerView.selectedRow(inComponent: 0)
-            let selected = Array(self.activityIndex)[self.selectedRow].key
-
+//            let selected = Array(self.activityIndex)[self.selectedRow].value
+            let selected = self.activityIndexes[self.selectedRow].levelOfActivity
 //              self.selectedActivity?(selected)
             self.caloriesPickerDelegate.getActivityLevel(activity: selected)
 
@@ -87,7 +92,8 @@ class CaloriesPickerController: UIViewController, UIPickerViewDelegate, UIPicker
         label.textAlignment = .center
         label.numberOfLines = 2
         label.lineBreakMode = .byWordWrapping
-        label.text = Array(activityIndex)[row].value
+//        label.text = Array(activityIndex)[row].value
+        label.text = activityIndexes[row].descriptionOfActivity
         label.sizeToFit()
        
         return label
@@ -98,7 +104,7 @@ class CaloriesPickerController: UIViewController, UIPickerViewDelegate, UIPicker
         }
 
     func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
-          return activityIndex.count
+          return activityIndexes.count
         }
 
     func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {

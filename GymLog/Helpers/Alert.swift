@@ -10,7 +10,8 @@ import UIKit
 
 struct Alert {
     
-    private static func showBasicAlert(on vc: UIViewController, with title: String, message: String) {
+    //before it was private
+    static func showBasicAlert(on vc: UIViewController, with title: String, message: String) {
         let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
         alert.addAction(UIAlertAction(title: "OK", style: .default, handler: nil))
         DispatchQueue.main.async {
@@ -26,7 +27,6 @@ struct Alert {
         showBasicAlert(on: vc, with: "Incomplete data", message: "Please fill out all data in current exercise")
     }
     
-   
     
     static func showBeforeNextExerciseAlert(on vc: UIViewController) {
         showBasicAlert(on: vc, with: "Incomplete data", message: " Please fill out all fields and checkmarks")
