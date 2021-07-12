@@ -92,8 +92,12 @@
 		E7B049CD2697742E00CAF559 /* CaloriesResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B049CC2697742E00CAF559 /* CaloriesResultViewController.swift */; };
 		E7B049D1269781A300CAF559 /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B049D0269781A300CAF559 /* SupportViewController.swift */; };
 		E7B38147268D213A00D7CA8D /* BodyWeightTableViewCellChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B38146268D213A00D7CA8D /* BodyWeightTableViewCellChart.swift */; };
+		E7BE25E42698E11E00BE9B49 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BE25E32698E11E00BE9B49 /* NotificationViewController.swift */; };
+		E7BE25E72698EA9C00BE9B49 /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BE25E62698EA9C00BE9B49 /* NotificationTableViewCell.swift */; };
+		E7BEA3982699EF0C00551783 /* NotificationLocal.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BEA3972699EF0C00551783 /* NotificationLocal.swift */; };
 		E7C83C672695DCAE0075D642 /* CaloriesPickerController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7C83C662695DCAE0075D642 /* CaloriesPickerController.swift */; };
 		E7CD99782661A88000EDBE51 /* ProgressPopUpView.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7CD99772661A88000EDBE51 /* ProgressPopUpView.swift */; };
+		E7D9A511269B92D1007EF230 /* EditTimerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7D9A510269B92D1007EF230 /* EditTimerViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -186,8 +190,12 @@
 		E7B049CC2697742E00CAF559 /* CaloriesResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaloriesResultViewController.swift; sourceTree = "<group>"; };
 		E7B049D0269781A300CAF559 /* SupportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportViewController.swift; sourceTree = "<group>"; };
 		E7B38146268D213A00D7CA8D /* BodyWeightTableViewCellChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyWeightTableViewCellChart.swift; sourceTree = "<group>"; };
+		E7BE25E32698E11E00BE9B49 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
+		E7BE25E62698EA9C00BE9B49 /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
+		E7BEA3972699EF0C00551783 /* NotificationLocal.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationLocal.swift; sourceTree = "<group>"; };
 		E7C83C662695DCAE0075D642 /* CaloriesPickerController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaloriesPickerController.swift; sourceTree = "<group>"; };
 		E7CD99772661A88000EDBE51 /* ProgressPopUpView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProgressPopUpView.swift; sourceTree = "<group>"; };
+		E7D9A510269B92D1007EF230 /* EditTimerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditTimerViewController.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -350,6 +358,7 @@
 				59CD49662624EAC20004A722 /* TimerViewController.swift */,
 				59B8BBE92627A42A0029D00E /* MinutesTimerView.swift */,
 				E71CC4842681442B004B4FF7 /* StartService.swift */,
+				E7D9A510269B92D1007EF230 /* EditTimerViewController.swift */,
 			);
 			path = StartView;
 			sourceTree = "<group>";
@@ -371,6 +380,7 @@
 		5980D475260CEDAB0070F23B /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				E7BE25E22698E10500BE9B49 /* Notification */,
 				E7B049CF2697819500CAF559 /* Support */,
 				E75232342683E65A00986F71 /* Body weight */,
 				E74F7E8F267D090C000A6C99 /* Workout */,
@@ -495,6 +505,16 @@
 				E7B049D0269781A300CAF559 /* SupportViewController.swift */,
 			);
 			path = Support;
+			sourceTree = "<group>";
+		};
+		E7BE25E22698E10500BE9B49 /* Notification */ = {
+			isa = PBXGroup;
+			children = (
+				E7BE25E32698E11E00BE9B49 /* NotificationViewController.swift */,
+				E7BE25E62698EA9C00BE9B49 /* NotificationTableViewCell.swift */,
+				E7BEA3972699EF0C00551783 /* NotificationLocal.swift */,
+			);
+			path = Notification;
 			sourceTree = "<group>";
 		};
 		E7C83C652695D9B40075D642 /* Calories Calculator */ = {
@@ -650,6 +670,8 @@
 				5964DE772605479600A941D8 /* OptionsViewController.swift in Sources */,
 				E798AA6B26926D580044743A /* BodyWeightCalories.swift in Sources */,
 				5962997E26234D9900EF414D /* TimerStruct.swift in Sources */,
+				E7D9A511269B92D1007EF230 /* EditTimerViewController.swift in Sources */,
+				E7BE25E72698EA9C00BE9B49 /* NotificationTableViewCell.swift in Sources */,
 				597F781725FC2124005F97A2 /* ShowWorkoutViewController.swift in Sources */,
 				E774A1DC268F79630073830F /* BodyWeightPeriodSelection.swift in Sources */,
 				E7985F1826473D86007EC06D /* CalendarPopupViewController.swift in Sources */,
@@ -679,8 +701,10 @@
 				E7170F402679153A00ED7C26 /* AccountViewController.swift in Sources */,
 				E74F7E94267D0E5B000A6C99 /* ProfileWorkoutTableViewCell.swift in Sources */,
 				596D12272635A800003B7292 /* CalendarViewController.swift in Sources */,
+				E7BE25E42698E11E00BE9B49 /* NotificationViewController.swift in Sources */,
 				E74F7E91267D0C94000A6C99 /* ProfileWorkoutViewController.swift in Sources */,
 				596BC83B25E29D6400166D9C /* Constants.swift in Sources */,
+				E7BEA3982699EF0C00551783 /* NotificationLocal.swift in Sources */,
 				5961427525E9B54000A83DD6 /* HomeTableViewController.swift in Sources */,
 				59610F9E25FD65160006C32F /* RetrieveWorkoutCell.swift in Sources */,
 				E7AC68D52688E5B6007F3C2B /* BodyWeightCalendarCell.swift in Sources */,

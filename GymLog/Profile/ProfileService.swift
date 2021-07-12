@@ -9,12 +9,45 @@ import Foundation
 import UIKit
 import Firebase
 
+struct DataForNotification {
+    let day: String
+    let workout: String
+}
 class ProfileService {
     
     let db = Firestore.firestore()
     let user = Auth.auth().currentUser
     var password: UITextField?
     var credentials: AuthCredential?
+    let dispatchGroup = DispatchGroup()
+    
+    func getDayOfWorkoutForNotification(workoutTitles: [String], completionHandler: @escaping([DataForNotification]) -> ()) {
+        
+        var arrayOfDay: [DataForNotification] = []
+//        var workouts: [String] = []
+        
+        for workoutTitle in workoutTitles {
+            dispatchGroup.enter()
+        db.collection("users").document(user!.uid).collection("WorkoutsName").document(workoutTitle).getDocument { (document, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            } else {
+                if let document = document, document.exists {
+                    let documentData = document["workoutDay"] as! String
+                    let newModel = DataForNotification(day: documentData, workout: workoutTitle)
+                    arrayOfDay.append(newModel)
+                }
+            }
+            self.dispatchGroup.leave()
+        }
+       
+    }
+        dispatchGroup.notify(queue: .main) {
+            print("array is \(arrayOfDay)")
+            completionHandler(arrayOfDay)
+        }
+        
+    }
     
     func getUserName(completionHandler: @escaping(String) -> ()) {
         

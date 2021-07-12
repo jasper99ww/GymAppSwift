@@ -4,8 +4,9 @@ import AVFoundation
 
 class TimerViewController: UIViewController, CAAnimationDelegate {
     
-    
+    let editTimer = EditTimerViewController()
     let vibrationsON: Bool = UserDefaults.standard.bool(forKey: "vibrations")
+    var notificationLocal = NotificationLocal()
     @IBOutlet weak var timerLabel: UILabel!
     @IBOutlet weak var newView: UIView!
     
@@ -17,17 +18,34 @@ class TimerViewController: UIViewController, CAAnimationDelegate {
     let shape = CAShapeLayer()
     var startButtonTapped: Bool = false
     var firstTimeStarted: Bool = true
+    let pickerView = UIPickerView()
+    
+    var duration: TimeInterval = 30
+    
+    var notificationBool: Bool? {
+        guard let pauseNotificationBoolean = UserDefaults.standard.object(forKey: "pauseNotification") as? Bool else { return nil }
+        return pauseNotificationBoolean
+    }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
-       
         
     }
     
     override func viewDidLayoutSubviews() {
         set()
     }
+    
+    @IBAction func editButtonTapped(_ sender: UIButton) {
+       
+        editTimer.showAlert(view: self, message: "") { (time) in
+            print("\(time)")
+            self.duration = Double(time)
+            self.restartButtonTapped(self.restartButton)
+            
+        }
+    }
+    
     
     func set() {
 
@@ -68,7 +86,7 @@ class TimerViewController: UIViewController, CAAnimationDelegate {
         else {
             if firstTimeStarted {
             firstTimeStarted = false
-            animation()
+            animation(durationOfAnimation: duration)
             }
             self.setTimerInLabel()
             startButtonTapped = true
@@ -78,19 +96,22 @@ class TimerViewController: UIViewController, CAAnimationDelegate {
         }
     }
     
-    func animation() {
-        let duration: TimeInterval = 10
-
+    func animation(durationOfAnimation: TimeInterval) {
+     
         let animation = CABasicAnimation(keyPath: "strokeEnd")
         animation.delegate = self
         animation.fromValue = 0
         animation.toValue = 1
-        animation.duration = duration
+        animation.duration = durationOfAnimation
         animation.isRemovedOnCompletion = false
         animation.fillMode = .forwards
      
         shape.add(animation, forKey: "urSoBasic")
 
+        if let _ = notificationBool {
+        notificationLocal.createNotificationAfterPause(title: "Pause finished", body: "Yo! Your pause is finished, come back to training!", delayInterval: Int(durationOfAnimation))
+        }
+        
     }
     
     func animationDidStop(_ anim: CAAnimation, finished flag: Bool) {
@@ -105,8 +126,11 @@ class TimerViewController: UIViewController, CAAnimationDelegate {
                 print("vibrations are off")
             }
             
+            if flag == true {
             DispatchQueue.main.asyncAfter(deadline: .now() + 2) {
                 self.dismiss(animated: true, completion: nil)
+            } } else {
+                print("CZEKAMY")
             }
         }
     }
@@ -124,8 +148,10 @@ class TimerViewController: UIViewController, CAAnimationDelegate {
             self.startButton.setTitle("Start", for: .normal)
             self.shape.removeAnimation(forKey: "urSoBasic")
             self.firstTimeStarted = true
+            self.notificationLocal.deletePauseNotification()
         }))
         self.present(alert, animated: true, completion: nil)
+        
         
     }
     
@@ -135,6 +161,10 @@ func setTimerInLabel() {
         self.timerLabel.text = timeLabel
         }
 }
+    
+    func secondsToHoursMinutesSeconds(seconds: Int) -> (Int, Int) {
+        return (((seconds % 3600) / 60), ((seconds % 3600) % 60) )
+    }
     
     func pauseLayer(layer: CALayer) {
         let pausedTime: CFTimeInterval = layer.convertTime(CACurrentMediaTime(), from: nil)
@@ -152,4 +182,35 @@ func setTimerInLabel() {
     }
 }
 
-
+//extension TimerViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+//    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+//        return 2
+//    }
+//
+//    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+//        if component == 0 {
+//            return 60
+//        } else {
+//            return 61
+//        }
+//    }
+//
+//    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+//        if component == 0 {
+//            return "\(row) min"
+//        } else {
+//            return "\(row) sec"
+//        }
+//    }
+//
+//    func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
+//        return pickerView.frame.size.width / 2
+//    }
+//
+//    func pickerView(_ pickerView: UIPickerView, rowHeightForComponent component: Int) -> CGFloat {
+//        return 40
+//    }
+//
+//}
+//
+//

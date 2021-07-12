@@ -8,15 +8,26 @@
 import UIKit
 import Firebase
 import IQKeyboardManagerSwift
+import UserNotifications
 
 @main
 class AppDelegate: UIResponder, UIApplicationDelegate {
 
-
-
+    private func requestNotificationAuthorization(application: UIApplication) {
+        let center = UNUserNotificationCenter.current()
+        let options: UNAuthorizationOptions = [.alert, .badge, .sound]
+        
+        center.requestAuthorization(options: options) { (granted, error) in
+            if let error = error {
+                print(error.localizedDescription)
+            }
+        }
+    }
+    
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplication.LaunchOptionsKey: Any]?) -> Bool {
         // Override point for customization after application launch.
         
+        requestNotificationAuthorization(application: application)
         FirebaseApp.configure()
         checking()
         

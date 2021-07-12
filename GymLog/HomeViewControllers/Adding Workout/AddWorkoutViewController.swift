@@ -14,6 +14,7 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     @IBOutlet weak var daysOfWorkout: UITextField!
     @IBOutlet weak var SaveButton: UIBarButtonItem!
     
+    
     @IBOutlet weak var AddExercise: UIButton!
     @IBOutlet weak var tableView: UITableView!
     
@@ -25,6 +26,15 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     
     var models: [DataCell] = []
     
+    var days: [String] = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
+    var amPm: [String] = ["AM", "PM"]
+    var index: Int = 0
+//    var selectedDay = String()
+//    var selected
+    
+    var pickerView = UIPickerView()
+    
+    
     override func viewWillAppear(_ animated: Bool) {
         self.navigationController?.navigationBar.backgroundColor = UIColor.init(red: 24/255, green: 24/255, blue: 24/255, alpha: 1)
     }
@@ -33,12 +43,36 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
         
         self.tableView.delegate = self
         self.tableView.dataSource = self
+        pickerView.delegate = self
+        pickerView.dataSource = self
+       createToolBar()
         setUpElements()
         self.tableView.backgroundColor = UIColor.init(red: 24/255, green: 24/255, blue: 24/255, alpha: 1)
         endEditing()
     
     }
 
+    func createToolBar() {
+        let toolBar = UIToolbar(frame: CGRect(x: 0, y: 0, width: UIScreen.main.bounds.width, height: 35))
+        toolBar.sizeToFit()
+        let btnDone = UIBarButtonItem(title: "Done", style: .plain, target: self, action: #selector(pickerDoneButton))
+        toolBar.setItems([btnDone], animated: true)
+        daysOfWorkout.inputView = pickerView
+        daysOfWorkout.inputAccessoryView = toolBar
+        
+    }
+    
+    @objc func pickerDoneButton() {
+        view.endEditing(true)
+        
+       
+        let selectedDay = days[pickerView.selectedRow(inComponent: 0)]
+        let selectedHour = String(pickerView.selectedRow(inComponent: 1))
+        let selectedMinute = String(pickerView.selectedRow(inComponent: 2))
+        let selectedDateFormat = amPm[(pickerView.selectedRow(inComponent: 3))]
+        daysOfWorkout.text = "\(selectedDay) \(selectedHour):\(selectedMinute) \(selectedDateFormat)"
+    }
+    
     
     @IBAction func didTapNewExercise(_ sender: Any) {
         
@@ -132,4 +166,84 @@ class AddWorkoutViewController: UIViewController, UITableViewDelegate, UITableVi
     private func hideKeyboard() {
         self.view.endEditing(true)
     }
+}
+
+extension AddWorkoutViewController: UIPickerViewDelegate, UIPickerViewDataSource {
+   
+    
+    func numberOfComponents(in pickerView: UIPickerView) -> Int {
+        return 4
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, numberOfRowsInComponent component: Int) -> Int {
+        switch component {
+        case 0:
+            return days.count
+        case 1:
+            return 13
+        case 2:
+            return 61
+        case 3:
+            return amPm.count
+        default:
+            return 0
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, didSelectRow row: Int, inComponent component: Int) {
+        index = row
+        print("row is \(row)")
+        switch component {
+        case 0:
+            let a = days[row]
+            print("day is \(a)")
+        case 1:
+             print("to godzina \(row)")
+        case 2:
+            print("to minuta \(row)")
+        case 3:
+            print("to czas \(amPm[row])")
+        default:
+            print("DEFAULT")
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, widthForComponent component: Int) -> CGFloat {
+        switch component {
+        case 0:
+            return pickerView.frame.size.width * 0.3
+        case 1:
+            return pickerView.frame.size.width * 0.2
+        case 2:
+            return pickerView.frame.size.width * 0.2
+        case 3:
+            return pickerView.frame.size.width * 0.3
+        default:
+            return pickerView.frame.size.width / 4
+        }
+    }
+    
+    func pickerView(_ pickerView: UIPickerView, titleForRow row: Int, forComponent component: Int) -> String? {
+        switch component {
+        case 0:
+            return days[row]
+        case 1:
+            return "\(row)"
+        case 2:
+            if row < 10 {
+                return "0\(row)"
+            }
+                else {
+                    return "\(row)"
+                }
+       
+        case 3:
+            return amPm[row]
+        default:
+            return ""
+        }
+    }
+    
+    
+    
 }

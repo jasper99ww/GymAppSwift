@@ -10,7 +10,10 @@ import Firebase
 
 class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewDataSource {
  
+    let minRowHeight: CGFloat = 45
     let firebaseAuth = Auth.auth()
+   
+    let supportViewController = SupportViewController()
     
     var arrayOfIcons: [String] = ["accountIcon", "workoutIcon", "bodyweightIcon-1", "supportIcon", "notificationIcon"]
     var labels: [String] = ["Account", "Workout", "Body weight", "Support", "Notifications"]
@@ -23,16 +26,20 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
         self.tableView.delegate = self
         self.tableView.dataSource = self
-        tableView.rowHeight = 70
         setUpPhotoLayer()
         setUpCornerRadiusButton()
     }
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return labels.count
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        let tableViewHeight = tableView.frame.height
+        let temp = tableViewHeight / CGFloat(labels.count)
+        return temp > minRowHeight ? temp : minRowHeight
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
@@ -88,13 +95,29 @@ extension ProfileViewController: TitleOfSelectedRow {
         case "Body weight":
             performSegue(withIdentifier: "toBodyWeight", sender: self)
         case "Support":
-            performSegue(withIdentifier: "toSupport", sender: self)
+            print("tapped")
+            
+                supportViewController.showMailComposer(on: self) { result in
+                    switch result {
+                    case .failure(let error):
+                        Alert.showBasicAlert(on: self, with: "Error", message: "There is an error during sending email: \(error.localizedDescription)")
+                    case .success(.failed):
+                        Alert.showBasicAlert(on: self, with: "Failed to send the e-mail!", message: "Cannot send the email")
+                    case .success(.saved):
+                        Alert.showBasicAlert(on: self, with: "Your email has been saved!", message: "")
+                    case .success(.sent):
+                        Alert.showBasicAlert(on: self, with: "Your email has been sent!", message: "")
+                    default:
+                        print("nothing changed")
+                    }
+                }
+            
         case "Notifications":
             performSegue(withIdentifier: "toNotifications", sender: self)
         default:
             print("No vc to perform segue")
         }
     }
-    
+ 
     
 }

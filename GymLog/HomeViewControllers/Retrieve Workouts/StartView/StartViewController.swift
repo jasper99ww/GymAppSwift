@@ -242,17 +242,14 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         df.timeZone = TimeZone.current
         let dateString = df.string(from: currentDateTime)
         
-        
        let date = Date()
-        let formate = date.getFormattedDate(format: "yyyy-MM-dd HH:mm")
+       let formate = date.getFormattedDate(format: "yyyy-MM-dd HH:mm")
         
         var docSets : [String : [String:String]] = [:]
         var docArray: [String:String] = [:]
         var maxValue = [String:Int]()
         weightArraySend = []
         repsArraySend = []
-
-//        var experiment: [docSetsCodable] = []
        
         for indexPath in tableView.indexPathsForVisibleRows! {
 
