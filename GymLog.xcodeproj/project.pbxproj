@@ -91,6 +91,10 @@
 		E7AC68DB268A7953007F3C2B /* BodyWeightChartsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AC68DA268A7953007F3C2B /* BodyWeightChartsViewController.swift */; };
 		E7B049CD2697742E00CAF559 /* CaloriesResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B049CC2697742E00CAF559 /* CaloriesResultViewController.swift */; };
 		E7B049D1269781A300CAF559 /* SupportViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B049D0269781A300CAF559 /* SupportViewController.swift */; };
+		E7B23C17269DD63400F1B871 /* BmiCalculator.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B23C16269DD63400F1B871 /* BmiCalculator.swift */; };
+		E7B23C1A269DD67300F1B871 /* BMI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B23C19269DD67300F1B871 /* BMI.swift */; };
+		E7B23C23269E021200F1B871 /* AccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B23C22269E021200F1B871 /* AccountModel.swift */; };
+		E7B23C26269E435B00F1B871 /* EditAccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B23C25269E435B00F1B871 /* EditAccountModel.swift */; };
 		E7B38147268D213A00D7CA8D /* BodyWeightTableViewCellChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B38146268D213A00D7CA8D /* BodyWeightTableViewCellChart.swift */; };
 		E7BE25E42698E11E00BE9B49 /* NotificationViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BE25E32698E11E00BE9B49 /* NotificationViewController.swift */; };
 		E7BE25E72698EA9C00BE9B49 /* NotificationTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BE25E62698EA9C00BE9B49 /* NotificationTableViewCell.swift */; };
@@ -189,6 +193,10 @@
 		E7AC68DA268A7953007F3C2B /* BodyWeightChartsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyWeightChartsViewController.swift; sourceTree = "<group>"; };
 		E7B049CC2697742E00CAF559 /* CaloriesResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaloriesResultViewController.swift; sourceTree = "<group>"; };
 		E7B049D0269781A300CAF559 /* SupportViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportViewController.swift; sourceTree = "<group>"; };
+		E7B23C16269DD63400F1B871 /* BmiCalculator.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BmiCalculator.swift; sourceTree = "<group>"; };
+		E7B23C19269DD67300F1B871 /* BMI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMI.swift; sourceTree = "<group>"; };
+		E7B23C22269E021200F1B871 /* AccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountModel.swift; sourceTree = "<group>"; };
+		E7B23C25269E435B00F1B871 /* EditAccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAccountModel.swift; sourceTree = "<group>"; };
 		E7B38146268D213A00D7CA8D /* BodyWeightTableViewCellChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyWeightTableViewCellChart.swift; sourceTree = "<group>"; };
 		E7BE25E32698E11E00BE9B49 /* NotificationViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationViewController.swift; sourceTree = "<group>"; };
 		E7BE25E62698EA9C00BE9B49 /* NotificationTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationTableViewCell.swift; sourceTree = "<group>"; };
@@ -294,6 +302,9 @@
 		59638F5525E1C0D400B2AF84 /* GymLog */ = {
 			isa = PBXGroup;
 			children = (
+				E7B23C14269DD38700F1B871 /* View */,
+				E7B23C13269DD36F00F1B871 /* Model */,
+				E7B23C12269DD36500F1B871 /* Controllers */,
 				E721AED3265025DD0043207F /* Progress Controllers */,
 				598102EF2634B9D9005A8367 /* WorkoutCalendar */,
 				5980D475260CEDAB0070F23B /* Profile */,
@@ -412,7 +423,6 @@
 				59B1E84F25E85B0B00A8E172 /* Home .storyboard */,
 				59B1E85225E85B2600A8E172 /* Workout.storyboard */,
 				59B1E85525E85B2F00A8E172 /* Progress.storyboard */,
-				59B1E85825E85B3700A8E172 /* Profile.storyboard */,
 				596620A325EA9A5F002B04D5 /* AddWorkoutCell.xib */,
 				59E6B8A726431AF90001DBC9 /* CalendarCell.storyboard */,
 			);
@@ -445,9 +455,6 @@
 		E74F7E8E267D08F8000A6C99 /* Account */ = {
 			isa = PBXGroup;
 			children = (
-				E7170F48267959E100ED7C26 /* EditAccountViewController.swift */,
-				E7170F422679198500ED7C26 /* AccountTableViewCell.swift */,
-				E7170F3F2679153A00ED7C26 /* AccountViewController.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -478,8 +485,6 @@
 		E7AC68CE26868FED007F3C2B /* BMI */ = {
 			isa = PBXGroup;
 			children = (
-				E7A5E45026852E190060AD43 /* BMIResultViewController.swift */,
-				E7A5E44D26850EDD0060AD43 /* BMIViewController.swift */,
 			);
 			path = BMI;
 			sourceTree = "<group>";
@@ -505,6 +510,77 @@
 				E7B049D0269781A300CAF559 /* SupportViewController.swift */,
 			);
 			path = Support;
+			sourceTree = "<group>";
+		};
+		E7B23C12269DD36500F1B871 /* Controllers */ = {
+			isa = PBXGroup;
+			children = (
+				E7B23C1F269DE9B800F1B871 /* Account */,
+				E7B23C1D269DE97E00F1B871 /* BMI */,
+			);
+			path = Controllers;
+			sourceTree = "<group>";
+		};
+		E7B23C13269DD36F00F1B871 /* Model */ = {
+			isa = PBXGroup;
+			children = (
+				E7B23C1E269DE9B200F1B871 /* Account */,
+				E7B23C1C269DE95A00F1B871 /* BMI */,
+			);
+			path = Model;
+			sourceTree = "<group>";
+		};
+		E7B23C14269DD38700F1B871 /* View */ = {
+			isa = PBXGroup;
+			children = (
+				E7B23C20269DEF4400F1B871 /* TableViewCells */,
+				59B1E85825E85B3700A8E172 /* Profile.storyboard */,
+			);
+			path = View;
+			sourceTree = "<group>";
+		};
+		E7B23C1C269DE95A00F1B871 /* BMI */ = {
+			isa = PBXGroup;
+			children = (
+				E7B23C16269DD63400F1B871 /* BmiCalculator.swift */,
+				E7B23C19269DD67300F1B871 /* BMI.swift */,
+			);
+			path = BMI;
+			sourceTree = "<group>";
+		};
+		E7B23C1D269DE97E00F1B871 /* BMI */ = {
+			isa = PBXGroup;
+			children = (
+				E7A5E44D26850EDD0060AD43 /* BMIViewController.swift */,
+				E7A5E45026852E190060AD43 /* BMIResultViewController.swift */,
+			);
+			path = BMI;
+			sourceTree = "<group>";
+		};
+		E7B23C1E269DE9B200F1B871 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				E7B23C22269E021200F1B871 /* AccountModel.swift */,
+				E7B23C25269E435B00F1B871 /* EditAccountModel.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		E7B23C1F269DE9B800F1B871 /* Account */ = {
+			isa = PBXGroup;
+			children = (
+				E7170F3F2679153A00ED7C26 /* AccountViewController.swift */,
+				E7170F48267959E100ED7C26 /* EditAccountViewController.swift */,
+			);
+			path = Account;
+			sourceTree = "<group>";
+		};
+		E7B23C20269DEF4400F1B871 /* TableViewCells */ = {
+			isa = PBXGroup;
+			children = (
+				E7170F422679198500ED7C26 /* AccountTableViewCell.swift */,
+			);
+			path = TableViewCells;
 			sourceTree = "<group>";
 		};
 		E7BE25E22698E10500BE9B49 /* Notification */ = {
@@ -649,6 +725,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				E7B23C17269DD63400F1B871 /* BmiCalculator.swift in Sources */,
 				596BC84125E29DE700166D9C /* LoginViewController.swift in Sources */,
 				E7A5E44E26850EDE0060AD43 /* BMIViewController.swift in Sources */,
 				E718EDF726629F54004AFE8C /* Service.swift in Sources */,
@@ -691,6 +768,7 @@
 				E734A749265F01D400621667 /* ChartXAxisFormatter.swift in Sources */,
 				E7B049D1269781A300CAF559 /* SupportViewController.swift in Sources */,
 				59F33BB62611218300A6DBB0 /* NextExerciseCell.swift in Sources */,
+				E7B23C23269E021200F1B871 /* AccountModel.swift in Sources */,
 				5964EA08261B856400998B2F /* StartViewCell.swift in Sources */,
 				59B8BBEA2627A42A0029D00E /* MinutesTimerView.swift in Sources */,
 				59B1E87625E8674000A8E172 /* TabMainController.swift in Sources */,
@@ -700,8 +778,10 @@
 				59E3856926161FC700B31EA4 /* ModalAddViewController.swift in Sources */,
 				E7170F402679153A00ED7C26 /* AccountViewController.swift in Sources */,
 				E74F7E94267D0E5B000A6C99 /* ProfileWorkoutTableViewCell.swift in Sources */,
+				E7B23C1A269DD67300F1B871 /* BMI.swift in Sources */,
 				596D12272635A800003B7292 /* CalendarViewController.swift in Sources */,
 				E7BE25E42698E11E00BE9B49 /* NotificationViewController.swift in Sources */,
+				E7B23C26269E435B00F1B871 /* EditAccountModel.swift in Sources */,
 				E74F7E91267D0C94000A6C99 /* ProfileWorkoutViewController.swift in Sources */,
 				596BC83B25E29D6400166D9C /* Constants.swift in Sources */,
 				E7BEA3982699EF0C00551783 /* NotificationLocal.swift in Sources */,

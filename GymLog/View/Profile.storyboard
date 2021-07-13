@@ -544,9 +544,6 @@
                                             <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="1.5" minValue="0.0" maxValue="3" translatesAutoresizingMaskIntoConstraints="NO" id="tLO-R3-j6Y">
                                                 <rect key="frame" x="-2" y="103" width="368" height="31"/>
                                                 <color key="tintColor" red="0.18823529410000001" green="0.67843137249999996" blue="0.38823529410000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="364" id="fYU-jW-Agh"/>
-                                                </constraints>
                                                 <connections>
                                                     <action selector="heightSliderChanged:" destination="f6W-sV-p3q" eventType="valueChanged" id="qeT-9g-2Tf"/>
                                                 </connections>
@@ -572,17 +569,18 @@
                                                 <color key="textColor" white="0.66666666666666663" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
-                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="100" minValue="0.0" maxValue="200" translatesAutoresizingMaskIntoConstraints="NO" id="q78-71-F3m">
+                                            <slider opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="80" minValue="0.0" maxValue="200" translatesAutoresizingMaskIntoConstraints="NO" id="q78-71-F3m">
                                                 <rect key="frame" x="-2" y="103" width="368" height="31"/>
                                                 <color key="tintColor" red="0.18823529410000001" green="0.67843137249999996" blue="0.38823529410000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <constraints>
-                                                    <constraint firstAttribute="width" constant="364" id="ZXK-mF-RHh"/>
-                                                </constraints>
                                                 <connections>
-                                                    <action selector="weightSliderChanged:" destination="f6W-sV-p3q" eventType="valueChanged" id="xAq-Uw-S5A"/>
+                                                    <action selector="weightSliderChanged:" destination="f6W-sV-p3q" eventType="valueChanged" id="FRs-7r-4h5"/>
                                                 </connections>
                                             </slider>
                                         </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="q78-71-F3m" secondAttribute="trailing" id="YIq-Jj-OeC"/>
+                                            <constraint firstItem="q78-71-F3m" firstAttribute="leading" secondItem="Czx-cq-QNa" secondAttribute="leading" id="ffw-Bu-V2s"/>
+                                        </constraints>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="system" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="D97-Vn-FAY">
                                         <rect key="frame" x="0.0" y="406" width="364" height="42"/>
@@ -591,6 +589,11 @@
                                         <state key="normal" title="CALCULATE">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="15"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="calculateButtonTapped:" destination="f6W-sV-p3q" eventType="touchUpInside" id="Xnb-rz-s2k"/>
                                             <segue destination="PVm-4N-5aG" kind="presentation" identifier="toCalculatedBMI" id="GyQ-KC-fJI"/>
@@ -598,7 +601,11 @@
                                     </button>
                                 </subviews>
                                 <constraints>
+                                    <constraint firstItem="Czx-cq-QNa" firstAttribute="leading" secondItem="lrm-DG-BaS" secondAttribute="leading" id="BqC-ga-Kab"/>
+                                    <constraint firstAttribute="trailing" secondItem="Czx-cq-QNa" secondAttribute="trailing" id="Btu-Ij-yL8"/>
                                     <constraint firstItem="D97-Vn-FAY" firstAttribute="leading" secondItem="lrm-DG-BaS" secondAttribute="leading" id="QCf-fs-d8d"/>
+                                    <constraint firstItem="fqj-P3-8Vl" firstAttribute="leading" secondItem="lrm-DG-BaS" secondAttribute="leading" id="aj7-Hw-XBi"/>
+                                    <constraint firstAttribute="trailing" secondItem="fqj-P3-8Vl" secondAttribute="trailing" id="eM4-ML-56w"/>
                                     <constraint firstAttribute="trailing" secondItem="D97-Vn-FAY" secondAttribute="trailing" id="ylD-yY-ujE"/>
                                 </constraints>
                             </stackView>
@@ -626,7 +633,7 @@
                         <outlet property="heightLabel" destination="WNT-xt-ap6" id="rHf-4I-ECV"/>
                         <outlet property="heightSlider" destination="tLO-R3-j6Y" id="G8a-fV-FDj"/>
                         <outlet property="weightLabel" destination="VZv-VZ-XhU" id="VE3-Dp-oK8"/>
-                        <outlet property="weightSlider" destination="q78-71-F3m" id="ofi-rc-ncH"/>
+                        <outlet property="weightSlider" destination="q78-71-F3m" id="Tej-WG-odp"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0aM-8c-fpQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
@@ -1587,6 +1594,11 @@
                                         <state key="normal" title="RECALCULATE">
                                             <color key="titleColor" red="1" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="15"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="recalculateButtonTapped:" destination="PVm-4N-5aG" eventType="touchUpInside" id="fDG-bg-gfU"/>
                                         </connections>
@@ -1605,10 +1617,9 @@
                     </view>
                     <navigationItem key="navigationItem" id="Agw-yt-sdI"/>
                     <connections>
-                        <outlet property="diagnosis" destination="X9n-aY-Qdn" id="sXk-Ma-XZx"/>
-                        <outlet property="recalculateButton" destination="L8B-xI-UFC" id="aVj-rI-MNH"/>
-                        <outlet property="result" destination="wzI-LI-VqK" id="Id6-7R-ueD"/>
-                        <outlet property="resultDescription" destination="vs6-fN-6Kw" id="g3a-a6-6R6"/>
+                        <outlet property="adviceLabel" destination="X9n-aY-Qdn" id="lLJ-K5-ujy"/>
+                        <outlet property="bmiValueLabel" destination="wzI-LI-VqK" id="855-GF-CiF"/>
+                        <outlet property="diagnosisLabel" destination="vs6-fN-6Kw" id="WgU-8z-Izb"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lJ8-Yy-9Vy" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

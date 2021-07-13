@@ -13,6 +13,7 @@ protocol StartViewCellDelegate {
 
 class StartViewCell: UITableViewCell, UITextFieldDelegate {
     
+    @IBOutlet weak var stackView: UIStackView!
     var cellDelegate: StartViewCellDelegate?
     var index: IndexPath?
     let startViewController = StartViewController()

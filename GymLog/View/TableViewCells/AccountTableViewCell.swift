@@ -11,9 +11,11 @@ protocol AccountTableViewCellDelegate: AnyObject {
     func didTapButton(with title: String, with value: String)
 }
 
+
 class AccountTableViewCell: UITableViewCell {
 
     weak var delegate: AccountTableViewCellDelegate?
+    static let identifier = "accountCell"
     
     @IBOutlet weak var mainLabel: UILabel!
     @IBOutlet weak var secondLabel: UILabel!
@@ -28,9 +30,22 @@ class AccountTableViewCell: UITableViewCell {
         super.setSelected(selected, animated: animated)
 
     }
+    
+    func configureWithItem(item: AccountModelData) {
+        mainLabel.text = item.mainLabel
+        secondLabel.text = item.secondLabel
+    }
+    
+    func hideEditImage(indexPath: IndexPath) {
+        if indexPath.row == 2 {
+            editImage.isHidden = true
+        }
+    }
 
     @IBAction func editImageTapped(_ sender: UIButton) {
         delegate?.didTapButton(with: mainLabel.text!, with: secondLabel.text!)
     }
+    
+  
     
 }

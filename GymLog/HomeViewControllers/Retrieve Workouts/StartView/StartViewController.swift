@@ -45,12 +45,28 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     var arrayOfTitleDocuments: [String: [String]] = [:]
     
     @IBOutlet weak var tableView: UITableView!
-  
+    
+    @IBOutlet weak var tableViewHeight: NSLayoutConstraint!
+    
     @IBOutlet weak var exerciseLabel: UILabel!
     @IBOutlet weak var progressView: UIProgressView!
     
     override func viewWillAppear(_ animated: Bool) {
-        self.navigationController?.navigationBar.backgroundColor = UIColor.init(red: 24/255, green: 24/255, blue: 24/255, alpha: 1)
+//        self.navigationController?.navigationBar.backgroundColor = UIColor.init(red: 24/255, green: 24/255, blue: 24/255, alpha: 1)
+        
+        if #available(iOS 13.0, *) {
+            let navBarApperance = UINavigationBarAppearance()
+            navBarApperance.configureWithOpaqueBackground()
+            navBarApperance.titleTextAttributes = [.foregroundColor: UIColor.white]
+            navBarApperance.largeTitleTextAttributes = [.foregroundColor: UIColor.white]
+            navBarApperance.backgroundColor = UIColor.init(red: 18/255, green: 18/255, blue: 18/255, alpha: 1)
+            navigationController?.navigationBar.standardAppearance = navBarApperance
+            navigationController?.navigationBar.scrollEdgeAppearance = navBarApperance
+        }
+        
+//        let app = UINavigationBarAppearance()
+//        app.backgroundColor = UIColor.init(red: 24/255, green: 24/255, blue: 24/255, alpha: 1)
+//        self.navigationController?.navigationBar.scrollEdgeAppearance = app
         nextButton.titleLabel?.adjustsFontSizeToFitWidth = true
         placeholderValue()
     }
@@ -67,13 +83,15 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
         tableView?.dataSource = self
         retrieveWorkouts()
         startTimers(isEnded: false)
-        workoutName.text = titleValue
-        
+//        workoutName.text = titleValue
+        tableView.sizeToFit()
     }
     
     override func viewDidAppear(_ animated: Bool) {
         initialSelect()
     }
+    
+  
     
     func getLastTraining() {
         startService.getLastTraining(titleValue: titleValue, exercises: arrayOfTitleDocuments, completionHandler: { data in
@@ -201,7 +219,7 @@ class StartViewController: UIViewController, UITableViewDelegate, UITableViewDat
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        return 80
+        return 90
     }
     
     // MARK: - FIRESTORE
