@@ -14,31 +14,31 @@ class EditAccountModel {
     var changedEmail: ((String) -> ())?
     var password: UITextField?
     
-    func changeDataInDatabase(newLabel: String, newValue: String, vc: UIViewController) {
+    func changeDataInDatabase(newLabelText: String?, newValueText: String?, vc: UIViewController, completion: @escaping() -> ()) {
+        
+        guard let newLabel = newLabelText, let newValue = newValueText else { return }
         
         switch newLabel {
+        
         case "Username":
             changeUsername(newUsername: newValue)
             changedUsername?(newValue)
-          
+          completion()
+            
         case "E-mail address":
                       
         showBeforeChangeEmail(vc: vc, submitedEmail: newValue) {
             self.changedEmail?(newValue)
-
-//        self.navigationController?.popViewController(animated: true)
+            completion()
             }
        
         default:
             print("do nothing")
         }
-        }
-
     }
     
-    
     func changeUsername(newUsername: String) {
-        Firebase.db.collection("users").document(Firebase.user!).updateData(["username": newUsername]) { (err) in
+        Firebase.db.collection("users").document(Firebase.userUID!).updateData(["username": newUsername]) { (err) in
             if let err = err {
                 print("\(err.localizedDescription)")
             } else {
@@ -47,7 +47,7 @@ class EditAccountModel {
         }
     }
     
-func showBeforeChangeEmail(vc: UIViewController, submitedEmail: String, completionHandler: @escaping() -> Void) {
+    func showBeforeChangeEmail(vc: UIViewController, submitedEmail: String, completionHandler: @escaping() -> Void) {
         
         let reauthAlert = UIAlertController(title: "Reauthenticate", message: "In order to change your e-mail address, please provide your password", preferredStyle: .alert)
         
@@ -56,28 +56,22 @@ func showBeforeChangeEmail(vc: UIViewController, submitedEmail: String, completi
         }))
         
         reauthAlert.addAction(UIAlertAction(title: "Submit", style: .default, handler: { (action) in
-            changeEmail(newEmail: submitedEmail)
+            self.changeEmail(newEmail: submitedEmail)
             completionHandler()
-
         }))
     
         reauthAlert.addTextField { (textField) in
             textField.isSecureTextEntry = true
-            
-            password = textField
         }
         
         vc.present(reauthAlert, animated: true)
     }
 
-//static let credentials = AuthCredential?()
-//static let emailAuthProvider = EmailAuthProvider?()
-
     func changeEmail(newEmail: String) {
     
         if let user = Firebase.user, let email = Firebase.email, let password = password?.text {
             
-            let credentials = AuthCredential?.credential(withEmail: email, password: password)
+            let credentials = EmailAuthProvider.credential(withEmail: email, password: password)
             user.reauthenticate(with: credentials) { (result, error) in
                 if let error = error {
                     print(error.localizedDescription)
@@ -91,6 +85,7 @@ func showBeforeChangeEmail(vc: UIViewController, submitedEmail: String, completi
         })
     }
     }
+}
 }
 }
 
