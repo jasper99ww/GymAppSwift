@@ -596,7 +596,6 @@
                                         </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="calculateButtonTapped:" destination="f6W-sV-p3q" eventType="touchUpInside" id="Xnb-rz-s2k"/>
-                                            <segue destination="PVm-4N-5aG" kind="presentation" identifier="toCalculatedBMI" id="GyQ-KC-fJI"/>
                                         </connections>
                                     </button>
                                 </subviews>
@@ -634,6 +633,7 @@
                         <outlet property="heightSlider" destination="tLO-R3-j6Y" id="G8a-fV-FDj"/>
                         <outlet property="weightLabel" destination="VZv-VZ-XhU" id="VE3-Dp-oK8"/>
                         <outlet property="weightSlider" destination="q78-71-F3m" id="Tej-WG-odp"/>
+                        <segue destination="PVm-4N-5aG" kind="presentation" identifier="toCalculatedBMI" id="hpm-yl-aSe"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="0aM-8c-fpQ" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

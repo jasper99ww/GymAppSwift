@@ -9,7 +9,6 @@ import UIKit
 
 class EditAccountViewController: UIViewController {
 
-   
     private let editAccountModel = EditAccountModel()
     @IBOutlet weak var newLabel: UILabel!
     @IBOutlet weak var newValue: UITextField!
@@ -21,8 +20,6 @@ class EditAccountViewController: UIViewController {
     var changedEmail: ((String) -> ())?
     
 
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         

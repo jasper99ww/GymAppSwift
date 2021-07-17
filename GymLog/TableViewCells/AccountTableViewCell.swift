@@ -14,7 +14,7 @@ protocol AccountTableViewCellDelegate: AnyObject {
 
 class AccountTableViewCell: UITableViewCell {
 
-    weak var delegate: AccountTableViewCellDelegate?
+    weak var accountTableViewCellDelegate: AccountTableViewCellDelegate?
     static let identifier = "accountCell"
     
     @IBOutlet weak var mainLabel: UILabel!
@@ -23,12 +23,10 @@ class AccountTableViewCell: UITableViewCell {
     
     override func awakeFromNib() {
         super.awakeFromNib()
-
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
     }
     
     func configureWithItem(item: AccountModelData) {
@@ -43,7 +41,7 @@ class AccountTableViewCell: UITableViewCell {
     }
 
     @IBAction func editImageTapped(_ sender: UIButton) {
-        delegate?.didTapButton(with: mainLabel.text!, with: secondLabel.text!)
+        accountTableViewCellDelegate?.didTapButton(with: mainLabel.text!, with: secondLabel.text!)
     }
     
   

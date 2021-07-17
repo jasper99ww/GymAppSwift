@@ -10,9 +10,7 @@ import Firebase
 
 class AccountViewController: UIViewController {
 
-    var titleToEdit = String()
-    var valueToEdit = String()
-    
+    lazy var accountPresenter = AccountPresenter(accountService: AccountService(), accountPresenterDelegate: self)
     
     fileprivate var dataArray = [AccountModelData]() {
         didSet {
@@ -21,26 +19,22 @@ class AccountViewController: UIViewController {
     }
     
     @IBOutlet weak var tableView: UITableView!
-    var tableViewDataSource: AccountModelTableViewDataSource?
+    
+    var titleToEdit = String()
+    var valueToEdit = String()
     
 
     override func viewDidLoad() {
         super.viewDidLoad()
         
-//        tableView.dataSource = self
-//        tableView.delegate = self
-//        tableView.rowHeight = 87
+        tableView.dataSource = self
+        tableView.delegate = self
+        tableView.rowHeight = 87
 //        accountModel.delegate = self
-        setUp()
+        accountPresenter.getDataArray()
      
     }
  
-    
-    func setUp() {
-        tableViewDataSource = AccountModelTableViewDataSource(tableView: tableView, delegate: self, delegateToPassForVC: self)
-    }
-    
-
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
            if (segue.identifier == "toEditAccount") {
    
@@ -60,25 +54,57 @@ class AccountViewController: UIViewController {
            }
        }
 
-extension AccountViewController: GetDataForAccountVC {
-    func retrievedData(first: String, second: String) {
-        print("first is \(first) and second is \(second)")
-        titleToEdit = first
-        valueToEdit = second
-        performSegue(withIdentifier: "toEditAccount", sender: nil)
+extension AccountViewController: UITableViewDelegate, UITableViewDataSource {
+    
+    func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
+        return dataArray.count
     }
     
+    func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        guard let cell = tableView.dequeueReusableCell(withIdentifier: AccountTableViewCell.identifier, for: indexPath) as? AccountTableViewCell else {
+            return UITableViewCell(style: .default, reuseIdentifier: AccountTableViewCell.identifier)
+        }
+        cell.configureWithItem(item: dataArray[indexPath.item])
+        cell.hideEditImage(indexPath: indexPath)
+        cell.accountTableViewCellDelegate = self
+        return cell
+    }
     
 }
 
-extension AccountViewController: AccountModelTableViewDelegate {
-    func performSegueToEdit(selectedMainLabel: String, selectedSecondLabel: String) {
-        titleToEdit = selectedMainLabel
-        valueToEdit = selectedSecondLabel
-        print("titletoedit \(titleToEdit) a valueToEdit \(valueToEdit)")
-        performSegue(withIdentifier: "toEditAccount", sender: nil)
+extension AccountViewController: AccountPresenterDelegate {
+    func updateDataArray(data: [AccountModelData]) {
+        dataArray = data
     }
 }
+
+extension AccountViewController: AccountTableViewCellDelegate {
+    func didTapButton(with title: String, with value: String) {
+        print("title to \(title)")
+//        performSegue(withIdentifier: "toEditAccount", sender: nil)
+    }
+}
+
+
+//extension AccountViewController: GetDataForAccountVC {
+//    func retrievedData(first: String, second: String) {
+//
+//        titleToEdit = first
+//        valueToEdit = second
+//        performSegue(withIdentifier: "toEditAccount", sender: nil)
+//    }
+//
+//
+//}
+//
+//extension AccountViewController: AccountModelTableViewDelegate {
+//    func performSegueToEdit(selectedMainLabel: String, selectedSecondLabel: String) {
+//        titleToEdit = selectedMainLabel
+//        valueToEdit = selectedSecondLabel
+//
+//        performSegue(withIdentifier: "toEditAccount", sender: nil)
+//    }
+//}
 
     
 //    extension AccountViewController:  UITableViewDelegate, UITableViewDataSource {

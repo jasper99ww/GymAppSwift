@@ -8,6 +8,12 @@
 import UIKit
 import Firebase
 
+struct EDITACCOUNTMODELL {
+    var changedUsername: String
+    var changedEmail: String
+    var password: String
+}
+
 class EditAccountModel {
     
     var changedUsername: ((String) -> ())?
