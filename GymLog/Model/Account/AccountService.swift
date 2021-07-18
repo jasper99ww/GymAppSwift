@@ -35,6 +35,7 @@ class AccountService {
 
     func getAddresEmail() -> String {
         guard let emailAddress = Firebase.email  else { return "error during received email" }
+        print("email to \(emailAddress)")
         return emailAddress
     }
 

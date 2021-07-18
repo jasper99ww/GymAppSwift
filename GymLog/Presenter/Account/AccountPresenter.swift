@@ -11,6 +11,7 @@ protocol AccountPresenterDelegate: class {
     func updateDataArray(data: [AccountModelData])
 }
 
+
 class AccountPresenter {
     
     private let accountService: AccountService

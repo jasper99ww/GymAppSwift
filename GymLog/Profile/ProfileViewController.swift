@@ -100,13 +100,13 @@ extension ProfileViewController: TitleOfSelectedRow {
                 supportViewController.showMailComposer(on: self) { result in
                     switch result {
                     case .failure(let error):
-                        Alert.showBasicAlert(on: self, with: "Error", message: "There is an error during sending email: \(error.localizedDescription)")
+                        Alert.showBasicAlert(on: self, with: "Error", message: "There is an error during sending email: \(error.localizedDescription)", handler: nil)
                     case .success(.failed):
-                        Alert.showBasicAlert(on: self, with: "Failed to send the e-mail!", message: "Cannot send the email")
+                        Alert.showBasicAlert(on: self, with: "Failed to send the e-mail!", message: "Cannot send the email", handler: nil)
                     case .success(.saved):
-                        Alert.showBasicAlert(on: self, with: "Your email has been saved!", message: "")
+                        Alert.showBasicAlert(on: self, with: "Your email has been saved!", message: "", handler: nil)
                     case .success(.sent):
-                        Alert.showBasicAlert(on: self, with: "Your email has been sent!", message: "")
+                        Alert.showBasicAlert(on: self, with: "Your email has been sent!", message: "", handler: nil)
                     default:
                         print("nothing changed")
                     }

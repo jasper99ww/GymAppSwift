@@ -26,7 +26,7 @@ class SupportViewController: NSObject, MFMailComposeViewControllerDelegate {
     func showMailComposer(on viewController: UIViewController, completion:(@escaping(Result<MFMailComposeResult, Error>) -> Void)) {
         
         guard MFMailComposeViewController.canSendMail() else {
-            return Alert.showBasicAlert(on: viewController, with: "Failed to open support dialog", message: "Please come back later or send email through App Store")
+            return Alert.showBasicAlert(on: viewController, with: "Failed to open support dialog", message: "Please come back later or send email through App Store", handler: nil)
         }
 
         let composer = MFMailComposeViewController()

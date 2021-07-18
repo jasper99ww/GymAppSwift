@@ -159,7 +159,7 @@ class BodyWeightCalories: UIViewController {
     
     @IBAction func calculateButton(_ sender: UIButton) {
    
-        guard let weightValue = weight, let heightValue = height, let activityIndexValue = activityIndex, let genderValue = gender else { return Alert.showBasicAlert(on: self, with: "Incomplete data", message: "Please configure all parameteres") }
+        guard let weightValue = weight, let heightValue = height, let activityIndexValue = activityIndex, let genderValue = gender else { return Alert.showBasicAlert(on: self, with: "Incomplete data", message: "Please configure all parameteres", handler: nil) }
         
         if genderValue == "male" {
             
