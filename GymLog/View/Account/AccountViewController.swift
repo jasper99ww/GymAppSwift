@@ -33,9 +33,10 @@ class AccountViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
+
         tableView.dataSource = self
         tableView.delegate = self
-        tableView.rowHeight = 87
+        
         accountPresenter.getDataArray()
      
     }
@@ -71,6 +72,10 @@ extension AccountViewController: UITableViewDelegate, UITableViewDataSource {
         cell.hideEditImage(indexPath: indexPath)
         cell.accountTableViewCellDelegate = self
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
+        return 87
     }
 }
 

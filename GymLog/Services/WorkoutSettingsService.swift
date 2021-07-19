@@ -9,7 +9,7 @@ import Foundation
 import Firebase
 import UIKit
 
-class UnitClass {
+class WorkoutSettingsService {
     
     let db = Firestore.firestore()
     
@@ -23,7 +23,6 @@ class UnitClass {
         
         if let arrayTitles = UserDefaults.standard.object(forKey: "workoutsName") as? [String] {
             arrayOfTitles = arrayTitles
-          
         }
     }
     
@@ -32,13 +31,10 @@ class UnitClass {
         if let arrayTitleDocuments = UserDefaults.standard.object(forKey: "exercises") as? [String: [String]] {
             arrayTitleOfDocuments = arrayTitleDocuments
         }
- 
     }
-    
     
     func changeUnitFromKGtoLBInCalendar() {
      
-        print("STARTED 1")
         retrieveArrays()
         
         for title in arrayOfTitles {
@@ -62,8 +58,6 @@ class UnitClass {
                                 
                                 print("new weight is \(newWeight)")
                             }
-//                            let docId = doc.documentID
-//                            self.arrayOfCalendarDocuments.append(docId)
                         }
                 }
             }

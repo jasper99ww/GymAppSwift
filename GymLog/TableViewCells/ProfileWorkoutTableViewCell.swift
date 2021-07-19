@@ -10,7 +10,7 @@ import UIKit
 class ProfileWorkoutTableViewCell: UITableViewCell {
 
     let notificationClass = NotificationNamesClass()
-    let unitClass = UnitClass()
+    let unitClass = WorkoutSettingsService()
     
     @IBOutlet weak var mainLabel: UILabel!
     @IBOutlet weak var secondLabel: UILabel!

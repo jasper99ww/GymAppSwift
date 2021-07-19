@@ -41,6 +41,7 @@ class EditAccountService {
                 completion(.error)
             } else {
                 completion(.changed)
+                print("changed on \(newEmail)")
             }
         })
     }

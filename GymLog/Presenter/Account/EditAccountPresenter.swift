@@ -70,7 +70,7 @@ class EditAccountPresenter: EditAccountPresenterChangeDatabaseDelegate {
    
     func changeEmailInDatabase(newEmail: String, password: String) {
      
-        editAccountService.changeEmail(newEmail: editAccountModel.secondLabel, password: password, completion: { [unowned self] outcome in
+        editAccountService.changeEmail(newEmail: newEmail, password: password, completion: { [unowned self] outcome in
             switch outcome {
             case .changed:
                 editAccountPresenterUpdatedData?.successfullyChangedData(changedComponent: Account.email)

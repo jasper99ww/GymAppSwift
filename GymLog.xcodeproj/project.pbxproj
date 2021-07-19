@@ -74,12 +74,14 @@
 		E74F7E98267E3793000A6C99 /* ProfileWorkoutOtherSettings.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74F7E96267E3793000A6C99 /* ProfileWorkoutOtherSettings.swift */; };
 		E74F7E99267E3793000A6C99 /* ProfileWorkoutOtherSettings.xib in Resources */ = {isa = PBXBuildFile; fileRef = E74F7E97267E3793000A6C99 /* ProfileWorkoutOtherSettings.xib */; };
 		E74F7E9C267E6112000A6C99 /* NotificationNamesClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74F7E9B267E6112000A6C99 /* NotificationNamesClass.swift */; };
-		E74F7EA0267F7D2F000A6C99 /* UnitClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74F7E9F267F7D2F000A6C99 /* UnitClass.swift */; };
+		E74F7EA0267F7D2F000A6C99 /* WorkoutSettingsService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E74F7E9F267F7D2F000A6C99 /* WorkoutSettingsService.swift */; };
 		E75232362683E73F00986F71 /* BodyWeightTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75232352683E73F00986F71 /* BodyWeightTableViewController.swift */; };
 		E75232392683EB7200986F71 /* BodyWeightTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75232382683EB7200986F71 /* BodyWeightTableViewCell.swift */; };
 		E774A1D9268F41BA0073830F /* CircleMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E774A1D8268F41BA0073830F /* CircleMarker.swift */; };
 		E774A1DC268F79630073830F /* BodyWeightPeriodSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E774A1DB268F79630073830F /* BodyWeightPeriodSelection.swift */; };
 		E791E2612682591500FBED0F /* HapticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E791E2602682591500FBED0F /* HapticsManager.swift */; };
+		E792A4EE26A5E328006B9BB2 /* WorkoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E792A4ED26A5E328006B9BB2 /* WorkoutModel.swift */; };
+		E792A4F326A5EA16006B9BB2 /* WorkoutPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E792A4F226A5EA16006B9BB2 /* WorkoutPresenter.swift */; };
 		E7985F1826473D86007EC06D /* CalendarPopupViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7985F1726473D86007EC06D /* CalendarPopupViewController.swift */; };
 		E798AA6B26926D580044743A /* BodyWeightCalories.swift in Sources */ = {isa = PBXBuildFile; fileRef = E798AA6A26926D580044743A /* BodyWeightCalories.swift */; };
 		E79CC66B26A31ACE00E9EC5F /* BmiPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79CC66A26A31ACE00E9EC5F /* BmiPresenter.swift */; };
@@ -183,12 +185,14 @@
 		E74F7E96267E3793000A6C99 /* ProfileWorkoutOtherSettings.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileWorkoutOtherSettings.swift; sourceTree = "<group>"; };
 		E74F7E97267E3793000A6C99 /* ProfileWorkoutOtherSettings.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ProfileWorkoutOtherSettings.xib; sourceTree = "<group>"; };
 		E74F7E9B267E6112000A6C99 /* NotificationNamesClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationNamesClass.swift; sourceTree = "<group>"; };
-		E74F7E9F267F7D2F000A6C99 /* UnitClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UnitClass.swift; sourceTree = "<group>"; };
+		E74F7E9F267F7D2F000A6C99 /* WorkoutSettingsService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutSettingsService.swift; sourceTree = "<group>"; };
 		E75232352683E73F00986F71 /* BodyWeightTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyWeightTableViewController.swift; sourceTree = "<group>"; };
 		E75232382683EB7200986F71 /* BodyWeightTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyWeightTableViewCell.swift; sourceTree = "<group>"; };
 		E774A1D8268F41BA0073830F /* CircleMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleMarker.swift; sourceTree = "<group>"; };
 		E774A1DB268F79630073830F /* BodyWeightPeriodSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyWeightPeriodSelection.swift; sourceTree = "<group>"; };
 		E791E2602682591500FBED0F /* HapticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsManager.swift; sourceTree = "<group>"; };
+		E792A4ED26A5E328006B9BB2 /* WorkoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutModel.swift; sourceTree = "<group>"; };
+		E792A4F226A5EA16006B9BB2 /* WorkoutPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutPresenter.swift; sourceTree = "<group>"; };
 		E7985F1726473D86007EC06D /* CalendarPopupViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; name = CalendarPopupViewController.swift; path = ../../../../CalendarPopupViewController.swift; sourceTree = "<group>"; };
 		E798AA6A26926D580044743A /* BodyWeightCalories.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyWeightCalories.swift; sourceTree = "<group>"; };
 		E79CC66A26A31ACE00E9EC5F /* BmiPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BmiPresenter.swift; sourceTree = "<group>"; };
@@ -316,18 +320,17 @@
 		59638F5525E1C0D400B2AF84 /* GymLog */ = {
 			isa = PBXGroup;
 			children = (
+				E792A4F026A5E411006B9BB2 /* Services */,
 				E7B23C20269DEF4400F1B871 /* TableViewCells */,
 				E7B23C13269DD36F00F1B871 /* Model */,
 				E7B23C14269DD38700F1B871 /* View */,
 				E79CC66826A31A6200E9EC5F /* Presenter */,
-				E7B23C12269DD36500F1B871 /* Controller */,
 				E721AED3265025DD0043207F /* Progress Controllers */,
 				598102EF2634B9D9005A8367 /* WorkoutCalendar */,
 				5980D475260CEDAB0070F23B /* Profile */,
 				59629ED425E2DA86004A90C2 /* View Controllers */,
 				5961427325E9B50000A83DD6 /* HomeViewControllers */,
 				596BC83625E29D0600166D9C /* Helpers */,
-				E79CC66926A31A7900E9EC5F /* Others */,
 				59638F5625E1C0D400B2AF84 /* AppDelegate.swift */,
 				59638F5825E1C0D400B2AF84 /* SceneDelegate.swift */,
 				59B1E84E25E85AE400A8E172 /* Storyboards */,
@@ -394,12 +397,12 @@
 		596BC83625E29D0600166D9C /* Helpers */ = {
 			isa = PBXGroup;
 			children = (
+				E74F7E9B267E6112000A6C99 /* NotificationNamesClass.swift */,
 				59611D9725FEB6EB00EB772E /* WorkoutsTitle.swift */,
 				596BC83725E29D5700166D9C /* Utilities.swift */,
 				596BC83A25E29D6400166D9C /* Constants.swift */,
 				59A533A325F0310A0064DFB5 /* UnderlinedTextField.swift */,
 				5961156D25F7BBC9008BD51B /* Alert.swift */,
-				E74F7E9F267F7D2F000A6C99 /* UnitClass.swift */,
 				E791E2602682591500FBED0F /* HapticsManager.swift */,
 			);
 			path = Helpers;
@@ -480,11 +483,7 @@
 		E74F7E8F267D090C000A6C99 /* Workout */ = {
 			isa = PBXGroup;
 			children = (
-				E74F7E90267D0C94000A6C99 /* ProfileWorkoutViewController.swift */,
-				E74F7E93267D0E5B000A6C99 /* ProfileWorkoutTableViewCell.swift */,
-				E74F7E96267E3793000A6C99 /* ProfileWorkoutOtherSettings.swift */,
 				E74F7E97267E3793000A6C99 /* ProfileWorkoutOtherSettings.xib */,
-				E74F7E9B267E6112000A6C99 /* NotificationNamesClass.swift */,
 			);
 			path = Workout;
 			sourceTree = "<group>";
@@ -500,21 +499,48 @@
 			path = "Body weight";
 			sourceTree = "<group>";
 		};
+		E792A4EA26A5E0FB006B9BB2 /* Workout */ = {
+			isa = PBXGroup;
+			children = (
+				E792A4ED26A5E328006B9BB2 /* WorkoutModel.swift */,
+			);
+			path = Workout;
+			sourceTree = "<group>";
+		};
+		E792A4EB26A5E10E006B9BB2 /* Workout */ = {
+			isa = PBXGroup;
+			children = (
+				E74F7E90267D0C94000A6C99 /* ProfileWorkoutViewController.swift */,
+			);
+			path = Workout;
+			sourceTree = "<group>";
+		};
+		E792A4EC26A5E117006B9BB2 /* Workout */ = {
+			isa = PBXGroup;
+			children = (
+				E792A4F226A5EA16006B9BB2 /* WorkoutPresenter.swift */,
+			);
+			path = Workout;
+			sourceTree = "<group>";
+		};
+		E792A4F026A5E411006B9BB2 /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				E74F7E9F267F7D2F000A6C99 /* WorkoutSettingsService.swift */,
+				E7B501F626A4604A00AD5545 /* EditAccountService.swift */,
+				E79CC67726A38EA000E9EC5F /* AccountService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
 		E79CC66826A31A6200E9EC5F /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				E792A4EC26A5E117006B9BB2 /* Workout */,
 				E79CC67426A3859100E9EC5F /* Account */,
 				E79CC67126A3857B00E9EC5F /* BMI */,
 			);
 			path = Presenter;
-			sourceTree = "<group>";
-		};
-		E79CC66926A31A7900E9EC5F /* Others */ = {
-			isa = PBXGroup;
-			children = (
-				E7B23C1E269DE9B200F1B871 /* Account */,
-			);
-			path = Others;
 			sourceTree = "<group>";
 		};
 		E79CC67126A3857B00E9EC5F /* BMI */ = {
@@ -532,8 +558,6 @@
 				E7B23C25269E435B00F1B871 /* EditAccountModel.swift */,
 				E7AB0EC6269F266000B87860 /* AccountModelTableViewDataSource.swift */,
 				E7B23C22269E021200F1B871 /* AccountModel.swift */,
-				E79CC67726A38EA000E9EC5F /* AccountService.swift */,
-				E7B501F626A4604A00AD5545 /* EditAccountService.swift */,
 			);
 			path = Account;
 			sourceTree = "<group>";
@@ -587,17 +611,10 @@
 			path = Support;
 			sourceTree = "<group>";
 		};
-		E7B23C12269DD36500F1B871 /* Controller */ = {
-			isa = PBXGroup;
-			children = (
-				E7B23C1F269DE9B800F1B871 /* Account */,
-			);
-			path = Controller;
-			sourceTree = "<group>";
-		};
 		E7B23C13269DD36F00F1B871 /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				E792A4EA26A5E0FB006B9BB2 /* Workout */,
 				E79CC67226A3858800E9EC5F /* Account */,
 				E7B23C1C269DE95A00F1B871 /* BMI */,
 			);
@@ -607,6 +624,7 @@
 		E7B23C14269DD38700F1B871 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E792A4EB26A5E10E006B9BB2 /* Workout */,
 				E79CC67326A3858D00E9EC5F /* Account */,
 				E7B23C1D269DE97E00F1B871 /* BMI */,
 			);
@@ -630,23 +648,11 @@
 			path = BMI;
 			sourceTree = "<group>";
 		};
-		E7B23C1E269DE9B200F1B871 /* Account */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Account;
-			sourceTree = "<group>";
-		};
-		E7B23C1F269DE9B800F1B871 /* Account */ = {
-			isa = PBXGroup;
-			children = (
-			);
-			path = Account;
-			sourceTree = "<group>";
-		};
 		E7B23C20269DEF4400F1B871 /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				E74F7E96267E3793000A6C99 /* ProfileWorkoutOtherSettings.swift */,
+				E74F7E93267D0E5B000A6C99 /* ProfileWorkoutTableViewCell.swift */,
 				E7170F422679198500ED7C26 /* AccountTableViewCell.swift */,
 			);
 			path = TableViewCells;
@@ -806,11 +812,13 @@
 				5964EA02261B50FF00998B2F /* StartViewController.swift in Sources */,
 				592EC294263CB73200761632 /* CalendarTableViewCell.swift in Sources */,
 				E75232392683EB7200986F71 /* BodyWeightTableViewCell.swift in Sources */,
+				E792A4F326A5EA16006B9BB2 /* WorkoutPresenter.swift in Sources */,
 				596BC83E25E29DAD00166D9C /* SignUpViewController.swift in Sources */,
 				5964EA05261B5A9C00998B2F /* startViewBrain.swift in Sources */,
 				E79CC67B26A3917800E9EC5F /* AccountPresenter.swift in Sources */,
 				E7CD99782661A88000EDBE51 /* ProgressPopUpView.swift in Sources */,
 				E7A5E45126852E190060AD43 /* BMIResultViewController.swift in Sources */,
+				E792A4EE26A5E328006B9BB2 /* WorkoutModel.swift in Sources */,
 				595E15B5261B90DB00CB4627 /* DataCell2.swift in Sources */,
 				59611D9825FEB6EB00EB772E /* WorkoutsTitle.swift in Sources */,
 				E7170F49267959E100ED7C26 /* EditAccountViewController.swift in Sources */,
@@ -875,7 +883,7 @@
 				592EC291263CB45200761632 /* CalendarTableViewController.swift in Sources */,
 				E7AC68D8268A4406007F3C2B /* BodyWeightService.swift in Sources */,
 				596BC83825E29D5700166D9C /* Utilities.swift in Sources */,
-				E74F7EA0267F7D2F000A6C99 /* UnitClass.swift in Sources */,
+				E74F7EA0267F7D2F000A6C99 /* WorkoutSettingsService.swift in Sources */,
 				E71947CE265D6C0000DD17F3 /* ExercisesPopUp.swift in Sources */,
 				596620BE25EBF541002B04D5 /* DataCell.swift in Sources */,
 				5961157125F81A80008BD51B /* WorkoutTableCell.swift in Sources */,
