@@ -15,8 +15,13 @@ enum EmailChange {
 
 class EditAccountService {
         
+    
+    
         func changeUsername(newUsername: String) {
-            Firebase.db.collection("users").document(Firebase.userUID!).updateData(["username": newUsername]) { (err) in
+            
+            guard let currentUsers = Firebase.userUID else { return }
+            
+            Firebase.db.collection("users").document(currentUsers).updateData(["username": newUsername]) { (err) in
                 if let err = err {
                     print("\(err.localizedDescription)")
                 } else {

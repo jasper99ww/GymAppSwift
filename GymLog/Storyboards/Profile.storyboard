@@ -388,7 +388,7 @@
                                                     </segments>
                                                     <color key="selectedSegmentTintColor" red="0.18823529410000001" green="0.67843137249999996" blue="0.38823529410000002" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                     <connections>
-                                                        <action selector="segmentedControlChange:" destination="sEp-a0-Uda" eventType="valueChanged" id="Naw-OW-VDT"/>
+                                                        <action selector="segmentedControlChange:" destination="mGG-yz-gVP" eventType="valueChanged" id="jO3-Le-euG"/>
                                                     </connections>
                                                 </segmentedControl>
                                             </subviews>
@@ -405,7 +405,7 @@
                                         <connections>
                                             <outlet property="mainLabel" destination="Szr-rK-dar" id="Q2b-jN-GOK"/>
                                             <outlet property="secondLabel" destination="0SF-Cg-HHB" id="2RH-ts-UYK"/>
-                                            <outlet property="segmentedControl" destination="3Qk-gd-ENe" id="1MQ-ak-bSR"/>
+                                            <outlet property="segmentedControl" destination="3Qk-gd-ENe" id="WQq-rd-LQI"/>
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>

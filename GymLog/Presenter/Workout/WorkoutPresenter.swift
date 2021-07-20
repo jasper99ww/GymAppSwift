@@ -11,31 +11,26 @@ protocol WorkoutPresenterDelegateForView: class {
     func getWorkoutModel(workoutModel: [WorkoutSettingsDataModel])
 }
 
-protocol WorkoutPresenterUserDefaults: class {
-    func saveSelectedUnitInMemory(unit: String)
-    func setPlaceholderValueInTraining(value: Bool)
-}
-
-protocol WorkoutPresenterDataChange: class {
-   func changeUnitFromKGtoLBInCalendar()
-   func changeUnitFromKGtoLBInHistory()
-   func changeUnitFromLBtoKGInCalendar()
-   func changeUnitFromLBtoKGInHistory()
+protocol WorkoutPresenterControllersState: class {
+    func getControllersStates(workoutControllersModel: WorkoutControllersModel)
 }
 
 class WorkoutPresenter {
     
+    typealias WorkoutServiceProtocols = DataInHistoryServiceProtocol & DataInCalendarServiceProtocol
+    let workoutSettingsService: WorkoutServiceProtocols = WorkoutSettingsService()
+    
     weak var workoutPresenterDelegateForView: WorkoutPresenterDelegateForView?
+    weak var workoutPresenterControllersState: WorkoutPresenterControllersState?
     
     var constantValueInPlaceholder: Bool = false
-    
-    let workoutSettingsService = WorkoutSettingsService()
-    
     var workoutModel: WorkoutModel
+    var workoutControllersModel = WorkoutControllersModel()
     
-    init(workoutmodel: WorkoutModel, workoutPresenterDelegateForView: WorkoutPresenterDelegateForView) {
+    init(workoutmodel: WorkoutModel, workoutPresenterDelegateForView: WorkoutPresenterDelegateForView, workoutPresenterControllersState: WorkoutPresenterControllersState) {
         self.workoutModel = workoutmodel
         self.workoutPresenterDelegateForView = workoutPresenterDelegateForView
+        self.workoutPresenterControllersState = workoutPresenterControllersState
     }
     
     func getModel() {
@@ -44,15 +39,45 @@ class WorkoutPresenter {
         }
     }
     
-    func placeholderConstantValue(value: Bool) {
-        UserDefaults.standard.setValue(value, forKey: "placeholderConstantValue")
+    func getControllersStates() {
+        getSegmentedControlStateUnit()
+        getSegmentedControlStatePlaceholderValue()
+        getSwitchState()
+        workoutPresenterControllersState?.getControllersStates(workoutControllersModel: workoutControllersModel)
     }
-}
-
-extension WorkoutPresenter: WorkoutPresenterDataChange {
     
+    func getSegmentedControlStateUnit() {
+        
+        if UserDefaults.standard.string(forKey: "unit") == "kg" {
+            print("TO NIE")
+            workoutControllersModel.unitSegmentedController = 0
+        } else {
+            workoutControllersModel.unitSegmentedController = 1
+        }
+    }
+    
+    func getSegmentedControlStatePlaceholderValue() {
+        
+        if UserDefaults.standard.bool(forKey: "placeholderConstantValue") {
+            workoutControllersModel.placeholderValueSegmentedController = 1
+        } else {
+            workoutControllersModel.placeholderValueSegmentedController = 0
+        }
+    }
+    
+    func getSwitchState() {
+        if UserDefaults.standard.bool(forKey: "vibrations") {
+            workoutControllersModel.vibrationSwitcherController = true
+        } else {
+            workoutControllersModel.vibrationSwitcherController = false
+        }
+    }
+    
+    
+    // FIREBASE
+
     func changeUnitFromKGtoLBInHistory() {
-        workoutSettingsService.changeUnitFromKGtoLBInHistory()
+        workoutSettingsService.changeUnitFromKGtoLBInCalendar()
     }
     
     func changeUnitFromLBtoKGInHistory() {
@@ -66,14 +91,18 @@ extension WorkoutPresenter: WorkoutPresenterDataChange {
     func changeUnitFromLBtoKGInCalendar() {
         workoutSettingsService.changeUnitFromLBtoKGInCalendar()
     }
-}
 
-extension WorkoutPresenter: WorkoutPresenterUserDefaults {
+    //USER DEFAULTS
+    
     func saveSelectedUnitInMemory(unit: String) {
         UserDefaults.standard.setValue(unit, forKey: "unit")
     }
     
     func setPlaceholderValueInTraining(value: Bool) {
         UserDefaults.standard.setValue(value, forKey: "placeholderConstantValue")
+    }
+    
+    func saveSwitchState(state: Bool) {
+        UserDefaults.standard.setValue(state, forKey: "vibrations")
     }
 }

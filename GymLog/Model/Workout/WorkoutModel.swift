@@ -44,3 +44,15 @@ class WorkoutModel {
         callBack(workoutModels)
     }
 }
+
+struct WorkoutControllersModel {
+    var unitSegmentedController: Int
+    var placeholderValueSegmentedController: Int
+    var vibrationSwitcherController: Bool
+    
+    init() {
+        self.unitSegmentedController = 0
+        self.placeholderValueSegmentedController = 0
+        self.vibrationSwitcherController = false
+    }
+}

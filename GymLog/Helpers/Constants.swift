@@ -14,6 +14,7 @@ struct Firebase {
     static let user = Auth.auth().currentUser
     static let email = Auth.auth().currentUser?.email
     static let emailAuthProvider = EmailAuthProvider.self
+
 }
 
 struct Account {

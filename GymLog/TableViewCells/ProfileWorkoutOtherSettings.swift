@@ -8,6 +8,8 @@
 import UIKit
 
 class ProfileWorkoutOtherSettings: UITableViewCell {
+    
+    let presenter = WorkoutPresenter(workoutmodel: WorkoutModel(), workoutPresenterDelegateForView: ProfileWorkoutViewController(), workoutPresenterControllersState: ProfileWorkoutViewController())
 
     @IBOutlet weak var mainLabel: UILabel!
     @IBOutlet weak var secondLabel: UILabel!
@@ -23,13 +25,19 @@ class ProfileWorkoutOtherSettings: UITableViewCell {
     
     @IBAction func switchChanged(_ sender: UISwitch) {
         
-        var vibrationON: Bool = false
-        
         if sender.isOn == true {
-            vibrationON = true
+            presenter.saveSwitchState(state: true)
         } else {
-            vibrationON = false
+            presenter.saveSwitchState(state: false)
         }
-        UserDefaults.standard.setValue(vibrationON, forKey: "vibrations")
+    }
+    
+    func configureCell(item: WorkoutSettingsDataModel) {
+        mainLabel.text = item.mainLabelSetting
+        secondLabel.text = item.secondLabelSetting
+    }
+    
+    func getSwitchState(index: Int, controllerItem: WorkoutControllersModel) {
+        switcher.isOn = controllerItem.vibrationSwitcherController
     }
 }

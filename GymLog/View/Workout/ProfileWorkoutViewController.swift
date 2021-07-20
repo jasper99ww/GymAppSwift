@@ -9,55 +9,83 @@ import UIKit
 
 class ProfileWorkoutViewController: UIViewController {
     
-    lazy var workoutPresenter = WorkoutPresenter(workoutmodel: WorkoutModel(), workoutPresenterDelegateForView: self)
+    lazy var workoutPresenter = WorkoutPresenter(workoutmodel: WorkoutModel(), workoutPresenterDelegateForView: self, workoutPresenterControllersState: self)
     
     @IBOutlet weak var tableView: UITableView!
-
+    var savedSegmentState: Int = 0
+    
     private var arrayOfSettings = [WorkoutSettingsDataModel]() {
         didSet {
             tableView.reloadData()
         }
     }
+    private var statesOfControllers = WorkoutControllersModel() {
+        didSet {
+            print("USTAWIONO")
+//            tableView.reloadData()
+        }
+    }
+    
+    var segmentedControlSelectedIndex: Int = 0
+  
+    deinit {
+        NotificationCenter.default.removeObserver(self)
+    }
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        
+        workoutPresenter.getControllersStates()
         workoutPresenter.getModel()
-        
         tableView.register(UINib(nibName: "ProfileWorkoutOtherSettings", bundle: nil), forCellReuseIdentifier: "workoutOtherSettings")
         tableView.dataSource = self
         tableView.delegate = self
-
+        createObserver()
     }
     
-    @IBAction func segmentedControlChange(_ sender: UISegmentedControl) {
+    func createObserver() {
+        NotificationCenter.default.addObserver(self, selector: #selector(alertBeforeChangeUnit), name: NSNotification.Name(rawValue: "segmentedControlUnitSelected"), object: nil)
+    }
+ 
+     @objc func alertBeforeChangeUnit() {
+        Alert.showBasicAlert(on: self, with: "WARNING", message: "You are able to change units on your account only once. Make sure that you really need it!", handler: nil)
         
-        switch sender.tag {
-        case 0:
-            
-            if sender.selectedSegmentIndex == 0 {
-                workoutPresenter.saveSelectedUnitInMemory(unit: "kg")
-                workoutPresenter.changeUnitFromLBtoKGInCalendar()
-                workoutPresenter.changeUnitFromLBtoKGInHistory()
-                
-            } else {
-                workoutPresenter.saveSelectedUnitInMemory(unit: "lb")
-                workoutPresenter.changeUnitFromKGtoLBInCalendar()
-                workoutPresenter.changeUnitFromKGtoLBInHistory()
-            }
-        case 1:
-            if sender.selectedSegmentIndex == 0 {
-                workoutPresenter.placeholderConstantValue(value: false)
-            } else {
-                workoutPresenter.placeholderConstantValue(value: true)
-            }
-        default:
-        break
-            }
+    }
+    
+//    @IBAction func segmentedControlChange(_ sender: UISegmentedControl) {
+//        
+//        switch sender.tag {
+//        case 0:
+//            if sender.selectedSegmentIndex == 0 {
+//                workoutPresenter.saveSelectedUnitInMemory(unit: "kg")
+//                workoutPresenter.changeUnitFromLBtoKGInCalendar()
+//                workoutPresenter.changeUnitFromLBtoKGInHistory()
+//                
+//            } else {
+//                workoutPresenter.saveSelectedUnitInMemory(unit: "lb")
+//                workoutPresenter.changeUnitFromKGtoLBInCalendar()
+//                workoutPresenter.changeUnitFromKGtoLBInHistory()
+//            }
+//        case 1:
+//            if sender.selectedSegmentIndex == 0 {
+//                workoutPresenter.setPlaceholderValueInTraining(value: false)
+//            } else {
+//                workoutPresenter.setPlaceholderValueInTraining(value: true)
+//            }
+//        default:
+//        break
+//            }
+//    }
+}
+
+extension ProfileWorkoutViewController: WorkoutPresenterControllersState {
+    func getControllersStates(workoutControllersModel: WorkoutControllersModel) {
+        statesOfControllers = workoutControllersModel
     }
 }
 
 extension ProfileWorkoutViewController: WorkoutPresenterDelegateForView {
+    
     func getWorkoutModel(workoutModel: [WorkoutSettingsDataModel]) {
         arrayOfSettings = workoutModel
     }
@@ -71,27 +99,24 @@ extension ProfileWorkoutViewController: UITableViewDataSource, UITableViewDelega
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let dataModel = arrayOfSettings[indexPath.row]
-
         if indexPath.row < 2 {
             
-        let customCell = self.tableView.dequeueReusableCell(withIdentifier: "workoutSettings", for: indexPath) as! ProfileWorkoutTableViewCell
+        let cellWithSegmentedControllers = self.tableView.dequeueReusableCell(withIdentifier: "workoutSettings", for: indexPath) as! ProfileWorkoutTableViewCell
                        
-            customCell.mainLabel.text = dataModel.mainLabelSetting
-            customCell.secondLabel.text = dataModel.secondLabelSetting
-            customCell.segmentedControl.setTitle(dataModel.segmentedControlFirstSegmentTitle, forSegmentAt: 0)
-            customCell.segmentedControl.setTitle(dataModel.segmentedControlSecondSegmentTitle, forSegmentAt: 1)
-            customCell.segmentedControl.tag = indexPath.row
-            return customCell
-            
+            cellWithSegmentedControllers.configureWithItem(item: arrayOfSettings[indexPath.row])
+            cellWithSegmentedControllers.selectSegmentState(index: indexPath.row, controllerItem: statesOfControllers)
+            cellWithSegmentedControllers.segmentedControl.tag = indexPath.row
+            return cellWithSegmentedControllers
         }
-        
-        let cell = self.tableView.dequeueReusableCell(withIdentifier: "workoutOtherSettings", for: indexPath) as! ProfileWorkoutOtherSettings
-        cell.mainLabel.text = dataModel.mainLabelSetting
-        cell.secondLabel.text = dataModel.secondLabelSetting
-        
-        return cell
+        else {
+        let cellWithUISwitch = self.tableView.dequeueReusableCell(withIdentifier: "workoutOtherSettings", for: indexPath) as! ProfileWorkoutOtherSettings
+        cellWithUISwitch.configureCell(item: arrayOfSettings[indexPath.row])
+        cellWithUISwitch.getSwitchState(index: indexPath.row, controllerItem: statesOfControllers)
+        return cellWithUISwitch
+        }
     }
+    
+    
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100

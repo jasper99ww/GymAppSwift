@@ -35,13 +35,13 @@ class AccountService {
 
     func getAddresEmail() -> String {
         guard let emailAddress = Firebase.email  else { return "error during received email" }
-        print("email to \(emailAddress)")
         return emailAddress
     }
 
     func getUserName(completionHandler: @escaping(String) -> ()) {
 
-        Firebase.db.collection("users").document(Firebase.userUID!).getDocument { (document, error) in
+        guard let currentUser = Firebase.userUID else { return print("current user doesn't exists")}
+        Firebase.db.collection("users").document(currentUser).getDocument { (document, error) in
             if let error = error {
                 print("\(error.localizedDescription)")
             } else {
