@@ -35,14 +35,15 @@ class HomeTableViewController: UIViewController, UITableViewDelegate, UITableVie
         tableView.delegate = self
         tableView.dataSource = self
         self.tableView.backgroundColor = UIColor.init(red: 18/255, green: 18/255, blue: 18/255, alpha: 1)
-      
-        
+   
        
     }
     override func viewWillDisappear(_ animated: Bool) {
         saveWorkoutsTitleInMemory()
         saveExercisesInMemory()
     }
+    
+    
     
     func retrieveWorkouts() {
       

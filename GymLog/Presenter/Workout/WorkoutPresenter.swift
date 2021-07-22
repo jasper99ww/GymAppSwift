@@ -23,7 +23,6 @@ class WorkoutPresenter {
     weak var workoutPresenterDelegateForView: WorkoutPresenterDelegateForView?
     weak var workoutPresenterControllersState: WorkoutPresenterControllersState?
     
-    var constantValueInPlaceholder: Bool = false
     var workoutModel: WorkoutModel
     var workoutControllersModel = WorkoutControllersModel()
     
@@ -31,6 +30,7 @@ class WorkoutPresenter {
         self.workoutModel = workoutmodel
         self.workoutPresenterDelegateForView = workoutPresenterDelegateForView
         self.workoutPresenterControllersState = workoutPresenterControllersState
+
     }
     
     func getModel() {
@@ -49,7 +49,6 @@ class WorkoutPresenter {
     func getSegmentedControlStateUnit() {
         
         if UserDefaults.standard.string(forKey: "unit") == "kg" {
-            print("TO NIE")
             workoutControllersModel.unitSegmentedController = 0
         } else {
             workoutControllersModel.unitSegmentedController = 1
@@ -104,5 +103,23 @@ class WorkoutPresenter {
     
     func saveSwitchState(state: Bool) {
         UserDefaults.standard.setValue(state, forKey: "vibrations")
+    }
+    
+    func updateChangesLimitSegmentedControl(limitExhausted: Bool) {
+        UserDefaults.standard.setValue(limitExhausted, forKey: "changesLimit")
+        
+    }
+    
+    func getSelectedUnit() -> Int {
+        if UserDefaults.standard.string(forKey: "unit") == "kg" {
+            return 0
+        } else {
+            return 1
+        }
+    }
+    
+    func checkLimitChanges() -> Bool {
+        let limitExhausted = UserDefaults.standard.bool(forKey: "changesLimit")
+        return limitExhausted
     }
 }

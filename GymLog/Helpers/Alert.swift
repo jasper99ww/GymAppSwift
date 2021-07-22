@@ -19,9 +19,17 @@ struct Alert {
         }
     }
     
-//    static func showBasicAlertWithDismiss(on vc: UIViewController) {
-//        
-//    }
+    static func showAlertBeforeChange(on vc: UIViewController, with title: String, message: String, handler: ((UIAlertAction) -> Void)?) {
+        
+        let alert = UIAlertController(title: title, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "OK", style: .default, handler: handler))
+        
+        alert.addAction(UIAlertAction(title: "Cancel", style: .cancel, handler: nil))
+        
+        DispatchQueue.main.async {
+            vc.present(alert, animated: true)
+        }
+    }
     
     static func showIncompleteFormAlert(on vc: UIViewController) {
         showBasicAlert(on: vc, with: "Incomplete workout name", message: "Please entry a workout name", handler: nil)

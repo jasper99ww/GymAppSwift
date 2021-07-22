@@ -131,7 +131,12 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
         controlSegmentSetUp()
         setUpViews()
         segmentedControl.selectedSegmentIndex = 2
-       
+       remove()
+    }
+    
+    func remove() {
+        UserDefaults.standard.removeObject(forKey: "changesLimit")
+        
     }
     
     //MARK: - MAKING PERIOD OF TIME SELECTION

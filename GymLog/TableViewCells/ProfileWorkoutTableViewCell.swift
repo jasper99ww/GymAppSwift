@@ -9,44 +9,83 @@ import UIKit
 
 class ProfileWorkoutTableViewCell: UITableViewCell {
 
-    let notificationClass = NotificationNamesClass()
-    let unitClass = WorkoutSettingsService()
     let workoutPresenter = WorkoutPresenter(workoutmodel: WorkoutModel(), workoutPresenterDelegateForView: ProfileWorkoutViewController(), workoutPresenterControllersState: ProfileWorkoutViewController())
+    
+    var parentVC: UIViewController?
     
     @IBOutlet weak var mainLabel:  UILabel!
     @IBOutlet weak var secondLabel: UILabel!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
     
+    var lastSelectedIndex: Int {
+        return workoutPresenter.getSelectedUnit()
+    }
+    
+    var limitChangeExhausted: Bool {
+        return workoutPresenter.checkLimitChanges()
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
         segmentedControlTitle()
-
+//        workoutPresenter.workoutPresenterUserDefaults = self
+//        getUserDefaultsFromPresenter()
     }
     
-    func alertBeforeChangeUnit() {
-//        Alert.showBasicAlert(on: ProfileWorkoutViewController(), with: "WARNING", message: "You are able to change units on your account only once. Make sure that you really need it!", handler: nil)
-        
+//    func getUserDefaultsFromPresenter() {
+//        workoutPresenter.getSelectedUnit()
+//        workoutPresenter.checkLimitChanges()
+//
+//    }
+    
+    func setNotification() {
+        // CHECK IF USER HAS GOT A POSSIBILITY OF CHANGE UNIT
+       let newSelectedIndex = segmentedControl.selectedSegmentIndex
+
+        if limitChangeExhausted == true {
+            //Don't change selected segment index
+            segmentedControl.selectedSegmentIndex = lastSelectedIndex
+            
+            Alert.showBasicAlert(on: parentVC!, with: "Limit exhausted", message: "Your limit changing unit is exhausted.", handler: nil)
+           
+        } else {
+            //Don't change selected segment index until alert is not accepted
+            segmentedControl.selectedSegmentIndex = lastSelectedIndex
+            
+            Alert.showAlertBeforeChange(on: parentVC!, with: "Alert", message: "You can change your unit only once. Are you sure you wanna do this?") { [weak self] action in
+                
+                guard let self = self else { return }
+                
+                //Changing segment index to selected index
+                self.segmentedControl.selectedSegmentIndex = newSelectedIndex
+                self.workoutPresenter.updateChangesLimitSegmentedControl(limitExhausted: true)
+                
+                if self.segmentedControl.selectedSegmentIndex == 0 {
+                    self.workoutPresenterUnitKgFunctions()
+                } else {
+                    self.workoutPresenterUnitLbFunctions()
+                }
+            }
+        }
+    }
+    
+    func workoutPresenterUnitKgFunctions() {
+        workoutPresenter.saveSelectedUnitInMemory(unit: "kg")
+        workoutPresenter.changeUnitFromLBtoKGInCalendar()
+        workoutPresenter.changeUnitFromLBtoKGInHistory()
+    }
+    
+    func workoutPresenterUnitLbFunctions() {
+        workoutPresenter.saveSelectedUnitInMemory(unit: "lb")
+        workoutPresenter.changeUnitFromKGtoLBInCalendar()
+        workoutPresenter.changeUnitFromKGtoLBInHistory()
     }
     
     @IBAction func segmentedControlChange(_ sender: UISegmentedControl) {
         
         switch sender.tag {
         case 0:
-            if sender.selectedSegmentIndex == 0 {
-                let name = Notification.Name(rawValue: "segmentedControlUnitSelected")
-                NotificationCenter.default.post(name: name, object: nil)
-                segmentedControl.setEnabled(false, forSegmentAt: 0)
-                segmentedControl.setEnabled(false, forSegmentAt: 1)
-//                alertBeforeChangeUnit()
-                workoutPresenter.saveSelectedUnitInMemory(unit: "kg")
-                workoutPresenter.changeUnitFromLBtoKGInCalendar()
-                workoutPresenter.changeUnitFromLBtoKGInHistory()
-                
-            } else {
-                workoutPresenter.saveSelectedUnitInMemory(unit: "lb")
-                workoutPresenter.changeUnitFromKGtoLBInCalendar()
-                workoutPresenter.changeUnitFromKGtoLBInHistory()
-            }
+            setNotification()
         case 1:
             if sender.selectedSegmentIndex == 0 {
                 workoutPresenter.setPlaceholderValueInTraining(value: false)
@@ -55,7 +94,7 @@ class ProfileWorkoutTableViewCell: UITableViewCell {
             }
         default:
         break
-            }
+        }
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {

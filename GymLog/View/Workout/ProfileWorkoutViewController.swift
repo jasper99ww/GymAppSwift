@@ -19,20 +19,10 @@ class ProfileWorkoutViewController: UIViewController {
             tableView.reloadData()
         }
     }
-    private var statesOfControllers = WorkoutControllersModel() {
-        didSet {
-            print("USTAWIONO")
-//            tableView.reloadData()
-        }
-    }
-    
+    private var statesOfControllers = WorkoutControllersModel()
+
     var segmentedControlSelectedIndex: Int = 0
   
-    deinit {
-        NotificationCenter.default.removeObserver(self)
-    }
-    
-    
     override func viewDidLoad() {
         super.viewDidLoad()
         workoutPresenter.getControllersStates()
@@ -40,42 +30,7 @@ class ProfileWorkoutViewController: UIViewController {
         tableView.register(UINib(nibName: "ProfileWorkoutOtherSettings", bundle: nil), forCellReuseIdentifier: "workoutOtherSettings")
         tableView.dataSource = self
         tableView.delegate = self
-        createObserver()
     }
-    
-    func createObserver() {
-        NotificationCenter.default.addObserver(self, selector: #selector(alertBeforeChangeUnit), name: NSNotification.Name(rawValue: "segmentedControlUnitSelected"), object: nil)
-    }
- 
-     @objc func alertBeforeChangeUnit() {
-        Alert.showBasicAlert(on: self, with: "WARNING", message: "You are able to change units on your account only once. Make sure that you really need it!", handler: nil)
-        
-    }
-    
-//    @IBAction func segmentedControlChange(_ sender: UISegmentedControl) {
-//        
-//        switch sender.tag {
-//        case 0:
-//            if sender.selectedSegmentIndex == 0 {
-//                workoutPresenter.saveSelectedUnitInMemory(unit: "kg")
-//                workoutPresenter.changeUnitFromLBtoKGInCalendar()
-//                workoutPresenter.changeUnitFromLBtoKGInHistory()
-//                
-//            } else {
-//                workoutPresenter.saveSelectedUnitInMemory(unit: "lb")
-//                workoutPresenter.changeUnitFromKGtoLBInCalendar()
-//                workoutPresenter.changeUnitFromKGtoLBInHistory()
-//            }
-//        case 1:
-//            if sender.selectedSegmentIndex == 0 {
-//                workoutPresenter.setPlaceholderValueInTraining(value: false)
-//            } else {
-//                workoutPresenter.setPlaceholderValueInTraining(value: true)
-//            }
-//        default:
-//        break
-//            }
-//    }
 }
 
 extension ProfileWorkoutViewController: WorkoutPresenterControllersState {
@@ -106,17 +61,17 @@ extension ProfileWorkoutViewController: UITableViewDataSource, UITableViewDelega
             cellWithSegmentedControllers.configureWithItem(item: arrayOfSettings[indexPath.row])
             cellWithSegmentedControllers.selectSegmentState(index: indexPath.row, controllerItem: statesOfControllers)
             cellWithSegmentedControllers.segmentedControl.tag = indexPath.row
+            cellWithSegmentedControllers.parentVC = self
             return cellWithSegmentedControllers
         }
         else {
+            
         let cellWithUISwitch = self.tableView.dequeueReusableCell(withIdentifier: "workoutOtherSettings", for: indexPath) as! ProfileWorkoutOtherSettings
         cellWithUISwitch.configureCell(item: arrayOfSettings[indexPath.row])
         cellWithUISwitch.getSwitchState(index: indexPath.row, controllerItem: statesOfControllers)
         return cellWithUISwitch
         }
     }
-    
-    
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 100

@@ -30,7 +30,9 @@ class ProfileViewController: UIViewController, UITableViewDelegate, UITableViewD
         self.tableView.dataSource = self
         setUpPhotoLayer()
         setUpCornerRadiusButton()
+    
     }
+   
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return labels.count

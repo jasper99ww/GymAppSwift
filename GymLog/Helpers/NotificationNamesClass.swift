@@ -10,12 +10,12 @@ import UIKit
 
 class NotificationNamesClass {
     
-    static let unitNotificationKeyKG: String = "unitKeyKG"
+    static let unitSegmentedControl: String = "unitSegmentedControl"
     static let unitNotificationKeyLB: String = "unitKeyLB"
     static let placeholderLast: String = "placeholderLastValue"
     static let placeholderConstant: String = "placeholderConstantValue"
     
-    static let nameKG = Notification.Name(unitNotificationKeyKG)
+    static let unit = Notification.Name(unitSegmentedControl)
     
     static let nameLB = Notification.Name(unitNotificationKeyLB)
     
