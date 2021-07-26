@@ -28,15 +28,8 @@ class ProfileWorkoutTableViewCell: UITableViewCell {
     override func awakeFromNib() {
         super.awakeFromNib()
         segmentedControlTitle()
-//        workoutPresenter.workoutPresenterUserDefaults = self
-//        getUserDefaultsFromPresenter()
+
     }
-    
-//    func getUserDefaultsFromPresenter() {
-//        workoutPresenter.getSelectedUnit()
-//        workoutPresenter.checkLimitChanges()
-//
-//    }
     
     func setNotification() {
         // CHECK IF USER HAS GOT A POSSIBILITY OF CHANGE UNIT

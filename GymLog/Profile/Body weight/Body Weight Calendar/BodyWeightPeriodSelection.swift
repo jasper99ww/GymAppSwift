@@ -9,32 +9,32 @@ import Foundation
 import UIKit
 
 class BodyWeightPeriodSelection {
-    
-    let group = DispatchGroup()
-    let calendar = Calendar(identifier: .iso8601)
-    
-    var arrayForPeriod: [Weight] = []
-    
-    
-    func loopForWeek(data: [Weight], completionHandler: ([Weight]) -> Void)  {
-        
-       arrayForPeriod = []
-        
-        for value in data where value.date >= (calendar.currentWeekBoundary()?.startOfWeek)! && value.date <= (calendar.currentWeekBoundary()?.endOfWeek)!  {
-            arrayForPeriod.append(value)
-        }
-        completionHandler(arrayForPeriod)
-    }
-    
-    func loopForMonth(data: [Weight], completionHandler: ([Weight]) -> Void)  {
-        
-       arrayForPeriod = []
-        
-        for value in data where value.date >= Date().firstDateOfMonth() && value.date <= Date().lastDateOfMonth()  {
-            arrayForPeriod.append(value)
-        }
-        completionHandler(arrayForPeriod)
-    }
+//    
+//    let group = DispatchGroup()
+//    let calendar = Calendar(identifier: .iso8601)
+//    
+//    var arrayForPeriod: [Weight] = []
+//    
+//    
+//    func loopForWeek(data: [Weight], completionHandler: ([Weight]) -> Void)  {
+//        
+//       arrayForPeriod = []
+//        
+//        for value in data where value.date >= (calendar.currentWeekBoundary()?.startOfWeek)! && value.date <= (calendar.currentWeekBoundary()?.endOfWeek)!  {
+//            arrayForPeriod.append(value)
+//        }
+//        completionHandler(arrayForPeriod)
+//    }
+//    
+//    func loopForMonth(data: [Weight], completionHandler: ([Weight]) -> Void)  {
+//        
+//       arrayForPeriod = []
+//        
+//        for value in data where value.date >= Date().firstDateOfMonth() && value.date <= Date().lastDateOfMonth()  {
+//            arrayForPeriod.append(value)
+//        }
+//        completionHandler(arrayForPeriod)
+//    }
     
 }
 

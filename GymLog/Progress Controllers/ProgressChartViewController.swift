@@ -912,5 +912,13 @@ extension Date {
         return firstDayOfYear
     }
     
+    func lastDateOfYear() -> Date {
+        var components = Calendar.current.dateComponents([.year], from: Date())
+        components.year = 1
+        components.day = -1
+        guard let lastDateOfYear = Calendar.current.date(byAdding: components, to: firstDateOfYear()) else { return Date()}
+        return lastDateOfYear
+    }
+    
 }
 

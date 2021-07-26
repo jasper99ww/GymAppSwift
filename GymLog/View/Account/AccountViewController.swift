@@ -25,18 +25,14 @@ class AccountViewController: UIViewController {
     }
     
     @IBOutlet weak var tableView: UITableView!
-    
     var titleToEdit = String()
     var valueToEdit = String()
     
-
     override func viewDidLoad() {
         super.viewDidLoad()
-        
 
         tableView.dataSource = self
         tableView.delegate = self
-        
         accountPresenter.getDataArray()
      
     }
@@ -70,12 +66,18 @@ extension AccountViewController: UITableViewDelegate, UITableViewDataSource {
         }
         cell.configureWithItem(item: dataArray[indexPath.item])
         cell.hideEditImage(indexPath: indexPath)
-        cell.accountTableViewCellDelegate = self
         return cell
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
         return 87
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        titleToEdit = dataArray[indexPath.row].mainLabel
+        valueToEdit = dataArray[indexPath.row].secondLabel
+        performSegue(withIdentifier: "toEditAccount", sender: nil)
+        tableView.deselectRow(at: indexPath, animated: true)
     }
 }
 
@@ -85,11 +87,4 @@ extension AccountViewController: AccountPresenterDelegate {
     }
 }
 
-extension AccountViewController: AccountTableViewCellDelegate {
-    func didTapButton(with title: String, with value: String) {
-        titleToEdit = title
-        valueToEdit = value
-        passDataToEditAccount?.passDataToEditAccount(mainLabel: title, secondLabel: value)
-        performSegue(withIdentifier: "toEditAccount", sender: nil)
-    }
-}
+

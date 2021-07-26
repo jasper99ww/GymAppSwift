@@ -1,12 +1,16 @@
-//
-//  Constants.swift
-//  GymLog
-//
-//  Created by Barbara Podgórska on 21/02/2021.
-//
+
 
 import Foundation
 import Firebase
+
+struct Colors {
+    static let greenColor = UIColor.init(red: 81/255, green: 134/255, blue: 87/255, alpha: 1)
+}
+
+struct DateFormats {
+    static let formatYearMonthDay = "yyyy-MM-dd"
+    static let formatMonth = "MMMM"
+}
 
 struct Firebase {
     static let db = Firestore.firestore()

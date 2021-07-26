@@ -10,11 +10,11 @@ import UIKit
 
 class BodyWeightTableViewCell: UITableViewCell {
 
-    weak var delegate: TitleOfSelectedRow?
     
     @IBOutlet weak var mainLabel: UILabel!
     @IBOutlet weak var secondLabel: UILabel!
-    @IBOutlet weak var button: UIButton!
+    let accesoryImage = UIImageView(image: UIImage(systemName: "chevron.right"))
+
     
     override func awakeFromNib() {
         super.awakeFromNib()
@@ -26,8 +26,9 @@ class BodyWeightTableViewCell: UITableViewCell {
         
     }
     
-    @IBAction func bodyWeightTableViewTapped(_ sender: UIButton) {
-        delegate?.didTapButton(with: mainLabel.text ?? "Error")
+    func cellConfigure(item: BodyWeightModel) {
+        mainLabel.text = item.mainLabel
+        secondLabel.text = item.secondLabel
+        self.accessoryView = accesoryImage
     }
-    
 }

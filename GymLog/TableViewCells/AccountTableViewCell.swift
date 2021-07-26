@@ -7,22 +7,18 @@
 
 import UIKit
 
-protocol AccountTableViewCellDelegate: AnyObject {
-    func didTapButton(with title: String, with value: String)
-}
-
-
 class AccountTableViewCell: UITableViewCell {
-
-    weak var accountTableViewCellDelegate: AccountTableViewCellDelegate?
     static let identifier = "accountCell"
     
     @IBOutlet weak var mainLabel: UILabel!
     @IBOutlet weak var secondLabel: UILabel!
     @IBOutlet weak var editImage: UIButton!
     
+    let accessoryImage = UIImageView(image: UIImage(systemName: "pencil", withConfiguration: UIImage.SymbolConfiguration(scale: .large)))
+    
     override func awakeFromNib() {
         super.awakeFromNib()
+
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
@@ -32,18 +28,12 @@ class AccountTableViewCell: UITableViewCell {
     func configureWithItem(item: AccountModelData) {
         mainLabel.text = item.mainLabel
         secondLabel.text = item.secondLabel
+        self.accessoryView = accessoryImage
     }
     
     func hideEditImage(indexPath: IndexPath) {
         if indexPath.row == 2 {
-            editImage.isHidden = true
+            self.accessoryView?.isHidden = true
         }
     }
-
-    @IBAction func editImageTapped(_ sender: UIButton) {
-        accountTableViewCellDelegate?.didTapButton(with: mainLabel.text!, with: secondLabel.text!)
-    }
-    
-  
-    
 }

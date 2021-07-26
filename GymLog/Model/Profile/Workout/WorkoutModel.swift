@@ -8,24 +8,6 @@
 import Foundation
 
 struct WorkoutSettingsDataModel {
-    
-//    var mainLabelSetting: String
-//
-//    var secondLabelSetting: String
-//
-//    var arrayOfSettings = ["Units", "Progression", "Vibrations"]
-//
-//    var arrayOfSecondLabels = ["Select unit", "Prompt values: from last training or constant value", "Vibrations when pause is finished"]
-//
-////    var segmentedControlFirstSegment = ["KG", "LAST"]
-//
-//    var segmentedControlUnitFirstSegment = "KG"
-//
-//    var segmentedControlUnitSecondSegment = "LB"
-//
-//    var segmentedControlProgressionFirstSegment = "LAST"
-//
-//    var segmentedControlProgressionSecondSegment = "CONSTANT"
 
     let mainLabelSetting: String
     let secondLabelSetting: String

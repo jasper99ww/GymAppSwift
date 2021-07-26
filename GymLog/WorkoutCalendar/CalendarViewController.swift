@@ -247,8 +247,6 @@ class CalendarViewController: UIViewController {
         let todayDateString = formatter.string(from: Date())
         let monthDateString = formatter.string(from: cellState.date)
         
-        
-
         if todayDateString == monthDateString {
             validCell.selectedView.isHidden = false
             validCell.selectedView.backgroundColor = .darkGray
@@ -386,6 +384,7 @@ extension CalendarViewController: JTACMonthViewDelegate {
     }
 
     func calendar(_ calendar: JTACMonthView, didDeselectDate date: Date, cell: JTACDayCell?, cellState: CellState, indexPath: IndexPath) {
+        
         handleCellSelected(view: cell, cellState: cellState)
         handleCellTextColor(view: cell, cellState: cellState)
      
