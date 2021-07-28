@@ -14,9 +14,9 @@ protocol BodyWeightServiceProtocol {
 }
 
 class BodyWeightService: BodyWeightServiceProtocol {
-    
+//
     let dateFormatter = DateFormatter()
-    
+//
     let user = Auth.auth().currentUser
     
     var array: [BodyWeightCalendarModel] = []
@@ -25,11 +25,10 @@ class BodyWeightService: BodyWeightServiceProtocol {
     
     func saveNewWeight(weight: String) {
         
-        print("weight is \(weight)")
-            let date = Date()
-            let formattedDateDocument = date.getFormattedDate(format: "yyyy-MM-dd")
-            let formattedDate = date.getFormattedDate(format: "yyyy-MM-dd HH:mm")
-      
+        let formattedDateDocument = Date().getFormattedDate(format: DateFormats.formatYearMonthDay)
+//            let formattedDateDocument = date.getFormattedDate(format: "yyyy-MM-dd")
+        let formattedDate = Date().getFormattedDate(format: DateFormats.formatYearMonthDayTime)
+        
         guard let currentUser = Firebase.userUID else { return }
 
             Firebase.db.collection("users").document(currentUser).collection("Weight").document(formattedDateDocument).setData(["weight": weight, "date": formattedDate]) { (error) in
@@ -46,7 +45,7 @@ class BodyWeightService: BodyWeightServiceProtocol {
 
     func getData(completionHandler: @escaping([BodyWeightCalendarModel]) -> Void) {
         
-        dateFormatter.dateFormat = "yyyy-MM-dd HH:mm"
+        dateFormatter.dateFormat = DateFormats.formatYearMonthDayTime
         
         guard let currentUser = Firebase.userUID else { return }
 
@@ -74,6 +73,4 @@ class BodyWeightService: BodyWeightServiceProtocol {
                 }
             }
         }
-    }
-
-
+}

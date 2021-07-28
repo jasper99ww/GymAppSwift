@@ -22,7 +22,7 @@
                     <navigationBar key="navigationBar" contentMode="scaleToFill" translucent="NO" id="HJz-KD-NuF">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="44"/>
                         <autoresizingMask key="autoresizingMask"/>
-                        <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <color key="backgroundColor" red="0.050971612329999999" green="0.0509859696" blue="0.050968460739999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <color key="barTintColor" red="0.050980392159999999" green="0.050980392159999999" blue="0.050980392159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <textAttributes key="titleTextAttributes">
                             <fontDescription key="fontDescription" type="system" pointSize="22"/>
@@ -185,7 +185,7 @@
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="w2a-XT-tQQ"/>
-                        <color key="backgroundColor" red="0.050980392156862744" green="0.050980392156862744" blue="0.050980392156862744" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.050971612329999999" green="0.0509859696" blue="0.050968460739999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="gFq-qX-LLa" secondAttribute="trailing" constant="20" id="P5V-uN-Iku"/>
                             <constraint firstItem="gFq-qX-LLa" firstAttribute="leading" secondItem="7O1-FA-JY5" secondAttribute="leading" constant="20" id="Thg-qh-bw3"/>
@@ -1148,10 +1148,6 @@
                                                             <collectionView clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" pagingEnabled="YES" dataMode="prototypes" translatesAutoresizingMaskIntoConstraints="NO" id="mNi-uS-5kw" customClass="JTACMonthView" customModule="JTAppleCalendar">
                                                                 <rect key="frame" x="0.0" y="20.333333333333343" width="350" height="250.00000000000003"/>
                                                                 <color key="backgroundColor" red="0.078431372549019607" green="0.078431372549019607" blue="0.078431372549019607" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                                <constraints>
-                                                                    <constraint firstAttribute="height" constant="250" id="FSH-8m-YZW"/>
-                                                                    <constraint firstAttribute="width" constant="350" id="z1B-wy-HTv"/>
-                                                                </constraints>
                                                                 <collectionViewFlowLayout key="collectionViewLayout" scrollDirection="horizontal" automaticEstimatedItemSize="YES" minimumLineSpacing="10" minimumInteritemSpacing="10" id="ZWh-r7-Mu5">
                                                                     <size key="itemSize" width="91" height="74"/>
                                                                     <size key="headerReferenceSize" width="0.0" height="0.0"/>
@@ -1219,6 +1215,12 @@
                                                             </collectionView>
                                                         </subviews>
                                                         <color key="backgroundColor" red="0.090184070170000005" green="0.090203739699999994" blue="0.090179748830000003" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                        <constraints>
+                                                            <constraint firstAttribute="trailing" secondItem="mNi-uS-5kw" secondAttribute="trailing" id="CdP-hN-ejh"/>
+                                                            <constraint firstItem="mNi-uS-5kw" firstAttribute="leading" secondItem="RXm-q2-RdQ" secondAttribute="leading" id="EKs-qx-u2X"/>
+                                                            <constraint firstItem="mNi-uS-5kw" firstAttribute="top" secondItem="nvL-7m-i1a" secondAttribute="bottom" id="IgJ-F5-HkS"/>
+                                                            <constraint firstAttribute="bottom" secondItem="mNi-uS-5kw" secondAttribute="bottom" id="ZEa-9h-puU"/>
+                                                        </constraints>
                                                     </stackView>
                                                 </subviews>
                                             </stackView>
@@ -1230,6 +1232,11 @@
                                             <constraint firstItem="pDd-Jd-Iq3" firstAttribute="leading" secondItem="fVa-js-sjy" secondAttribute="leading" constant="12" id="qcO-sS-SLk"/>
                                             <constraint firstItem="pDd-Jd-Iq3" firstAttribute="top" secondItem="fVa-js-sjy" secondAttribute="top" constant="10" id="v48-bP-N4A"/>
                                         </constraints>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="layer.cornerRadius">
+                                                <integer key="value" value="20"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                     </view>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" alignment="center" spacing="45" translatesAutoresizingMaskIntoConstraints="NO" id="13R-f3-uZc">
                                         <rect key="frame" x="0.0" y="366.66666666666669" width="374" height="246.33333333333331"/>
@@ -1241,14 +1248,14 @@
                                                         <rect key="frame" x="0.0" y="0.0" width="374" height="64.333333333333329"/>
                                                         <subviews>
                                                             <textField opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="right" contentVerticalAlignment="center" textAlignment="right" minimumFontSize="18" translatesAutoresizingMaskIntoConstraints="NO" id="f7D-Ap-BMn">
-                                                                <rect key="frame" x="0.0" y="0.0" width="208" height="64.333333333333329"/>
+                                                                <rect key="frame" x="0.0" y="0.0" width="374" height="64.333333333333329"/>
                                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="55"/>
                                                                 <textInputTraits key="textInputTraits" keyboardType="decimalPad"/>
                                                             </textField>
-                                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="kg" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bp8-jK-WRk">
-                                                                <rect key="frame" x="218" y="0.0" width="156" height="64.333333333333329"/>
+                                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="kg" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bp8-jK-WRk">
+                                                                <rect key="frame" x="0.0" y="-1.3333333333333712" width="280.66666666666669" height="67"/>
                                                                 <fontDescription key="fontDescription" type="system" weight="light" pointSize="56"/>
                                                                 <color key="textColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                 <nil key="highlightedColor"/>
@@ -1324,13 +1331,14 @@
                                         </constraints>
                                     </stackView>
                                 </subviews>
+                                <color key="backgroundColor" red="0.050980392159999999" green="0.050980392159999999" blue="0.050980392159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="bottom" secondItem="13R-f3-uZc" secondAttribute="bottom" id="H30-su-8i5"/>
                                 </constraints>
                             </stackView>
                         </subviews>
                         <viewLayoutGuide key="safeArea" id="wZu-zM-7qD"/>
-                        <color key="backgroundColor" red="0.050980392159999999" green="0.050980392159999999" blue="0.050980392159999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <color key="backgroundColor" red="0.050971612329999999" green="0.0509859696" blue="0.050968460739999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <constraints>
                             <constraint firstItem="wZu-zM-7qD" firstAttribute="trailing" secondItem="ztk-FR-h9m" secondAttribute="trailing" constant="20" id="FJ6-Qh-j6S"/>
                             <constraint firstItem="ztk-FR-h9m" firstAttribute="leading" secondItem="wZu-zM-7qD" secondAttribute="leading" constant="20" id="Nql-qW-kyJ"/>
@@ -1360,7 +1368,7 @@
         <!--Statistics-->
         <scene sceneID="CTj-pb-ttP">
             <objects>
-                <viewController id="5Db-US-BkA" customClass="BodyWeightChartsViewController" customModule="GymLog" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="5Db-US-BkA" customClass="BodyWeightChartViewController" customModule="GymLog" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="1Jj-0o-v1k">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="692"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -1384,9 +1392,6 @@
                                                 </segments>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="selectedSegmentTintColor" systemColor="systemGreenColor"/>
-                                                <connections>
-                                                    <action selector="segmentedControlChanged:" destination="5Db-US-BkA" eventType="valueChanged" id="Qxy-71-lZk"/>
-                                                </connections>
                                             </segmentedControl>
                                         </subviews>
                                         <color key="backgroundColor" red="0.050971612329999999" green="0.0509859696" blue="0.050968460739999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1519,9 +1524,9 @@
                     </view>
                     <navigationItem key="navigationItem" title="Statistics" id="6a7-E7-TII"/>
                     <connections>
-                        <outlet property="segmentedControl" destination="M79-U8-kcK" id="Dtf-9d-uiy"/>
-                        <outlet property="tableViewUnderChart" destination="bDz-W4-x7Y" id="tkA-yH-V9G"/>
-                        <outlet property="weightChart" destination="dKS-oV-cE4" id="mtZ-Vy-FXj"/>
+                        <outlet property="segmentedControl" destination="M79-U8-kcK" id="9n4-Q0-5t2"/>
+                        <outlet property="tableViewUnderChart" destination="bDz-W4-x7Y" id="CDb-19-TKv"/>
+                        <outlet property="weightChart" destination="dKS-oV-cE4" id="8fj-im-HWd"/>
                     </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="EOq-9M-dYF" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>

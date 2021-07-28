@@ -88,6 +88,11 @@
 		E79CC67826A38EA000E9EC5F /* AccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79CC67726A38EA000E9EC5F /* AccountService.swift */; };
 		E79CC67B26A3917800E9EC5F /* AccountPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79CC67A26A3917800E9EC5F /* AccountPresenter.swift */; };
 		E79CC67F26A39C0D00E9EC5F /* EditAccountPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79CC67E26A39C0D00E9EC5F /* EditAccountPresenter.swift */; };
+		E79EA72A26B05D0B00CF45B2 /* NotificationCenterExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79EA72926B05D0B00CF45B2 /* NotificationCenterExtension.swift */; };
+		E79F12A826B1C800000ECA73 /* ChartsReusableClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79F12A726B1C800000ECA73 /* ChartsReusableClass.swift */; };
+		E79F12AB26B1C822000ECA73 /* BodyWeightChartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79F12AA26B1C822000ECA73 /* BodyWeightChartModel.swift */; };
+		E79F12B126B1C844000ECA73 /* BodyWeightChartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79F12B026B1C844000ECA73 /* BodyWeightChartPresenter.swift */; };
+		E79F12B526B1C865000ECA73 /* BodyWeightChartViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E79F12B426B1C865000ECA73 /* BodyWeightChartViewController.swift */; };
 		E7A5E44B2684C97F0060AD43 /* ProfileTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A5E44A2684C97F0060AD43 /* ProfileTableViewCell.swift */; };
 		E7A5E44E26850EDE0060AD43 /* BMIViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A5E44D26850EDD0060AD43 /* BMIViewController.swift */; };
 		E7A5E45126852E190060AD43 /* BMIResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7A5E45026852E190060AD43 /* BMIResultViewController.swift */; };
@@ -205,6 +210,11 @@
 		E79CC67726A38EA000E9EC5F /* AccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountService.swift; sourceTree = "<group>"; };
 		E79CC67A26A3917800E9EC5F /* AccountPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountPresenter.swift; sourceTree = "<group>"; };
 		E79CC67E26A39C0D00E9EC5F /* EditAccountPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAccountPresenter.swift; sourceTree = "<group>"; };
+		E79EA72926B05D0B00CF45B2 /* NotificationCenterExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NotificationCenterExtension.swift; sourceTree = "<group>"; };
+		E79F12A726B1C800000ECA73 /* ChartsReusableClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartsReusableClass.swift; sourceTree = "<group>"; };
+		E79F12AA26B1C822000ECA73 /* BodyWeightChartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyWeightChartModel.swift; sourceTree = "<group>"; };
+		E79F12B026B1C844000ECA73 /* BodyWeightChartPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyWeightChartPresenter.swift; sourceTree = "<group>"; };
+		E79F12B426B1C865000ECA73 /* BodyWeightChartViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyWeightChartViewController.swift; sourceTree = "<group>"; };
 		E7A5E44A2684C97F0060AD43 /* ProfileTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProfileTableViewCell.swift; sourceTree = "<group>"; };
 		E7A5E44D26850EDD0060AD43 /* BMIViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMIViewController.swift; sourceTree = "<group>"; };
 		E7A5E45026852E190060AD43 /* BMIResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMIResultViewController.swift; sourceTree = "<group>"; };
@@ -417,6 +427,7 @@
 				5961156D25F7BBC9008BD51B /* Alert.swift */,
 				E791E2602682591500FBED0F /* HapticsManager.swift */,
 				E7AC76F926A8404B00C88904 /* Extensions.swift */,
+				E79EA72926B05D0B00CF45B2 /* NotificationCenterExtension.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -598,6 +609,7 @@
 			isa = PBXGroup;
 			children = (
 				E7ABDBE326AE28BB00072258 /* CalendarReusableClass.swift */,
+				E79F12A726B1C800000ECA73 /* ChartsReusableClass.swift */,
 			);
 			path = "Third party library";
 			sourceTree = "<group>";
@@ -694,6 +706,7 @@
 			children = (
 				E7BCFB0426AA115B00EF8FBE /* BodyWeightModel.swift */,
 				E7AACD4426AB603F00B7A31C /* BodyWeightCalendarModel.swift */,
+				E79F12AA26B1C822000ECA73 /* BodyWeightChartModel.swift */,
 			);
 			path = "Body weight ";
 			sourceTree = "<group>";
@@ -703,6 +716,7 @@
 			children = (
 				E7BCFB0126AA114A00EF8FBE /* BodyWeightPresenter.swift */,
 				E7AACD3E26AB602300B7A31C /* BodyWeightCalendarPresenter.swift */,
+				E79F12B026B1C844000ECA73 /* BodyWeightChartPresenter.swift */,
 			);
 			path = "Body weight";
 			sourceTree = "<group>";
@@ -712,6 +726,7 @@
 			children = (
 				E75232352683E73F00986F71 /* BodyWeightTableViewController.swift */,
 				E7AACD4126AB603200B7A31C /* BodyWeightCalendarViewController.swift */,
+				E79F12B426B1C865000ECA73 /* BodyWeightChartViewController.swift */,
 			);
 			path = "Body weight";
 			sourceTree = "<group>";
@@ -859,6 +874,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				596BC84125E29DE700166D9C /* LoginViewController.swift in Sources */,
+				E79F12B126B1C844000ECA73 /* BodyWeightChartPresenter.swift in Sources */,
 				E7A5E44E26850EDE0060AD43 /* BMIViewController.swift in Sources */,
 				E718EDF726629F54004AFE8C /* Service.swift in Sources */,
 				E72D7D9526694E26001EC1F8 /* DateSelection.swift in Sources */,
@@ -892,6 +908,7 @@
 				E774A1DC268F79630073830F /* BodyWeightPeriodSelection.swift in Sources */,
 				E7985F1826473D86007EC06D /* CalendarPopupViewController.swift in Sources */,
 				596620A925EBD690002B04D5 /* MainTabBarController.swift in Sources */,
+				E79F12B526B1C865000ECA73 /* BodyWeightChartViewController.swift in Sources */,
 				E7C83C672695DCAE0075D642 /* CaloriesPickerController.swift in Sources */,
 				E774A1D9268F41BA0073830F /* CircleMarker.swift in Sources */,
 				E75232362683E73F00986F71 /* BodyWeightTableViewController.swift in Sources */,
@@ -906,6 +923,7 @@
 				59F33BB326111FE700A6DBB0 /* AddNextExerciseController.swift in Sources */,
 				E79CC67826A38EA000E9EC5F /* AccountService.swift in Sources */,
 				5976918825ED9D36006C9E38 /* EntryViewController.swift in Sources */,
+				E79F12AB26B1C822000ECA73 /* BodyWeightChartModel.swift in Sources */,
 				E734A749265F01D400621667 /* ChartXAxisFormatter.swift in Sources */,
 				E79CC66B26A31ACE00E9EC5F /* BmiPresenter.swift in Sources */,
 				E7B049D1269781A300CAF559 /* SupportViewController.swift in Sources */,
@@ -920,12 +938,14 @@
 				E7B501F726A4604A00AD5545 /* EditAccountService.swift in Sources */,
 				596620A425EA9A5F002B04D5 /* AddWorkoutCell.swift in Sources */,
 				59E3856926161FC700B31EA4 /* ModalAddViewController.swift in Sources */,
+				E79F12A826B1C800000ECA73 /* ChartsReusableClass.swift in Sources */,
 				E7170F402679153A00ED7C26 /* AccountViewController.swift in Sources */,
 				E74F7E94267D0E5B000A6C99 /* ProfileWorkoutTableViewCell.swift in Sources */,
 				E7B23C1A269DD67300F1B871 /* BMI.swift in Sources */,
 				596D12272635A800003B7292 /* CalendarViewController.swift in Sources */,
 				E7BE25E42698E11E00BE9B49 /* NotificationViewController.swift in Sources */,
 				E7B23C26269E435B00F1B871 /* EditAccountModel.swift in Sources */,
+				E79EA72A26B05D0B00CF45B2 /* NotificationCenterExtension.swift in Sources */,
 				E74F7E91267D0C94000A6C99 /* ProfileWorkoutViewController.swift in Sources */,
 				596BC83B25E29D6400166D9C /* Constants.swift in Sources */,
 				E79CC66E26A32F8700E9EC5F /* BmiResultPresenter.swift in Sources */,

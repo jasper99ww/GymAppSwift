@@ -10,7 +10,7 @@ import JTAppleCalendar
 
 protocol CalendarReusableClassDelegate: class {
    func handleCellSelected(view: JTACDayCell?, cellState: CellState)
-    func updateUIAfterSelection(selected date: Date)
+   func updateUIAfterSelection(selected date: Date)
 }
 
 class CalendarReusableClass {
@@ -19,24 +19,38 @@ weak var calendarDelegate: CalendarReusableClassDelegate?
     
    var viewForCalendar: UIView?
    var calendar: JTACMonthView?
-   var currentDisplayMonthLabel: UILabel?
+   var monthLabel: UILabel?
    var backwardMonthButton: UIButton?
    var forwardMonthButton: UIButton?
    var formatter = DateFormatter()
     
-    init(calendarDelegate: CalendarReusableClassDelegate) {
+    init(calendarDelegate: CalendarReusableClassDelegate, calendar: JTACMonthView, monthLabel: UILabel) {
         self.calendarDelegate = calendarDelegate
+        self.calendar = calendar
+        self.monthLabel = monthLabel
+        setUpCalendar()
+        scrollToCurrentMonth()
+        selectCurrentDate()
     }
     
     
-    
     //MARK: - CALENDAR UI SET UP
+    
+    func selectCurrentDate() {
+        calendar?.selectDates([Date()])
+        calendar?.allowsMultipleSelection = false
+    }
+    
 
-    func setUpCalendar(calendar: JTACMonthView) {
-        calendar.minimumLineSpacing = 0
-        calendar.minimumInteritemSpacing = 0
+    func scrollToCurrentMonth() {
+        calendar?.scrollToDate(Date(), animateScroll: false)
+    }
+    
+    func setUpCalendar() {
+        calendar?.minimumLineSpacing = 0
+        calendar?.minimumInteritemSpacing = 0
         
-        calendar.visibleDates { (visibleDates) in
+        calendar?.visibleDates { (visibleDates) in
             self.setUpCurrentMonth(from: visibleDates)
         }
     }
@@ -44,7 +58,7 @@ weak var calendarDelegate: CalendarReusableClassDelegate?
     func setUpCurrentMonth(from visibleDates: DateSegmentInfo) {
 
         let currentDisplayedMonth = visibleDates.monthDates.first?.date
-        self.currentDisplayMonthLabel?.text = currentDisplayedMonth?.getFormattedDate(format: DateFormats.formatMonth)
+        self.monthLabel?.text = currentDisplayedMonth?.getFormattedDate(format: DateFormats.formatMonth)
     }
     
     func cellTextColor(view: DateCell, cellState: CellState) {
@@ -79,13 +93,10 @@ weak var calendarDelegate: CalendarReusableClassDelegate?
         cellTextColor(view: validCell, cellState: cellState)
     }
     
-   
-
     func handleCellSelected(view: JTACDayCell?, cellState: CellState) {
         
         calendarDelegate?.handleCellSelected(view: view, cellState: cellState)
     }
-    
 }
 
 extension CalendarReusableClass: JTACMonthViewDataSource {
