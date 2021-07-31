@@ -7,7 +7,7 @@
 
 import Foundation
 
-struct BodyWeightCalendarModel {
+struct BodyWeightCalendarModel: DateFieldForSelecton {
     let weight: Float
     let date: Date
 }

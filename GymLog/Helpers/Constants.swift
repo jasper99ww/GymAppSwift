@@ -5,13 +5,19 @@ import Firebase
 
 struct Colors {
     static let greenColor = UIColor.init(red: 81/255, green: 134/255, blue: 87/255, alpha: 1)
+    static let chartColor = UIColor.init(red: 48/255, green: 173/255, blue: 99/255, alpha: 1)
 }
 
+struct Images {
+    static let arrowUp = "arrow.up"
+    static let arrowDown = "arrow.down"
+}
 
 struct DateFormats {
     static let formatYearMonthDay = "yyyy-MM-dd"
     static let formatMonth = "MMMM"
     static let formatYearMonthDayTime = "yyyy-MM-dd HH:mm"
+    static let formatDayMonthTime = "dd.MM, HH:mm"
 }
 
 struct Firebase {

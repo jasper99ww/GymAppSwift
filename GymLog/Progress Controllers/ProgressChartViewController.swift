@@ -2,7 +2,7 @@
 
 
 
-struct RetrievedWorkout {
+struct RetrievedWorkout: DateFieldForSelecton {
     let workoutTitle: String
     let exerciseTitle: String
     let sets: String
@@ -11,7 +11,7 @@ struct RetrievedWorkout {
     
 }
 
-struct RetrievedWorkoutsByExercise {
+struct RetrievedWorkoutsByExercise: DateFieldForSelecton {
     
     let exerciseTitle: String
     let sets: Int
@@ -22,7 +22,7 @@ struct RetrievedWorkoutsByExercise {
     
 }
 
-struct RetrievedWorkoutsByVolume {
+struct RetrievedWorkoutsByVolume: DateFieldForSelecton {
     let reps: Int
     let time: String
     let volume: Double
@@ -30,7 +30,7 @@ struct RetrievedWorkoutsByVolume {
     let date: Date
 }
 
-struct RetrievedWorkoutMax {
+struct RetrievedWorkoutMax: DateFieldForSelecton {
     
     let workoutTitle: String
     let exerciseTitle: String

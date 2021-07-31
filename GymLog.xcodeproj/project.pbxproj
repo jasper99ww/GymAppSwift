@@ -77,7 +77,7 @@
 		E75232362683E73F00986F71 /* BodyWeightTableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75232352683E73F00986F71 /* BodyWeightTableViewController.swift */; };
 		E75232392683EB7200986F71 /* BodyWeightTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E75232382683EB7200986F71 /* BodyWeightTableViewCell.swift */; };
 		E774A1D9268F41BA0073830F /* CircleMarker.swift in Sources */ = {isa = PBXBuildFile; fileRef = E774A1D8268F41BA0073830F /* CircleMarker.swift */; };
-		E774A1DC268F79630073830F /* BodyWeightPeriodSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E774A1DB268F79630073830F /* BodyWeightPeriodSelection.swift */; };
+		E774A1DC268F79630073830F /* ChartPeriodSelection.swift in Sources */ = {isa = PBXBuildFile; fileRef = E774A1DB268F79630073830F /* ChartPeriodSelection.swift */; };
 		E791E2612682591500FBED0F /* HapticsManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = E791E2602682591500FBED0F /* HapticsManager.swift */; };
 		E792A4EE26A5E328006B9BB2 /* WorkoutModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E792A4ED26A5E328006B9BB2 /* WorkoutModel.swift */; };
 		E792A4F326A5EA16006B9BB2 /* WorkoutPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E792A4F226A5EA16006B9BB2 /* WorkoutPresenter.swift */; };
@@ -111,7 +111,7 @@
 		E7B23C1A269DD67300F1B871 /* BMI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B23C19269DD67300F1B871 /* BMI.swift */; };
 		E7B23C23269E021200F1B871 /* AccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B23C22269E021200F1B871 /* AccountModel.swift */; };
 		E7B23C26269E435B00F1B871 /* EditAccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B23C25269E435B00F1B871 /* EditAccountModel.swift */; };
-		E7B38147268D213A00D7CA8D /* BodyWeightTableViewCellChart.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B38146268D213A00D7CA8D /* BodyWeightTableViewCellChart.swift */; };
+		E7B38147268D213A00D7CA8D /* BodyWeightChartTableViewCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B38146268D213A00D7CA8D /* BodyWeightChartTableViewCell.swift */; };
 		E7B501F726A4604A00AD5545 /* EditAccountService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B501F626A4604A00AD5545 /* EditAccountService.swift */; };
 		E7B501FA26A4998B00AD5545 /* ConfirmationPasswordPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B501F926A4998B00AD5545 /* ConfirmationPasswordPresenter.swift */; };
 		E7BCFB0226AA114A00EF8FBE /* BodyWeightPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7BCFB0126AA114A00EF8FBE /* BodyWeightPresenter.swift */; };
@@ -199,7 +199,7 @@
 		E75232352683E73F00986F71 /* BodyWeightTableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyWeightTableViewController.swift; sourceTree = "<group>"; };
 		E75232382683EB7200986F71 /* BodyWeightTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyWeightTableViewCell.swift; sourceTree = "<group>"; };
 		E774A1D8268F41BA0073830F /* CircleMarker.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircleMarker.swift; sourceTree = "<group>"; };
-		E774A1DB268F79630073830F /* BodyWeightPeriodSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyWeightPeriodSelection.swift; sourceTree = "<group>"; };
+		E774A1DB268F79630073830F /* ChartPeriodSelection.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartPeriodSelection.swift; sourceTree = "<group>"; };
 		E791E2602682591500FBED0F /* HapticsManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HapticsManager.swift; sourceTree = "<group>"; };
 		E792A4ED26A5E328006B9BB2 /* WorkoutModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutModel.swift; sourceTree = "<group>"; };
 		E792A4F226A5EA16006B9BB2 /* WorkoutPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WorkoutPresenter.swift; sourceTree = "<group>"; };
@@ -233,7 +233,7 @@
 		E7B23C19269DD67300F1B871 /* BMI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMI.swift; sourceTree = "<group>"; };
 		E7B23C22269E021200F1B871 /* AccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountModel.swift; sourceTree = "<group>"; };
 		E7B23C25269E435B00F1B871 /* EditAccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAccountModel.swift; sourceTree = "<group>"; };
-		E7B38146268D213A00D7CA8D /* BodyWeightTableViewCellChart.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyWeightTableViewCellChart.swift; sourceTree = "<group>"; };
+		E7B38146268D213A00D7CA8D /* BodyWeightChartTableViewCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyWeightChartTableViewCell.swift; sourceTree = "<group>"; };
 		E7B501F626A4604A00AD5545 /* EditAccountService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAccountService.swift; sourceTree = "<group>"; };
 		E7B501F926A4998B00AD5545 /* ConfirmationPasswordPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ConfirmationPasswordPresenter.swift; sourceTree = "<group>"; };
 		E7BCFB0126AA114A00EF8FBE /* BodyWeightPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BodyWeightPresenter.swift; sourceTree = "<group>"; };
@@ -628,9 +628,8 @@
 				E7AC68D02686904B007F3C2B /* BodyWeightCalViewController.swift */,
 				E7AC68D42688E5B6007F3C2B /* BodyWeightCalendarCell.swift */,
 				E7AC68DA268A7953007F3C2B /* BodyWeightChartsViewController.swift */,
-				E7B38146268D213A00D7CA8D /* BodyWeightTableViewCellChart.swift */,
 				E774A1D8268F41BA0073830F /* CircleMarker.swift */,
-				E774A1DB268F79630073830F /* BodyWeightPeriodSelection.swift */,
+				E774A1DB268F79630073830F /* ChartPeriodSelection.swift */,
 			);
 			path = "Body Weight Calendar";
 			sourceTree = "<group>";
@@ -682,6 +681,7 @@
 		E7B23C20269DEF4400F1B871 /* TableViewCells */ = {
 			isa = PBXGroup;
 			children = (
+				E7B38146268D213A00D7CA8D /* BodyWeightChartTableViewCell.swift */,
 				E74F7E96267E3793000A6C99 /* ProfileWorkoutOtherSettings.swift */,
 				E74F7E93267D0E5B000A6C99 /* ProfileWorkoutTableViewCell.swift */,
 				E7170F422679198500ED7C26 /* AccountTableViewCell.swift */,
@@ -905,7 +905,7 @@
 				E7D9A511269B92D1007EF230 /* EditTimerViewController.swift in Sources */,
 				E7BE25E72698EA9C00BE9B49 /* NotificationTableViewCell.swift in Sources */,
 				597F781725FC2124005F97A2 /* ShowWorkoutViewController.swift in Sources */,
-				E774A1DC268F79630073830F /* BodyWeightPeriodSelection.swift in Sources */,
+				E774A1DC268F79630073830F /* ChartPeriodSelection.swift in Sources */,
 				E7985F1826473D86007EC06D /* CalendarPopupViewController.swift in Sources */,
 				596620A925EBD690002B04D5 /* MainTabBarController.swift in Sources */,
 				E79F12B526B1C865000ECA73 /* BodyWeightChartViewController.swift in Sources */,
@@ -919,7 +919,7 @@
 				59F70386260A1FC200E1CB80 /* EditWorkoutViewController.swift in Sources */,
 				591ABE35262E2F7100B6ECC1 /* EndWorkoutViewController.swift in Sources */,
 				E7AACD4526AB603F00B7A31C /* BodyWeightCalendarModel.swift in Sources */,
-				E7B38147268D213A00D7CA8D /* BodyWeightTableViewCellChart.swift in Sources */,
+				E7B38147268D213A00D7CA8D /* BodyWeightChartTableViewCell.swift in Sources */,
 				59F33BB326111FE700A6DBB0 /* AddNextExerciseController.swift in Sources */,
 				E79CC67826A38EA000E9EC5F /* AccountService.swift in Sources */,
 				5976918825ED9D36006C9E38 /* EntryViewController.swift in Sources */,

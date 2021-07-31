@@ -61,9 +61,11 @@ extension AccountViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
+        
         guard let cell = tableView.dequeueReusableCell(withIdentifier: AccountTableViewCell.identifier, for: indexPath) as? AccountTableViewCell else {
             return UITableViewCell(style: .default, reuseIdentifier: AccountTableViewCell.identifier)
         }
+        
         cell.configureWithItem(item: dataArray[indexPath.item])
         cell.hideEditImage(indexPath: indexPath)
         return cell

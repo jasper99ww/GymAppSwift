@@ -16,8 +16,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "19"
             endingLineNumber = "19"
-            landmarkName = "BodyWeightPeriodSelection"
-            landmarkType = "3">
+            landmarkName = "loopForWeek(data:completionHandler:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -32,7 +32,7 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "18"
             endingLineNumber = "18"
-            landmarkName = "BodyWeightPeriodSelection"
+            landmarkName = "ChartPeriodSelection"
             landmarkType = "3">
          </BreakpointContent>
       </BreakpointProxy>
@@ -48,8 +48,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "21"
             endingLineNumber = "21"
-            landmarkName = "BodyWeightPeriodSelection"
-            landmarkType = "3">
+            landmarkName = "loopForWeek(data:completionHandler:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -64,8 +64,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "22"
             endingLineNumber = "22"
-            landmarkName = "BodyWeightPeriodSelection"
-            landmarkType = "3">
+            landmarkName = "loopForWeek(data:completionHandler:)"
+            landmarkType = "7">
             <Locations>
                <Location
                   uuid = "75A9D0B1-A9FA-49FF-BAED-B8117469CEB7 - cbb380b3b1712728"
@@ -112,8 +112,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "23"
             endingLineNumber = "23"
-            landmarkName = "BodyWeightPeriodSelection"
-            landmarkType = "3">
+            landmarkName = "loopForWeek(data:completionHandler:)"
+            landmarkType = "7">
             <Locations>
                <Location
                   uuid = "3C7A4D14-CF76-44B5-87A3-0978F0F9FE00 - cbb380b3b1712728"
@@ -160,8 +160,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "25"
             endingLineNumber = "25"
-            landmarkName = "BodyWeightPeriodSelection"
-            landmarkType = "3">
+            landmarkName = "loopForWeek(data:completionHandler:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -176,8 +176,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "26"
             endingLineNumber = "26"
-            landmarkName = "BodyWeightPeriodSelection"
-            landmarkType = "3">
+            landmarkName = "loopForWeek(data:completionHandler:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -192,8 +192,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "29"
             endingLineNumber = "29"
-            landmarkName = "BodyWeightPeriodSelection"
-            landmarkType = "3">
+            landmarkName = "loopForMonth(data:completionHandler:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -208,8 +208,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "31"
             endingLineNumber = "31"
-            landmarkName = "BodyWeightPeriodSelection"
-            landmarkType = "3">
+            landmarkName = "loopForMonth(data:completionHandler:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -224,8 +224,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "32"
             endingLineNumber = "32"
-            landmarkName = "BodyWeightPeriodSelection"
-            landmarkType = "3">
+            landmarkName = "loopForMonth(data:completionHandler:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -240,8 +240,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "33"
             endingLineNumber = "33"
-            landmarkName = "BodyWeightPeriodSelection"
-            landmarkType = "3">
+            landmarkName = "loopForMonth(data:completionHandler:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -256,8 +256,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "34"
             endingLineNumber = "34"
-            landmarkName = "BodyWeightPeriodSelection"
-            landmarkType = "3">
+            landmarkName = "loopForMonth(data:completionHandler:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy
@@ -272,8 +272,8 @@
             endingColumnNumber = "9223372036854775807"
             startingLineNumber = "36"
             endingLineNumber = "36"
-            landmarkName = "BodyWeightPeriodSelection"
-            landmarkType = "3">
+            landmarkName = "loopForMonth(data:completionHandler:)"
+            landmarkType = "7">
          </BreakpointContent>
       </BreakpointProxy>
       <BreakpointProxy

@@ -1392,6 +1392,9 @@
                                                 </segments>
                                                 <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <color key="selectedSegmentTintColor" systemColor="systemGreenColor"/>
+                                                <connections>
+                                                    <action selector="segmentedControlChanged:" destination="5Db-US-BkA" eventType="valueChanged" id="7sg-w8-0OW"/>
+                                                </connections>
                                             </segmentedControl>
                                         </subviews>
                                         <color key="backgroundColor" red="0.050971612329999999" green="0.0509859696" blue="0.050968460739999999" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
@@ -1416,7 +1419,7 @@
                                                 <rect key="frame" x="30" y="5" width="354" height="212"/>
                                                 <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <prototypes>
-                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="bodyWeightCellChart" rowHeight="85" id="nma-yw-mPM" customClass="BodyWeightTableViewCellChart" customModule="GymLog" customModuleProvider="target">
+                                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="none" indentationWidth="10" reuseIdentifier="bodyWeightCellChart" rowHeight="85" id="nma-yw-mPM" customClass="BodyWeightChartTableViewCell" customModule="GymLog" customModuleProvider="target">
                                                         <rect key="frame" x="0.0" y="28" width="354" height="85"/>
                                                         <autoresizingMask key="autoresizingMask"/>
                                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="nma-yw-mPM" id="UWs-m7-fA4">
@@ -1456,27 +1459,25 @@
                                                                                     <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                     <nil key="highlightedColor"/>
                                                                                 </label>
-                                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="4" translatesAutoresizingMaskIntoConstraints="NO" id="TzX-vY-Rp8">
-                                                                                    <rect key="frame" x="239" y="15.666666666666666" width="95" height="27.666666666666671"/>
+                                                                                <stackView opaque="NO" contentMode="scaleToFill" spacing="1" translatesAutoresizingMaskIntoConstraints="NO" id="TzX-vY-Rp8">
+                                                                                    <rect key="frame" x="242.33333333333334" y="15.666666666666666" width="91.666666666666657" height="27.666666666666671"/>
                                                                                     <subviews>
                                                                                         <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="+0.5kg" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="APz-Up-npH">
-                                                                                            <rect key="frame" x="0.0" y="0.0" width="70.666666666666671" height="27.666666666666668"/>
+                                                                                            <rect key="frame" x="0.0" y="0.0" width="70.333333333333329" height="27.666666666666668"/>
                                                                                             <fontDescription key="fontDescription" type="system" pointSize="23"/>
                                                                                             <color key="textColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                                             <nil key="highlightedColor"/>
                                                                                         </label>
                                                                                         <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="aJQ-hE-jIL">
-                                                                                            <rect key="frame" x="74.666666666666686" y="-1" width="20.333333333333329" height="29.666666666666668"/>
+                                                                                            <rect key="frame" x="71.333333333333343" y="-1" width="20.333333333333329" height="29.666666666666668"/>
                                                                                             <imageReference key="image" image="arrow.up" catalog="system" symbolScale="large"/>
                                                                                         </imageView>
                                                                                     </subviews>
-                                                                                    <constraints>
-                                                                                        <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="95" id="mKl-hc-x1X"/>
-                                                                                    </constraints>
                                                                                 </stackView>
                                                                             </subviews>
                                                                         </stackView>
                                                                     </subviews>
+                                                                    <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                                     <constraints>
                                                                         <constraint firstAttribute="trailing" secondItem="JkO-Ew-HK4" secondAttribute="trailing" constant="20" id="7lc-Og-IWf"/>
                                                                         <constraint firstAttribute="trailing" secondItem="TlW-7n-hF9" secondAttribute="trailing" id="9nB-mZ-0v0"/>
@@ -1494,10 +1495,10 @@
                                                         </tableViewCellContentView>
                                                         <color key="backgroundColor" white="0.0" alpha="0.0" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                         <connections>
-                                                            <outlet property="arrowProgress" destination="aJQ-hE-jIL" id="Wjj-Vc-DyB"/>
-                                                            <outlet property="dayLabel" destination="Ptt-Bc-c0E" id="JpF-xH-YM4"/>
-                                                            <outlet property="weightProgress" destination="APz-Up-npH" id="xzF-mN-2be"/>
-                                                            <outlet property="weightValue" destination="L6d-5F-TVN" id="UYR-fg-Ytd"/>
+                                                            <outlet property="arrowProgress" destination="aJQ-hE-jIL" id="aPF-5D-fFM"/>
+                                                            <outlet property="dayLabel" destination="Ptt-Bc-c0E" id="6fH-o9-CTJ"/>
+                                                            <outlet property="weightProgress" destination="APz-Up-npH" id="2nf-HK-JbI"/>
+                                                            <outlet property="weightValue" destination="L6d-5F-TVN" id="rMe-0K-prH"/>
                                                         </connections>
                                                     </tableViewCell>
                                                 </prototypes>
@@ -1525,7 +1526,7 @@
                     <navigationItem key="navigationItem" title="Statistics" id="6a7-E7-TII"/>
                     <connections>
                         <outlet property="segmentedControl" destination="M79-U8-kcK" id="9n4-Q0-5t2"/>
-                        <outlet property="tableViewUnderChart" destination="bDz-W4-x7Y" id="CDb-19-TKv"/>
+                        <outlet property="tableViewUnderChart" destination="bDz-W4-x7Y" id="lLE-b3-Xru"/>
                         <outlet property="weightChart" destination="dKS-oV-cE4" id="8fj-im-HWd"/>
                     </connections>
                 </viewController>
