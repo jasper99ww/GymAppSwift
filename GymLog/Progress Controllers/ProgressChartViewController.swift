@@ -86,8 +86,6 @@ class ProgressChartViewController: UIViewController, ChartViewDelegate {
     @IBOutlet weak var repsLabel: UILabel!
     @IBOutlet weak var changeLabel: UILabel!
     
-    
-    
     var numberOfColors = 0
     let colors = [UIColor.green, UIColor.purple, UIColor.cyan, UIColor.gray,  UIColor.white, UIColor.yellow]
     

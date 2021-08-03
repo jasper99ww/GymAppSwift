@@ -17,37 +17,55 @@ protocol BodyWeightChartPresenterDelegate: class {
 //    func updateAfterSelectionSegment(dataForPeriod: [BodyWeightCalendarModel])
 }
 
+protocol BodyWeightChartCellPresenterDelegate: class {
+    func setFormattedTodayDate(todayDate: String)
+    func setMeasurementDateWithTime(dateWithTime: String)
+    func setMesaurementDateWithoutTime(dateWithoutTime: String)
+}
+
 class BodyWeightChartPresenter {
     
     let periodSelection = ChartPeriodSelection()
-    
     var dateFormatter = DateFormatter()
-    
     var referenceTimeInterval: TimeInterval = 0
-    
-    var dataPresenter = [BodyWeightCalendarModel]()
-    
-    var lineChartEntries: [ChartDataEntry] = []
+    var dataPresenter: [BodyWeightCalendarModel]
+    var lineChartEntries = [ChartDataEntry]()
     
     var weekData: [BodyWeightCalendarModel] {
         return periodSelection.valuesForWeek(data: dataPresenter)
     }
+    
     var monthData: [BodyWeightCalendarModel] {
         return periodSelection.valuesForMonth(data: dataPresenter)
     }
     
     weak var bodyWeightChartPresenterDelegate: BodyWeightChartPresenterDelegate?
+    weak var bodyWeightChartCellPresenterDelegate: BodyWeightChartCellPresenterDelegate?
 
-    init(bodyWeightChartPresenterDelegate: BodyWeightChartPresenterDelegate) {
-        self.bodyWeightChartPresenterDelegate = bodyWeightChartPresenterDelegate
+    init(dataPresenter: [BodyWeightCalendarModel]) {
+        self.dataPresenter = dataPresenter
        
     }
     
-    func setData(data: [BodyWeightCalendarModel]) {
-        bodyWeightChartPresenterDelegate?.setData(data: data)
-        dataPresenter = data
-        sortArray(dataToSort: dataPresenter)
+    // TABLE VIEW CELL
+    
+    func formatTodayDate() {
+        let todayDate = Date().getFormattedDate(format: DateFormats.formatYearMonthDay)
+        bodyWeightChartCellPresenterDelegate?.setFormattedTodayDate(todayDate: todayDate)
     }
+    
+    func formatDateWithTime(dateWithTime: Date) {
+        let dateWithTimeFormatted = dateWithTime.getFormattedDate(format: DateFormats.formatYearMonthDayTime)
+        bodyWeightChartCellPresenterDelegate?.setMeasurementDateWithTime(dateWithTime: dateWithTimeFormatted)
+    }
+    
+    func formatDateWithoutTime(dateWithoutTime: Date) {
+        let dateWithoutTime = dateWithoutTime.getFormattedDate(format: DateFormats.formatYearMonthDay)
+        bodyWeightChartCellPresenterDelegate?.setMesaurementDateWithoutTime(dateWithoutTime: dateWithoutTime)
+    }
+    
+    
+    // TABLE VIEW CONTROLLER
     
     func sortArray(dataToSort: [BodyWeightCalendarModel]) {
         let newArray =  dataToSort.sorted { (a, b) -> Bool in
@@ -71,6 +89,7 @@ class BodyWeightChartPresenter {
     func doDataEntries(data: [BodyWeightCalendarModel]) {
         
         let dispatchGroup = DispatchGroup()
+        lineChartEntries.removeAll()
         convertDateForAxis()
         setAxisFormatter()
 
@@ -78,7 +97,6 @@ class BodyWeightChartPresenter {
             dispatchGroup.enter()
 
             let date = value.date
-
             let timeInterval = date.timeIntervalSince1970
             let xValue = (timeInterval - referenceTimeInterval) / (3600 * 24)
 

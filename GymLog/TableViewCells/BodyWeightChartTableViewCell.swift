@@ -18,20 +18,44 @@ class BodyWeightChartTableViewCell: UITableViewCell {
         UserDefaults.standard.string(forKey: "unit") ?? "kg"
     }
     
+    let todayDate = Date().getFormattedDate(format: DateFormats.formatYearMonthDay)
+    
+    var dateWithTime = Date()
+    var dateWithoutTime = Date() {
+        didSet {
+            if dateWithoutTime.getFormattedDate(format: DateFormats.formatYearMonthDay) == todayDate {
+                dayLabel.text = "Today"
+            } else {
+                dayLabel.text = dateWithTime.getFormattedDate(format: DateFormats.formatYearMonthDay)
+            }
+        }
+    }
+
+    var weight: String = "" {
+        didSet {
+            weightValue.text = "\(weight) \(weightUnit)"
+        }
+    }
+    
+    var progressValue: Float = 0 {
+        didSet {
+            let progressValueString = String(format: "%.1f", progressValue)
+            weightProgress.text = ("\(progressValueString) \(weightUnit)")
+        }
+    }
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-        // Initialization code
+        
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
 
-//        let color = contentView.backgroundColor
-//        let selectedColor = color?.withAlphaComponent(0.8)
-        let colorX = UIColor.init(red: 20/255, green: 20/255, blue: 20/255, alpha: 1)
+        let colorForSelectedRow = UIColor.init(red: 20/255, green: 20/255, blue: 20/255, alpha: 1)
         
         if selected {
-            self.contentView.backgroundColor = colorX
+            self.contentView.backgroundColor = colorForSelectedRow
         } else {
             self.contentView.backgroundColor = .clear
         }
@@ -47,58 +71,33 @@ class BodyWeightChartTableViewCell: UITableViewCell {
         }
     }
     
-    func setProgressParameteres(positive: Bool) {
-        if positive {
-            arrowProgress.image = UIImage(systemName: Images.arrowUp)
-            arrowProgress.tintColor = .green
-            weightProgress.textColor = .green
-        } else {
-            arrowProgress.image = UIImage(systemName: Images.arrowDown)
-            arrowProgress.tintColor = .red
-            weightProgress.textColor = .red
+    func setProgressParameteres() {
+        if progressValue > 0 {
+                   arrowProgress.image = UIImage(systemName: Images.arrowUp)
+                   arrowProgress.tintColor = .green
+                   weightProgress.textColor = .green
+               } else {
+                   arrowProgress.image = UIImage(systemName: Images.arrowDown)
+                   arrowProgress.tintColor = .red
+                   weightProgress.textColor = .red
         }
     }
     
     func configureCell(tableViewData: [BodyWeightCalendarModel], indexPath: IndexPath) {
         
-        //formatted retrieved date
-        let formattedDateTime = tableViewData[indexPath.row].date.getFormattedDate(format: DateFormats.formatDayMonthTime)
+        dateWithoutTime = tableViewData[indexPath.row].date
+        dateWithTime = tableViewData[indexPath.row].date
         
-        let formattedDate = tableViewData[indexPath.row].date.getFormattedDate(format: DateFormats.formatYearMonthDay)
-        
-        let weight = String(tableViewData[indexPath.row].weight)
-        
-        let progressValue = tableViewData[indexPath.row].weight - tableViewData[indexPath.row + 1].weight
-        
-        let progressValueString = String(format: "%.1f", progressValue)
-        
-        weightValue.text = "\(weight) \(weightUnit)"
+        weight = String(tableViewData[indexPath.row].weight)
         
         //Hide progress parameters if first row selected
         if indexPath.row == tableViewData.count - 1 {
             hideProgressParameters(bool: true)
         } else {
             hideProgressParameters(bool: false)
+            progressValue = tableViewData[indexPath.row].weight - tableViewData[indexPath.row + 1].weight
+            setProgressParameteres()
         }
-            
-        weightProgress.text = ("\(progressValueString) kg")
-            
-        //Check if progression is on + or -
-        if progressValue > 0 {
-                setProgressParameteres(positive: true)
-        } else {
-                setProgressParameteres(positive: false)
-        }
-            
-        // Check if last record is from today
-        let todayDate = Date().getFormattedDate(format: DateFormats.formatYearMonthDay)
-            
-        if formattedDate == todayDate {
-               dayLabel.text = "Today"
-        } else {
-               dayLabel.text = formattedDateTime
-            }
-        }
-    
+    }
 }
     

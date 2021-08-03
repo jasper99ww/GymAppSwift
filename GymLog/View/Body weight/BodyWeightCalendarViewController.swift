@@ -109,7 +109,7 @@ class BodyWeightCalendarViewController: UIViewController, UITextFieldDelegate {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destVC = segue.destination as? BodyWeightChartViewController {
-            destVC.bodyWeightChartPresenter.setData(data: bodyWeightCalendarData)
+            destVC.bodyWeightChartData = bodyWeightCalendarData
         }
     }
     

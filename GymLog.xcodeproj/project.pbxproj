@@ -559,6 +559,7 @@
 		E79CC66826A31A6200E9EC5F /* Presenter */ = {
 			isa = PBXGroup;
 			children = (
+				E7D3717026B9E8D300EAEC79 /* Support */,
 				E7BCFB0026AA112C00EF8FBE /* Body weight */,
 				E792A4EC26A5E117006B9BB2 /* Workout */,
 				E79CC67426A3859100E9EC5F /* Account */,
@@ -653,6 +654,7 @@
 		E7B23C14269DD38700F1B871 /* View */ = {
 			isa = PBXGroup;
 			children = (
+				E7D3717126B9E8E000EAEC79 /* Support */,
 				E7BCFB0726AA116F00EF8FBE /* Body weight */,
 				E792A4EB26A5E10E006B9BB2 /* Workout */,
 				E79CC67326A3858D00E9EC5F /* Account */,
@@ -693,6 +695,7 @@
 		E7BCFAFC26AA104200EF8FBE /* Profile */ = {
 			isa = PBXGroup;
 			children = (
+				E7D3717226B9E8EB00EAEC79 /* Support */,
 				E7BCFAFF26AA108500EF8FBE /* Body weight  */,
 				E7B23C1C269DE95A00F1B871 /* BMI */,
 				E79CC67226A3858800E9EC5F /* Account */,
@@ -749,6 +752,27 @@
 				E7B049CC2697742E00CAF559 /* CaloriesResultViewController.swift */,
 			);
 			path = "Calories Calculator";
+			sourceTree = "<group>";
+		};
+		E7D3717026B9E8D300EAEC79 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		E7D3717126B9E8E000EAEC79 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Support;
+			sourceTree = "<group>";
+		};
+		E7D3717226B9E8EB00EAEC79 /* Support */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Support;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */

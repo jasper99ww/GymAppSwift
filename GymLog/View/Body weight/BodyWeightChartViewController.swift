@@ -10,11 +10,15 @@ import Charts
 
 class BodyWeightChartViewController: UIViewController, ChartViewDelegate {
     
-    lazy var bodyWeightChartPresenter = BodyWeightChartPresenter(bodyWeightChartPresenterDelegate: self)
+    lazy var bodyWeightChartPresenter = BodyWeightChartPresenter(dataPresenter: bodyWeightChartData)
     
     let periodSelection = ChartPeriodSelection()
     
-    var bodyWeightChartData: [BodyWeightCalendarModel] = []
+    var bodyWeightChartData: [BodyWeightCalendarModel] = [] {
+        didSet {
+            bodyWeightChartPresenter.sortArray(dataToSort: bodyWeightChartData)
+        }
+    }
     
     @IBOutlet weak var tableViewUnderChart: UITableView!
     @IBOutlet weak var weightChart: LineChartView!
@@ -33,17 +37,16 @@ class BodyWeightChartViewController: UIViewController, ChartViewDelegate {
     var referenceTimeInterval: TimeInterval = 0
     let dateFormatter = DateFormatter()
     
-  
     override func viewDidLoad() {
         super.viewDidLoad()
 
         weightChart.delegate = self
+        bodyWeightChartPresenter.bodyWeightChartPresenterDelegate = self
         self.tableViewUnderChart.delegate = self
         self.tableViewUnderChart.dataSource = self
         tableViewUnderChart.rowHeight = 90
         bodyWeightChartPresenter.doDataEntries(data: bodyWeightChartData)
         controlSegmentSetUp()
-
     }
   
     override func viewWillDisappear(_ animated: Bool) {
@@ -62,8 +65,7 @@ class BodyWeightChartViewController: UIViewController, ChartViewDelegate {
     }
 
     func setChartProperties() {
-
-//        viewChart.layer.cornerRadius = 20
+        
         weightChart.backgroundColor = .clear
         weightChart.rightAxis.enabled = false
         weightChart.scaleXEnabled = true
@@ -78,7 +80,7 @@ class BodyWeightChartViewController: UIViewController, ChartViewDelegate {
         yAxis.drawGridLinesEnabled = true
 
         weightChart.xAxis.labelFont = .systemFont(ofSize: 12)
-        weightChart.xAxis.setLabelCount(6, force: false)
+        weightChart.xAxis.setLabelCount(8, force: false)
         weightChart.xAxis.labelTextColor = .white
         weightChart.xAxis.axisLineColor = .white
         weightChart.xAxis.labelPosition = .bottom
@@ -95,13 +97,10 @@ class BodyWeightChartViewController: UIViewController, ChartViewDelegate {
         guard let dataSet = chartView.data?.dataSets[highlight.dataSetIndex] else { return }
 
         let indexOfEntry : Int = ((self.tableViewUnderChart.numberOfRows(inSection: 0) - 1 ) - dataSet.entryIndex(entry: entry))
-
-        print("to entry \(entry) entryIndex to \(dataSet.entryIndex(entry: entry)) i row \(self.tableViewUnderChart.numberOfRows(inSection: 0))")
         
         let indexPath = IndexPath(row: indexOfEntry, section: 0)
 
         self.tableViewUnderChart.selectRow(at: indexPath, animated: true, scrollPosition: .middle)
-
     }
     
     func setDataSetProperties(set: LineChartDataSet) {
@@ -109,7 +108,7 @@ class BodyWeightChartViewController: UIViewController, ChartViewDelegate {
         set.setColor(UIColor.systemGreen)
         set.mode = .horizontalBezier
         set.drawCirclesEnabled = false
-        set.lineWidth = 3
+        set.lineWidth = 2
         set.drawHorizontalHighlightIndicatorEnabled = false
         set.highlightColor = .red
         set.drawValuesEnabled = false
@@ -128,8 +127,6 @@ class BodyWeightChartViewController: UIViewController, ChartViewDelegate {
         }
     }
     
-    
-
     func controlSegmentSetUp() {
 
         segmentedControl.selectedSegmentTintColor = Colors.chartColor
@@ -148,10 +145,19 @@ extension BodyWeightChartViewController: UITableViewDelegate, UITableViewDataSou
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableViewUnderChart.dequeueReusableCell(withIdentifier: "bodyWeightCellChart", for: indexPath) as! BodyWeightChartTableViewCell
-        
+
         cell.configureCell(tableViewData: dataTableView, indexPath: indexPath)
 
         return cell
+    }
+    
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+
+        let selectedRow = tableViewUnderChart.numberOfRows(inSection: 0) - 1 - indexPath.row
+        
+        guard let weightChartData = weightChart.data?.dataSets[0], let newIndex = weightChartData.entryForIndex(selectedRow) else { return }
+    
+        weightChart.highlightValue(x: newIndex.x, dataSetIndex: 0)
     }
 }
 
@@ -166,7 +172,6 @@ extension BodyWeightChartViewController: BodyWeightChartPresenterDelegate {
     func setAxisFormatter(axisFormatter: ChartXAxisFormatter) {
         weightChart.xAxis.valueFormatter = axisFormatter
     }
-    
     
     func sortArray(sortedData: [BodyWeightCalendarModel]) {
         dataTableView = sortedData
