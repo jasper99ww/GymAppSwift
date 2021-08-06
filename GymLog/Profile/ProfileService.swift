@@ -9,10 +9,8 @@ import Foundation
 import UIKit
 import Firebase
 
-struct DataForNotification {
-    let day: String
-    let workout: String
-}
+
+
 class ProfileService {
     
     let db = Firestore.firestore()

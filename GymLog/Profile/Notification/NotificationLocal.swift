@@ -10,23 +10,19 @@ import UserNotifications
 
 class NotificationLocal: NSObject {
     
-    func createDate(weekday: Int, hour: Int, minute: Int, completionhandler: (DateComponents) -> Void)  {
+    func createDate(weekday: Int, hour: Int, minute: Int) -> DateComponents {
         
         var components = DateComponents()
         components.hour = hour
         components.minute = minute
-//        components.year = Calendar.current.component(.year, from: Date())
         components.weekday = weekday
-//        components.weekdayOrdinal = 10
-//        components.timeZone = .current
-        
-        completionhandler(components)
+    
+        return components
     }
     
     func createNotification(title: String, body: String, badge: Int?, at date: DateComponents, id: String) {
         let notificationContent = UNMutableNotificationContent()
         notificationContent.title = title
-//        notificationContent.subtitle = subtitle
         notificationContent.body = body
 
         let delayTimeTrigger = UNCalendarNotificationTrigger(dateMatching: date, repeats: true)
@@ -54,7 +50,6 @@ class NotificationLocal: NSObject {
     
         let notificationContent = UNMutableNotificationContent()
         notificationContent.title = title
-//        notificationContent.subtitle = subtitle
         notificationContent.body = body
 
         var delayTimeTrigger: UNTimeIntervalNotificationTrigger?

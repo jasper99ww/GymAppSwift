@@ -7,30 +7,21 @@
 
 import UIKit
 
-protocol TitleOfSelectedRow: AnyObject {
-    func didTapButton(with title: String)
-}
+
 
 class ProfileTableViewCell: UITableViewCell {
 
-    weak var delegate: TitleOfSelectedRow?
-   
     @IBOutlet weak var imageIcon: UIImageView!
     @IBOutlet weak var label: UILabel!
     @IBOutlet weak var segueButton: UIButton!
     
+    let accesoryImage = UIImageView(image: UIImage(systemName: "chevron.right"))
+    
     override func awakeFromNib() {
         super.awakeFromNib()
-
     }
 
     override func setSelected(_ selected: Bool, animated: Bool) {
         super.setSelected(selected, animated: animated)
-
     }
-    
-    @IBAction func segueButton(_ sender: UIButton) {
-        delegate?.didTapButton(with: label.text ?? "Error")
-    }
-    
 }

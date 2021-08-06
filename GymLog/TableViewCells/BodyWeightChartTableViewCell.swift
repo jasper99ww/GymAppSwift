@@ -18,15 +18,14 @@ class BodyWeightChartTableViewCell: UITableViewCell {
         UserDefaults.standard.string(forKey: "unit") ?? "kg"
     }
     
-    let todayDate = Date().getFormattedDate(format: DateFormats.formatYearMonthDay)
-    
-    var dateWithTime = Date()
-    var dateWithoutTime = Date() {
+    var todayDate = String()
+    var dateWithTime = String()
+    var dateWithoutTime = String() {
         didSet {
-            if dateWithoutTime.getFormattedDate(format: DateFormats.formatYearMonthDay) == todayDate {
+            if dateWithoutTime == todayDate {
                 dayLabel.text = "Today"
             } else {
-                dayLabel.text = dateWithTime.getFormattedDate(format: DateFormats.formatYearMonthDay)
+                dayLabel.text = dateWithTime
             }
         }
     }
@@ -83,21 +82,21 @@ class BodyWeightChartTableViewCell: UITableViewCell {
         }
     }
     
-    func configureCell(tableViewData: [BodyWeightCalendarModel], indexPath: IndexPath) {
-        
-        dateWithoutTime = tableViewData[indexPath.row].date
-        dateWithTime = tableViewData[indexPath.row].date
-        
-        weight = String(tableViewData[indexPath.row].weight)
-        
-        //Hide progress parameters if first row selected
-        if indexPath.row == tableViewData.count - 1 {
-            hideProgressParameters(bool: true)
-        } else {
-            hideProgressParameters(bool: false)
-            progressValue = tableViewData[indexPath.row].weight - tableViewData[indexPath.row + 1].weight
-            setProgressParameteres()
-        }
-    }
+//    func configureCell(tableViewData: [BodyWeightCalendarModel], indexPath: IndexPath) {
+//
+////        dateWithoutTime = tableViewData[indexPath.row].date
+////        dateWithTime = tableViewData[indexPath.row].date
+//
+//        weight = String(tableViewData[indexPath.row].weight)
+//
+//        //Hide progress parameters if first row selected
+//        if indexPath.row == tableViewData.count - 1 {
+//            hideProgressParameters(bool: true)
+//        } else {
+//            hideProgressParameters(bool: false)
+//            progressValue = tableViewData[indexPath.row].weight - tableViewData[indexPath.row + 1].weight
+//            setProgressParameteres()
+//        }
+//    }
 }
     

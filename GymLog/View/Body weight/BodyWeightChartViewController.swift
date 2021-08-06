@@ -10,42 +10,36 @@ import Charts
 
 class BodyWeightChartViewController: UIViewController, ChartViewDelegate {
     
-    lazy var bodyWeightChartPresenter = BodyWeightChartPresenter(dataPresenter: bodyWeightChartData)
-    
-    let periodSelection = ChartPeriodSelection()
-    
-    var bodyWeightChartData: [BodyWeightCalendarModel] = [] {
-        didSet {
-            bodyWeightChartPresenter.sortArray(dataToSort: bodyWeightChartData)
-        }
-    }
+    lazy var bodyWeightChartPresenter = BodyWeightChartPresenter(bodyWeightChartPresenterDelegate: self)
     
     @IBOutlet weak var tableViewUnderChart: UITableView!
     @IBOutlet weak var weightChart: LineChartView!
     @IBOutlet weak var segmentedControl: UISegmentedControl!
+
+    var bodyWeightChartData: [BodyWeightCalendarModel] = [] {
+        didSet {
+            bodyWeightChartPresenter.doDataEntries(data: bodyWeightChartData)
+            bodyWeightChartPresenter.sortArray(dataToSort: bodyWeightChartData)
+        }
+    }
     
     var dataTableView = [BodyWeightCalendarModel]() {
         didSet {
             DispatchQueue.main.async {
-                self.tableViewUnderChart?.reloadData()
+                self.tableViewUnderChart.reloadData()
             }
         }
     }
-    
-    var arrayWithSelectedPeriod: [BodyWeightCalendarModel] = []
-
-    var referenceTimeInterval: TimeInterval = 0
-    let dateFormatter = DateFormatter()
-    
+            
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        bodyWeightChartPresenter.getBodyWeightChartData()
         weightChart.delegate = self
-        bodyWeightChartPresenter.bodyWeightChartPresenterDelegate = self
         self.tableViewUnderChart.delegate = self
         self.tableViewUnderChart.dataSource = self
         tableViewUnderChart.rowHeight = 90
-        bodyWeightChartPresenter.doDataEntries(data: bodyWeightChartData)
+        
         controlSegmentSetUp()
     }
   
@@ -85,7 +79,7 @@ class BodyWeightChartViewController: UIViewController, ChartViewDelegate {
         weightChart.xAxis.axisLineColor = .white
         weightChart.xAxis.labelPosition = .bottom
         weightChart.xAxis.drawGridLinesEnabled = false
-        weightChart.xAxis.avoidFirstLastClippingEnabled = true
+        weightChart.xAxis.avoidFirstLastClippingEnabled = false
         weightChart.xAxis.granularity = 1
         weightChart.xAxis.labelRotationAngle = -45
      
@@ -129,7 +123,7 @@ class BodyWeightChartViewController: UIViewController, ChartViewDelegate {
     
     func controlSegmentSetUp() {
 
-        segmentedControl.selectedSegmentTintColor = Colors.chartColor
+        segmentedControl.selectedSegmentTintColor = Colors.strongGreenColor
         segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .normal)
         segmentedControl.setTitleTextAttributes([NSAttributedString.Key.foregroundColor: UIColor.white], for: .selected)
     }
@@ -146,7 +140,22 @@ extension BodyWeightChartViewController: UITableViewDelegate, UITableViewDataSou
         
         let cell = tableViewUnderChart.dequeueReusableCell(withIdentifier: "bodyWeightCellChart", for: indexPath) as! BodyWeightChartTableViewCell
 
-        cell.configureCell(tableViewData: dataTableView, indexPath: indexPath)
+        let dateInData = dataTableView[indexPath.row].date
+        
+        cell.dateWithTime = bodyWeightChartPresenter.formatDateWithTime(dateWithTime: dateInData)
+        cell.todayDate = bodyWeightChartPresenter.formatTodayDate()
+        cell.dateWithoutTime = bodyWeightChartPresenter.formatDateWithoutTime(dateWithoutTime: dateInData)
+ 
+        cell.weight = String(dataTableView[indexPath.row].weight)
+        
+        //Hide progress parameters if first row selected and set values for other rows
+        if indexPath.row == dataTableView.count - 1 {
+            cell.hideProgressParameters(bool: true)
+        } else {
+            cell.hideProgressParameters(bool: false)
+            cell.progressValue = dataTableView[indexPath.row].weight - dataTableView[indexPath.row + 1].weight
+            cell.setProgressParameteres()
+        }
 
         return cell
     }
@@ -185,91 +194,6 @@ extension BodyWeightChartViewController: BodyWeightChartPresenterDelegate {
     
     func setData(data: [BodyWeightCalendarModel]) {
         bodyWeightChartData = data
+        print("new data ")
     }
 }
-
-//
-//extension BodyWeightChartViewController: ChartReusableClassDelegate {
-//
-//    func convertDateForAxis() {
-//        if let minTimeInterval = arrayWithEntries.compactMap({$0.date}).min() {
-//                 referenceTimeInterval = minTimeInterval.timeIntervalSince1970
-//            }
-//    }
-//
-////    func chartValueSelected(_ chartView: ChartViewBase, entry: ChartDataEntry, highlight: Highlight) {
-////        guard let dataSet = chartView.data?.dataSets[highlight.dataSetIndex] else { return }
-////
-////          let indexOfEntry : Int = ((self.tableViewUnderChart.numberOfRows(inSection: 0) - 1 ) - dataSet.entryIndex(entry: entry))
-////
-////          let indexPath = IndexPath(row: indexOfEntry, section: 0)
-////
-////
-////          self.tableViewUnderChart.selectRow(at: indexPath, animated: true, scrollPosition: .middle)
-////
-////    }
-//
-//    func createDataEntry() {
-//
-//        print("CREATE DATA ENTRY")
-//
-//
-//                arrayWithSelectedPeriod = []
-//
-//
-////                if period == "year" {
-////
-////                    arrayWithSelectedPeriod = []
-////                    group.enter()
-////                  arrayWithSelectedPeriod = arrayWithEntries
-////                    convertDateForAxis()
-////                    group.leave()
-////                } else if period == "month" {
-////
-////                    group.enter()
-////                    periodSelection.loopForMonth(data: arrayWithEntries) { (data) in
-////                        arrayWithSelectedPeriod = data
-////                    }
-////                  group.leave()
-////                }
-////                 else if period == "week" {
-////
-////                    group.enter()
-////                    periodSelection.loopForWeek(data: arrayWithEntries) { (data) in
-////                       arrayWithSelectedPeriod = data
-////                    }
-////                    group.leave()
-////                } else {
-////                    print("No weight measurement in this week")
-////                }
-////
-//                let dispatchGroup = DispatchGroup()
-//        //        convertDateForAxis()
-//                lineChartEntries = []
-//                dateFormatter.dateFormat = "yyyy-MM-dd"
-//
-//                weightChart.xAxis.valueFormatter = ChartXAxisFormatter(referenceTimeInterval: referenceTimeInterval, dateFormatter: dateFormatter)
-//
-//                for value in arrayWithSelectedPeriod {
-//                    dispatchGroup.enter()
-//
-//                    let date = value.date
-//
-//                    let timeInterval = date.timeIntervalSince1970
-//                    let xValue = (timeInterval - referenceTimeInterval) / (3600 * 24)
-//
-//                    lineChartEntries.append(ChartDataEntry(x: xValue, y: Double(value.weight)))
-//
-//                    dispatchGroup.leave()
-//                }
-//
-//
-//                let set = LineChartDataSet(entries: lineChartEntries)
-//
-//                let data = LineChartData(dataSet: set)
-//                setDataSetProperties(set: set)
-//
-//                self.weightChart.data = data
-//    }
-//
-//}

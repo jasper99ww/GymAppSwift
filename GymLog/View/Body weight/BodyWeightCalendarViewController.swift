@@ -106,13 +106,7 @@ class BodyWeightCalendarViewController: UIViewController, UITextFieldDelegate {
         
         performSegue(withIdentifier: "toBodyWeightChart", sender: self)
     }
-    
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if let destVC = segue.destination as? BodyWeightChartViewController {
-            destVC.bodyWeightChartData = bodyWeightCalendarData
-        }
-    }
-    
+
     //MARK: - Buttons for calendar
     
     @IBAction func backwardMonthButtonTapped(_ sender: UIButton) {

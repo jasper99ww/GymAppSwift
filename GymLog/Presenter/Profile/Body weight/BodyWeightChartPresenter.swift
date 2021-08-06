@@ -14,21 +14,16 @@ protocol BodyWeightChartPresenterDelegate: class {
     func doDataEntries(chartData: LineChartData,  chartDataSet: LineChartDataSet)
     func sortArray(sortedData: [BodyWeightCalendarModel])
     func setAxisFormatter(axisFormatter: ChartXAxisFormatter)
-//    func updateAfterSelectionSegment(dataForPeriod: [BodyWeightCalendarModel])
 }
 
-protocol BodyWeightChartCellPresenterDelegate: class {
-    func setFormattedTodayDate(todayDate: String)
-    func setMeasurementDateWithTime(dateWithTime: String)
-    func setMesaurementDateWithoutTime(dateWithoutTime: String)
-}
 
 class BodyWeightChartPresenter {
     
+    let bodyWeightService = BodyWeightService()
     let periodSelection = ChartPeriodSelection()
     var dateFormatter = DateFormatter()
     var referenceTimeInterval: TimeInterval = 0
-    var dataPresenter: [BodyWeightCalendarModel]
+    var dataPresenter = [BodyWeightCalendarModel]()
     var lineChartEntries = [ChartDataEntry]()
     
     var weekData: [BodyWeightCalendarModel] {
@@ -38,30 +33,41 @@ class BodyWeightChartPresenter {
     var monthData: [BodyWeightCalendarModel] {
         return periodSelection.valuesForMonth(data: dataPresenter)
     }
-    
+        
     weak var bodyWeightChartPresenterDelegate: BodyWeightChartPresenterDelegate?
-    weak var bodyWeightChartCellPresenterDelegate: BodyWeightChartCellPresenterDelegate?
 
-    init(dataPresenter: [BodyWeightCalendarModel]) {
-        self.dataPresenter = dataPresenter
-       
+    init(bodyWeightChartPresenterDelegate: BodyWeightChartPresenterDelegate) {
+        
+        self.bodyWeightChartPresenterDelegate = bodyWeightChartPresenterDelegate
+//        self.dataPresenter = dataPresenter
+    }
+    
+    // GETTING DATA
+    
+    func getBodyWeightChartData() {
+        bodyWeightService.getData { [weak self] data in
+            guard let self = self else { return }
+            self.bodyWeightChartPresenterDelegate?.setData(data: data)
+            self.dataPresenter = data
+//            self.bodyWeightCalendarModel = data
+        }
     }
     
     // TABLE VIEW CELL
     
-    func formatTodayDate() {
+    func formatTodayDate() -> String {
         let todayDate = Date().getFormattedDate(format: DateFormats.formatYearMonthDay)
-        bodyWeightChartCellPresenterDelegate?.setFormattedTodayDate(todayDate: todayDate)
+        return todayDate
     }
     
-    func formatDateWithTime(dateWithTime: Date) {
+    func formatDateWithTime(dateWithTime: Date) -> String {
         let dateWithTimeFormatted = dateWithTime.getFormattedDate(format: DateFormats.formatYearMonthDayTime)
-        bodyWeightChartCellPresenterDelegate?.setMeasurementDateWithTime(dateWithTime: dateWithTimeFormatted)
+        return dateWithTimeFormatted
     }
     
-    func formatDateWithoutTime(dateWithoutTime: Date) {
+    func formatDateWithoutTime(dateWithoutTime: Date) -> String {
         let dateWithoutTime = dateWithoutTime.getFormattedDate(format: DateFormats.formatYearMonthDay)
-        bodyWeightChartCellPresenterDelegate?.setMesaurementDateWithoutTime(dateWithoutTime: dateWithoutTime)
+        return dateWithoutTime
     }
     
     
