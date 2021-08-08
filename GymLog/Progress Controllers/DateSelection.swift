@@ -14,14 +14,14 @@ class DateSelection {
     let group2 = DispatchGroup()
     let group3 = DispatchGroup()
     let calendar = Calendar(identifier: .iso8601)
-    var newByExercise: [RetrievedWorkoutsByExercise] = []
+    var newByExercise: [DoneExercise] = []
     var newByMaxValue: [String: [RetrievedWorkoutMax]] = [:]
-    var newByVolume: [String: [RetrievedWorkoutsByVolume]] = [:]
+    var newByVolume: [String: [DoneWorkoutInformation]] = [:]
     
     
     //MARK: -LOOPS FOR findByExercise
     
-    func loopForWeekByExercise(data: [RetrievedWorkoutsByExercise], completionHandler: ([RetrievedWorkoutsByExercise]) -> Void)  {
+    func loopForWeekByExercise(data: [DoneExercise], completionHandler: ([DoneExercise]) -> Void)  {
         
         newByExercise = []
         
@@ -31,7 +31,7 @@ class DateSelection {
         completionHandler(newByExercise)
     }
     
-    func loopForMonthByExercise(data: [RetrievedWorkoutsByExercise], completionHandler: ([RetrievedWorkoutsByExercise]) -> Void) {
+    func loopForMonthByExercise(data: [DoneExercise], completionHandler: ([DoneExercise]) -> Void) {
         
         newByExercise = []
         
@@ -69,7 +69,7 @@ class DateSelection {
     
     //MARK: -LOOPS FOR findTrainingVolume
     
-    func loopForWeekVolume(data: [String: [RetrievedWorkoutsByVolume]], completionHandler: ([String: [RetrievedWorkoutsByVolume]]) -> Void) {
+    func loopForWeekVolume(data: [String: [DoneWorkoutInformation]], completionHandler: ([String: [DoneWorkoutInformation]]) -> Void) {
         newByVolume = [:]
         for (key,value) in data {
             for values in value where values.date >= (calendar.currentWeekBoundary()?.startOfWeek)! && values.date <= (calendar.currentWeekBoundary()?.endOfWeek)!
@@ -81,7 +81,7 @@ class DateSelection {
         
     }
     
-    func loopForMonthVolume(data: [String: [RetrievedWorkoutsByVolume]], completionHandler: ([String: [RetrievedWorkoutsByVolume]]) -> Void) {
+    func loopForMonthVolume(data: [String: [DoneWorkoutInformation]], completionHandler: ([String: [DoneWorkoutInformation]]) -> Void) {
         newByVolume = [:]
         for (key,value) in data {
             for values in value where values.date >= Date().firstDateOfMonth() && values.date <= Date().lastDateOfMonth()

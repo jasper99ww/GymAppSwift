@@ -111,6 +111,9 @@
 		E7AC76FA26A8404B00C88904 /* Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7AC76F926A8404B00C88904 /* Extensions.swift */; };
 		E7B049CD2697742E00CAF559 /* CaloriesResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B049CC2697742E00CAF559 /* CaloriesResultViewController.swift */; };
 		E7B049D1269781A300CAF559 /* SupportClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B049D0269781A300CAF559 /* SupportClass.swift */; };
+		E7B1496226BED87200CC8278 /* ChartModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B1496126BED87200CC8278 /* ChartModel.swift */; };
+		E7B1496526BED97600CC8278 /* ChartPresenter.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B1496426BED97600CC8278 /* ChartPresenter.swift */; };
+		E7B1496826BED9F400CC8278 /* ChartService.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B1496726BED9F400CC8278 /* ChartService.swift */; };
 		E7B23C1A269DD67300F1B871 /* BMI.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B23C19269DD67300F1B871 /* BMI.swift */; };
 		E7B23C23269E021200F1B871 /* AccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B23C22269E021200F1B871 /* AccountModel.swift */; };
 		E7B23C26269E435B00F1B871 /* EditAccountModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = E7B23C25269E435B00F1B871 /* EditAccountModel.swift */; };
@@ -241,6 +244,9 @@
 		E7AC76F926A8404B00C88904 /* Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extensions.swift; sourceTree = "<group>"; };
 		E7B049CC2697742E00CAF559 /* CaloriesResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CaloriesResultViewController.swift; sourceTree = "<group>"; };
 		E7B049D0269781A300CAF559 /* SupportClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SupportClass.swift; sourceTree = "<group>"; };
+		E7B1496126BED87200CC8278 /* ChartModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartModel.swift; sourceTree = "<group>"; };
+		E7B1496426BED97600CC8278 /* ChartPresenter.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartPresenter.swift; sourceTree = "<group>"; };
+		E7B1496726BED9F400CC8278 /* ChartService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChartService.swift; sourceTree = "<group>"; };
 		E7B23C19269DD67300F1B871 /* BMI.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BMI.swift; sourceTree = "<group>"; };
 		E7B23C22269E021200F1B871 /* AccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AccountModel.swift; sourceTree = "<group>"; };
 		E7B23C25269E435B00F1B871 /* EditAccountModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditAccountModel.swift; sourceTree = "<group>"; };
@@ -500,10 +506,6 @@
 		E721AED3265025DD0043207F /* Progress Controllers */ = {
 			isa = PBXGroup;
 			children = (
-				E734A748265F01D400621667 /* ChartXAxisFormatter.swift */,
-				E734A744265F01BD00621667 /* ProgressChartViewController.swift */,
-				E7CD99772661A88000EDBE51 /* ProgressPopUpView.swift */,
-				E71947CD265D6C0000DD17F3 /* ExercisesPopUp.swift */,
 				E718EDF626629F54004AFE8C /* Service.swift */,
 				E718EDFD2662EC7F004AFE8C /* CriteriaOfSelectViewController.swift */,
 				E72D7D9426694E26001EC1F8 /* DateSelection.swift */,
@@ -568,6 +570,7 @@
 				E79CC67726A38EA000E9EC5F /* AccountService.swift */,
 				E7B7052A26BB216E0090D767 /* ProfileMainService.swift */,
 				E7AB312126BCD62600979A56 /* NotificationService.swift */,
+				E7B1496726BED9F400CC8278 /* ChartService.swift */,
 			);
 			path = Services;
 			sourceTree = "<group>";
@@ -622,6 +625,8 @@
 		E7A4979426BDFBE800BEC8AA /* Chart */ = {
 			isa = PBXGroup;
 			children = (
+				E734A748265F01D400621667 /* ChartXAxisFormatter.swift */,
+				E7B1496126BED87200CC8278 /* ChartModel.swift */,
 			);
 			path = Chart;
 			sourceTree = "<group>";
@@ -629,6 +634,7 @@
 		E7A4979526BDFC0900BEC8AA /* Chart */ = {
 			isa = PBXGroup;
 			children = (
+				E7B1496426BED97600CC8278 /* ChartPresenter.swift */,
 			);
 			path = Chart;
 			sourceTree = "<group>";
@@ -636,6 +642,9 @@
 		E7A4979626BDFC2200BEC8AA /* Chart */ = {
 			isa = PBXGroup;
 			children = (
+				E734A744265F01BD00621667 /* ProgressChartViewController.swift */,
+				E7CD99772661A88000EDBE51 /* ProgressPopUpView.swift */,
+				E71947CD265D6C0000DD17F3 /* ExercisesPopUp.swift */,
 			);
 			name = Chart;
 			sourceTree = "<group>";
@@ -1028,6 +1037,7 @@
 				E792A4F326A5EA16006B9BB2 /* WorkoutPresenter.swift in Sources */,
 				596BC83E25E29DAD00166D9C /* SignUpViewController.swift in Sources */,
 				5964EA05261B5A9C00998B2F /* startViewBrain.swift in Sources */,
+				E7B1496526BED97600CC8278 /* ChartPresenter.swift in Sources */,
 				E79CC67B26A3917800E9EC5F /* AccountPresenter.swift in Sources */,
 				E7CD99782661A88000EDBE51 /* ProgressPopUpView.swift in Sources */,
 				E7A5E45126852E190060AD43 /* BMIResultViewController.swift in Sources */,
@@ -1040,6 +1050,7 @@
 				E7170F49267959E100ED7C26 /* EditAccountViewController.swift in Sources */,
 				5964DE772605479600A941D8 /* OptionsViewController.swift in Sources */,
 				E798AA6B26926D580044743A /* BodyWeightCalories.swift in Sources */,
+				E7B1496826BED9F400CC8278 /* ChartService.swift in Sources */,
 				5962997E26234D9900EF414D /* TimerStruct.swift in Sources */,
 				E7ABDBE426AE28BC00072258 /* CalendarReusableClass.swift in Sources */,
 				E7D9A511269B92D1007EF230 /* EditTimerViewController.swift in Sources */,
@@ -1103,6 +1114,7 @@
 				59638F5725E1C0D400B2AF84 /* AppDelegate.swift in Sources */,
 				59A533A425F0310A0064DFB5 /* UnderlinedTextField.swift in Sources */,
 				E791E2612682591500FBED0F /* HapticsManager.swift in Sources */,
+				E7B1496226BED87200CC8278 /* ChartModel.swift in Sources */,
 				E7AACD4226AB603200B7A31C /* BodyWeightCalendarViewController.swift in Sources */,
 				E7BCFB0526AA115B00EF8FBE /* BodyWeightModel.swift in Sources */,
 				E7170F4626791C8700ED7C26 /* ProfileService.swift in Sources */,

@@ -32,6 +32,30 @@ class ChartPeriodSelection {
         }
        return arrayForWeek
     }
+    
+    func valuesForWeekNEW<T: DateFieldForSelecton> (data: [String:[T]]) -> [String: [T]]  {
+       
+        var newByMaxValue = [String: [T]]()
+        print("new data is \(data)")
+        print("new by is \(newByMaxValue)")
+        
+            for (key,value) in data {
+                group.enter()
+                for values in value where values.date >= (calendar.currentWeekBoundary()?.startOfWeek)! && values.date <= (calendar.currentWeekBoundary()?.endOfWeek)!
+                {
+                    newByMaxValue[key, default: []].append(values)
+                    group.leave()
+                }
+               
+            }
+//            completionHandler(newByMaxValue)
+        group.notify(queue: .main) {
+        print("YOLO")
+        print("nowe \(newByMaxValue)")
+    
+        }
+        return newByMaxValue
+        }
 
     func valuesForMonth<T: DateFieldForSelecton> (data: [T]) -> [T]  {
         

@@ -26,6 +26,7 @@ class BodyWeightChartPresenter {
     var dataPresenter = [BodyWeightCalendarModel]()
     var lineChartEntries = [ChartDataEntry]()
     
+    
     var weekData: [BodyWeightCalendarModel] {
         return periodSelection.valuesForWeek(data: dataPresenter)
     }
